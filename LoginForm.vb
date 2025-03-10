@@ -9,7 +9,7 @@ Public Class LoginForm
             conn.Open()
 
             ' SQL query to check user credentials
-            Dim query As String = "SELECT role FROM users WHERE username=@user AND password_hash=@pass"
+            Dim query As String = "SELECT role FROM users WHERE user_id=@user AND password_hash=@pass"
             Dim cmd As New MySqlCommand(query, conn)
             cmd.Parameters.AddWithValue("@user", txtUserID.Text)
             cmd.Parameters.AddWithValue("@pass", txtPassword.Text) ' ⚠️ Consider hashing for security
