@@ -131,4 +131,7 @@ Public Class SignUpForm
         txtConfirmPass.UseSystemPasswordChar = Not chkShowPassword.Checked
     End Sub
 
+    Private Sub lblEmail_Click(sender As Object, e As EventArgs) Handles lblEmail.Click
+
+    End Sub
 End Class
