@@ -32,7 +32,7 @@ Namespace My
 
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()> _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.TigrisBorrow.Form1
+            Me.MainForm = Global.TigrisBorrow.LoginForm
         End Sub
     End Class
 End Namespace
