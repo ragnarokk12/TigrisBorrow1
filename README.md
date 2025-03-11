@@ -49,8 +49,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 The **MIS Department** at **LPU Laguna** currently relies on a **manual or paper-based system** to track borrowed and returned equipment. This leads to challenges such as:
 
 - **Difficulty tracking borrowed items** – No real-time monitoring of equipment status.
@@ -93,8 +91,6 @@ The **MIS Department** at **LPU Laguna** currently relies on a **manual or paper
 
 
 ### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * [![SQL](https://img.shields.io/badge/SQL-Database-blue?style=for-the-badge)](https://www.w3schools.com/sql/)
 * [![Visual Studio](https://img.shields.io/badge/Visual%20Studio-SQL-blueviolet?style=for-the-badge&logo=visual-studio&logoColor=white)](https://learn.microsoft.com/en-us/sql/ssms/sql-server-management-studio-ssms)
