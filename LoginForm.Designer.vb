@@ -24,10 +24,10 @@ Partial Class LoginForm
     Private Sub InitializeComponent()
         Me.btnLogin = New Guna.UI2.WinForms.Guna2Button()
         Me.btnSignUp = New Guna.UI2.WinForms.Guna2Button()
-        Me.txtUserID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtPassword = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblForgotPassword = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.chkShowPassword = New Guna.UI2.WinForms.Guna2CheckBox()
+        Me.txtUserID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.SuspendLayout()
         '
         'btnLogin
@@ -58,25 +58,6 @@ Partial Class LoginForm
         Me.btnSignUp.TabIndex = 1
         Me.btnSignUp.Text = "Sign-Up"
         '
-        'txtUserID
-        '
-        Me.txtUserID.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtUserID.DefaultText = ""
-        Me.txtUserID.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtUserID.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtUserID.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtUserID.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtUserID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtUserID.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.txtUserID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtUserID.Location = New System.Drawing.Point(316, 122)
-        Me.txtUserID.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.txtUserID.Name = "txtUserID"
-        Me.txtUserID.PlaceholderText = "2000-00000"
-        Me.txtUserID.SelectedText = ""
-        Me.txtUserID.Size = New System.Drawing.Size(200, 36)
-        Me.txtUserID.TabIndex = 2
-        '
         'txtPassword
         '
         Me.txtPassword.Cursor = System.Windows.Forms.Cursors.IBeam
@@ -100,7 +81,7 @@ Partial Class LoginForm
         'lblForgotPassword
         '
         Me.lblForgotPassword.BackColor = System.Drawing.Color.Transparent
-        Me.lblForgotPassword.Location = New System.Drawing.Point(316, 206)
+        Me.lblForgotPassword.Location = New System.Drawing.Point(316, 207)
         Me.lblForgotPassword.Name = "lblForgotPassword"
         Me.lblForgotPassword.Size = New System.Drawing.Size(88, 15)
         Me.lblForgotPassword.TabIndex = 4
@@ -122,6 +103,25 @@ Partial Class LoginForm
         Me.chkShowPassword.UncheckedState.BorderRadius = 0
         Me.chkShowPassword.UncheckedState.BorderThickness = 0
         Me.chkShowPassword.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        '
+        'txtUserID
+        '
+        Me.txtUserID.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtUserID.DefaultText = ""
+        Me.txtUserID.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtUserID.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtUserID.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtUserID.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtUserID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtUserID.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtUserID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtUserID.Location = New System.Drawing.Point(316, 122)
+        Me.txtUserID.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtUserID.Name = "txtUserID"
+        Me.txtUserID.PlaceholderText = "2000-00000"
+        Me.txtUserID.SelectedText = ""
+        Me.txtUserID.Size = New System.Drawing.Size(200, 36)
+        Me.txtUserID.TabIndex = 2
         '
         'LoginForm
         '
