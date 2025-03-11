@@ -46,6 +46,7 @@ Partial Class SignUpForm
         Me.cmbSecQ1 = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.cmbSecQ2 = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.cmbSecQ3 = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.chkShowPassword = New Guna.UI2.WinForms.Guna2CheckBox()
         Me.SuspendLayout()
         '
         'lblUserID
@@ -150,7 +151,7 @@ Partial Class SignUpForm
         'lblSecQ1
         '
         Me.lblSecQ1.BackColor = System.Drawing.Color.Transparent
-        Me.lblSecQ1.Location = New System.Drawing.Point(494, 142)
+        Me.lblSecQ1.Location = New System.Drawing.Point(494, 70)
         Me.lblSecQ1.Name = "lblSecQ1"
         Me.lblSecQ1.Size = New System.Drawing.Size(98, 15)
         Me.lblSecQ1.TabIndex = 9
@@ -159,7 +160,7 @@ Partial Class SignUpForm
         'lblSecQ2
         '
         Me.lblSecQ2.BackColor = System.Drawing.Color.Transparent
-        Me.lblSecQ2.Location = New System.Drawing.Point(494, 217)
+        Me.lblSecQ2.Location = New System.Drawing.Point(494, 170)
         Me.lblSecQ2.Name = "lblSecQ2"
         Me.lblSecQ2.Size = New System.Drawing.Size(98, 15)
         Me.lblSecQ2.TabIndex = 10
@@ -168,7 +169,7 @@ Partial Class SignUpForm
         'lblSecQ3
         '
         Me.lblSecQ3.BackColor = System.Drawing.Color.Transparent
-        Me.lblSecQ3.Location = New System.Drawing.Point(494, 254)
+        Me.lblSecQ3.Location = New System.Drawing.Point(494, 258)
         Me.lblSecQ3.Name = "lblSecQ3"
         Me.lblSecQ3.Size = New System.Drawing.Size(98, 15)
         Me.lblSecQ3.TabIndex = 11
@@ -275,7 +276,7 @@ Partial Class SignUpForm
         Me.txtSecQ2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtSecQ2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtSecQ2.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSecQ2.Location = New System.Drawing.Point(588, 191)
+        Me.txtSecQ2.Location = New System.Drawing.Point(597, 205)
         Me.txtSecQ2.Name = "txtSecQ2"
         Me.txtSecQ2.PlaceholderText = "Answer to security question 2"
         Me.txtSecQ2.SelectedText = ""
@@ -293,7 +294,7 @@ Partial Class SignUpForm
         Me.txtSecQ3.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtSecQ3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtSecQ3.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSecQ3.Location = New System.Drawing.Point(597, 233)
+        Me.txtSecQ3.Location = New System.Drawing.Point(597, 287)
         Me.txtSecQ3.Name = "txtSecQ3"
         Me.txtSecQ3.PlaceholderText = "Answer to Security question 3"
         Me.txtSecQ3.SelectedText = ""
@@ -340,7 +341,7 @@ Partial Class SignUpForm
         Me.cmbSecQ1.ItemHeight = 30
         Me.cmbSecQ1.Location = New System.Drawing.Point(597, 70)
         Me.cmbSecQ1.Name = "cmbSecQ1"
-        Me.cmbSecQ1.Size = New System.Drawing.Size(140, 36)
+        Me.cmbSecQ1.Size = New System.Drawing.Size(200, 36)
         Me.cmbSecQ1.TabIndex = 23
         '
         'cmbSecQ2
@@ -353,9 +354,9 @@ Partial Class SignUpForm
         Me.cmbSecQ2.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbSecQ2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
         Me.cmbSecQ2.ItemHeight = 30
-        Me.cmbSecQ2.Location = New System.Drawing.Point(647, 320)
+        Me.cmbSecQ2.Location = New System.Drawing.Point(598, 163)
         Me.cmbSecQ2.Name = "cmbSecQ2"
-        Me.cmbSecQ2.Size = New System.Drawing.Size(140, 36)
+        Me.cmbSecQ2.Size = New System.Drawing.Size(199, 36)
         Me.cmbSecQ2.TabIndex = 24
         '
         'cmbSecQ3
@@ -368,16 +369,34 @@ Partial Class SignUpForm
         Me.cmbSecQ3.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbSecQ3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
         Me.cmbSecQ3.ItemHeight = 30
-        Me.cmbSecQ3.Location = New System.Drawing.Point(657, 379)
+        Me.cmbSecQ3.Location = New System.Drawing.Point(598, 249)
         Me.cmbSecQ3.Name = "cmbSecQ3"
-        Me.cmbSecQ3.Size = New System.Drawing.Size(140, 36)
+        Me.cmbSecQ3.Size = New System.Drawing.Size(199, 36)
         Me.cmbSecQ3.TabIndex = 25
+        '
+        'chkShowPassword
+        '
+        Me.chkShowPassword.AutoSize = True
+        Me.chkShowPassword.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.chkShowPassword.CheckedState.BorderRadius = 0
+        Me.chkShowPassword.CheckedState.BorderThickness = 0
+        Me.chkShowPassword.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.chkShowPassword.Location = New System.Drawing.Point(235, 258)
+        Me.chkShowPassword.Name = "chkShowPassword"
+        Me.chkShowPassword.Size = New System.Drawing.Size(102, 17)
+        Me.chkShowPassword.TabIndex = 26
+        Me.chkShowPassword.Text = "Show Password"
+        Me.chkShowPassword.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.chkShowPassword.UncheckedState.BorderRadius = 0
+        Me.chkShowPassword.UncheckedState.BorderThickness = 0
+        Me.chkShowPassword.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
         '
         'SignUpForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(827, 633)
+        Me.Controls.Add(Me.chkShowPassword)
         Me.Controls.Add(Me.cmbSecQ3)
         Me.Controls.Add(Me.cmbSecQ2)
         Me.Controls.Add(Me.cmbSecQ1)
@@ -433,4 +452,5 @@ Partial Class SignUpForm
     Friend WithEvents cmbSecQ1 As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents cmbSecQ2 As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents cmbSecQ3 As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents chkShowPassword As Guna.UI2.WinForms.Guna2CheckBox
 End Class
