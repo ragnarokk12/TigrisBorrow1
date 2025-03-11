@@ -92,6 +92,7 @@ The **MIS Department** at **LPU Laguna** currently relies on a **manual or paper
 
 ### Built With
 
+* [![.NET](https://img.shields.io/badge/.NET-Framework-purple?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
 * [![SQL](https://img.shields.io/badge/SQL-Database-blue?style=for-the-badge)](https://www.w3schools.com/sql/)
 * [![Visual Studio](https://img.shields.io/badge/Visual%20Studio-SQL-blueviolet?style=for-the-badge&logo=visual-studio&logoColor=white)](https://learn.microsoft.com/en-us/sql/ssms/sql-server-management-studio-ssms)
 
