@@ -1,6 +1,12 @@
 
 <a id="readme-top"></a>
 
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][https://github.com/ragnarokk12/TigrisBorrow1/fork]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][https://github.com/ragnarokk12/TigrisBorrow1/issues]
+[![Unlicense License][license-shield]][https://github.com/ragnarokk12/TigrisBorrow1/blob/master/LICENSE.txt]
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
