@@ -25,8 +25,8 @@ Partial Class SignUpForm
         Me.components = New System.ComponentModel.Container()
         Me.lblUserID = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.txtUserID = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.lblFullName = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.txtFullName = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.lblFirstName = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.txtFirstName = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblTitle = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblEmail = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblContact = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -51,6 +51,8 @@ Partial Class SignUpForm
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2ControlBox2 = New Guna.UI2.WinForms.Guna2ControlBox()
+        Me.lblLastName = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.txtLastName = New Guna.UI2.WinForms.Guna2TextBox()
         Me.SuspendLayout()
         '
         'lblUserID
@@ -82,34 +84,34 @@ Partial Class SignUpForm
         Me.txtUserID.Size = New System.Drawing.Size(259, 57)
         Me.txtUserID.TabIndex = 1
         '
-        'lblFullName
+        'lblFirstName
         '
-        Me.lblFullName.BackColor = System.Drawing.Color.Transparent
-        Me.lblFullName.Font = New System.Drawing.Font("Nirmala UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFullName.Location = New System.Drawing.Point(121, 210)
-        Me.lblFullName.Name = "lblFullName"
-        Me.lblFullName.Size = New System.Drawing.Size(77, 23)
-        Me.lblFullName.TabIndex = 2
-        Me.lblFullName.Text = "Full Name:"
+        Me.lblFirstName.BackColor = System.Drawing.Color.Transparent
+        Me.lblFirstName.Font = New System.Drawing.Font("Nirmala UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFirstName.Location = New System.Drawing.Point(121, 210)
+        Me.lblFirstName.Name = "lblFirstName"
+        Me.lblFirstName.Size = New System.Drawing.Size(82, 23)
+        Me.lblFirstName.TabIndex = 2
+        Me.lblFirstName.Text = "First Name:"
         '
-        'txtFullName
+        'txtFirstName
         '
-        Me.txtFullName.BorderRadius = 15
-        Me.txtFullName.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtFullName.DefaultText = ""
-        Me.txtFullName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtFullName.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtFullName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtFullName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtFullName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtFullName.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.txtFullName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtFullName.Location = New System.Drawing.Point(230, 256)
-        Me.txtFullName.Name = "txtFullName"
-        Me.txtFullName.PlaceholderText = "Enter your full name"
-        Me.txtFullName.SelectedText = ""
-        Me.txtFullName.Size = New System.Drawing.Size(259, 57)
-        Me.txtFullName.TabIndex = 3
+        Me.txtFirstName.BorderRadius = 15
+        Me.txtFirstName.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtFirstName.DefaultText = ""
+        Me.txtFirstName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtFirstName.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtFirstName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtFirstName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtFirstName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtFirstName.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtFirstName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtFirstName.Location = New System.Drawing.Point(230, 195)
+        Me.txtFirstName.Name = "txtFirstName"
+        Me.txtFirstName.PlaceholderText = "Enter your full name"
+        Me.txtFirstName.SelectedText = ""
+        Me.txtFirstName.Size = New System.Drawing.Size(259, 57)
+        Me.txtFirstName.TabIndex = 3
         '
         'lblTitle
         '
@@ -450,11 +452,40 @@ Partial Class SignUpForm
         Me.Guna2ControlBox2.Size = New System.Drawing.Size(45, 29)
         Me.Guna2ControlBox2.TabIndex = 28
         '
+        'lblLastName
+        '
+        Me.lblLastName.BackColor = System.Drawing.Color.Transparent
+        Me.lblLastName.Location = New System.Drawing.Point(121, 287)
+        Me.lblLastName.Name = "lblLastName"
+        Me.lblLastName.Size = New System.Drawing.Size(57, 15)
+        Me.lblLastName.TabIndex = 29
+        Me.lblLastName.Text = "Last Name:"
+        '
+        'txtLastName
+        '
+        Me.txtLastName.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtLastName.DefaultText = ""
+        Me.txtLastName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtLastName.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtLastName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtLastName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtLastName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtLastName.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtLastName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtLastName.Location = New System.Drawing.Point(241, 266)
+        Me.txtLastName.Name = "txtLastName"
+        Me.txtLastName.PlaceholderText = ""
+        Me.txtLastName.SelectedText = ""
+        Me.txtLastName.Size = New System.Drawing.Size(200, 36)
+        Me.txtLastName.TabIndex = 30
+        '
         'SignUpForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1083, 895)
+        Me.Controls.Add(Me.txtLastName)
+        Me.Controls.Add(Me.lblLastName)
         Me.Controls.Add(Me.Guna2ControlBox2)
         Me.Controls.Add(Me.Guna2ControlBox1)
         Me.Controls.Add(Me.chkShowPassword)
@@ -478,8 +509,8 @@ Partial Class SignUpForm
         Me.Controls.Add(Me.lblContact)
         Me.Controls.Add(Me.lblEmail)
         Me.Controls.Add(Me.lblTitle)
-        Me.Controls.Add(Me.txtFullName)
-        Me.Controls.Add(Me.lblFullName)
+        Me.Controls.Add(Me.txtFirstName)
+        Me.Controls.Add(Me.lblFirstName)
         Me.Controls.Add(Me.txtUserID)
         Me.Controls.Add(Me.lblUserID)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -492,8 +523,8 @@ Partial Class SignUpForm
 
     Friend WithEvents lblUserID As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents txtUserID As Guna.UI2.WinForms.Guna2TextBox
-    Friend WithEvents lblFullName As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents txtFullName As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents lblFirstName As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents txtFirstName As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents lblTitle As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblEmail As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblContact As Guna.UI2.WinForms.Guna2HtmlLabel
@@ -518,4 +549,6 @@ Partial Class SignUpForm
     Friend WithEvents Guna2Elipse1 As Guna.UI2.WinForms.Guna2Elipse
     Friend WithEvents Guna2ControlBox2 As Guna.UI2.WinForms.Guna2ControlBox
     Friend WithEvents Guna2ControlBox1 As Guna.UI2.WinForms.Guna2ControlBox
+    Friend WithEvents txtLastName As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents lblLastName As Guna.UI2.WinForms.Guna2HtmlLabel
 End Class

@@ -67,16 +67,17 @@ Public Class SignUpForm
             End If
 
             ' SQL Insert Query
-            Dim query As String = "INSERT INTO users (user_id, full_name, email, contact_number, password_hash, " &
+            Dim query As String = "INSERT INTO users (user_id, first_name, last_name, email, contact_number, password_hash, " &
                                   "security_question1, security_answer_hash1, " &
                                   "security_question2, security_answer_hash2, " &
                                   "security_question3, security_answer_hash3, role, created_at) " &
-                                  "VALUES (@user, @fullname, @email, @contact, @pass, @q1, @a1, @q2, @a2, @q3, @a3, 'student', NOW())"
+                                  "VALUES (@user, @first_name, @last_name, @email, @contact, @pass, @q1, @a1, @q2, @a2, @q3, @a3, 'student', NOW())"
             Dim cmd As New MySqlCommand(query, conn)
 
             ' Add parameters
             cmd.Parameters.AddWithValue("@user", txtUserID.Text)
-            cmd.Parameters.AddWithValue("@fullname", txtFullName.Text)
+            cmd.Parameters.AddWithValue("@first_name", txtFirstName.Text)
+            cmd.Parameters.AddWithValue("@last_name", txtLastName.Text)
             cmd.Parameters.AddWithValue("@email", txtEmail.Text)
             cmd.Parameters.AddWithValue("@contact", txtContact.Text)
             cmd.Parameters.AddWithValue("@pass", HashPassword(txtPassword.Text))
@@ -125,13 +126,9 @@ Public Class SignUpForm
         txtConfirmPass.UseSystemPasswordChar = True
     End Sub
 
-
     Private Sub chkShowPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowPassword.CheckedChanged
         txtPassword.UseSystemPasswordChar = Not chkShowPassword.Checked
         txtConfirmPass.UseSystemPasswordChar = Not chkShowPassword.Checked
     End Sub
 
-    Private Sub lblEmail_Click(sender As Object, e As EventArgs) Handles lblEmail.Click
-
-    End Sub
 End Class
