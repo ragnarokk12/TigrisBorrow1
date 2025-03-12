@@ -72,6 +72,7 @@ Partial Class ForgotPasswordForm
         '
         'grpSecurityQuestions
         '
+        Me.grpSecurityQuestions.Cursor = System.Windows.Forms.Cursors.Default
         Me.grpSecurityQuestions.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.grpSecurityQuestions.ForeColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
         Me.grpSecurityQuestions.Location = New System.Drawing.Point(67, 53)
