@@ -177,15 +177,15 @@ Special Thanks:
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/ragnarokk12/TigrisBorrow1.svg?style=for-the-badge
 [contributors-url]: https://github.com/ragnarokk12/TigrisBorrow1/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/ragnarokk12/TigrisBorrow1.svg?style=for-the-badge
 [forks-url]: https://github.com/ragnarokk12/TigrisBorrow1/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/ragnarokk12/TigrisBorrow1.svg?style=for-the-badge
 [stars-url]: https://github.com/ragnarokk12/TigrisBorrow1/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/ragnarokk12/TigrisBorrow1.svg?style=for-the-badge
 [issues-url]: https://github.com/ragnarokk12/TigrisBorrow1/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/ragnarokk12/TigrisBorrow1.svg?style=for-the-badge
 [license-url]: https://github.com/ragnarokk12/TigrisBorrow1/blob/master/LICENSE.txt
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
