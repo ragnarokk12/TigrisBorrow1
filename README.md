@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/ragnarokk12/TigrisBorrow1">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="master/Logo/2.png" alt="Logo" width="500" height="500">
   </a>
 
   <h3 align="center">TigrisBorrow</h3>
