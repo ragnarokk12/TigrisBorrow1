@@ -131,4 +131,16 @@ Public Class SignUpForm
         txtConfirmPass.UseSystemPasswordChar = Not chkShowPassword.Checked
     End Sub
 
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        LoginForm.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub SignUpForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        ' Show LoginForm when the SignUpForm is closed
+        If Not LoginForm.Visible Then
+            LoginForm.Show()
+        End If
+    End Sub
+
 End Class
