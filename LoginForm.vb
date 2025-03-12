@@ -48,4 +48,13 @@ Public Class LoginForm
     Private Sub lblForgotPassword_Click(sender As Object, e As EventArgs) Handles lblForgotPassword.Click
         ForgotPasswordForm.Show()
     End Sub
+
+    ' Checkbox event to toggle password visibility
+    Private Sub chkShowPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowPassword.CheckedChanged
+        If chkShowPassword.Checked Then
+            txtPassword.UseSystemPasswordChar = False
+        Else
+            txtPassword.UseSystemPasswordChar = True
+        End If
+    End Sub
 End Class

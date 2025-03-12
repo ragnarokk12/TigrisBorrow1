@@ -27,6 +27,7 @@ Partial Class LoginForm
         Me.txtUserID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtPassword = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblForgotPassword = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.chkShowPassword = New Guna.UI2.WinForms.Guna2CheckBox()
         Me.SuspendLayout()
         '
         'btnLogin
@@ -37,7 +38,7 @@ Partial Class LoginForm
         Me.btnLogin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnLogin.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnLogin.ForeColor = System.Drawing.Color.White
-        Me.btnLogin.Location = New System.Drawing.Point(326, 273)
+        Me.btnLogin.Location = New System.Drawing.Point(327, 273)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(180, 45)
         Me.btnLogin.TabIndex = 0
@@ -51,7 +52,8 @@ Partial Class LoginForm
         Me.btnSignUp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnSignUp.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnSignUp.ForeColor = System.Drawing.Color.White
-        Me.btnSignUp.Location = New System.Drawing.Point(326, 334)
+        Me.btnSignUp.Location = New System.Drawing.Point(436, 411)
+        Me.btnSignUp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnSignUp.Name = "btnSignUp"
         Me.btnSignUp.Size = New System.Drawing.Size(180, 45)
         Me.btnSignUp.TabIndex = 1
@@ -94,11 +96,13 @@ Partial Class LoginForm
         Me.txtPassword.SelectedText = ""
         Me.txtPassword.Size = New System.Drawing.Size(200, 36)
         Me.txtPassword.TabIndex = 3
+        Me.txtPassword.UseSystemPasswordChar = True
         '
         'lblForgotPassword
         '
         Me.lblForgotPassword.BackColor = System.Drawing.Color.Transparent
-        Me.lblForgotPassword.Location = New System.Drawing.Point(316, 207)
+        Me.lblForgotPassword.Location = New System.Drawing.Point(421, 254)
+        Me.lblForgotPassword.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.lblForgotPassword.Name = "lblForgotPassword"
         Me.lblForgotPassword.Size = New System.Drawing.Size(88, 15)
         Me.lblForgotPassword.TabIndex = 4
@@ -106,11 +110,28 @@ Partial Class LoginForm
         Me.lblForgotPassword.AutoSize = True
         Me.lblForgotPassword.Anchor = System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left
         '
+        'chkShowPassword
+        '
+        Me.chkShowPassword.AutoSize = True
+        Me.chkShowPassword.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.chkShowPassword.CheckedState.BorderRadius = 0
+        Me.chkShowPassword.CheckedState.BorderThickness = 0
+        Me.chkShowPassword.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.chkShowPassword.Location = New System.Drawing.Point(523, 174)
+        Me.chkShowPassword.Name = "chkShowPassword"
+        Me.chkShowPassword.Size = New System.Drawing.Size(102, 17)
+        Me.chkShowPassword.TabIndex = 5
+        Me.chkShowPassword.Text = "Show Password"
+        Me.chkShowPassword.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.chkShowPassword.UncheckedState.BorderRadius = 0
+        Me.chkShowPassword.UncheckedState.BorderThickness = 0
+        Me.chkShowPassword.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        '
         'LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1067, 554)
         Me.Controls.Add(Me.lblForgotPassword)
         Me.Controls.Add(Me.txtPassword)
         Me.Controls.Add(Me.txtUserID)
@@ -127,4 +148,5 @@ Partial Class LoginForm
     Friend WithEvents txtUserID As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtPassword As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents lblForgotPassword As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents chkShowPassword As Guna.UI2.WinForms.Guna2CheckBox
 End Class
