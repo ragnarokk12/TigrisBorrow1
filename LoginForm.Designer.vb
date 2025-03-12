@@ -37,10 +37,9 @@ Partial Class LoginForm
         Me.btnLogin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnLogin.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnLogin.ForeColor = System.Drawing.Color.White
-        Me.btnLogin.Location = New System.Drawing.Point(436, 336)
-        Me.btnLogin.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnLogin.Location = New System.Drawing.Point(327, 273)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(240, 55)
+        Me.btnLogin.Size = New System.Drawing.Size(180, 45)
         Me.btnLogin.TabIndex = 0
         Me.btnLogin.Text = "Login"
         '
@@ -52,10 +51,9 @@ Partial Class LoginForm
         Me.btnSignUp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnSignUp.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnSignUp.ForeColor = System.Drawing.Color.White
-        Me.btnSignUp.Location = New System.Drawing.Point(436, 411)
-        Me.btnSignUp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSignUp.Location = New System.Drawing.Point(327, 334)
         Me.btnSignUp.Name = "btnSignUp"
-        Me.btnSignUp.Size = New System.Drawing.Size(240, 55)
+        Me.btnSignUp.Size = New System.Drawing.Size(180, 45)
         Me.btnSignUp.TabIndex = 1
         Me.btnSignUp.Text = "Sign-Up"
         '
@@ -70,12 +68,12 @@ Partial Class LoginForm
         Me.txtUserID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtUserID.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtUserID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtUserID.Location = New System.Drawing.Point(421, 150)
-        Me.txtUserID.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtUserID.Location = New System.Drawing.Point(316, 122)
+        Me.txtUserID.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtUserID.Name = "txtUserID"
         Me.txtUserID.PlaceholderText = "2000-00000"
         Me.txtUserID.SelectedText = ""
-        Me.txtUserID.Size = New System.Drawing.Size(267, 44)
+        Me.txtUserID.Size = New System.Drawing.Size(200, 36)
         Me.txtUserID.TabIndex = 2
         '
         'txtPassword
@@ -89,39 +87,38 @@ Partial Class LoginForm
         Me.txtPassword.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPassword.Location = New System.Drawing.Point(421, 202)
-        Me.txtPassword.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtPassword.Location = New System.Drawing.Point(316, 164)
+        Me.txtPassword.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.PlaceholderText = "password"
         Me.txtPassword.SelectedText = ""
-        Me.txtPassword.Size = New System.Drawing.Size(267, 44)
+        Me.txtPassword.Size = New System.Drawing.Size(200, 36)
         Me.txtPassword.TabIndex = 3
         '
         'lblForgotPassword
         '
+        Me.lblForgotPassword.AutoSize = False
+        Me.lblForgotPassword.AutoSizeHeightOnly = True
         Me.lblForgotPassword.BackColor = System.Drawing.Color.Transparent
-        Me.lblForgotPassword.Location = New System.Drawing.Point(421, 254)
-        Me.lblForgotPassword.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lblForgotPassword.Location = New System.Drawing.Point(316, 206)
         Me.lblForgotPassword.Name = "lblForgotPassword"
-        Me.lblForgotPassword.Size = New System.Drawing.Size(112, 18)
+        Me.lblForgotPassword.Size = New System.Drawing.Size(88, 15)
         Me.lblForgotPassword.TabIndex = 4
         Me.lblForgotPassword.Text = "Forgot Password?"
         '
         'LoginForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1067, 554)
+        Me.ClientSize = New System.Drawing.Size(800, 450)
         Me.Controls.Add(Me.lblForgotPassword)
         Me.Controls.Add(Me.txtPassword)
         Me.Controls.Add(Me.txtUserID)
         Me.Controls.Add(Me.btnSignUp)
         Me.Controls.Add(Me.btnLogin)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "LoginForm"
         Me.Text = "LoginForm"
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnLogin As Guna.UI2.WinForms.Guna2Button
