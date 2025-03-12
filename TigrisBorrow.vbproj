@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DFFCB4FE-A32B-4A5B-9134-8C12AE6C05C9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>TigrisBorrow.My.MyApplication</StartupObject>
+    <StartupObject>TigrisBorrow.LoginForm</StartupObject>
     <RootNamespace>TigrisBorrow</RootNamespace>
     <AssemblyName>TigrisBorrow</AssemblyName>
     <FileAlignment>512</FileAlignment>
