@@ -52,7 +52,8 @@ Partial Class LoginForm
         Me.btnSignUp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnSignUp.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnSignUp.ForeColor = System.Drawing.Color.White
-        Me.btnSignUp.Location = New System.Drawing.Point(327, 334)
+        Me.btnSignUp.Location = New System.Drawing.Point(327, 341)
+        Me.btnSignUp.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSignUp.Name = "btnSignUp"
         Me.btnSignUp.Size = New System.Drawing.Size(180, 45)
         Me.btnSignUp.TabIndex = 1
@@ -127,8 +128,7 @@ Partial Class LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.chkShowPassword)
+        Me.ClientSize = New System.Drawing.Size(884, 554)
         Me.Controls.Add(Me.lblForgotPassword)
         Me.Controls.Add(Me.txtPassword)
         Me.Controls.Add(Me.txtUserID)
