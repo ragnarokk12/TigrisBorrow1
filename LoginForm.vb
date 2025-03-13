@@ -67,7 +67,7 @@ Public Class LoginForm
     End Function
 
     ' Checkbox event to toggle password visibility
-    Private Sub chkShowPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowPassword.CheckedChanged
-        txtPassword.UseSystemPasswordChar = Not chkShowPassword.Checked ' ✅ Simplified toggle logic
+    Private Sub chkShowPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowPassword2.CheckedChanged
+        txtPassword.UseSystemPasswordChar = Not chkShowPassword2.Checked ' ✅ Simplified toggle logic
     End Sub
 End Class

@@ -26,8 +26,9 @@ Partial Class LoginForm
         Me.btnSignUp = New Guna.UI2.WinForms.Guna2Button()
         Me.txtPassword = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblForgotPassword = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.chkShowPassword = New Guna.UI2.WinForms.Guna2CheckBox()
+        Me.chkShowPassword2 = New Guna.UI2.WinForms.Guna2CheckBox()
         Me.txtUserID = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.chkShowPassword = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'btnLogin
@@ -52,8 +53,8 @@ Partial Class LoginForm
         Me.btnSignUp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnSignUp.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnSignUp.ForeColor = System.Drawing.Color.White
-        Me.btnSignUp.Location = New System.Drawing.Point(436, 411)
-        Me.btnSignUp.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnSignUp.Location = New System.Drawing.Point(327, 325)
+        Me.btnSignUp.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSignUp.Name = "btnSignUp"
         Me.btnSignUp.Size = New System.Drawing.Size(180, 45)
         Me.btnSignUp.TabIndex = 1
@@ -87,25 +88,23 @@ Partial Class LoginForm
         Me.lblForgotPassword.Size = New System.Drawing.Size(88, 15)
         Me.lblForgotPassword.TabIndex = 4
         Me.lblForgotPassword.Text = "Forgot Password?"
-        Me.lblForgotPassword.AutoSize = True
-        Me.lblForgotPassword.Anchor = System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left
         '
-        'chkShowPassword
+        'chkShowPassword2
         '
-        Me.chkShowPassword.AutoSize = True
-        Me.chkShowPassword.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.chkShowPassword.CheckedState.BorderRadius = 0
-        Me.chkShowPassword.CheckedState.BorderThickness = 0
-        Me.chkShowPassword.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.chkShowPassword.Location = New System.Drawing.Point(523, 174)
-        Me.chkShowPassword.Name = "chkShowPassword"
-        Me.chkShowPassword.Size = New System.Drawing.Size(102, 17)
-        Me.chkShowPassword.TabIndex = 5
-        Me.chkShowPassword.Text = "Show Password"
-        Me.chkShowPassword.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
-        Me.chkShowPassword.UncheckedState.BorderRadius = 0
-        Me.chkShowPassword.UncheckedState.BorderThickness = 0
-        Me.chkShowPassword.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.chkShowPassword2.AutoSize = True
+        Me.chkShowPassword2.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.chkShowPassword2.CheckedState.BorderRadius = 0
+        Me.chkShowPassword2.CheckedState.BorderThickness = 0
+        Me.chkShowPassword2.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.chkShowPassword2.Location = New System.Drawing.Point(562, 237)
+        Me.chkShowPassword2.Name = "chkShowPassword2"
+        Me.chkShowPassword2.Size = New System.Drawing.Size(102, 17)
+        Me.chkShowPassword2.TabIndex = 5
+        Me.chkShowPassword2.Text = "Show Password"
+        Me.chkShowPassword2.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.chkShowPassword2.UncheckedState.BorderRadius = 0
+        Me.chkShowPassword2.UncheckedState.BorderThickness = 0
+        Me.chkShowPassword2.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
         '
         'txtUserID
         '
@@ -126,11 +125,22 @@ Partial Class LoginForm
         Me.txtUserID.Size = New System.Drawing.Size(200, 36)
         Me.txtUserID.TabIndex = 2
         '
+        'chkShowPassword
+        '
+        Me.chkShowPassword.AutoSize = True
+        Me.chkShowPassword.Location = New System.Drawing.Point(535, 183)
+        Me.chkShowPassword.Name = "chkShowPassword"
+        Me.chkShowPassword.Size = New System.Drawing.Size(81, 17)
+        Me.chkShowPassword.TabIndex = 5
+        Me.chkShowPassword.Text = "CheckBox1"
+        Me.chkShowPassword.UseVisualStyleBackColor = True
+        '
         'LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1067, 554)
+        Me.ClientSize = New System.Drawing.Size(819, 513)
+        Me.Controls.Add(Me.chkShowPassword)
         Me.Controls.Add(Me.lblForgotPassword)
         Me.Controls.Add(Me.txtPassword)
         Me.Controls.Add(Me.txtUserID)
@@ -147,5 +157,6 @@ Partial Class LoginForm
     Friend WithEvents txtUserID As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtPassword As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents lblForgotPassword As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents chkShowPassword As Guna.UI2.WinForms.Guna2CheckBox
+    Friend WithEvents chkShowPassword2 As Guna.UI2.WinForms.Guna2CheckBox
+    Friend WithEvents chkShowPassword As CheckBox
 End Class
