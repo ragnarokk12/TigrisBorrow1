@@ -1,4 +1,6 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Security.Cryptography
+Imports System.Text
+Imports MySql.Data.MySqlClient
 
 Public Class LoginForm
     ' Button Click event for Login
@@ -8,11 +10,14 @@ Public Class LoginForm
         Try
             conn.Open()
 
+            ' Hash the input password before checking it against the database
+            Dim hashedPassword As String = HashPassword(txtPassword.Text)
+
             ' SQL query to check user credentials
             Dim query As String = "SELECT role FROM users WHERE user_id=@user AND password_hash=@pass"
             Dim cmd As New MySqlCommand(query, conn)
             cmd.Parameters.AddWithValue("@user", txtUserID.Text)
-            cmd.Parameters.AddWithValue("@pass", txtPassword.Text) ' ⚠️ Consider hashing for security
+            cmd.Parameters.AddWithValue("@pass", hashedPassword) ' ✅ Compare hashed password
 
             Dim role As Object = cmd.ExecuteScalar() ' Get user role from DB
 
@@ -47,5 +52,22 @@ Public Class LoginForm
     ' Label Click event for Forgot Password
     Private Sub lblForgotPassword_Click(sender As Object, e As EventArgs) Handles lblForgotPassword.Click
         ForgotPasswordForm.Show()
+    End Sub
+
+    ' Hash the Passwords using SHA256
+    Private Function HashPassword(password As String) As String
+        Using sha256 As SHA256 = SHA256.Create() ' ✅ Correct instantiation
+            Dim bytes As Byte() = sha256.ComputeHash(Encoding.UTF8.GetBytes(password))
+            Dim builder As New StringBuilder()
+            For Each b In bytes
+                builder.Append(b.ToString("x2"))
+            Next
+            Return builder.ToString()
+        End Using
+    End Function
+
+    ' Checkbox event to toggle password visibility
+    Private Sub chkShowPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowPassword.CheckedChanged
+        txtPassword.UseSystemPasswordChar = Not chkShowPassword.Checked ' ✅ Simplified toggle logic
     End Sub
 End Class
