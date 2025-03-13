@@ -70,4 +70,8 @@ Public Class LoginForm
     Private Sub chkShowPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowPassword2.CheckedChanged
         txtPassword.UseSystemPasswordChar = Not chkShowPassword2.Checked ' ✅ Simplified toggle logic
     End Sub
+
+    Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
