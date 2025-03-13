@@ -136,6 +136,9 @@
     <Compile Include="AdminStaffDashboardForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="BaseForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Common.vb" />
     <Compile Include="ForgotPasswordForm.Designer.vb">
       <DependentUpon>ForgotPasswordForm.vb</DependentUpon>

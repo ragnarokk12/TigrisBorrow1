@@ -60,7 +60,7 @@ Public Class AdminStaffDashboardForm
             Return
         End If
 
-
+        ' Functionality to add an item goes here
     End Sub
 
     Private Sub btnDeleteItems_Click(sender As Object, e As EventArgs) Handles btnDeleteItems.Click

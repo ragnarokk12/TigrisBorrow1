@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class LoginForm
-    Inherits System.Windows.Forms.Form
+    Inherits BaseForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -29,6 +29,7 @@ Partial Class LoginForm
         Me.chkShowPassword2 = New Guna.UI2.WinForms.Guna2CheckBox()
         Me.txtUserID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.chkShowPassword = New System.Windows.Forms.CheckBox()
+        Me.lblInstruction = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.SuspendLayout()
         '
         'btnLogin
@@ -42,7 +43,7 @@ Partial Class LoginForm
         Me.btnLogin.Location = New System.Drawing.Point(327, 273)
         Me.btnLogin.Name = "btnLogin"
         Me.btnLogin.Size = New System.Drawing.Size(180, 45)
-        Me.btnLogin.TabIndex = 0
+        Me.btnLogin.TabIndex = 3
         Me.btnLogin.Text = "Login"
         '
         'btnSignUp
@@ -57,7 +58,7 @@ Partial Class LoginForm
         Me.btnSignUp.Margin = New System.Windows.Forms.Padding(4)
         Me.btnSignUp.Name = "btnSignUp"
         Me.btnSignUp.Size = New System.Drawing.Size(180, 45)
-        Me.btnSignUp.TabIndex = 1
+        Me.btnSignUp.TabIndex = 4
         Me.btnSignUp.Text = "Sign-Up"
         '
         'txtPassword
@@ -77,7 +78,7 @@ Partial Class LoginForm
         Me.txtPassword.PlaceholderText = "password"
         Me.txtPassword.SelectedText = ""
         Me.txtPassword.Size = New System.Drawing.Size(200, 36)
-        Me.txtPassword.TabIndex = 3
+        Me.txtPassword.TabIndex = 1
         Me.txtPassword.UseSystemPasswordChar = True
         '
         'lblForgotPassword
@@ -85,10 +86,10 @@ Partial Class LoginForm
         Me.lblForgotPassword.AutoSize = False
         Me.lblForgotPassword.AutoSizeHeightOnly = True
         Me.lblForgotPassword.BackColor = System.Drawing.Color.Transparent
-        Me.lblForgotPassword.Location = New System.Drawing.Point(316, 207)
+        Me.lblForgotPassword.Location = New System.Drawing.Point(316, 230)
         Me.lblForgotPassword.Name = "lblForgotPassword"
         Me.lblForgotPassword.Size = New System.Drawing.Size(88, 14)
-        Me.lblForgotPassword.TabIndex = 4
+        Me.lblForgotPassword.TabIndex = 2
         Me.lblForgotPassword.Text = "Forgot Password?"
         '
         'chkShowPassword2
@@ -125,23 +126,34 @@ Partial Class LoginForm
         Me.txtUserID.PlaceholderText = "2000-00000"
         Me.txtUserID.SelectedText = ""
         Me.txtUserID.Size = New System.Drawing.Size(200, 36)
-        Me.txtUserID.TabIndex = 2
+        Me.txtUserID.TabIndex = 0
         '
         'chkShowPassword
         '
         Me.chkShowPassword.AutoSize = True
         Me.chkShowPassword.Location = New System.Drawing.Point(535, 183)
         Me.chkShowPassword.Name = "chkShowPassword"
-        Me.chkShowPassword.Size = New System.Drawing.Size(81, 17)
+        Me.chkShowPassword.Size = New System.Drawing.Size(102, 17)
         Me.chkShowPassword.TabIndex = 5
-        Me.chkShowPassword.Text = "CheckBox1"
+        Me.chkShowPassword.Text = "Show Password"
         Me.chkShowPassword.UseVisualStyleBackColor = True
+        '
+        'lblInstruction
+        '
+        Me.lblInstruction.BackColor = System.Drawing.Color.Transparent
+        Me.lblInstruction.Location = New System.Drawing.Point(316, 100)
+        Me.lblInstruction.Name = "lblInstruction"
+        Me.lblInstruction.Size = New System.Drawing.Size(197, 15)
+        Me.lblInstruction.TabIndex = 6
+        Me.lblInstruction.Text = "Please enter your User ID and Password."
+        Me.lblInstruction.Visible = False
         '
         'LoginForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(819, 513)
+        Me.Controls.Add(Me.lblInstruction)
         Me.Controls.Add(Me.chkShowPassword)
         Me.Controls.Add(Me.lblForgotPassword)
         Me.Controls.Add(Me.txtPassword)
@@ -161,4 +173,5 @@ Partial Class LoginForm
     Friend WithEvents lblForgotPassword As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents chkShowPassword2 As Guna.UI2.WinForms.Guna2CheckBox
     Friend WithEvents chkShowPassword As CheckBox
+    Friend WithEvents lblInstruction As Guna.UI2.WinForms.Guna2HtmlLabel
 End Class
