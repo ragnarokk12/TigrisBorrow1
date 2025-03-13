@@ -82,6 +82,8 @@ Partial Class LoginForm
         '
         'lblForgotPassword
         '
+        Me.lblForgotPassword.AutoSize = False
+        Me.lblForgotPassword.AutoSizeHeightOnly = True
         Me.lblForgotPassword.BackColor = System.Drawing.Color.Transparent
         Me.lblForgotPassword.Location = New System.Drawing.Point(316, 207)
         Me.lblForgotPassword.Name = "lblForgotPassword"
@@ -149,7 +151,6 @@ Partial Class LoginForm
         Me.Name = "LoginForm"
         Me.Text = "LoginForm"
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnLogin As Guna.UI2.WinForms.Guna2Button
