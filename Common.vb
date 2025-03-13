@@ -8,10 +8,10 @@ Public Class Common
     Public Shared Function getDBConnection() As MySqlConnection
         If MyDBConnection Is Nothing Then
             MyDBConnection = New MySqlConnection(
-                "Server=172.20.10.2;" &  ' Change to your server (e.g., "10.1.139.203" for remote)
-                "Database=tigris_db;" &  ' Your database name
-                "User ID=tigrisborrow_admin;" &  ' Your MySQL username
-                "Password=GGyypp15922@;" &  ' Your MySQL password
+                "Server=localhost;" &  ' Change to your server (e.g., "10.1.139.203" for remote)
+                "Database=tigris;" &  ' Your database name
+                "User ID=eksi;" &  ' Your MySQL username
+                "Password=;" &  ' Your MySQL password
                 "Port=3306;" &  ' MySQL port
                 "Command Timeout=600;")
         End If
