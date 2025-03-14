@@ -41,14 +41,23 @@ Public Class AdminStaffDashboardForm
         End Try
     End Sub
 
-
     ' -------------------- INVENTORY MANAGEMENT --------------------
+    ' Loads inventory data into the DataGridView with optional search, sort column, and sort order.
     Private Sub LoadInventory(Optional ByVal search As String = "", Optional ByVal sortBy As String = "item_name", Optional ByVal sortOrder As String = "ASC")
         Try
+            ' Open the connection if closed.
             If conn.State = ConnectionState.Closed Then conn.Open()
+
+            ' Define allowed columns and validate sortBy.
             Dim validColumns As New List(Of String)({"item_name", "category", "status", "quantity", "added_at"})
             If Not validColumns.Contains(sortBy) Then sortBy = "item_name"
 
+            ' Validate sortOrder (only ASC or DESC allowed).
+            If sortOrder.ToUpper() <> "ASC" AndAlso sortOrder.ToUpper() <> "DESC" Then
+                sortOrder = "ASC"
+            End If
+
+            ' Build the SQL query with parameters.
             Dim query As String = $"SELECT * FROM unified_inventory WHERE item_name LIKE @search ORDER BY {sortBy} {sortOrder}"
             Using cmd As New MySqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@search", "%" & search & "%")
@@ -64,87 +73,149 @@ Public Class AdminStaffDashboardForm
         End Try
     End Sub
 
+    ' Called when the "Go" button is clicked; loads inventory using the search text.
     Private Sub btnGo_Click(sender As Object, e As EventArgs) Handles btnGo.Click
         LoadInventory(txtSearchInv.Text.Trim())
     End Sub
 
+    ' Called when the "Sort" button is clicked; applies sorting based on the selected options.
     Private Sub btnSort_Click(sender As Object, e As EventArgs) Handles btnSort.Click
         Dim sortBy As String = If(cbSortBy.SelectedItem IsNot Nothing, cbSortBy.SelectedItem.ToString(), "item_name")
         Dim sortOrder As String = If(chkDescending.Checked, "DESC", "ASC")
         LoadInventory(txtSearchInv.Text.Trim(), sortBy, sortOrder)
     End Sub
 
+    ' Opens the AddItemForm to allow admins to add a new item.
     Private Sub btnAddItem_Click(sender As Object, e As EventArgs) Handles btnAdditem.Click
+        ' Only allow admins to add items.
         If role <> "admin" Then
             MessageBox.Show("Only admins can add items.")
             Return
         End If
 
-        Dim category As String = InputBox("Enter Category (Accessory/Equipment):").Trim().ToLower()
-        If category <> "accessory" AndAlso category <> "equipment" Then
-            MessageBox.Show("Invalid category. Please enter either 'Accessory' or 'Equipment'.")
-            Return
-        End If
+        ' Open AddItemForm as a modal dialog.
+        Dim addForm As New AddItemForm()
+        If addForm.ShowDialog() = DialogResult.OK AndAlso addForm.Added Then
+            Dim category As String = addForm.Category.ToLower()  ' "accessory" or "equipment"
+            Dim itemName As String = addForm.ItemName
+            Dim quantity As Integer = addForm.Quantity
+            Dim status As String = "available"
 
-        Dim itemName As String = InputBox("Enter Item Name:").Trim()
-        If String.IsNullOrWhiteSpace(itemName) Then
-            MessageBox.Show("Item name cannot be empty.")
-            Return
-        End If
+            Try
+                If conn.State = ConnectionState.Closed Then conn.Open()
 
-        Dim quantityStr As String = InputBox("Enter Quantity:")
-        If Not Integer.TryParse(quantityStr, Nothing) OrElse Convert.ToInt32(quantityStr) <= 0 Then
-            MessageBox.Show("Please enter a valid quantity greater than zero.")
-            Return
-        End If
-        Dim quantity As Integer = Convert.ToInt32(quantityStr)
-        Dim status As String = "available"
+                ' Build the INSERT query based on the selected category.
+                Dim query As String = ""
+                If category = "accessory" Then
+                    query = "INSERT INTO accessories (accessory_name, accessory_type, quantity, status, added_at) VALUES (@name, 'General', @quantity, @status, NOW())"
+                ElseIf category = "equipment" Then
+                    query = "INSERT INTO equipment (equipment_name, equipment_type, brand, model, serial_number, status, location, added_at) VALUES (@name, 'General', '', '', '', @status, '', NOW())"
+                End If
 
-        Try
-            If conn.State = ConnectionState.Closed Then conn.Open()
-            Dim query As String = If(category = "accessory",
-                "INSERT INTO accessories (accessory_name, accessory_type, quantity, status, added_at) VALUES (@name, 'General', @quantity, @status, NOW())",
-                "INSERT INTO equipment (equipment_name, equipment_type, brand, model, serial_number, status, location, added_at) VALUES (@name, 'General', '', '', '', @status, '', NOW())")
-            Using cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@name", itemName)
-                cmd.Parameters.AddWithValue("@quantity", quantity)
-                cmd.Parameters.AddWithValue("@status", status)
-                cmd.ExecuteNonQuery()
-            End Using
-            MessageBox.Show($"{category} item added successfully.")
-            LoadInventory()
-        Catch ex As Exception
-            MessageBox.Show("Error adding item: " & ex.Message)
-        Finally
-            conn.Close()
-        End Try
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@name", itemName)
+                    cmd.Parameters.AddWithValue("@quantity", quantity)
+                    cmd.Parameters.AddWithValue("@status", status)
+                    cmd.ExecuteNonQuery()
+                End Using
+
+                MessageBox.Show($"{category} item added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                ' (Optional) Log the addition if you use structured logging.
+                Dim details As String = "{""item_name"":""" & itemName & """, ""category"":""" & category & """, ""quantity"":""" & quantity.ToString() & """}"
+                Common.LogAction("ADD_ITEM", "", "ITEM", details)
+
+                ' Refresh the inventory list.
+                LoadInventory()
+            Catch ex As Exception
+                MessageBox.Show("Error adding item: " & ex.Message)
+            Finally
+                conn.Close()
+            End Try
+        End If
     End Sub
 
     Private Sub btnDeleteItems_Click(sender As Object, e As EventArgs) Handles btnDeleteItems.Click
+        ' Only allow admins to delete items.
         If role <> "admin" Then
             MessageBox.Show("Only admins can delete items.")
             Return
         End If
 
+        ' Ensure an item is selected in the DataGridView.
         If dgvInventory.SelectedRows.Count = 0 Then
             MessageBox.Show("Please select an item to delete.")
             Return
         End If
 
+        ' Retrieve the selected item's ID and category.
         Dim itemId As Integer = Convert.ToInt32(dgvInventory.SelectedRows(0).Cells("item_id").Value)
-        Dim category As String = dgvInventory.SelectedRows(0).Cells("category").Value.ToString()
+        Dim category As String = dgvInventory.SelectedRows(0).Cells("category").Value.ToString().ToLower()
 
-        Dim query As String = If(category = "Accessory",
-            "DELETE FROM accessories WHERE accessory_id = @itemId",
-            "DELETE FROM equipment WHERE equipment_id = @itemId")
+        ' Confirmation popup to prevent accidental deletion.
+        Dim confirmResult As DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+        If confirmResult <> DialogResult.Yes Then Return
 
+        ' For accessories, if quantity > 1, prompt the admin for partial deletion.
+        If category = "accessory" Then
+            Dim currentQuantityObj As Object = dgvInventory.SelectedRows(0).Cells("quantity").Value
+            Dim currentQuantity As Integer = 0
+            If currentQuantityObj IsNot Nothing AndAlso Integer.TryParse(currentQuantityObj.ToString(), currentQuantity) Then
+                If currentQuantity > 1 Then
+                    Dim inputQtyStr As String = InputBox("This item has a quantity of " & currentQuantity.ToString() & ". Enter the number of units to delete:", "Delete Quantity", currentQuantity.ToString())
+                    Dim deleteQty As Integer
+                    If Not Integer.TryParse(inputQtyStr, deleteQty) OrElse deleteQty <= 0 OrElse deleteQty > currentQuantity Then
+                        MessageBox.Show("Invalid quantity entered.")
+                        Return
+                    End If
+
+                    ' If the admin wants to delete only a portion of the units, update the quantity.
+                    If deleteQty < currentQuantity Then
+                        Try
+                            If conn.State = ConnectionState.Closed Then conn.Open()
+                            Dim updateQuery As String = "UPDATE accessories SET quantity = quantity - @deleteQty WHERE accessory_id = @itemId"
+                            Using cmd As New MySqlCommand(updateQuery, conn)
+                                ' Use parameters to prevent SQL injection.
+                                cmd.Parameters.AddWithValue("@deleteQty", deleteQty)
+                                cmd.Parameters.AddWithValue("@itemId", itemId)
+                                cmd.ExecuteNonQuery()
+                            End Using
+                            MessageBox.Show("Item quantity updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            LoadInventory()
+                            Return
+                        Catch ex As Exception
+                            MessageBox.Show("Error updating item quantity: " & ex.Message)
+                            Return
+                        Finally
+                            conn.Close()
+                        End Try
+                    End If
+                    ' If deleteQty equals currentQuantity, then proceed with full deletion.
+                End If
+            End If
+        End If
+
+        ' Determine the DELETE query based on the category.
+        Dim query As String = ""
+        Select Case category
+            Case "accessory"
+                query = "DELETE FROM accessories WHERE accessory_id = @itemId"
+            Case "equipment"
+                query = "DELETE FROM equipment WHERE equipment_id = @itemId"
+            Case Else
+                MessageBox.Show("Invalid category.")
+                Return
+        End Select
+
+        ' Execute the full deletion query.
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
             Using cmd As New MySqlCommand(query, conn)
+                ' Bind parameter to prevent SQL injection.
                 cmd.Parameters.AddWithValue("@itemId", itemId)
                 cmd.ExecuteNonQuery()
             End Using
-            MessageBox.Show("Item deleted successfully.")
+            MessageBox.Show("Item deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             LoadInventory()
         Catch ex As Exception
             MessageBox.Show("Error deleting item: " & ex.Message)
@@ -152,6 +223,11 @@ Public Class AdminStaffDashboardForm
             conn.Close()
         End Try
     End Sub
+
+
+
+
+
 
     ' -------------------- ACCOUNT MANAGEMENT --------------------
     ' Loads accounts into dgvAccount with an optional search filter.

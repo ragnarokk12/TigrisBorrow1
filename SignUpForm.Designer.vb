@@ -53,6 +53,7 @@ Partial Class SignUpForm
         Me.Guna2ControlBox2 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.lblLastName = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.txtLastName = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
         Me.SuspendLayout()
         '
         'lblUserID
@@ -479,6 +480,12 @@ Partial Class SignUpForm
         Me.txtLastName.Size = New System.Drawing.Size(200, 36)
         Me.txtLastName.TabIndex = 30
         '
+        'Guna2DragControl1
+        '
+        Me.Guna2DragControl1.DockIndicatorTransparencyValue = 0.6R
+        Me.Guna2DragControl1.TargetControl = Me
+        Me.Guna2DragControl1.UseTransparentDrag = True
+        '
         'SignUpForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -551,4 +558,5 @@ Partial Class SignUpForm
     Friend WithEvents Guna2ControlBox1 As Guna.UI2.WinForms.Guna2ControlBox
     Friend WithEvents txtLastName As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents lblLastName As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2DragControl1 As Guna.UI2.WinForms.Guna2DragControl
 End Class

@@ -10,15 +10,13 @@ Public Class Common
 
     ' Function to get the database connection
     Public Shared Function getDBConnection() As MySqlConnection
-        If MyDBConnection Is Nothing Then
-            MyDBConnection = New MySqlConnection("Server=localhost;" &
-                "Database=tigris_db;" &
-                "User ID=tigrisborrow_admin;" &
-                "Password=GGyypp15922@;" &
-                "Port=3306;" &
-                "Command Timeout=600;")
-        End If
-        Return MyDBConnection
+        ' Always create a new connection instance.
+        Return New MySqlConnection("Server=localhost;" &
+                               "Database=tigris_db;" &
+                               "User ID=tigrisborrow_admin;" &
+                               "Password=GGyypp15922@;" &
+                               "Port=3306;" &
+                               "Command Timeout=600;")
     End Function
 
     ' Log an admin action with structured parameters.
