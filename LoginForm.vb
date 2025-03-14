@@ -22,18 +22,24 @@ Public Class LoginForm
             ' SQL query to verify user credentials
             Dim query As String = "SELECT role FROM users WHERE user_id=@user AND password_hash=@pass"
             Using cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@user", txtUserID.Text)
+                cmd.Parameters.AddWithValue("@user", txtUserID.Text.Trim())
                 cmd.Parameters.AddWithValue("@pass", hashedPassword)
 
-                Dim role As Object = cmd.ExecuteScalar() ' Retrieve user role
+                Dim roleObj As Object = cmd.ExecuteScalar() ' Retrieve user role
 
-                If role IsNot Nothing Then
-                    Dim roleStr As String = role.ToString()
+                If roleObj IsNot Nothing Then
+                    Dim roleStr As String = roleObj.ToString()
+
+                    ' Set global user properties so that other forms can use them.
+                    Common.CurrentUserId = txtUserID.Text.Trim()
+                    Common.CurrentUserRole = roleStr.ToLower()
 
                     MessageBox.Show("Login Successful! Welcome, " & roleStr, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                    ' Open respective dashboard based on user role
-                    If roleStr.Equals("Admin", StringComparison.OrdinalIgnoreCase) Then
+                    ' Open dashboard based on user role:
+                    ' If user is Admin or Staff, show the AdminStaffDashboardForm.
+                    ' Otherwise, if they are a student (or any other role), show the UserDashboardForm.
+                    If roleStr.Equals("Admin", StringComparison.OrdinalIgnoreCase) OrElse roleStr.Equals("staff", StringComparison.OrdinalIgnoreCase) Then
                         AddHandler AdminStaffDashboardForm.FormClosed, AddressOf DashboardFormClosed
                         AdminStaffDashboardForm.Show()
                     Else
@@ -57,6 +63,10 @@ Public Class LoginForm
 
     ' Handles form close from dashboard to return to login form
     Private Sub DashboardFormClosed(sender As Object, e As FormClosedEventArgs)
+        ' Clear global properties if needed
+        Common.CurrentUserId = String.Empty
+        Common.CurrentUserRole = String.Empty
+
         Me.Show()
     End Sub
 
@@ -97,6 +107,7 @@ Public Class LoginForm
         txtPassword.UseSystemPasswordChar = False  ' Disable system default password char
         txtPassword.PasswordChar = ChrW(9679) ' Set custom password mask
         lblInstruction.Visible = False ' Hide instruction label initially
+        txtUserID.Focus()
     End Sub
 
     ' Handles when a textbox loses focus
@@ -130,4 +141,12 @@ Public Class LoginForm
             btnLogin.PerformClick()
         End If
     End Sub
+
+    Private Sub LoginForm_VisibleChanged(sender As Object, e As EventArgs) Handles Me.VisibleChanged
+        If Me.Visible Then
+            txtUserID.Text = ""
+            txtPassword.Text = ""
+        End If
+    End Sub
+
 End Class
