@@ -413,11 +413,11 @@ Partial Class AdminStaffDashboardForm
         Me.txtSearchAccount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtSearchAccount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtSearchAccount.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearchAccount.Location = New System.Drawing.Point(0, 23)
+        Me.txtSearchAccount.Location = New System.Drawing.Point(7, 39)
         Me.txtSearchAccount.Name = "txtSearchAccount"
         Me.txtSearchAccount.PlaceholderText = ""
         Me.txtSearchAccount.SelectedText = ""
-        Me.txtSearchAccount.Size = New System.Drawing.Size(200, 36)
+        Me.txtSearchAccount.Size = New System.Drawing.Size(193, 20)
         Me.txtSearchAccount.TabIndex = 10
         '
         'btnEditAccount

@@ -143,4 +143,15 @@ Public Class SignUpForm
         End If
     End Sub
 
+    Private Sub Guna2HtmlLabel1_Click(sender As Object, e As EventArgs) Handles Guna2HtmlLabel1.Click
+
+    End Sub
+
+    Private Sub btnSignup_Click_1(sender As Object, e As EventArgs) Handles btnSignup.Click
+
+    End Sub
+
+    Private Sub Guna2HtmlLabel3_Click(sender As Object, e As EventArgs) Handles Guna2HtmlLabel3.Click
+
+    End Sub
 End Class
