@@ -41,6 +41,7 @@ Partial Class AddItemForm
         Me.lblItemModel = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblSerialNumber = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblQuantity = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.cmbAccessoryType = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.SuspendLayout()
         '
         'cmbCategory
@@ -293,11 +294,27 @@ Partial Class AddItemForm
         Me.lblQuantity.TabIndex = 18
         Me.lblQuantity.Text = "Quantity:"
         '
+        'cmbAccessoryType
+        '
+        Me.cmbAccessoryType.BackColor = System.Drawing.Color.Transparent
+        Me.cmbAccessoryType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cmbAccessoryType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbAccessoryType.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cmbAccessoryType.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cmbAccessoryType.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cmbAccessoryType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cmbAccessoryType.ItemHeight = 30
+        Me.cmbAccessoryType.Location = New System.Drawing.Point(632, 77)
+        Me.cmbAccessoryType.Name = "cmbAccessoryType"
+        Me.cmbAccessoryType.Size = New System.Drawing.Size(140, 36)
+        Me.cmbAccessoryType.TabIndex = 19
+        '
         'AddItemForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.cmbAccessoryType)
         Me.Controls.Add(Me.lblQuantity)
         Me.Controls.Add(Me.lblSerialNumber)
         Me.Controls.Add(Me.lblItemModel)
@@ -343,4 +360,5 @@ Partial Class AddItemForm
     Friend WithEvents lblItemModel As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblSerialNumber As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblQuantity As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents cmbAccessoryType As Guna.UI2.WinForms.Guna2ComboBox
 End Class
