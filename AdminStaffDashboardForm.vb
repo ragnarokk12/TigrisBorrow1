@@ -11,9 +11,10 @@ Public Class AdminStaffDashboardForm
     Private Sub AdminStaffDashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FetchUserRole()
         LoadInventory()
-        LoadAccounts() ' Now accepts an optional parameter; default is empty string.
+        LoadAccounts() ' Load accounts data
         SetAccessByRole()
         LoadSortOptions()
+        LoadBorrowRequests() ' Load borrow requests when form loads
     End Sub
 
     ' -------------------- FETCH USER ROLE --------------------
@@ -40,7 +41,6 @@ Public Class AdminStaffDashboardForm
     End Sub
 
     ' -------------------- INVENTORY MANAGEMENT --------------------
-    ' Loads inventory data into the DataGridView with optional search, sort column, and sort order.
     Private Sub LoadInventory(Optional ByVal search As String = "", Optional ByVal sortBy As String = "item_name", Optional ByVal sortOrder As String = "ASC")
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
@@ -64,31 +64,25 @@ Public Class AdminStaffDashboardForm
         End Try
     End Sub
 
-    ' Called when the "Go" button is clicked; loads inventory using the search text.
     Private Sub btnGo_Click(sender As Object, e As EventArgs) Handles btnGo.Click
         LoadInventory(txtSearchInv.Text.Trim())
     End Sub
 
-    ' Called when the "Sort" button is clicked; applies sorting based on the selected options.
     Private Sub btnSort_Click(sender As Object, e As EventArgs) Handles btnSort.Click
         Dim sortBy As String = If(cbSortBy.SelectedItem IsNot Nothing, cbSortBy.SelectedItem.ToString(), "item_name")
         Dim sortOrder As String = If(chkDescending.Checked, "DESC", "ASC")
         LoadInventory(txtSearchInv.Text.Trim(), sortBy, sortOrder)
     End Sub
 
-    ' -------------------- UPDATED ADD ITEM HANDLER --------------------
-    ' Opens the AddItemForm and, if the item is successfully added, refreshes the inventory.
+    ' -------------------- ADD ITEM HANDLER --------------------
     Private Sub btnAddItem_Click(sender As Object, e As EventArgs) Handles btnAdditem.Click
-        ' Only allow admins to add items.
         If role <> "admin" Then
             MessageBox.Show("Only admins can add items.")
             Return
         End If
 
-        ' Open AddItemForm as a modal dialog.
         Dim addForm As New AddItemForm()
         If addForm.ShowDialog() = DialogResult.OK AndAlso addForm.Added Then
-            ' Since AddItemForm already performed the insert, simply refresh the data grid.
             MessageBox.Show("Item added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             LoadInventory()
         End If
@@ -112,7 +106,6 @@ Public Class AdminStaffDashboardForm
         Dim confirmResult As DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If confirmResult <> DialogResult.Yes Then Return
 
-        ' For accessories, if quantity > 1, prompt for partial deletion.
         If category = "accessory" Then
             Dim currentQuantityObj As Object = dgvInventory.SelectedRows(0).Cells("quantity").Value
             Dim currentQuantity As Integer = 0
@@ -230,16 +223,281 @@ Public Class AdminStaffDashboardForm
         cbSortBy.SelectedIndex = 0
     End Sub
 
+    ' Updated SetAccessByRole method:
+    ' - Only admins can add or delete items.
+    ' - Both admin and staff can work in the deployment tab (approve, deny, check return).
     Private Sub SetAccessByRole()
         btnAdditem.Enabled = (role = "admin")
         btnDeleteItems.Enabled = (role = "admin")
-        tbcAdminDashboard.Enabled = (role = "admin")
+        ' Allow deployment functionalities to both admin and staff.
+        tbcAdminDashboard.Enabled = (role = "admin" Or role = "staff")
+        btnApprove.Enabled = (role = "admin" Or role = "staff")
+        btnDeny.Enabled = (role = "admin" Or role = "staff")
+        btnCheckReturn.Enabled = (role = "admin" Or role = "staff")
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
         Common.CurrentUserId = String.Empty
         Common.CurrentUserRole = String.Empty
         Me.Close()
+    End Sub
+
+    ' -------------------- DEPLOYMENT / BORROW REQUESTS MANAGEMENT --------------------
+    ' Load borrow requests into the DataGridView (dgvBorrowRequests) on the tbpDeployment tab.
+    Private Sub LoadBorrowRequests(Optional ByVal statusFilter As String = "")
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            Dim query As String = "
+SELECT 
+    bt.transaction_id,
+    CONCAT(u.first_name, ' ', u.last_name) AS borrower,
+    CASE 
+         WHEN bt.equipment_id IS NOT NULL THEN 'Equipment'
+         WHEN bt.accessory_id IS NOT NULL THEN 'Accessory'
+    END AS item_category,
+    CASE 
+         WHEN bt.equipment_id IS NOT NULL THEN e.equipment_name
+         WHEN bt.accessory_id IS NOT NULL THEN a.accessory_name
+    END AS item_name,
+    bt.borrow_date,
+    bt.due_date,
+    CASE 
+         WHEN bt.equipment_id IS NOT NULL THEN e.item_condition
+         WHEN bt.accessory_id IS NOT NULL THEN a.item_condition
+    END AS condition_before,
+    CASE 
+         WHEN bt.accessory_id IS NOT NULL THEN a.quantity 
+         ELSE NULL 
+    END AS quantity,
+    bt.status,
+    bt.approved_by,
+    bt.approval_date,
+    bt.approval_time,
+    bt.return_date,
+    bt.return_condition
+FROM borrow_transactions bt
+JOIN users u ON bt.user_id = u.user_id
+LEFT JOIN equipment e ON bt.equipment_id = e.equipment_id
+LEFT JOIN accessories a ON bt.accessory_id = a.accessory_id
+"
+            If Not String.IsNullOrEmpty(statusFilter) Then
+                query &= " WHERE bt.status = @statusFilter"
+            End If
+
+            Dim cmd As New MySqlCommand(query, conn)
+            If Not String.IsNullOrEmpty(statusFilter) Then
+                cmd.Parameters.AddWithValue("@statusFilter", statusFilter)
+            End If
+
+            Dim adapter As New MySqlDataAdapter(cmd)
+            Dim table As New DataTable()
+            adapter.Fill(table)
+            dgvBorrowRequests.DataSource = table
+
+            ' Set friendly column headers
+            dgvBorrowRequests.Columns("transaction_id").HeaderText = "Transaction ID"
+            dgvBorrowRequests.Columns("borrower").HeaderText = "Borrower"
+            dgvBorrowRequests.Columns("item_category").HeaderText = "Category"
+            dgvBorrowRequests.Columns("item_name").HeaderText = "Item Name"
+            dgvBorrowRequests.Columns("borrow_date").HeaderText = "Borrow Date"
+            dgvBorrowRequests.Columns("due_date").HeaderText = "Due Date"
+            dgvBorrowRequests.Columns("condition_before").HeaderText = "Condition Before"
+            dgvBorrowRequests.Columns("quantity").HeaderText = "Quantity"
+            dgvBorrowRequests.Columns("status").HeaderText = "Status"
+            dgvBorrowRequests.Columns("approved_by").HeaderText = "Approved By"
+            dgvBorrowRequests.Columns("approval_date").HeaderText = "Approval Date"
+            dgvBorrowRequests.Columns("approval_time").HeaderText = "Approval Time"
+            dgvBorrowRequests.Columns("return_date").HeaderText = "Return Date"
+            dgvBorrowRequests.Columns("return_condition").HeaderText = "Return Condition"
+
+        Catch ex As Exception
+            MessageBox.Show("Error loading borrow requests: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
+
+    ' -------------------- APPROVE BORROW REQUEST --------------------
+    Private Sub btnApprove_Click(sender As Object, e As EventArgs) Handles btnApprove.Click
+        If dgvBorrowRequests.SelectedRows.Count = 0 Then
+            MessageBox.Show("Please select a borrow request to approve.")
+            Return
+        End If
+
+        Dim transactionId As Integer = Convert.ToInt32(dgvBorrowRequests.SelectedRows(0).Cells("transaction_id").Value)
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            Dim updateQuery As String = "
+UPDATE borrow_transactions
+SET approved_by = @approved_by,
+    approval_date = NOW(),
+    approval_time = CURTIME(),
+    status = 'approved'
+WHERE transaction_id = @transactionId AND status = 'pending'
+"
+            Dim cmd As New MySqlCommand(updateQuery, conn)
+            cmd.Parameters.AddWithValue("@approved_by", Common.CurrentUserId)
+            cmd.Parameters.AddWithValue("@transactionId", transactionId)
+            Dim rowsAffected = cmd.ExecuteNonQuery()
+
+            If rowsAffected > 0 Then
+                MessageBox.Show("Borrow request approved successfully.")
+            Else
+                MessageBox.Show("Failed to approve the request. It may have been updated already.")
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error approving borrow request: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+
+        LoadBorrowRequests()
+    End Sub
+
+    ' -------------------- DENY BORROW REQUEST --------------------
+    Private Sub btnDeny_Click(sender As Object, e As EventArgs) Handles btnDeny.Click
+        If dgvBorrowRequests.SelectedRows.Count = 0 Then
+            MessageBox.Show("Please select a borrow request to deny.")
+            Return
+        End If
+
+        Dim transactionId As Integer = Convert.ToInt32(dgvBorrowRequests.SelectedRows(0).Cells("transaction_id").Value)
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            Dim updateQuery As String = "
+UPDATE borrow_transactions
+SET status = 'denied'
+WHERE transaction_id = @transactionId AND status = 'pending'
+"
+            Dim cmd As New MySqlCommand(updateQuery, conn)
+            cmd.Parameters.AddWithValue("@transactionId", transactionId)
+            Dim rowsAffected = cmd.ExecuteNonQuery()
+
+            If rowsAffected > 0 Then
+                MessageBox.Show("Borrow request denied successfully.")
+            Else
+                MessageBox.Show("Failed to deny the request. It may have been updated already.")
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error denying borrow request: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+
+        LoadBorrowRequests()
+    End Sub
+
+    ' -------------------- CHECK RETURN (RETURN VERIFICATION) --------------------
+    Private Sub btnCheckReturn_Click(sender As Object, e As EventArgs) Handles btnCheckReturn.Click
+        If dgvBorrowRequests.SelectedRows.Count = 0 Then
+            MessageBox.Show("Please select a returned borrow transaction.")
+            Return
+        End If
+
+        Dim status As String = dgvBorrowRequests.SelectedRows(0).Cells("status").Value.ToString()
+        If status <> "returned" Then
+            MessageBox.Show("Selected transaction is not marked as returned.")
+            Return
+        End If
+
+        Dim transactionId As Integer = Convert.ToInt32(dgvBorrowRequests.SelectedRows(0).Cells("transaction_id").Value)
+        Dim returnCondition As String = InputBox("Enter the condition of the item upon return (new, good, fair, poor, damaged):", "Return Condition")
+
+        If String.IsNullOrEmpty(returnCondition) Then
+            MessageBox.Show("Return condition is required.")
+            Return
+        End If
+
+        Dim validConditions As New List(Of String) From {"new", "good", "fair", "poor", "damaged"}
+        If Not validConditions.Contains(returnCondition.ToLower()) Then
+            MessageBox.Show("Invalid condition entered. Please enter one of: new, good, fair, poor, damaged.")
+            Return
+        End If
+
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            Dim updateQuery As String = "
+UPDATE borrow_transactions
+SET return_condition = @return_condition,
+    status = 'completed'
+WHERE transaction_id = @transactionId AND status = 'returned'
+"
+            Dim cmd As New MySqlCommand(updateQuery, conn)
+            cmd.Parameters.AddWithValue("@return_condition", returnCondition.ToLower())
+            cmd.Parameters.AddWithValue("@transactionId", transactionId)
+            Dim rowsAffected = cmd.ExecuteNonQuery()
+
+            If rowsAffected > 0 Then
+                MessageBox.Show("Return approved and item condition updated successfully.")
+                ' Optionally, update inventory here.
+            Else
+                MessageBox.Show("Failed to update the return information. It may have been updated already.")
+            End If
+
+        Catch ex As Exception
+            MessageBox.Show("Error updating return condition: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+
+        LoadBorrowRequests()
+    End Sub
+
+    ' -------------------- AUDIT LOGS / DATA REPORT (Borrow and Return Only) --------------------
+    Private Sub LoadAuditLogs()
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+
+            ' Query filtered to show only borrowing and returning events
+            Dim query As String = "
+SELECT 
+    l.log_id,
+    CONCAT(u.first_name, ' ', u.last_name) AS admin_name,
+    l.action_type,
+    l.target_id,
+    l.target_type,
+    l.details,
+    l.action_time
+FROM admin_logs l
+LEFT JOIN users u ON l.admin_id = u.user_id
+WHERE l.action_type IN ('Borrow', 'Return')
+ORDER BY l.action_time DESC
+"
+            Dim cmd As New MySqlCommand(query, conn)
+            Dim adapter As New MySqlDataAdapter(cmd)
+            Dim table As New DataTable()
+            adapter.Fill(table)
+            dgvDataReport.DataSource = table
+
+            ' Set user-friendly column headers
+            dgvDataReport.Columns("log_id").HeaderText = "Log ID"
+            dgvDataReport.Columns("admin_name").HeaderText = "Admin Name"
+            dgvDataReport.Columns("action_type").HeaderText = "Action Type"
+            dgvDataReport.Columns("target_id").HeaderText = "Target ID"
+            dgvDataReport.Columns("target_type").HeaderText = "Target Type"
+            dgvDataReport.Columns("details").HeaderText = "Details"
+            dgvDataReport.Columns("action_time").HeaderText = "Action Time"
+        Catch ex As Exception
+            MessageBox.Show("Error loading audit logs: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
+
+    ' Call this when the Generate Report button is clicked
+    Private Sub btnGenerateReport_Click(sender As Object, e As EventArgs) Handles btnGenerateReport.Click
+        LoadAuditLogs()
+    End Sub
+
+    ' Optionally, load the report when the tbcReport tab is activated
+    Private Sub tbcReport_Enter(sender As Object, e As EventArgs) Handles tbcReport.Enter
+        LoadAuditLogs()
     End Sub
 
 End Class
