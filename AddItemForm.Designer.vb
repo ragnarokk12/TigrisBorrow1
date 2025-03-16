@@ -42,6 +42,8 @@ Partial Class AddItemForm
         Me.lblSerialNumber = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblQuantity = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.cmbAccessoryType = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.lblAccessoryType = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.txtNewAccessoryType = New Guna.UI2.WinForms.Guna2TextBox()
         Me.SuspendLayout()
         '
         'cmbCategory
@@ -103,7 +105,7 @@ Partial Class AddItemForm
         Me.btnAdd.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnAdd.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnAdd.ForeColor = System.Drawing.Color.White
-        Me.btnAdd.Location = New System.Drawing.Point(512, 354)
+        Me.btnAdd.Location = New System.Drawing.Point(577, 342)
         Me.btnAdd.Name = "btnAdd"
         Me.btnAdd.Size = New System.Drawing.Size(180, 45)
         Me.btnAdd.TabIndex = 3
@@ -117,7 +119,7 @@ Partial Class AddItemForm
         Me.btnCancel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnCancel.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(512, 393)
+        Me.btnCancel.Location = New System.Drawing.Point(577, 393)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(180, 45)
         Me.btnCancel.TabIndex = 4
@@ -163,7 +165,7 @@ Partial Class AddItemForm
         Me.cmbExistingBrand.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbExistingBrand.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
         Me.cmbExistingBrand.ItemHeight = 30
-        Me.cmbExistingBrand.Location = New System.Drawing.Point(200, 204)
+        Me.cmbExistingBrand.Location = New System.Drawing.Point(200, 258)
         Me.cmbExistingBrand.Name = "cmbExistingBrand"
         Me.cmbExistingBrand.Size = New System.Drawing.Size(140, 36)
         Me.cmbExistingBrand.TabIndex = 7
@@ -179,7 +181,7 @@ Partial Class AddItemForm
         Me.txtNewBrand.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtNewBrand.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtNewBrand.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtNewBrand.Location = New System.Drawing.Point(346, 204)
+        Me.txtNewBrand.Location = New System.Drawing.Point(346, 258)
         Me.txtNewBrand.Name = "txtNewBrand"
         Me.txtNewBrand.PlaceholderText = ""
         Me.txtNewBrand.SelectedText = ""
@@ -197,7 +199,7 @@ Partial Class AddItemForm
         Me.txtModel.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtModel.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtModel.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtModel.Location = New System.Drawing.Point(200, 255)
+        Me.txtModel.Location = New System.Drawing.Point(200, 300)
         Me.txtModel.Name = "txtModel"
         Me.txtModel.PlaceholderText = ""
         Me.txtModel.SelectedText = ""
@@ -215,12 +217,14 @@ Partial Class AddItemForm
         Me.txtSerialNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtSerialNumber.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtSerialNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSerialNumber.Location = New System.Drawing.Point(200, 297)
+        Me.txtSerialNumber.Location = New System.Drawing.Point(200, 342)
         Me.txtSerialNumber.Name = "txtSerialNumber"
         Me.txtSerialNumber.PlaceholderText = ""
+        Me.txtSerialNumber.ReadOnly = True
         Me.txtSerialNumber.SelectedText = ""
         Me.txtSerialNumber.Size = New System.Drawing.Size(200, 36)
         Me.txtSerialNumber.TabIndex = 10
+        Me.txtSerialNumber.Visible = False
         '
         'lblItemType
         '
@@ -261,7 +265,7 @@ Partial Class AddItemForm
         'lblItemBrand
         '
         Me.lblItemBrand.BackColor = System.Drawing.Color.Transparent
-        Me.lblItemBrand.Location = New System.Drawing.Point(160, 214)
+        Me.lblItemBrand.Location = New System.Drawing.Point(158, 268)
         Me.lblItemBrand.Name = "lblItemBrand"
         Me.lblItemBrand.Size = New System.Drawing.Size(34, 15)
         Me.lblItemBrand.TabIndex = 15
@@ -270,7 +274,7 @@ Partial Class AddItemForm
         'lblItemModel
         '
         Me.lblItemModel.BackColor = System.Drawing.Color.Transparent
-        Me.lblItemModel.Location = New System.Drawing.Point(159, 266)
+        Me.lblItemModel.Location = New System.Drawing.Point(158, 321)
         Me.lblItemModel.Name = "lblItemModel"
         Me.lblItemModel.Size = New System.Drawing.Size(35, 15)
         Me.lblItemModel.TabIndex = 16
@@ -279,11 +283,12 @@ Partial Class AddItemForm
         'lblSerialNumber
         '
         Me.lblSerialNumber.BackColor = System.Drawing.Color.Transparent
-        Me.lblSerialNumber.Location = New System.Drawing.Point(121, 308)
+        Me.lblSerialNumber.Location = New System.Drawing.Point(121, 353)
         Me.lblSerialNumber.Name = "lblSerialNumber"
         Me.lblSerialNumber.Size = New System.Drawing.Size(72, 15)
         Me.lblSerialNumber.TabIndex = 17
         Me.lblSerialNumber.Text = "Serial Number:"
+        Me.lblSerialNumber.Visible = False
         '
         'lblQuantity
         '
@@ -304,16 +309,45 @@ Partial Class AddItemForm
         Me.cmbAccessoryType.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbAccessoryType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
         Me.cmbAccessoryType.ItemHeight = 30
-        Me.cmbAccessoryType.Location = New System.Drawing.Point(632, 77)
+        Me.cmbAccessoryType.Location = New System.Drawing.Point(200, 204)
         Me.cmbAccessoryType.Name = "cmbAccessoryType"
         Me.cmbAccessoryType.Size = New System.Drawing.Size(140, 36)
         Me.cmbAccessoryType.TabIndex = 19
+        '
+        'lblAccessoryType
+        '
+        Me.lblAccessoryType.BackColor = System.Drawing.Color.Transparent
+        Me.lblAccessoryType.Location = New System.Drawing.Point(111, 215)
+        Me.lblAccessoryType.Name = "lblAccessoryType"
+        Me.lblAccessoryType.Size = New System.Drawing.Size(82, 15)
+        Me.lblAccessoryType.TabIndex = 20
+        Me.lblAccessoryType.Text = "Accessory Type:"
+        '
+        'txtNewAccessoryType
+        '
+        Me.txtNewAccessoryType.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtNewAccessoryType.DefaultText = ""
+        Me.txtNewAccessoryType.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtNewAccessoryType.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtNewAccessoryType.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtNewAccessoryType.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtNewAccessoryType.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtNewAccessoryType.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtNewAccessoryType.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtNewAccessoryType.Location = New System.Drawing.Point(346, 204)
+        Me.txtNewAccessoryType.Name = "txtNewAccessoryType"
+        Me.txtNewAccessoryType.PlaceholderText = ""
+        Me.txtNewAccessoryType.SelectedText = ""
+        Me.txtNewAccessoryType.Size = New System.Drawing.Size(200, 36)
+        Me.txtNewAccessoryType.TabIndex = 21
         '
         'AddItemForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.txtNewAccessoryType)
+        Me.Controls.Add(Me.lblAccessoryType)
         Me.Controls.Add(Me.cmbAccessoryType)
         Me.Controls.Add(Me.lblQuantity)
         Me.Controls.Add(Me.lblSerialNumber)
@@ -361,4 +395,6 @@ Partial Class AddItemForm
     Friend WithEvents lblSerialNumber As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblQuantity As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents cmbAccessoryType As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents lblAccessoryType As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents txtNewAccessoryType As Guna.UI2.WinForms.Guna2TextBox
 End Class

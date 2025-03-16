@@ -34,6 +34,14 @@ Public Class AddItemForm
 
         ' Load existing accessory types.
         LoadExistingAccessoryTypes()
+
+        ' Set initial state for accessory-specific controls.
+        ' For Accessory category: disable model field.
+        txtModel.Enabled = False
+        ' Enable accessory type combo box.
+        cmbAccessoryType.Enabled = True
+        ' By default, disable the new accessory type textbox until "New" is selected.
+        txtNewAccessoryType.Enabled = False
     End Sub
 
     ' When category changes, adjust controls and reload data.
@@ -47,21 +55,51 @@ Public Class AddItemForm
             lblItemType.Text = "IT Equipment"
             cmbExistingBrand.Enabled = True
             txtNewBrand.Enabled = True
+            ' Enable model field and disable accessory type fields.
+            txtModel.Enabled = True
+            cmbAccessoryType.Enabled = False
+            txtNewAccessoryType.Enabled = False
         Else
-            ' Accessory: enable quantity input, clear locked type, disable brand controls.
+            ' Accessory: enable quantity input, default quantity to 1, clear locked type, and disable brand controls.
             txtQuantity.Enabled = True
-            txtQuantity.Text = ""
+            txtQuantity.Text = "1"
             lblItemType.Text = ""
             cmbExistingBrand.Enabled = False
             txtNewBrand.Enabled = False
-            ' Set brand to a default value.
             If cmbExistingBrand.Items.Count > 0 Then cmbExistingBrand.SelectedIndex = 0
             txtNewBrand.Text = "N/A"
+            ' Disable model field for accessories.
+            txtModel.Enabled = False
+            ' Enable accessory type fields.
+            cmbAccessoryType.Enabled = True
+            ' Set txtNewAccessoryType based on current selection.
+            If cmbAccessoryType.SelectedItem IsNot Nothing AndAlso cmbAccessoryType.SelectedItem.ToString().ToLower() = "new" Then
+                txtNewAccessoryType.Enabled = True
+                txtNewAccessoryType.Text = ""
+            Else
+                txtNewAccessoryType.Enabled = False
+                If cmbAccessoryType.SelectedItem IsNot Nothing Then
+                    txtNewAccessoryType.Text = cmbAccessoryType.SelectedItem.ToString()
+                Else
+                    txtNewAccessoryType.Text = ""
+                End If
+            End If
         End If
 
         ' Reload the existing item names and brands for the selected category.
         LoadExistingItemNames(selectedCategory)
         LoadExistingBrands(selectedCategory)
+    End Sub
+
+    ' When the accessory type changes, enable txtNewAccessoryType only if "New" is selected.
+    Private Sub cmbAccessoryType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAccessoryType.SelectedIndexChanged
+        If cmbAccessoryType.SelectedItem.ToString().ToLower() = "new" Then
+            txtNewAccessoryType.Enabled = True
+            txtNewAccessoryType.Text = ""
+        Else
+            txtNewAccessoryType.Enabled = False
+            txtNewAccessoryType.Text = cmbAccessoryType.SelectedItem.ToString()
+        End If
     End Sub
 
     ' Loads existing item names from the database for the given category.
@@ -116,8 +154,8 @@ Public Class AddItemForm
     ' Loads existing brands from the database for the given category.
     Private Sub LoadExistingBrands(ByVal category As String)
         cmbExistingBrand.Items.Clear()
-        cmbExistingBrand.Items.Add("New")
         If category = "equipment" Then
+            cmbExistingBrand.Items.Add("New")
             Try
                 Using conn As MySqlConnection = Common.getDBConnection()
                     If conn.State = ConnectionState.Closed Then conn.Open()
@@ -133,6 +171,8 @@ Public Class AddItemForm
             Catch ex As Exception
                 MessageBox.Show("Error loading existing brands: " & ex.Message)
             End Try
+        Else
+            cmbExistingBrand.Items.Add("N/A")
         End If
         If cmbExistingBrand.Items.Count > 0 Then cmbExistingBrand.SelectedIndex = 0
     End Sub
@@ -164,7 +204,6 @@ Public Class AddItemForm
         Dim selectedCategory As String = cmbCategory.SelectedItem.ToString().ToLower()
         Dim itemNameInput As String = If(cmbExistingItemName.SelectedItem.ToString().ToLower() = "new", txtNewItemName.Text.Trim(), cmbExistingItemName.SelectedItem.ToString())
 
-        ' For equipment, brand is required; for accessories, set to "N/A".
         Dim brandInput As String = ""
         Dim modelInput As String = txtModel.Text.Trim()
         If selectedCategory = "equipment" Then
@@ -195,29 +234,68 @@ Public Class AddItemForm
         ' For accessories, capture the accessory type.
         Dim accessoryTypeInput As String = ""
         If selectedCategory = "accessory" Then
-            accessoryTypeInput = If(cmbAccessoryType.SelectedItem IsNot Nothing, cmbAccessoryType.SelectedItem.ToString(), "")
+            If cmbAccessoryType.SelectedItem.ToString().ToLower() = "new" Then
+                accessoryTypeInput = txtNewAccessoryType.Text.Trim()
+            Else
+                accessoryTypeInput = cmbAccessoryType.SelectedItem.ToString()
+            End If
             If String.IsNullOrEmpty(accessoryTypeInput) Then
-                MessageBox.Show("Please select an accessory type.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                MessageBox.Show("Please enter an accessory type.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
         End If
 
         Dim conditionInput As String = cmbItemCondition.SelectedItem.ToString().ToLower()
-
-        ' Auto-generate serial number for equipment.
         Dim serialInput As String = ""
+
         If selectedCategory = "equipment" Then
-            Dim nextId As Integer = GetNextEquipmentId()
-            Dim brandAbbrev As String = ""
-            If brandInput.Length >= 3 Then
-                brandAbbrev = brandInput.Substring(0, 3).ToUpper()
-            Else
-                brandAbbrev = brandInput.ToUpper()
-            End If
-            If String.IsNullOrEmpty(modelInput) Then modelInput = "MODEL"
-            serialInput = "SN-" & brandAbbrev & "-" & modelInput.ToUpper() & "-" & nextId.ToString()
-        Else
+            Try
+                Using conn As MySqlConnection = Common.getDBConnection()
+                    If conn.State = ConnectionState.Closed Then conn.Open()
+                    Dim query As String = "INSERT INTO equipment (equipment_name, equipment_type, brand, model, item_condition) VALUES (@name, 'IT Equipment', @brand, @model, @condition)"
+                    Dim equipmentId As Long = 0
+                    Using cmd As New MySqlCommand(query, conn)
+                        cmd.Parameters.AddWithValue("@name", itemNameInput)
+                        cmd.Parameters.AddWithValue("@brand", brandInput)
+                        cmd.Parameters.AddWithValue("@model", modelInput)
+                        cmd.Parameters.AddWithValue("@condition", conditionInput)
+                        cmd.ExecuteNonQuery()
+                        equipmentId = cmd.LastInsertedId
+                    End Using
+
+                    Dim brandAbbrev As String = If(brandInput.Length >= 3, brandInput.Substring(0, 3).ToUpper(), brandInput.ToUpper())
+                    If String.IsNullOrEmpty(modelInput) Then modelInput = "MODEL"
+                    serialInput = "SN-" & brandAbbrev & "-" & modelInput.ToUpper() & "-" & equipmentId.ToString()
+
+                    Dim updateQuery As String = "UPDATE equipment SET serial_number = @serial WHERE equipment_id = @id"
+                    Using cmdUpdate As New MySqlCommand(updateQuery, conn)
+                        cmdUpdate.Parameters.AddWithValue("@serial", serialInput)
+                        cmdUpdate.Parameters.AddWithValue("@id", equipmentId)
+                        cmdUpdate.ExecuteNonQuery()
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error adding equipment: " & ex.Message)
+                Return
+            End Try
+        ElseIf selectedCategory = "accessory" Then
             serialInput = "N/A"
+            Try
+                Using conn As MySqlConnection = Common.getDBConnection()
+                    If conn.State = ConnectionState.Closed Then conn.Open()
+                    Dim query As String = "INSERT INTO accessories (accessory_name, accessory_type, quantity, item_condition) VALUES (@name, @accessoryType, @quantity, @condition)"
+                    Using cmd As New MySqlCommand(query, conn)
+                        cmd.Parameters.AddWithValue("@name", itemNameInput)
+                        cmd.Parameters.AddWithValue("@accessoryType", accessoryTypeInput)
+                        cmd.Parameters.AddWithValue("@quantity", qty)
+                        cmd.Parameters.AddWithValue("@condition", conditionInput)
+                        cmd.ExecuteNonQuery()
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error adding accessory: " & ex.Message)
+                Return
+            End Try
         End If
 
         ' Set public properties.
@@ -231,59 +309,9 @@ Public Class AddItemForm
         AccessoryType = accessoryTypeInput
         Added = True
 
-        ' Insert the record into the appropriate table.
-        Dim query As String = ""
-        Try
-            Using conn As MySqlConnection = Common.getDBConnection()
-                If conn.State = ConnectionState.Closed Then conn.Open()
-                If selectedCategory = "equipment" Then
-                    query = "INSERT INTO equipment (equipment_name, equipment_type, brand, model, serial_number, item_condition) VALUES (@name, 'IT Equipment', @brand, @model, @serial, @condition)"
-                ElseIf selectedCategory = "accessory" Then
-                    query = "INSERT INTO accessories (accessory_name, accessory_type, quantity, item_condition) VALUES (@name, @accessoryType, @quantity, @condition)"
-                End If
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@name", itemNameInput)
-                    If selectedCategory = "equipment" Then
-                        cmd.Parameters.AddWithValue("@brand", brandInput)
-                        cmd.Parameters.AddWithValue("@model", modelInput)
-                        cmd.Parameters.AddWithValue("@serial", serialInput)
-                        cmd.Parameters.AddWithValue("@condition", conditionInput)
-                    ElseIf selectedCategory = "accessory" Then
-                        cmd.Parameters.AddWithValue("@accessoryType", accessoryTypeInput)
-                        cmd.Parameters.AddWithValue("@quantity", qty)
-                        cmd.Parameters.AddWithValue("@condition", conditionInput)
-                    End If
-                    cmd.ExecuteNonQuery()
-                End Using
-            End Using
-        Catch ex As Exception
-            MessageBox.Show("Error adding item: " & ex.Message)
-            Return
-        End Try
-
         Me.DialogResult = DialogResult.OK
         Me.Close()
     End Sub
-
-    ' Helper function: Gets the next equipment ID by querying the equipment table.
-    Private Function GetNextEquipmentId() As Integer
-        Dim nextId As Integer = 1
-        Try
-            Using conn As MySqlConnection = Common.getDBConnection()
-                If conn.State = ConnectionState.Closed Then conn.Open()
-                Dim query As String = "SELECT IFNULL(MAX(equipment_id), 0) + 1 FROM equipment"
-                Using cmd As New MySqlCommand(query, conn)
-                    Dim result = cmd.ExecuteScalar()
-                    If result IsNot Nothing AndAlso Integer.TryParse(result.ToString(), nextId) Then
-                        Return nextId
-                    End If
-                End Using
-            End Using
-        Catch ex As Exception
-            MessageBox.Show("Error generating equipment ID: " & ex.Message)
-        End Try
-        Return nextId
-    End Function
 
     ' Cancel and close the form without saving.
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
