@@ -79,6 +79,22 @@ Public Class AdminStaffDashboardForm
         MessageBox.Show("Dashboard refreshed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
+    ' **************** NEW: Add Item Button Event Handler ****************
+    Private Sub btnAdditem_Click(sender As Object, e As EventArgs) Handles btnAdditem.Click
+        ' Only admins can add items.
+        If role <> "admin" Then
+            MessageBox.Show("Only admins can add items.")
+            Return
+        End If
+
+        Dim addForm As New AddItemForm()
+        If addForm.ShowDialog() = DialogResult.OK AndAlso addForm.Added Then
+            MessageBox.Show("Item added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            LoadInventory()
+        End If
+    End Sub
+    ' ********************************************************************
+
     ' Account management: Load Accounts.
     Private Sub LoadAccounts(Optional ByVal searchQuery As String = "")
         Try

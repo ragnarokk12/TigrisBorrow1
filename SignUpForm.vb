@@ -3,7 +3,11 @@ Imports System.Security.Cryptography
 Imports System.Text
 
 Public Class SignUpForm
-    ' Hash the password using SHA256
+    ' When true, closing the SignUpForm reopens LoginForm.
+    ' Set this to False when SignUpForm is launched from AdminStaffDashboardForm.
+    Public Property OpenLoginOnCancel As Boolean = True
+
+    ' Hash the password using SHA256.
     Private Function HashPassword(password As String) As String
         Using sha256 As SHA256 = SHA256.Create()
             Dim bytes As Byte() = sha256.ComputeHash(Encoding.UTF8.GetBytes(password))
@@ -15,11 +19,11 @@ Public Class SignUpForm
         End Using
     End Function
 
-    ' Button Click event for SignUp
+    ' Button Click event for SignUp.
     Private Sub btnSignUp_Click(sender As Object, e As EventArgs) Handles btnSignUp.Click
         Dim conn As MySqlConnection = Common.getDBConnection()
 
-        ' Validate Password Strength
+        ' Validate Password Strength.
         If txtPassword.Text.Length < 8 OrElse
            Not txtPassword.Text.Any(AddressOf Char.IsUpper) OrElse
            Not txtPassword.Text.Any(AddressOf Char.IsLower) OrElse
@@ -28,25 +32,25 @@ Public Class SignUpForm
             Return
         End If
 
-        ' Confirm Password
+        ' Confirm Password.
         If txtPassword.Text.Trim() <> txtConfirmPass.Text.Trim() Then
             MessageBox.Show("Passwords do not match!", "Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        ' Email Format Validation
+        ' Email Format Validation.
         If Not txtEmail.Text.Contains("@") OrElse Not txtEmail.Text.Contains(".") Then
             MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        ' Contact Number Validation
+        ' Contact Number Validation.
         If Not IsNumeric(txtContact.Text) OrElse txtContact.Text.Length <> 11 Then
             MessageBox.Show("Please enter a valid 11-digit contact number.", "Invalid Contact", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
-        ' Avoid Duplicate Security Questions
+        ' Avoid Duplicate Security Questions.
         If cmbSecQ1.SelectedItem = cmbSecQ2.SelectedItem OrElse cmbSecQ1.SelectedItem = cmbSecQ3.SelectedItem OrElse cmbSecQ2.SelectedItem = cmbSecQ3.SelectedItem Then
             MessageBox.Show("Please select three unique security questions.", "Duplicate Questions", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -55,7 +59,7 @@ Public Class SignUpForm
         Try
             conn.Open()
 
-            ' Check if User Already Exists
+            ' Check if User Already Exists.
             Dim checkQuery As String = "SELECT COUNT(*) FROM users WHERE user_id = @user"
             Dim checkCmd As New MySqlCommand(checkQuery, conn)
             checkCmd.Parameters.AddWithValue("@user", txtUserID.Text)
@@ -66,7 +70,7 @@ Public Class SignUpForm
                 Return
             End If
 
-            ' SQL Insert Query
+            ' SQL Insert Query.
             Dim query As String = "INSERT INTO users (user_id, first_name, last_name, email, contact_number, password_hash, " &
                                   "security_question1, security_answer_hash1, " &
                                   "security_question2, security_answer_hash2, " &
@@ -74,7 +78,7 @@ Public Class SignUpForm
                                   "VALUES (@user, @first_name, @last_name, @email, @contact, @pass, @q1, @a1, @q2, @a2, @q3, @a3, 'student', NOW())"
             Dim cmd As New MySqlCommand(query, conn)
 
-            ' Add parameters
+            ' Add parameters.
             cmd.Parameters.AddWithValue("@user", txtUserID.Text)
             cmd.Parameters.AddWithValue("@first_name", txtFirstName.Text)
             cmd.Parameters.AddWithValue("@last_name", txtLastName.Text)
@@ -88,24 +92,26 @@ Public Class SignUpForm
             cmd.Parameters.AddWithValue("@q3", cmbSecQ3.SelectedItem.ToString())
             cmd.Parameters.AddWithValue("@a3", HashPassword(txtSecQ3.Text))
 
-            ' Execute query
+            ' Execute query.
             cmd.ExecuteNonQuery()
 
             MessageBox.Show("Sign Up Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-            LoginForm.Show()
-            Me.Hide()
+            ' After successful sign-up, if launched from LoginForm, show it.
+            If OpenLoginOnCancel Then
+                LoginForm.Show()
+            End If
+            Me.Close()
 
         Catch ex As Exception
             MessageBox.Show("Database Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
         Finally
             conn.Close()
         End Try
     End Sub
 
+    ' Form Load event.
     Private Sub SignUpForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Add security questions to ComboBoxes
         Dim questions As String() = {
             "What is your favorite color?",
             "What is your pet's name?",
@@ -131,14 +137,18 @@ Public Class SignUpForm
         txtConfirmPass.UseSystemPasswordChar = Not chkShowPassword.Checked
     End Sub
 
+    ' Cancel button behavior based on the form's launch context.
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        LoginForm.Show()
-        Me.Hide()
+        ' If OpenLoginOnCancel is true, then show the LoginForm; otherwise, simply close.
+        If OpenLoginOnCancel Then
+            LoginForm.Show()
+        End If
+        Me.Close()
     End Sub
 
+    ' Ensure that the LoginForm is shown when closing, if needed.
     Private Sub SignUpForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        ' Show LoginForm when the SignUpForm is closed
-        If Not LoginForm.Visible Then
+        If OpenLoginOnCancel AndAlso Not LoginForm.Visible Then
             LoginForm.Show()
         End If
     End Sub

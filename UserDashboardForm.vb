@@ -74,7 +74,7 @@ Public Class UserDashboardForm
         End Using
     End Sub
 
-    ' Borrow Request submission: Uses the selected inventory item.
+    ' Borrow Request submission: if the item is an accessory, prompt for quantity.
     Private Sub btnSubmitRequest_Click(sender As Object, e As EventArgs) Handles btnSubmitRequest.Click
         Try
             ' Ensure an inventory item is selected.
@@ -99,33 +99,46 @@ Public Class UserDashboardForm
 
             Using conn As MySqlConnection = Common.getDBConnection()
                 conn.Open()
-                Dim query As String = "INSERT INTO borrow_transactions (user_id, equipment_id, accessory_id, borrow_date, due_date, status) " &
-                                      "VALUES (@userId, @equipmentId, @accessoryId, @borrowDate, @dueDate, 'pending')"
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@userId", Common.CurrentUserId)
-                    cmd.Parameters.AddWithValue("@borrowDate", borrowDate)
-                    cmd.Parameters.AddWithValue("@dueDate", dueDate)
+                Dim query As String = ""
+                Dim cmd As New MySqlCommand()
+                cmd.Connection = conn
+                cmd.Parameters.AddWithValue("@userId", Common.CurrentUserId)
+                cmd.Parameters.AddWithValue("@borrowDate", borrowDate)
+                cmd.Parameters.AddWithValue("@dueDate", dueDate)
 
-                    If category = "Equipment" Then
-                        cmd.Parameters.AddWithValue("@equipmentId", itemId)
-                        cmd.Parameters.AddWithValue("@accessoryId", DBNull.Value)
-                    ElseIf category = "Accessory" Then
-                        cmd.Parameters.AddWithValue("@equipmentId", DBNull.Value)
-                        cmd.Parameters.AddWithValue("@accessoryId", itemId)
-                    Else
-                        MessageBox.Show("Unrecognized item category.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                If category.ToLower() = "equipment" Then
+                    ' For equipment, no quantity input is needed.
+                    query = "INSERT INTO borrow_transactions (user_id, equipment_id, accessory_id, borrow_date, due_date, status) " &
+                            "VALUES (@userId, @equipmentId, @accessoryId, @borrowDate, @dueDate, 'pending')"
+                    cmd.Parameters.AddWithValue("@equipmentId", itemId)
+                    cmd.Parameters.AddWithValue("@accessoryId", DBNull.Value)
+                ElseIf category.ToLower() = "accessory" Then
+                    ' For accessories, prompt the user for quantity.
+                    Dim inputQuantity As String = InputBox("Enter the quantity to borrow:", "Quantity", "1")
+                    Dim borrowQuantity As Integer = 0
+                    If Not Integer.TryParse(inputQuantity, borrowQuantity) OrElse borrowQuantity <= 0 Then
+                        MessageBox.Show("Please enter a valid quantity greater than zero.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         Return
                     End If
+                    query = "INSERT INTO borrow_transactions (user_id, equipment_id, accessory_id, borrow_date, due_date, status, borrow_quantity) " &
+                            "VALUES (@userId, @equipmentId, @accessoryId, @borrowDate, @dueDate, 'pending', @borrowQuantity)"
+                    cmd.Parameters.AddWithValue("@equipmentId", DBNull.Value)
+                    cmd.Parameters.AddWithValue("@accessoryId", itemId)
+                    cmd.Parameters.AddWithValue("@borrowQuantity", borrowQuantity)
+                Else
+                    MessageBox.Show("Unrecognized item category.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
+                End If
 
-                    Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
-                    If rowsAffected > 0 Then
-                        MessageBox.Show("Borrow request submitted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        LoadBorrowRequestData()
-                        UpdateDashboardSummary()
-                    Else
-                        MessageBox.Show("Failed to submit borrow request.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    End If
-                End Using
+                cmd.CommandText = query
+                Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+                If rowsAffected > 0 Then
+                    MessageBox.Show("Borrow request submitted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    LoadBorrowRequestData()
+                    UpdateDashboardSummary()
+                Else
+                    MessageBox.Show("Failed to submit borrow request.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             End Using
 
         Catch ex As Exception

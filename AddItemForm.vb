@@ -10,57 +10,52 @@ Public Class AddItemForm
     Public Property Brand As String = ""
     Public Property Model As String = ""
     Public Property SerialNumber As String = ""
-    Public Property AccessoryType As String = ""  ' For accessories only
+    Public Property AccessoryType As String = ""
 
-    ' On form load, populate controls.
     Private Sub AddItemForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Populate the category ComboBox.
+        ' Populate the Category ComboBox.
         cmbCategory.Items.Clear()
         cmbCategory.Items.AddRange(New String() {"Accessory", "Equipment"})
-        cmbCategory.SelectedIndex = 0   ' Default is Accessory.
+        cmbCategory.SelectedIndex = 0
         txtQuantity.Enabled = True
-        lblItemType.Text = ""           ' Clear locked item type label.
+        lblItemType.Text = ""
 
-        ' Populate condition ComboBox.
+        ' Populate the Condition ComboBox.
         cmbItemCondition.Items.Clear()
         cmbItemCondition.Items.AddRange(New String() {"new", "good", "fair", "poor", "damaged"})
         cmbItemCondition.SelectedIndex = 0
 
-        ' Load existing item names for the default category ("accessory").
+        ' Load data for existing item names, brands, and accessory types.
         LoadExistingItemNames("accessory")
-
-        ' Load existing brands based on category.
         LoadExistingBrands("accessory")
-
-        ' Load existing accessory types.
         LoadExistingAccessoryTypes()
 
-        ' Set initial state for accessory-specific controls.
-        ' For Accessory category: disable model field.
+        ' Set accessory-specific controls.
         txtModel.Enabled = False
-        ' Enable accessory type combo box.
         cmbAccessoryType.Enabled = True
-        ' By default, disable the new accessory type textbox until "New" is selected.
         txtNewAccessoryType.Enabled = False
+
+        ' For accessories, disable the condition field.
+        If cmbCategory.SelectedItem.ToString().ToLower() = "accessory" Then
+            cmbItemCondition.Enabled = False
+        Else
+            cmbItemCondition.Enabled = True
+        End If
     End Sub
 
-    ' When category changes, adjust controls and reload data.
     Private Sub cmbCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCategory.SelectedIndexChanged
         Dim selectedCategory As String = cmbCategory.SelectedItem.ToString().ToLower()
-
         If selectedCategory = "equipment" Then
-            ' Equipment: disable quantity input, set default to 1, lock item type, and enable brand controls.
             txtQuantity.Enabled = False
             txtQuantity.Text = "1"
             lblItemType.Text = "IT Equipment"
             cmbExistingBrand.Enabled = True
             txtNewBrand.Enabled = True
-            ' Enable model field and disable accessory type fields.
             txtModel.Enabled = True
             cmbAccessoryType.Enabled = False
             txtNewAccessoryType.Enabled = False
-        Else
-            ' Accessory: enable quantity input, default quantity to 1, clear locked type, and disable brand controls.
+            cmbItemCondition.Enabled = True
+        Else ' Accessory
             txtQuantity.Enabled = True
             txtQuantity.Text = "1"
             lblItemType.Text = ""
@@ -68,11 +63,8 @@ Public Class AddItemForm
             txtNewBrand.Enabled = False
             If cmbExistingBrand.Items.Count > 0 Then cmbExistingBrand.SelectedIndex = 0
             txtNewBrand.Text = "N/A"
-            ' Disable model field for accessories.
             txtModel.Enabled = False
-            ' Enable accessory type fields.
             cmbAccessoryType.Enabled = True
-            ' Set txtNewAccessoryType based on current selection.
             If cmbAccessoryType.SelectedItem IsNot Nothing AndAlso cmbAccessoryType.SelectedItem.ToString().ToLower() = "new" Then
                 txtNewAccessoryType.Enabled = True
                 txtNewAccessoryType.Text = ""
@@ -84,14 +76,14 @@ Public Class AddItemForm
                     txtNewAccessoryType.Text = ""
                 End If
             End If
+            cmbItemCondition.Enabled = False
         End If
 
-        ' Reload the existing item names and brands for the selected category.
+        ' Reload the data based on the new category.
         LoadExistingItemNames(selectedCategory)
         LoadExistingBrands(selectedCategory)
     End Sub
 
-    ' When the accessory type changes, enable txtNewAccessoryType only if "New" is selected.
     Private Sub cmbAccessoryType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbAccessoryType.SelectedIndexChanged
         If cmbAccessoryType.SelectedItem.ToString().ToLower() = "new" Then
             txtNewAccessoryType.Enabled = True
@@ -102,34 +94,62 @@ Public Class AddItemForm
         End If
     End Sub
 
-    ' Loads existing item names from the database for the given category.
+    ' Corrected method to load existing item names.
     Private Sub LoadExistingItemNames(ByVal category As String)
-        cmbExistingItemName.Items.Clear()
-        cmbExistingItemName.Items.Add("New")
         Try
+            cmbExistingItemName.Items.Clear()
+            cmbExistingItemName.Items.Add("New")
             Using conn As MySqlConnection = Common.getDBConnection()
                 If conn.State = ConnectionState.Closed Then conn.Open()
                 Dim query As String = ""
-                If category = "accessory" Then
+                If category.ToLower() = "accessory" Then
                     query = "SELECT DISTINCT accessory_name FROM accessories"
-                ElseIf category = "equipment" Then
+                ElseIf category.ToLower() = "equipment" Then
                     query = "SELECT DISTINCT equipment_name FROM equipment"
                 End If
-                Using cmd As New MySqlCommand(query, conn)
-                    Using reader As MySqlDataReader = cmd.ExecuteReader()
-                        While reader.Read()
-                            cmbExistingItemName.Items.Add(reader(0).ToString())
-                        End While
+                If Not String.IsNullOrEmpty(query) Then
+                    Using cmd As New MySqlCommand(query, conn)
+                        Using reader As MySqlDataReader = cmd.ExecuteReader()
+                            While reader.Read()
+                                cmbExistingItemName.Items.Add(reader(0).ToString())
+                            End While
+                        End Using
                     End Using
-                End Using
+                End If
             End Using
+            If cmbExistingItemName.Items.Count > 0 Then cmbExistingItemName.SelectedIndex = 0
         Catch ex As Exception
             MessageBox.Show("Error loading existing item names: " & ex.Message)
         End Try
-        If cmbExistingItemName.Items.Count > 0 Then cmbExistingItemName.SelectedIndex = 0
     End Sub
 
-    ' Loads existing accessory types from the accessories table.
+    ' Corrected method to load existing brands.
+    Private Sub LoadExistingBrands(ByVal category As String)
+        Try
+            cmbExistingBrand.Items.Clear()
+            If category.ToLower() = "equipment" Then
+                cmbExistingBrand.Items.Add("New")
+                Using conn As MySqlConnection = Common.getDBConnection()
+                    If conn.State = ConnectionState.Closed Then conn.Open()
+                    Dim query As String = "SELECT DISTINCT brand FROM equipment WHERE brand IS NOT NULL AND brand <> ''"
+                    Using cmd As New MySqlCommand(query, conn)
+                        Using reader As MySqlDataReader = cmd.ExecuteReader()
+                            While reader.Read()
+                                cmbExistingBrand.Items.Add(reader(0).ToString())
+                            End While
+                        End Using
+                    End Using
+                End Using
+            Else
+                cmbExistingBrand.Items.Add("N/A")
+            End If
+            If cmbExistingBrand.Items.Count > 0 Then cmbExistingBrand.SelectedIndex = 0
+        Catch ex As Exception
+            MessageBox.Show("Error loading existing brands: " & ex.Message)
+        End Try
+    End Sub
+
+    ' Method to load existing accessory types.
     Private Sub LoadExistingAccessoryTypes()
         cmbAccessoryType.Items.Clear()
         cmbAccessoryType.Items.Add("New")
@@ -151,33 +171,6 @@ Public Class AddItemForm
         If cmbAccessoryType.Items.Count > 0 Then cmbAccessoryType.SelectedIndex = 0
     End Sub
 
-    ' Loads existing brands from the database for the given category.
-    Private Sub LoadExistingBrands(ByVal category As String)
-        cmbExistingBrand.Items.Clear()
-        If category = "equipment" Then
-            cmbExistingBrand.Items.Add("New")
-            Try
-                Using conn As MySqlConnection = Common.getDBConnection()
-                    If conn.State = ConnectionState.Closed Then conn.Open()
-                    Dim query As String = "SELECT DISTINCT brand FROM equipment WHERE brand IS NOT NULL AND brand <> ''"
-                    Using cmd As New MySqlCommand(query, conn)
-                        Using reader As MySqlDataReader = cmd.ExecuteReader()
-                            While reader.Read()
-                                cmbExistingBrand.Items.Add(reader(0).ToString())
-                            End While
-                        End Using
-                    End Using
-                End Using
-            Catch ex As Exception
-                MessageBox.Show("Error loading existing brands: " & ex.Message)
-            End Try
-        Else
-            cmbExistingBrand.Items.Add("N/A")
-        End If
-        If cmbExistingBrand.Items.Count > 0 Then cmbExistingBrand.SelectedIndex = 0
-    End Sub
-
-    ' Enable or disable new item name textbox based on selection.
     Private Sub cmbExistingItemName_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbExistingItemName.SelectedIndexChanged
         If cmbExistingItemName.SelectedItem.ToString().ToLower() = "new" Then
             txtNewItemName.Enabled = True
@@ -188,7 +181,6 @@ Public Class AddItemForm
         End If
     End Sub
 
-    ' Enable or disable new brand textbox based on selection.
     Private Sub cmbExistingBrand_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbExistingBrand.SelectedIndexChanged
         If cmbExistingBrand.SelectedItem.ToString().ToLower() = "new" AndAlso cmbCategory.SelectedItem.ToString().ToLower() = "equipment" Then
             txtNewBrand.Enabled = True
@@ -199,7 +191,7 @@ Public Class AddItemForm
         End If
     End Sub
 
-    ' When the admin clicks the Add button, validate input and insert the record.
+    ' Button to add the item.
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         Dim selectedCategory As String = cmbCategory.SelectedItem.ToString().ToLower()
         Dim itemNameInput As String = If(cmbExistingItemName.SelectedItem.ToString().ToLower() = "new", txtNewItemName.Text.Trim(), cmbExistingItemName.SelectedItem.ToString())
@@ -231,7 +223,6 @@ Public Class AddItemForm
             End If
         End If
 
-        ' For accessories, capture the accessory type.
         Dim accessoryTypeInput As String = ""
         If selectedCategory = "accessory" Then
             If cmbAccessoryType.SelectedItem.ToString().ToLower() = "new" Then
@@ -283,14 +274,50 @@ Public Class AddItemForm
             Try
                 Using conn As MySqlConnection = Common.getDBConnection()
                     If conn.State = ConnectionState.Closed Then conn.Open()
-                    Dim query As String = "INSERT INTO accessories (accessory_name, accessory_type, quantity, item_condition) VALUES (@name, @accessoryType, @quantity, @condition)"
-                    Using cmd As New MySqlCommand(query, conn)
-                        cmd.Parameters.AddWithValue("@name", itemNameInput)
-                        cmd.Parameters.AddWithValue("@accessoryType", accessoryTypeInput)
-                        cmd.Parameters.AddWithValue("@quantity", qty)
-                        cmd.Parameters.AddWithValue("@condition", conditionInput)
-                        cmd.ExecuteNonQuery()
+                    Dim checkQuery As String = "SELECT accessory_id, quantity FROM accessories WHERE accessory_name = @name AND accessory_type = @accessoryType"
+                    Dim existingId As Integer = 0
+                    Dim existingQty As Integer = 0
+                    Using cmdCheck As New MySqlCommand(checkQuery, conn)
+                        cmdCheck.Parameters.AddWithValue("@name", itemNameInput)
+                        cmdCheck.Parameters.AddWithValue("@accessoryType", accessoryTypeInput)
+                        Dim reader = cmdCheck.ExecuteReader()
+                        If reader.Read() Then
+                            existingId = Convert.ToInt32(reader("accessory_id"))
+                            existingQty = Convert.ToInt32(reader("quantity"))
+                        End If
+                        reader.Close()
                     End Using
+
+                    If existingId > 0 Then
+                        Dim updateQuery As String = "UPDATE accessories SET quantity = quantity + @qty WHERE accessory_id = @id"
+                        Using cmdUpdate As New MySqlCommand(updateQuery, conn)
+                            cmdUpdate.Parameters.AddWithValue("@qty", qty)
+                            cmdUpdate.Parameters.AddWithValue("@id", existingId)
+                            cmdUpdate.ExecuteNonQuery()
+                        End Using
+                        MessageBox.Show("Accessory updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Category = selectedCategory
+                        ItemName = itemNameInput
+                        Quantity = qty + existingQty
+                        ItemCondition = conditionInput
+                        Brand = brandInput
+                        Model = modelInput
+                        SerialNumber = serialInput
+                        AccessoryType = accessoryTypeInput
+                        Added = True
+                        Me.DialogResult = DialogResult.OK
+                        Me.Close()
+                        Exit Sub
+                    Else
+                        Dim insertQuery As String = "INSERT INTO accessories (accessory_name, accessory_type, quantity, item_condition) VALUES (@name, @accessoryType, @quantity, @condition)"
+                        Using cmdInsert As New MySqlCommand(insertQuery, conn)
+                            cmdInsert.Parameters.AddWithValue("@name", itemNameInput)
+                            cmdInsert.Parameters.AddWithValue("@accessoryType", accessoryTypeInput)
+                            cmdInsert.Parameters.AddWithValue("@quantity", qty)
+                            cmdInsert.Parameters.AddWithValue("@condition", conditionInput)
+                            cmdInsert.ExecuteNonQuery()
+                        End Using
+                    End If
                 End Using
             Catch ex As Exception
                 MessageBox.Show("Error adding accessory: " & ex.Message)
@@ -298,7 +325,6 @@ Public Class AddItemForm
             End Try
         End If
 
-        ' Set public properties.
         Category = selectedCategory
         ItemName = itemNameInput
         Quantity = qty
@@ -313,7 +339,6 @@ Public Class AddItemForm
         Me.Close()
     End Sub
 
-    ' Cancel and close the form without saving.
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Me.DialogResult = DialogResult.Cancel
         Me.Close()

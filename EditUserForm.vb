@@ -15,6 +15,10 @@ Public Class EditUserForm
         cmbRole.Items.Clear()
         cmbRole.Items.AddRange(New String() {"admin", "staff", "student"})
         LoadUserDetails()
+        ' If the current user is not admin, disable role change.
+        If Common.CurrentUserRole.ToLower() = "staff" Then
+            cmbRole.Enabled = False
+        End If
     End Sub
 
     Private Sub LoadUserDetails()
