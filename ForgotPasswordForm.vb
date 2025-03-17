@@ -118,4 +118,27 @@ Public Class ForgotPasswordForm
         PanelSecurityQuestions.Visible = True
     End Sub
 
+    Private Sub TabPage1_Click(sender As Object, e As EventArgs) Handles TabPage1.Click
+
+    End Sub
+
+    Private Sub Guna2Panel1_Paint(sender As Object, e As PaintEventArgs) Handles pnlControlBx.Paint
+
+    End Sub
+
+    Private Sub PanelEmail_Click(sender As Object, e As EventArgs) Handles PanelEmail.Click
+
+    End Sub
+
+    Private Sub Guna2HtmlLabel5_Click(sender As Object, e As EventArgs) Handles Guna2HtmlLabel5.Click
+
+    End Sub
+
+    Private Sub cboQuestion1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboQuestion1.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub spnlS1_Paint(sender As Object, e As PaintEventArgs) Handles spnlS1.Paint
+
+    End Sub
 End Class
