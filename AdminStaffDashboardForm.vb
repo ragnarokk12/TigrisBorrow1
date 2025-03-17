@@ -5,19 +5,17 @@ Imports System.Text
 Public Class AdminStaffDashboardForm
 
     Private conn As MySqlConnection = Common.getDBConnection()
-    Private role As String = "" ' Role will be dynamically fetched
+    Private role As String = ""
 
-    ' -------------------- FORM LOAD --------------------
     Private Sub AdminStaffDashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FetchUserRole()
         LoadInventory()
-        LoadAccounts() ' Load accounts data
+        LoadAccounts()
         SetAccessByRole()
         LoadSortOptions()
-        LoadBorrowRequests() ' Load borrow requests when form loads
+        LoadBorrowRequests()
     End Sub
 
-    ' -------------------- FETCH USER ROLE --------------------
     Private Sub FetchUserRole()
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
@@ -40,7 +38,7 @@ Public Class AdminStaffDashboardForm
         End Try
     End Sub
 
-    ' -------------------- INVENTORY MANAGEMENT --------------------
+    ' Inventory loading remains unchanged.
     Private Sub LoadInventory(Optional ByVal search As String = "", Optional ByVal sortBy As String = "item_name", Optional ByVal sortOrder As String = "ASC")
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
@@ -74,100 +72,14 @@ Public Class AdminStaffDashboardForm
         LoadInventory(txtSearchInv.Text.Trim(), sortBy, sortOrder)
     End Sub
 
-    ' -------------------- ADD ITEM HANDLER --------------------
-    Private Sub btnAddItem_Click(sender As Object, e As EventArgs) Handles btnAdditem.Click
-        If role <> "admin" Then
-            MessageBox.Show("Only admins can add items.")
-            Return
-        End If
-
-        Dim addForm As New AddItemForm()
-        If addForm.ShowDialog() = DialogResult.OK AndAlso addForm.Added Then
-            MessageBox.Show("Item added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            LoadInventory()
-        End If
+    ' Refresh Button event handler.
+    Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefreshDeploy.Click
+        LoadInventory()
+        LoadBorrowRequests()
+        MessageBox.Show("Dashboard refreshed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    ' -------------------- DELETE ITEM HANDLER --------------------
-    Private Sub btnDeleteItems_Click(sender As Object, e As EventArgs) Handles btnDeleteItems.Click
-        If role <> "admin" Then
-            MessageBox.Show("Only admins can delete items.")
-            Return
-        End If
-
-        If dgvInventory.SelectedRows.Count = 0 Then
-            MessageBox.Show("Please select an item to delete.")
-            Return
-        End If
-
-        Dim itemId As Integer = Convert.ToInt32(dgvInventory.SelectedRows(0).Cells("item_id").Value)
-        Dim category As String = dgvInventory.SelectedRows(0).Cells("category").Value.ToString().ToLower()
-
-        Dim confirmResult As DialogResult = MessageBox.Show("Are you sure you want to delete this item?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-        If confirmResult <> DialogResult.Yes Then Return
-
-        If category = "accessory" Then
-            Dim currentQuantityObj As Object = dgvInventory.SelectedRows(0).Cells("quantity").Value
-            Dim currentQuantity As Integer = 0
-            If currentQuantityObj IsNot Nothing AndAlso Integer.TryParse(currentQuantityObj.ToString(), currentQuantity) Then
-                If currentQuantity > 1 Then
-                    Dim inputQtyStr As String = InputBox("This item has a quantity of " & currentQuantity.ToString() & ". Enter the number of units to delete:", "Delete Quantity", currentQuantity.ToString())
-                    Dim deleteQty As Integer
-                    If Not Integer.TryParse(inputQtyStr, deleteQty) OrElse deleteQty <= 0 OrElse deleteQty > currentQuantity Then
-                        MessageBox.Show("Invalid quantity entered.")
-                        Return
-                    End If
-
-                    If deleteQty < currentQuantity Then
-                        Try
-                            If conn.State = ConnectionState.Closed Then conn.Open()
-                            Dim updateQuery As String = "UPDATE accessories SET quantity = quantity - @deleteQty WHERE accessory_id = @itemId"
-                            Using cmd As New MySqlCommand(updateQuery, conn)
-                                cmd.Parameters.AddWithValue("@deleteQty", deleteQty)
-                                cmd.Parameters.AddWithValue("@itemId", itemId)
-                                cmd.ExecuteNonQuery()
-                            End Using
-                            MessageBox.Show("Item quantity updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                            LoadInventory()
-                            Return
-                        Catch ex As Exception
-                            MessageBox.Show("Error updating item quantity: " & ex.Message)
-                            Return
-                        Finally
-                            conn.Close()
-                        End Try
-                    End If
-                End If
-            End If
-        End If
-
-        Dim query As String = ""
-        Select Case category
-            Case "accessory"
-                query = "DELETE FROM accessories WHERE accessory_id = @itemId"
-            Case "equipment"
-                query = "DELETE FROM equipment WHERE equipment_id = @itemId"
-            Case Else
-                MessageBox.Show("Invalid category.")
-                Return
-        End Select
-
-        Try
-            If conn.State = ConnectionState.Closed Then conn.Open()
-            Using cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@itemId", itemId)
-                cmd.ExecuteNonQuery()
-            End Using
-            MessageBox.Show("Item deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            LoadInventory()
-        Catch ex As Exception
-            MessageBox.Show("Error deleting item: " & ex.Message)
-        Finally
-            conn.Close()
-        End Try
-    End Sub
-
-    ' -------------------- ACCOUNT MANAGEMENT --------------------
+    ' Account management: Load Accounts.
     Private Sub LoadAccounts(Optional ByVal searchQuery As String = "")
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
@@ -195,10 +107,11 @@ Public Class AdminStaffDashboardForm
         LoadAccounts(txtSearchAccount.Text.Trim())
     End Sub
 
-    Private Sub btnNewAccount_Click(sender As Object, e As EventArgs) Handles btnNewAccount.Click
-        Dim signUpForm As New SignUpForm()
-        signUpForm.ShowDialog()
-        LoadAccounts()
+    ' Trigger search on Enter key.
+    Private Sub txtSearchAccount_KeyDown(sender As Object, e As KeyEventArgs) Handles txtSearchAccount.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            btnGoAccount.PerformClick()
+        End If
     End Sub
 
     Private Sub btnEditAccount_Click(sender As Object, e As EventArgs) Handles btnEditAccount.Click
@@ -216,20 +129,15 @@ Public Class AdminStaffDashboardForm
         End If
     End Sub
 
-    ' -------------------- COMMON --------------------
     Private Sub LoadSortOptions()
         cbSortBy.Items.Clear()
         cbSortBy.Items.AddRange(New String() {"item_name", "category", "status", "quantity", "added_at"})
         cbSortBy.SelectedIndex = 0
     End Sub
 
-    ' Updated SetAccessByRole method:
-    ' - Only admins can add or delete items.
-    ' - Both admin and staff can work in the deployment tab (approve, deny, check return).
     Private Sub SetAccessByRole()
         btnAdditem.Enabled = (role = "admin")
         btnDeleteItems.Enabled = (role = "admin")
-        ' Allow deployment functionalities to both admin and staff.
         tbcAdminDashboard.Enabled = (role = "admin" Or role = "staff")
         btnApprove.Enabled = (role = "admin" Or role = "staff")
         btnDeny.Enabled = (role = "admin" Or role = "staff")
@@ -242,12 +150,10 @@ Public Class AdminStaffDashboardForm
         Me.Close()
     End Sub
 
-    ' -------------------- DEPLOYMENT / BORROW REQUESTS MANAGEMENT --------------------
-    ' Load borrow requests into the DataGridView (dgvBorrowRequests) on the tbpDeployment tab.
+    ' Borrow Requests loading.
     Private Sub LoadBorrowRequests(Optional ByVal statusFilter As String = "")
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
-
             Dim query As String = "
 SELECT 
     bt.transaction_id,
@@ -295,7 +201,7 @@ LEFT JOIN accessories a ON bt.accessory_id = a.accessory_id
             adapter.Fill(table)
             dgvBorrowRequests.DataSource = table
 
-            ' Set friendly column headers
+            ' Set friendly headers.
             dgvBorrowRequests.Columns("transaction_id").HeaderText = "Transaction ID"
             dgvBorrowRequests.Columns("borrower").HeaderText = "Borrower"
             dgvBorrowRequests.Columns("item_category").HeaderText = "Category"
@@ -318,7 +224,7 @@ LEFT JOIN accessories a ON bt.accessory_id = a.accessory_id
         End Try
     End Sub
 
-    ' -------------------- APPROVE BORROW REQUEST --------------------
+    ' Approve Borrow Request.
     Private Sub btnApprove_Click(sender As Object, e As EventArgs) Handles btnApprove.Click
         If dgvBorrowRequests.SelectedRows.Count = 0 Then
             MessageBox.Show("Please select a borrow request to approve.")
@@ -357,7 +263,7 @@ WHERE transaction_id = @transactionId AND status = 'pending'
         LoadBorrowRequests()
     End Sub
 
-    ' -------------------- DENY BORROW REQUEST --------------------
+    ' Deny Borrow Request.
     Private Sub btnDeny_Click(sender As Object, e As EventArgs) Handles btnDeny.Click
         If dgvBorrowRequests.SelectedRows.Count = 0 Then
             MessageBox.Show("Please select a borrow request to deny.")
@@ -392,7 +298,7 @@ WHERE transaction_id = @transactionId AND status = 'pending'
         LoadBorrowRequests()
     End Sub
 
-    ' -------------------- CHECK RETURN (RETURN VERIFICATION) --------------------
+    ' Check Return – update status to pending_inspection.
     Private Sub btnCheckReturn_Click(sender As Object, e As EventArgs) Handles btnCheckReturn.Click
         If dgvBorrowRequests.SelectedRows.Count = 0 Then
             MessageBox.Show("Please select a returned borrow transaction.")
@@ -425,7 +331,7 @@ WHERE transaction_id = @transactionId AND status = 'pending'
             Dim updateQuery As String = "
 UPDATE borrow_transactions
 SET return_condition = @return_condition,
-    status = 'completed'
+    status = 'pending_inspection'
 WHERE transaction_id = @transactionId AND status = 'returned'
 "
             Dim cmd As New MySqlCommand(updateQuery, conn)
@@ -434,8 +340,7 @@ WHERE transaction_id = @transactionId AND status = 'returned'
             Dim rowsAffected = cmd.ExecuteNonQuery()
 
             If rowsAffected > 0 Then
-                MessageBox.Show("Return approved and item condition updated successfully.")
-                ' Optionally, update inventory here.
+                MessageBox.Show("Return approved and status updated to pending inspection.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Else
                 MessageBox.Show("Failed to update the return information. It may have been updated already.")
             End If
@@ -449,12 +354,10 @@ WHERE transaction_id = @transactionId AND status = 'returned'
         LoadBorrowRequests()
     End Sub
 
-    ' -------------------- AUDIT LOGS / DATA REPORT (Borrow and Return Only) --------------------
+    ' Data Report: Load Audit Logs.
     Private Sub LoadAuditLogs()
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
-
-            ' Query filtered to show only borrowing and returning events
             Dim query As String = "
 SELECT 
     l.log_id,
@@ -475,7 +378,6 @@ ORDER BY l.action_time DESC
             adapter.Fill(table)
             dgvDataReport.DataSource = table
 
-            ' Set user-friendly column headers
             dgvDataReport.Columns("log_id").HeaderText = "Log ID"
             dgvDataReport.Columns("admin_name").HeaderText = "Admin Name"
             dgvDataReport.Columns("action_type").HeaderText = "Action Type"
@@ -490,12 +392,11 @@ ORDER BY l.action_time DESC
         End Try
     End Sub
 
-    ' Call this when the Generate Report button is clicked
     Private Sub btnGenerateReport_Click(sender As Object, e As EventArgs) Handles btnGenerateReport.Click
         LoadAuditLogs()
     End Sub
 
-    ' Optionally, load the report when the tbcReport tab is activated
+    ' Optional: Refresh report on tab enter.
     Private Sub tbcReport_Enter(sender As Object, e As EventArgs) Handles tbcReport.Enter
         LoadAuditLogs()
     End Sub
