@@ -311,7 +311,7 @@ Partial Class LoginForm
         '
         Me.Guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent
         Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Sifonn", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(47, 254)
+        Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(47, 249)
         Me.Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
         Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(136, 27)
         Me.Guna2HtmlLabel2.TabIndex = 10
