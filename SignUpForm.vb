@@ -6,6 +6,9 @@ Public Class SignUpForm
     ' When true, closing the SignUpForm reopens LoginForm.
     ' Set this to False when SignUpForm is launched from AdminStaffDashboardForm.
     Public Property OpenLoginOnCancel As Boolean = True
+    Public Property FromLogin As Boolean = True
+    ' Flag to track if an account was successfully created.
+    Public Property AccountCreated As Boolean = False
 
     ' Hash the password using SHA256.
     Private Function HashPassword(password As String) As String
@@ -97,7 +100,10 @@ Public Class SignUpForm
 
             MessageBox.Show("Sign Up Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-            ' After successful sign-up, if launched from LoginForm, show it.
+            ' Mark account as created.
+            AccountCreated = True
+
+            ' After successful sign-up, if launched from LoginForm, show LoginForm.
             If OpenLoginOnCancel Then
                 LoginForm.Show()
             End If
@@ -139,16 +145,12 @@ Public Class SignUpForm
 
     ' Cancel button behavior based on the form's launch context.
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        ' If OpenLoginOnCancel is true, then show the LoginForm; otherwise, simply close.
-        If OpenLoginOnCancel Then
-            LoginForm.Show()
-        End If
         Me.Close()
     End Sub
 
     ' Ensure that the LoginForm is shown when closing, if needed.
     Private Sub SignUpForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        If OpenLoginOnCancel AndAlso Not LoginForm.Visible Then
+        If FromLogin AndAlso Not AccountCreated AndAlso Not LoginForm.Visible Then
             LoginForm.Show()
         End If
     End Sub

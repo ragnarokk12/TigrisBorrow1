@@ -392,15 +392,15 @@ ORDER BY l.action_time DESC
             Dim adapter As New MySqlDataAdapter(cmd)
             Dim table As New DataTable()
             adapter.Fill(table)
-            dgvDataReport.DataSource = table
+            dgvDailyDataReport.DataSource = table
 
-            dgvDataReport.Columns("log_id").HeaderText = "Log ID"
-            dgvDataReport.Columns("admin_name").HeaderText = "Admin Name"
-            dgvDataReport.Columns("action_type").HeaderText = "Action Type"
-            dgvDataReport.Columns("target_id").HeaderText = "Target ID"
-            dgvDataReport.Columns("target_type").HeaderText = "Target Type"
-            dgvDataReport.Columns("details").HeaderText = "Details"
-            dgvDataReport.Columns("action_time").HeaderText = "Action Time"
+            dgvDailyDataReport.Columns("log_id").HeaderText = "Log ID"
+            dgvDailyDataReport.Columns("admin_name").HeaderText = "Admin Name"
+            dgvDailyDataReport.Columns("action_type").HeaderText = "Action Type"
+            dgvDailyDataReport.Columns("target_id").HeaderText = "Target ID"
+            dgvDailyDataReport.Columns("target_type").HeaderText = "Target Type"
+            dgvDailyDataReport.Columns("details").HeaderText = "Details"
+            dgvDailyDataReport.Columns("action_time").HeaderText = "Action Time"
         Catch ex As Exception
             MessageBox.Show("Error loading audit logs: " & ex.Message)
         Finally
@@ -417,4 +417,10 @@ ORDER BY l.action_time DESC
         LoadAuditLogs()
     End Sub
 
+    Private Sub btnNewAccount_Click(sender As Object, e As EventArgs) Handles btnNewAccount.Click
+        Dim signUpForm As New SignUpForm()
+        signUpForm.FromLogin = False
+        signUpForm.OpenLoginOnCancel = False
+        signUpForm.ShowDialog()
+    End Sub
 End Class

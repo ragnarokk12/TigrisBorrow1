@@ -72,8 +72,9 @@ Public Class LoginForm
 
     ' Handles SignUp button click event
     Private Sub btnSignUp_Click(sender As Object, e As EventArgs) Handles btnSignUp.Click
-        SignUpForm.Show()
-        Me.Hide()
+        Dim signUpForm As New SignUpForm()
+        signUpForm.FromLogin = True
+        signUpForm.ShowDialog()
     End Sub
 
     ' Handles Forgot Password label click event
