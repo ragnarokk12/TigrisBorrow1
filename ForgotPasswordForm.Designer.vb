@@ -817,6 +817,7 @@ Partial Class ForgotPasswordForm
         '
         Me.PanelNewPassword.BackColor = System.Drawing.Color.Transparent
         Me.PanelNewPassword.Font = New System.Drawing.Font("Sifonn", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PanelNewPassword.ForeColor = System.Drawing.Color.Black
         Me.PanelNewPassword.Location = New System.Drawing.Point(58, 79)
         Me.PanelNewPassword.Name = "PanelNewPassword"
         Me.PanelNewPassword.Size = New System.Drawing.Size(171, 23)
