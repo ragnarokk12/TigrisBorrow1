@@ -41,7 +41,7 @@ Public Class SignUpForm
             lblUserIDError.Text = "ID is required."
             lblUserIDError.Visible = True
         ElseIf Not Regex.IsMatch(userId, "^2\d{3}-\d{5}$") Then
-            lblUserIDError.Text = "ID must be in format 2XXX-XXXXX."
+            lblUserIDError.Text = "ID must be in format 2XXX-XXXXX. *"
             lblUserIDError.Visible = True
         Else
             lblUserIDError.Text = ""
@@ -55,10 +55,10 @@ Public Class SignUpForm
     Private Sub txtFirstName_TextChanged(sender As Object, e As EventArgs) Handles txtFirstName.TextChanged
         Dim firstName As String = txtFirstName.Text.Trim()
         If String.IsNullOrEmpty(firstName) Then
-            lblFirstNameError.Text = "First Name is required."
+            lblFirstNameError.Text = "First Name is required. *"
             lblFirstNameError.Visible = True
         ElseIf Not Regex.IsMatch(firstName, "^[A-Za-z]+$") Then
-            lblFirstNameError.Text = "Only letters allowed."
+            lblFirstNameError.Text = "Only letters allowed. *"
             lblFirstNameError.Visible = True
         Else
             lblFirstNameError.Text = ""
@@ -72,10 +72,10 @@ Public Class SignUpForm
     Private Sub txtLastName_TextChanged(sender As Object, e As EventArgs) Handles txtLastName.TextChanged
         Dim lastName As String = txtLastName.Text.Trim()
         If String.IsNullOrEmpty(lastName) Then
-            lblLastNameError.Text = "Last Name is required."
+            lblLastNameError.Text = "Last Name is required. *"
             lblLastNameError.Visible = True
         ElseIf Not Regex.IsMatch(lastName, "^[A-Za-z]+$") Then
-            lblLastNameError.Text = "Only letters allowed."
+            lblLastNameError.Text = "Only letters allowed. *"
             lblLastNameError.Visible = True
         Else
             lblLastNameError.Text = ""
@@ -94,7 +94,7 @@ Public Class SignUpForm
 
         ' Email must not be empty.
         If String.IsNullOrEmpty(emailInput) Then
-            lblEmailError.Text = "Email is required."
+            lblEmailError.Text = "Email is required. *"
             lblEmailError.Visible = True
             Return
         End If
@@ -102,7 +102,7 @@ Public Class SignUpForm
         ' If "@" is present, ensure it ends with the allowed domain.
         If emailInput.Contains("@") Then
             If Not emailInput.EndsWith(allowedDomain, StringComparison.OrdinalIgnoreCase) Then
-                lblEmailError.Text = "Only " & allowedDomain & " emails are allowed."
+                lblEmailError.Text = "Only " & allowedDomain & " emails are allowed. *"
                 lblEmailError.Visible = True
                 Return
             Else
@@ -124,7 +124,7 @@ Public Class SignUpForm
         Dim password As String = txtPassword.Text
         If password.Length < 8 OrElse Not password.Any(AddressOf Char.IsUpper) OrElse
            Not password.Any(AddressOf Char.IsLower) OrElse Not password.Any(AddressOf Char.IsDigit) Then
-            lblPasswordError.Text = "Password must be 8+ characters with uppercase, lowercase, and a number."
+            lblPasswordError.Text = "Password must be 8+ characters with uppercase, lowercase, and a number. *"
             lblPasswordError.Visible = True
         Else
             lblPasswordError.Text = ""
@@ -138,7 +138,7 @@ Public Class SignUpForm
     Private Sub txtConfirmPass_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPass.TextChanged
         Dim confirmPassword As String = txtConfirmPass.Text
         If confirmPassword <> txtPassword.Text Then
-            lblConfirmPasswordError.Text = "Passwords do not match."
+            lblConfirmPasswordError.Text = "Passwords does not match. *"
             lblConfirmPasswordError.Visible = True
         Else
             lblConfirmPasswordError.Text = ""
@@ -152,7 +152,7 @@ Public Class SignUpForm
     Private Sub txtContact_TextChanged(sender As Object, e As EventArgs) Handles txtContact.TextChanged
         Dim contact As String = txtContact.Text.Trim()
         If Not IsNumeric(contact) OrElse contact.Length <> 11 Then
-            lblContactError.Text = "Enter a valid 11-digit contact number."
+            lblContactError.Text = "Enter a valid 11-digit contact number. *"
             lblContactError.Visible = True
         Else
             lblContactError.Text = ""
@@ -165,7 +165,7 @@ Public Class SignUpForm
     '----------------------------------
     Private Sub txtConfirmSecQ1_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmSecQ1.TextChanged
         If txtConfirmSecQ1.Text <> txtSecQ1.Text Then
-            lblConfirmSecQ1Error.Text = "Security answer 1 does not match."
+            lblConfirmSecQ1Error.Text = "Security answer 1 does not match. *"
             lblConfirmSecQ1Error.Visible = True
         Else
             lblConfirmSecQ1Error.Text = ""
@@ -178,7 +178,7 @@ Public Class SignUpForm
     '----------------------------------
     Private Sub txtConfirmSecQ2_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmSecQ2.TextChanged
         If txtConfirmSecQ2.Text <> txtSecQ2.Text Then
-            lblConfirmSecQ2Error.Text = "Security answer 2 does not match."
+            lblConfirmSecQ2Error.Text = "Security answer 2 does not match. *"
             lblConfirmSecQ2Error.Visible = True
         Else
             lblConfirmSecQ2Error.Text = ""
@@ -191,7 +191,7 @@ Public Class SignUpForm
     '----------------------------------
     Private Sub txtConfirmSecQ3_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmSecQ3.TextChanged
         If txtConfirmSecQ3.Text <> txtSecQ3.Text Then
-            lblConfirmSecQ3Error.Text = "Security answer 3 does not match."
+            lblConfirmSecQ3Error.Text = "Security answer 3 does not match. *"
             lblConfirmSecQ3Error.Visible = True
         Else
             lblConfirmSecQ3Error.Text = ""
@@ -204,12 +204,12 @@ Public Class SignUpForm
     '----------------------------------
     Private Sub ValidateSecurityQuestions()
         If cmbSecQ1.SelectedItem Is Nothing OrElse cmbSecQ2.SelectedItem Is Nothing OrElse cmbSecQ3.SelectedItem Is Nothing Then
-            lblSecurityQuestionError.Text = "Select all three security questions."
+            lblSecurityQuestionError.Text = "Select all three security questions. *"
             lblSecurityQuestionError.Visible = True
         ElseIf cmbSecQ1.SelectedItem = cmbSecQ2.SelectedItem OrElse
                cmbSecQ1.SelectedItem = cmbSecQ3.SelectedItem OrElse
                cmbSecQ2.SelectedItem = cmbSecQ3.SelectedItem Then
-            lblSecurityQuestionError.Text = "Select unique security questions."
+            lblSecurityQuestionError.Text = "Select unique security questions. *"
             lblSecurityQuestionError.Visible = True
         Else
             lblSecurityQuestionError.Text = ""
@@ -407,4 +407,15 @@ Public Class SignUpForm
         End If
     End Sub
 
+    Private Sub lblSecurityQuestionError_Click(sender As Object, e As EventArgs) Handles lblSecurityQuestionError.Click
+
+    End Sub
+
+    Private Sub lblEmailError_Click(sender As Object, e As EventArgs) Handles lblEmailError.Click
+
+    End Sub
+
+    Private Sub lblPasswordError_Click(sender As Object, e As EventArgs) Handles lblPasswordError.Click
+
+    End Sub
 End Class
