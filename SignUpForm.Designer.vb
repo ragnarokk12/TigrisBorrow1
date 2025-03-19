@@ -57,6 +57,12 @@ Partial Class SignUpForm
         Me.pnlTOP = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.spnlSecurity = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.lblConfirmSecQ3Error = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.lblConfirmSecQ2Error = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.lblConfirmSecQ1Error = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.txtConfirmSecQ3 = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.txtConfirmSecQ2 = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.txtConfirmSecQ1 = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblSecurityQuestionError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2HtmlLabel3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -543,6 +549,12 @@ Partial Class SignUpForm
         '
         Me.spnlSecurity.BackColor = System.Drawing.Color.Transparent
         Me.spnlSecurity.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.spnlSecurity.Controls.Add(Me.lblConfirmSecQ3Error)
+        Me.spnlSecurity.Controls.Add(Me.lblConfirmSecQ2Error)
+        Me.spnlSecurity.Controls.Add(Me.lblConfirmSecQ1Error)
+        Me.spnlSecurity.Controls.Add(Me.txtConfirmSecQ3)
+        Me.spnlSecurity.Controls.Add(Me.txtConfirmSecQ2)
+        Me.spnlSecurity.Controls.Add(Me.txtConfirmSecQ1)
         Me.spnlSecurity.Controls.Add(Me.lblSecurityQuestionError)
         Me.spnlSecurity.Controls.Add(Me.Guna2HtmlLabel3)
         Me.spnlSecurity.Controls.Add(Me.Guna2HtmlLabel2)
@@ -567,10 +579,94 @@ Partial Class SignUpForm
         Me.spnlSecurity.Size = New System.Drawing.Size(386, 692)
         Me.spnlSecurity.TabIndex = 32
         '
+        'lblConfirmSecQ3Error
+        '
+        Me.lblConfirmSecQ3Error.BackColor = System.Drawing.Color.Transparent
+        Me.lblConfirmSecQ3Error.Location = New System.Drawing.Point(77, 655)
+        Me.lblConfirmSecQ3Error.Name = "lblConfirmSecQ3Error"
+        Me.lblConfirmSecQ3Error.Size = New System.Drawing.Size(88, 15)
+        Me.lblConfirmSecQ3Error.TabIndex = 41
+        Me.lblConfirmSecQ3Error.Text = "Guna2HtmlLabel6"
+        Me.lblConfirmSecQ3Error.Visible = False
+        '
+        'lblConfirmSecQ2Error
+        '
+        Me.lblConfirmSecQ2Error.BackColor = System.Drawing.Color.Transparent
+        Me.lblConfirmSecQ2Error.Location = New System.Drawing.Point(77, 460)
+        Me.lblConfirmSecQ2Error.Name = "lblConfirmSecQ2Error"
+        Me.lblConfirmSecQ2Error.Size = New System.Drawing.Size(88, 15)
+        Me.lblConfirmSecQ2Error.TabIndex = 40
+        Me.lblConfirmSecQ2Error.Text = "Guna2HtmlLabel5"
+        Me.lblConfirmSecQ2Error.Visible = False
+        '
+        'lblConfirmSecQ1Error
+        '
+        Me.lblConfirmSecQ1Error.BackColor = System.Drawing.Color.Transparent
+        Me.lblConfirmSecQ1Error.Location = New System.Drawing.Point(54, 256)
+        Me.lblConfirmSecQ1Error.Name = "lblConfirmSecQ1Error"
+        Me.lblConfirmSecQ1Error.Size = New System.Drawing.Size(88, 15)
+        Me.lblConfirmSecQ1Error.TabIndex = 39
+        Me.lblConfirmSecQ1Error.Text = "Guna2HtmlLabel5"
+        Me.lblConfirmSecQ1Error.Visible = False
+        '
+        'txtConfirmSecQ3
+        '
+        Me.txtConfirmSecQ3.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtConfirmSecQ3.DefaultText = ""
+        Me.txtConfirmSecQ3.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtConfirmSecQ3.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtConfirmSecQ3.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtConfirmSecQ3.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtConfirmSecQ3.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtConfirmSecQ3.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtConfirmSecQ3.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtConfirmSecQ3.Location = New System.Drawing.Point(36, 612)
+        Me.txtConfirmSecQ3.Name = "txtConfirmSecQ3"
+        Me.txtConfirmSecQ3.PlaceholderText = ""
+        Me.txtConfirmSecQ3.SelectedText = ""
+        Me.txtConfirmSecQ3.Size = New System.Drawing.Size(200, 36)
+        Me.txtConfirmSecQ3.TabIndex = 38
+        '
+        'txtConfirmSecQ2
+        '
+        Me.txtConfirmSecQ2.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtConfirmSecQ2.DefaultText = ""
+        Me.txtConfirmSecQ2.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtConfirmSecQ2.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtConfirmSecQ2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtConfirmSecQ2.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtConfirmSecQ2.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtConfirmSecQ2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtConfirmSecQ2.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtConfirmSecQ2.Location = New System.Drawing.Point(36, 416)
+        Me.txtConfirmSecQ2.Name = "txtConfirmSecQ2"
+        Me.txtConfirmSecQ2.PlaceholderText = ""
+        Me.txtConfirmSecQ2.SelectedText = ""
+        Me.txtConfirmSecQ2.Size = New System.Drawing.Size(200, 36)
+        Me.txtConfirmSecQ2.TabIndex = 37
+        '
+        'txtConfirmSecQ1
+        '
+        Me.txtConfirmSecQ1.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtConfirmSecQ1.DefaultText = ""
+        Me.txtConfirmSecQ1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtConfirmSecQ1.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtConfirmSecQ1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtConfirmSecQ1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtConfirmSecQ1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtConfirmSecQ1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtConfirmSecQ1.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtConfirmSecQ1.Location = New System.Drawing.Point(36, 213)
+        Me.txtConfirmSecQ1.Name = "txtConfirmSecQ1"
+        Me.txtConfirmSecQ1.PlaceholderText = ""
+        Me.txtConfirmSecQ1.SelectedText = ""
+        Me.txtConfirmSecQ1.Size = New System.Drawing.Size(200, 36)
+        Me.txtConfirmSecQ1.TabIndex = 36
+        '
         'lblSecurityQuestionError
         '
         Me.lblSecurityQuestionError.BackColor = System.Drawing.Color.Transparent
-        Me.lblSecurityQuestionError.Location = New System.Drawing.Point(119, 637)
+        Me.lblSecurityQuestionError.Location = New System.Drawing.Point(236, 75)
         Me.lblSecurityQuestionError.Name = "lblSecurityQuestionError"
         Me.lblSecurityQuestionError.Size = New System.Drawing.Size(88, 15)
         Me.lblSecurityQuestionError.TabIndex = 35
@@ -690,6 +786,7 @@ Partial Class SignUpForm
         Me.lblPasswordError.Size = New System.Drawing.Size(88, 15)
         Me.lblPasswordError.TabIndex = 37
         Me.lblPasswordError.Text = "Guna2HtmlLabel6"
+        Me.lblPasswordError.Visible = False
         '
         'lblConfirmPasswordError
         '
@@ -699,6 +796,7 @@ Partial Class SignUpForm
         Me.lblConfirmPasswordError.Size = New System.Drawing.Size(94, 15)
         Me.lblConfirmPasswordError.TabIndex = 36
         Me.lblConfirmPasswordError.Text = "Guna2HtmlLabel10"
+        Me.lblConfirmPasswordError.Visible = False
         '
         'lblContactError
         '
@@ -708,6 +806,7 @@ Partial Class SignUpForm
         Me.lblContactError.Size = New System.Drawing.Size(88, 15)
         Me.lblContactError.TabIndex = 35
         Me.lblContactError.Text = "Guna2HtmlLabel9"
+        Me.lblContactError.Visible = False
         '
         'lblEmailError
         '
@@ -717,6 +816,7 @@ Partial Class SignUpForm
         Me.lblEmailError.Size = New System.Drawing.Size(88, 15)
         Me.lblEmailError.TabIndex = 34
         Me.lblEmailError.Text = "Guna2HtmlLabel8"
+        Me.lblEmailError.Visible = False
         '
         'lblLastNameError
         '
@@ -726,6 +826,7 @@ Partial Class SignUpForm
         Me.lblLastNameError.Size = New System.Drawing.Size(88, 15)
         Me.lblLastNameError.TabIndex = 33
         Me.lblLastNameError.Text = "Guna2HtmlLabel7"
+        Me.lblLastNameError.Visible = False
         '
         'lblFirstNameError
         '
@@ -735,6 +836,7 @@ Partial Class SignUpForm
         Me.lblFirstNameError.Size = New System.Drawing.Size(88, 15)
         Me.lblFirstNameError.TabIndex = 32
         Me.lblFirstNameError.Text = "Guna2HtmlLabel6"
+        Me.lblFirstNameError.Visible = False
         '
         'lblUserIDError
         '
@@ -744,6 +846,7 @@ Partial Class SignUpForm
         Me.lblUserIDError.Size = New System.Drawing.Size(88, 15)
         Me.lblUserIDError.TabIndex = 31
         Me.lblUserIDError.Text = "Guna2HtmlLabel5"
+        Me.lblUserIDError.Visible = False
         '
         'SignUpForm
         '
@@ -822,4 +925,10 @@ Partial Class SignUpForm
     Friend WithEvents lblFirstNameError As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblUserIDError As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblSecurityQuestionError As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents txtConfirmSecQ3 As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents txtConfirmSecQ2 As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents txtConfirmSecQ1 As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents lblConfirmSecQ1Error As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents lblConfirmSecQ3Error As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents lblConfirmSecQ2Error As Guna.UI2.WinForms.Guna2HtmlLabel
 End Class
