@@ -141,4 +141,13 @@ Public Class ForgotPasswordForm
     Private Sub spnlS1_Paint(sender As Object, e As PaintEventArgs) Handles spnlS1.Paint
 
     End Sub
+
+    Private Sub btnBackQuestion_Click(sender As Object, e As EventArgs) Handles btnBackQuestion.Click
+
+    End Sub
+
+    Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles btnBackPassword.Click
+
+    End Sub
 End Class
+
