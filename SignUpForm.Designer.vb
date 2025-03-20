@@ -56,7 +56,7 @@ Partial Class SignUpForm
         Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
         Me.pnlTOP = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.spnlSecurity = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.pnlShadow2 = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.btnSignup = New Guna.UI2.WinForms.Guna2GradientButton()
         Me.lblConfirmSecQ3Error = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblConfirmSecQ2Error = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -69,9 +69,9 @@ Partial Class SignUpForm
         Me.Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2HtmlLabel4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
-        Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
-        Me.Guna2GradientButton2 = New Guna.UI2.WinForms.Guna2GradientButton()
-        Me.Guna2GradientButton1 = New Guna.UI2.WinForms.Guna2GradientButton()
+        Me.pnlShadow1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.btnNext = New Guna.UI2.WinForms.Guna2GradientButton()
+        Me.btnBack = New Guna.UI2.WinForms.Guna2GradientButton()
         Me.lblPasswordError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblConfirmPasswordError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblContactError = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -80,18 +80,18 @@ Partial Class SignUpForm
         Me.lblFirstNameError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblUserIDError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.pnlTOP.SuspendLayout()
-        Me.spnlSecurity.SuspendLayout()
+        Me.pnlShadow2.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Guna2ShadowPanel1.SuspendLayout()
+        Me.pnlShadow1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblUserID
         '
         Me.lblUserID.BackColor = System.Drawing.Color.Transparent
-        Me.lblUserID.Font = New System.Drawing.Font("Sifonn", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblUserID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblUserID.Location = New System.Drawing.Point(75, 71)
         Me.lblUserID.Name = "lblUserID"
-        Me.lblUserID.Size = New System.Drawing.Size(77, 19)
+        Me.lblUserID.Size = New System.Drawing.Size(80, 18)
         Me.lblUserID.TabIndex = 0
         Me.lblUserID.Text = "ID Number:"
         '
@@ -119,10 +119,10 @@ Partial Class SignUpForm
         'lblFirstName
         '
         Me.lblFirstName.BackColor = System.Drawing.Color.Transparent
-        Me.lblFirstName.Font = New System.Drawing.Font("Sifonn", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFirstName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFirstName.Location = New System.Drawing.Point(75, 161)
         Me.lblFirstName.Name = "lblFirstName"
-        Me.lblFirstName.Size = New System.Drawing.Size(75, 19)
+        Me.lblFirstName.Size = New System.Drawing.Size(82, 18)
         Me.lblFirstName.TabIndex = 2
         Me.lblFirstName.Text = "First Name:"
         '
@@ -150,80 +150,80 @@ Partial Class SignUpForm
         'lblTitle
         '
         Me.lblTitle.BackColor = System.Drawing.Color.Transparent
-        Me.lblTitle.Font = New System.Drawing.Font("Sifonn", 47.99999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTitle.Font = New System.Drawing.Font("Microsoft Sans Serif", 47.99999!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTitle.Location = New System.Drawing.Point(623, 67)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(284, 85)
+        Me.lblTitle.Size = New System.Drawing.Size(273, 75)
         Me.lblTitle.TabIndex = 4
         Me.lblTitle.Text = "SIGN UP"
         '
         'lblEmail
         '
         Me.lblEmail.BackColor = System.Drawing.Color.Transparent
-        Me.lblEmail.Font = New System.Drawing.Font("Sifonn", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEmail.Location = New System.Drawing.Point(410, 71)
         Me.lblEmail.Name = "lblEmail"
-        Me.lblEmail.Size = New System.Drawing.Size(40, 19)
+        Me.lblEmail.Size = New System.Drawing.Size(46, 18)
         Me.lblEmail.TabIndex = 5
         Me.lblEmail.Text = "Email:"
         '
         'lblContact
         '
         Me.lblContact.BackColor = System.Drawing.Color.Transparent
-        Me.lblContact.Font = New System.Drawing.Font("Sifonn", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblContact.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblContact.Location = New System.Drawing.Point(408, 161)
         Me.lblContact.Name = "lblContact"
-        Me.lblContact.Size = New System.Drawing.Size(116, 19)
+        Me.lblContact.Size = New System.Drawing.Size(117, 18)
         Me.lblContact.TabIndex = 6
         Me.lblContact.Text = "Contact Number:"
         '
         'lblPassword
         '
         Me.lblPassword.BackColor = System.Drawing.Color.Transparent
-        Me.lblPassword.Font = New System.Drawing.Font("Sifonn", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPassword.Location = New System.Drawing.Point(409, 259)
         Me.lblPassword.Name = "lblPassword"
-        Me.lblPassword.Size = New System.Drawing.Size(65, 19)
+        Me.lblPassword.Size = New System.Drawing.Size(75, 18)
         Me.lblPassword.TabIndex = 7
         Me.lblPassword.Text = "Password:"
         '
         'lblConfirmPass
         '
         Me.lblConfirmPass.BackColor = System.Drawing.Color.Transparent
-        Me.lblConfirmPass.Font = New System.Drawing.Font("Sifonn", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblConfirmPass.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblConfirmPass.Location = New System.Drawing.Point(410, 365)
         Me.lblConfirmPass.Name = "lblConfirmPass"
-        Me.lblConfirmPass.Size = New System.Drawing.Size(122, 19)
+        Me.lblConfirmPass.Size = New System.Drawing.Size(131, 18)
         Me.lblConfirmPass.TabIndex = 8
         Me.lblConfirmPass.Text = "Confirm Password:"
         '
         'lblSecQ1
         '
         Me.lblSecQ1.BackColor = System.Drawing.Color.Transparent
-        Me.lblSecQ1.Font = New System.Drawing.Font("Sifonn", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSecQ1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSecQ1.Location = New System.Drawing.Point(333, 78)
         Me.lblSecQ1.Name = "lblSecQ1"
-        Me.lblSecQ1.Size = New System.Drawing.Size(144, 21)
+        Me.lblSecQ1.Size = New System.Drawing.Size(156, 20)
         Me.lblSecQ1.TabIndex = 9
         Me.lblSecQ1.Text = "Security Question 1:"
         '
         'lblSecQ2
         '
         Me.lblSecQ2.BackColor = System.Drawing.Color.Transparent
-        Me.lblSecQ2.Font = New System.Drawing.Font("Sifonn", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSecQ2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSecQ2.Location = New System.Drawing.Point(184, 275)
         Me.lblSecQ2.Name = "lblSecQ2"
-        Me.lblSecQ2.Size = New System.Drawing.Size(147, 21)
+        Me.lblSecQ2.Size = New System.Drawing.Size(156, 20)
         Me.lblSecQ2.TabIndex = 10
         Me.lblSecQ2.Text = "Security Question 2:"
         '
         'lblSecQ3
         '
         Me.lblSecQ3.BackColor = System.Drawing.Color.Transparent
-        Me.lblSecQ3.Font = New System.Drawing.Font("Sifonn", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSecQ3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSecQ3.Location = New System.Drawing.Point(507, 274)
         Me.lblSecQ3.Name = "lblSecQ3"
-        Me.lblSecQ3.Size = New System.Drawing.Size(147, 21)
+        Me.lblSecQ3.Size = New System.Drawing.Size(156, 20)
         Me.lblSecQ3.TabIndex = 11
         Me.lblSecQ3.Text = "Security Question 3:"
         '
@@ -385,7 +385,7 @@ Partial Class SignUpForm
         Me.btnCancel.FillColor = System.Drawing.Color.White
         Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnCancel.Location = New System.Drawing.Point(588, 519)
+        Me.btnCancel.Location = New System.Drawing.Point(527, 522)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(180, 45)
         Me.btnCancel.TabIndex = 22
@@ -490,10 +490,10 @@ Partial Class SignUpForm
         'lblLastName
         '
         Me.lblLastName.BackColor = System.Drawing.Color.Transparent
-        Me.lblLastName.Font = New System.Drawing.Font("Sifonn", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLastName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLastName.Location = New System.Drawing.Point(75, 254)
         Me.lblLastName.Name = "lblLastName"
-        Me.lblLastName.Size = New System.Drawing.Size(75, 19)
+        Me.lblLastName.Size = New System.Drawing.Size(81, 18)
         Me.lblLastName.TabIndex = 29
         Me.lblLastName.Text = "Last Name:"
         '
@@ -541,48 +541,48 @@ Partial Class SignUpForm
         'Guna2HtmlLabel1
         '
         Me.Guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel1.Font = New System.Drawing.Font("Sifonn", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel1.Location = New System.Drawing.Point(12, 5)
         Me.Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
-        Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(112, 19)
+        Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(125, 18)
         Me.Guna2HtmlLabel1.TabIndex = 29
         Me.Guna2HtmlLabel1.Text = "TIGRIS BORROW"
         '
-        'spnlSecurity
+        'pnlShadow2
         '
-        Me.spnlSecurity.BackColor = System.Drawing.Color.Transparent
-        Me.spnlSecurity.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.spnlSecurity.Controls.Add(Me.btnSignup)
-        Me.spnlSecurity.Controls.Add(Me.lblConfirmSecQ3Error)
-        Me.spnlSecurity.Controls.Add(Me.btnCancel)
-        Me.spnlSecurity.Controls.Add(Me.lblConfirmSecQ2Error)
-        Me.spnlSecurity.Controls.Add(Me.lblConfirmSecQ1Error)
-        Me.spnlSecurity.Controls.Add(Me.txtConfirmSecQ3)
-        Me.spnlSecurity.Controls.Add(Me.txtConfirmSecQ2)
-        Me.spnlSecurity.Controls.Add(Me.txtConfirmSecQ1)
-        Me.spnlSecurity.Controls.Add(Me.lblSecurityQuestionError)
-        Me.spnlSecurity.Controls.Add(Me.Guna2HtmlLabel3)
-        Me.spnlSecurity.Controls.Add(Me.Guna2HtmlLabel2)
-        Me.spnlSecurity.Controls.Add(Me.lblSecQ1)
-        Me.spnlSecurity.Controls.Add(Me.lblSecQ2)
-        Me.spnlSecurity.Controls.Add(Me.lblSecQ3)
-        Me.spnlSecurity.Controls.Add(Me.txtSecQ1)
-        Me.spnlSecurity.Controls.Add(Me.txtSecQ2)
-        Me.spnlSecurity.Controls.Add(Me.cmbSecQ3)
-        Me.spnlSecurity.Controls.Add(Me.txtSecQ3)
-        Me.spnlSecurity.Controls.Add(Me.cmbSecQ2)
-        Me.spnlSecurity.Controls.Add(Me.cmbSecQ1)
-        Me.spnlSecurity.EdgeWidth = 10
-        Me.spnlSecurity.FillColor = System.Drawing.Color.White
-        Me.spnlSecurity.Location = New System.Drawing.Point(65, 249)
-        Me.spnlSecurity.Name = "spnlSecurity"
-        Me.spnlSecurity.Radius = 15
-        Me.spnlSecurity.ShadowColor = System.Drawing.Color.DimGray
-        Me.spnlSecurity.ShadowDepth = 255
-        Me.spnlSecurity.ShadowShift = 10
-        Me.spnlSecurity.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.ForwardDiagonal
-        Me.spnlSecurity.Size = New System.Drawing.Size(945, 612)
-        Me.spnlSecurity.TabIndex = 32
+        Me.pnlShadow2.BackColor = System.Drawing.Color.Transparent
+        Me.pnlShadow2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pnlShadow2.Controls.Add(Me.btnSignup)
+        Me.pnlShadow2.Controls.Add(Me.btnBack)
+        Me.pnlShadow2.Controls.Add(Me.lblConfirmSecQ3Error)
+        Me.pnlShadow2.Controls.Add(Me.lblConfirmSecQ2Error)
+        Me.pnlShadow2.Controls.Add(Me.lblConfirmSecQ1Error)
+        Me.pnlShadow2.Controls.Add(Me.txtConfirmSecQ3)
+        Me.pnlShadow2.Controls.Add(Me.txtConfirmSecQ2)
+        Me.pnlShadow2.Controls.Add(Me.txtConfirmSecQ1)
+        Me.pnlShadow2.Controls.Add(Me.lblSecurityQuestionError)
+        Me.pnlShadow2.Controls.Add(Me.Guna2HtmlLabel3)
+        Me.pnlShadow2.Controls.Add(Me.Guna2HtmlLabel2)
+        Me.pnlShadow2.Controls.Add(Me.lblSecQ1)
+        Me.pnlShadow2.Controls.Add(Me.lblSecQ2)
+        Me.pnlShadow2.Controls.Add(Me.lblSecQ3)
+        Me.pnlShadow2.Controls.Add(Me.txtSecQ1)
+        Me.pnlShadow2.Controls.Add(Me.txtSecQ2)
+        Me.pnlShadow2.Controls.Add(Me.cmbSecQ3)
+        Me.pnlShadow2.Controls.Add(Me.txtSecQ3)
+        Me.pnlShadow2.Controls.Add(Me.cmbSecQ2)
+        Me.pnlShadow2.Controls.Add(Me.cmbSecQ1)
+        Me.pnlShadow2.EdgeWidth = 10
+        Me.pnlShadow2.FillColor = System.Drawing.Color.White
+        Me.pnlShadow2.Location = New System.Drawing.Point(137, 137)
+        Me.pnlShadow2.Name = "pnlShadow2"
+        Me.pnlShadow2.Radius = 15
+        Me.pnlShadow2.ShadowColor = System.Drawing.Color.DimGray
+        Me.pnlShadow2.ShadowDepth = 255
+        Me.pnlShadow2.ShadowShift = 10
+        Me.pnlShadow2.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.ForwardDiagonal
+        Me.pnlShadow2.Size = New System.Drawing.Size(945, 612)
+        Me.pnlShadow2.TabIndex = 32
         '
         'btnSignup
         '
@@ -709,11 +709,11 @@ Partial Class SignUpForm
         'lblSecurityQuestionError
         '
         Me.lblSecurityQuestionError.BackColor = System.Drawing.Color.Transparent
-        Me.lblSecurityQuestionError.Font = New System.Drawing.Font("Sifonn", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSecurityQuestionError.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSecurityQuestionError.ForeColor = System.Drawing.Color.Red
         Me.lblSecurityQuestionError.Location = New System.Drawing.Point(425, 471)
         Me.lblSecurityQuestionError.Name = "lblSecurityQuestionError"
-        Me.lblSecurityQuestionError.Size = New System.Drawing.Size(133, 21)
+        Me.lblSecurityQuestionError.Size = New System.Drawing.Size(136, 20)
         Me.lblSecurityQuestionError.TabIndex = 35
         Me.lblSecurityQuestionError.Text = "Guna2HtmlLabel6"
         Me.lblSecurityQuestionError.Visible = False
@@ -721,32 +721,32 @@ Partial Class SignUpForm
         'Guna2HtmlLabel3
         '
         Me.Guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("Sifonn", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel3.Location = New System.Drawing.Point(333, 46)
         Me.Guna2HtmlLabel3.Name = "Guna2HtmlLabel3"
-        Me.Guna2HtmlLabel3.Size = New System.Drawing.Size(215, 19)
+        Me.Guna2HtmlLabel3.Size = New System.Drawing.Size(232, 18)
         Me.Guna2HtmlLabel3.TabIndex = 34
         Me.Guna2HtmlLabel3.Text = "Incase you forgot your Password."
         '
         'Guna2HtmlLabel2
         '
         Me.Guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Sifonn", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(333, 18)
         Me.Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
-        Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(138, 29)
+        Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(142, 27)
         Me.Guna2HtmlLabel2.TabIndex = 33
         Me.Guna2HtmlLabel2.Text = "IMPORTANT!"
         '
         'Guna2HtmlLabel4
         '
         Me.Guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel4.Font = New System.Drawing.Font("Sifonn", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Guna2HtmlLabel4.Location = New System.Drawing.Point(44, 182)
         Me.Guna2HtmlLabel4.Name = "Guna2HtmlLabel4"
-        Me.Guna2HtmlLabel4.Size = New System.Drawing.Size(136, 27)
+        Me.Guna2HtmlLabel4.Size = New System.Drawing.Size(130, 26)
         Me.Guna2HtmlLabel4.TabIndex = 35
         Me.Guna2HtmlLabel4.Text = "LPU LAGUNA"
         '
@@ -761,84 +761,84 @@ Partial Class SignUpForm
         Me.Guna2PictureBox1.TabIndex = 34
         Me.Guna2PictureBox1.TabStop = False
         '
-        'Guna2ShadowPanel1
+        'pnlShadow1
         '
-        Me.Guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2ShadowPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Guna2ShadowPanel1.Controls.Add(Me.Guna2GradientButton2)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.Guna2GradientButton1)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblLastName)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblUserID)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblPasswordError)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblConfirmPasswordError)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblContactError)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblEmailError)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblLastNameError)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblFirstNameError)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblUserIDError)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.txtUserID)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblFirstName)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.txtFirstName)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblEmail)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblContact)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblPassword)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.txtLastName)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblConfirmPass)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.txtEmail)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.chkShowPassword)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.txtContact)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.txtPassword)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.txtConfirmPass)
-        Me.Guna2ShadowPanel1.EdgeWidth = 10
-        Me.Guna2ShadowPanel1.FillColor = System.Drawing.Color.White
-        Me.Guna2ShadowPanel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(81, 246)
-        Me.Guna2ShadowPanel1.Name = "Guna2ShadowPanel1"
-        Me.Guna2ShadowPanel1.Radius = 15
-        Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.DimGray
-        Me.Guna2ShadowPanel1.ShadowDepth = 255
-        Me.Guna2ShadowPanel1.ShadowShift = 10
-        Me.Guna2ShadowPanel1.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped
-        Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(945, 615)
-        Me.Guna2ShadowPanel1.TabIndex = 35
+        Me.pnlShadow1.BackColor = System.Drawing.Color.Transparent
+        Me.pnlShadow1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.pnlShadow1.Controls.Add(Me.btnNext)
+        Me.pnlShadow1.Controls.Add(Me.btnCancel)
+        Me.pnlShadow1.Controls.Add(Me.lblLastName)
+        Me.pnlShadow1.Controls.Add(Me.lblUserID)
+        Me.pnlShadow1.Controls.Add(Me.lblPasswordError)
+        Me.pnlShadow1.Controls.Add(Me.lblConfirmPasswordError)
+        Me.pnlShadow1.Controls.Add(Me.lblContactError)
+        Me.pnlShadow1.Controls.Add(Me.lblEmailError)
+        Me.pnlShadow1.Controls.Add(Me.lblLastNameError)
+        Me.pnlShadow1.Controls.Add(Me.lblFirstNameError)
+        Me.pnlShadow1.Controls.Add(Me.lblUserIDError)
+        Me.pnlShadow1.Controls.Add(Me.txtUserID)
+        Me.pnlShadow1.Controls.Add(Me.lblFirstName)
+        Me.pnlShadow1.Controls.Add(Me.txtFirstName)
+        Me.pnlShadow1.Controls.Add(Me.lblEmail)
+        Me.pnlShadow1.Controls.Add(Me.lblContact)
+        Me.pnlShadow1.Controls.Add(Me.lblPassword)
+        Me.pnlShadow1.Controls.Add(Me.txtLastName)
+        Me.pnlShadow1.Controls.Add(Me.lblConfirmPass)
+        Me.pnlShadow1.Controls.Add(Me.txtEmail)
+        Me.pnlShadow1.Controls.Add(Me.chkShowPassword)
+        Me.pnlShadow1.Controls.Add(Me.txtContact)
+        Me.pnlShadow1.Controls.Add(Me.txtPassword)
+        Me.pnlShadow1.Controls.Add(Me.txtConfirmPass)
+        Me.pnlShadow1.EdgeWidth = 10
+        Me.pnlShadow1.FillColor = System.Drawing.Color.White
+        Me.pnlShadow1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.pnlShadow1.Location = New System.Drawing.Point(12, 35)
+        Me.pnlShadow1.Name = "pnlShadow1"
+        Me.pnlShadow1.Radius = 15
+        Me.pnlShadow1.ShadowColor = System.Drawing.Color.DimGray
+        Me.pnlShadow1.ShadowDepth = 255
+        Me.pnlShadow1.ShadowShift = 10
+        Me.pnlShadow1.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped
+        Me.pnlShadow1.Size = New System.Drawing.Size(945, 615)
+        Me.pnlShadow1.TabIndex = 35
         '
-        'Guna2GradientButton2
+        'btnNext
         '
-        Me.Guna2GradientButton2.BorderRadius = 5
-        Me.Guna2GradientButton2.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.Guna2GradientButton2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.Guna2GradientButton2.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.Guna2GradientButton2.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.Guna2GradientButton2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.Guna2GradientButton2.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.Guna2GradientButton2.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(218, Byte), Integer))
-        Me.Guna2GradientButton2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2GradientButton2.ForeColor = System.Drawing.Color.White
-        Me.Guna2GradientButton2.Location = New System.Drawing.Point(750, 522)
-        Me.Guna2GradientButton2.Name = "Guna2GradientButton2"
-        Me.Guna2GradientButton2.Size = New System.Drawing.Size(180, 45)
-        Me.Guna2GradientButton2.TabIndex = 39
-        Me.Guna2GradientButton2.Text = "Confirm"
+        Me.btnNext.BorderRadius = 5
+        Me.btnNext.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnNext.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnNext.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnNext.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnNext.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnNext.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnNext.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(218, Byte), Integer))
+        Me.btnNext.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnNext.ForeColor = System.Drawing.Color.White
+        Me.btnNext.Location = New System.Drawing.Point(750, 522)
+        Me.btnNext.Name = "btnNext"
+        Me.btnNext.Size = New System.Drawing.Size(180, 45)
+        Me.btnNext.TabIndex = 39
+        Me.btnNext.Text = "Next"
         '
-        'Guna2GradientButton1
+        'btnBack
         '
-        Me.Guna2GradientButton1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.Guna2GradientButton1.BorderRadius = 5
-        Me.Guna2GradientButton1.BorderThickness = 2
-        Me.Guna2GradientButton1.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.Guna2GradientButton1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.Guna2GradientButton1.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.Guna2GradientButton1.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.Guna2GradientButton1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.Guna2GradientButton1.FillColor = System.Drawing.Color.White
-        Me.Guna2GradientButton1.FillColor2 = System.Drawing.Color.White
-        Me.Guna2GradientButton1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2GradientButton1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.Guna2GradientButton1.Location = New System.Drawing.Point(548, 522)
-        Me.Guna2GradientButton1.Name = "Guna2GradientButton1"
-        Me.Guna2GradientButton1.Size = New System.Drawing.Size(180, 45)
-        Me.Guna2GradientButton1.TabIndex = 38
-        Me.Guna2GradientButton1.Text = "Cancel"
+        Me.btnBack.BorderColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnBack.BorderRadius = 5
+        Me.btnBack.BorderThickness = 2
+        Me.btnBack.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnBack.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnBack.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnBack.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnBack.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnBack.FillColor = System.Drawing.Color.White
+        Me.btnBack.FillColor2 = System.Drawing.Color.White
+        Me.btnBack.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnBack.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnBack.Location = New System.Drawing.Point(567, 519)
+        Me.btnBack.Name = "btnBack"
+        Me.btnBack.Size = New System.Drawing.Size(180, 45)
+        Me.btnBack.TabIndex = 38
+        Me.btnBack.Text = "Back"
         '
         'lblPasswordError
         '
@@ -931,8 +931,8 @@ Partial Class SignUpForm
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1463, 903)
-        Me.Controls.Add(Me.Guna2ShadowPanel1)
-        Me.Controls.Add(Me.spnlSecurity)
+        Me.Controls.Add(Me.pnlShadow1)
+        Me.Controls.Add(Me.pnlShadow2)
         Me.Controls.Add(Me.lblTitle)
         Me.Controls.Add(Me.Guna2HtmlLabel4)
         Me.Controls.Add(Me.Guna2PictureBox1)
@@ -942,11 +942,11 @@ Partial Class SignUpForm
         Me.Text = "SignUpForm"
         Me.pnlTOP.ResumeLayout(False)
         Me.pnlTOP.PerformLayout()
-        Me.spnlSecurity.ResumeLayout(False)
-        Me.spnlSecurity.PerformLayout()
+        Me.pnlShadow2.ResumeLayout(False)
+        Me.pnlShadow2.PerformLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Guna2ShadowPanel1.ResumeLayout(False)
-        Me.Guna2ShadowPanel1.PerformLayout()
+        Me.pnlShadow1.ResumeLayout(False)
+        Me.pnlShadow1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -984,13 +984,13 @@ Partial Class SignUpForm
     Friend WithEvents Guna2DragControl1 As Guna.UI2.WinForms.Guna2DragControl
     Friend WithEvents pnlTOP As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Guna2HtmlLabel1 As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents spnlSecurity As Guna.UI2.WinForms.Guna2ShadowPanel
+    Friend WithEvents pnlShadow2 As Guna.UI2.WinForms.Guna2ShadowPanel
     Friend WithEvents Guna2HtmlLabel2 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents btnSignup As Guna.UI2.WinForms.Guna2GradientButton
     Friend WithEvents Guna2HtmlLabel3 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2HtmlLabel4 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox
-    Friend WithEvents Guna2ShadowPanel1 As Guna.UI2.WinForms.Guna2ShadowPanel
+    Friend WithEvents pnlShadow1 As Guna.UI2.WinForms.Guna2ShadowPanel
     Friend WithEvents lblPasswordError As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblConfirmPasswordError As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblContactError As Guna.UI2.WinForms.Guna2HtmlLabel
@@ -1005,6 +1005,6 @@ Partial Class SignUpForm
     Friend WithEvents lblConfirmSecQ1Error As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblConfirmSecQ3Error As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblConfirmSecQ2Error As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents Guna2GradientButton1 As Guna.UI2.WinForms.Guna2GradientButton
-    Friend WithEvents Guna2GradientButton2 As Guna.UI2.WinForms.Guna2GradientButton
+    Friend WithEvents btnBack As Guna.UI2.WinForms.Guna2GradientButton
+    Friend WithEvents btnNext As Guna.UI2.WinForms.Guna2GradientButton
 End Class

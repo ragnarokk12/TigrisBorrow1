@@ -33,6 +33,15 @@ Public Class SignUpForm
     End Function
 
     '----------------------------------
+    ' CheckNextButton: Enables btnNext if no error labels (for UserID, First Name, Last Name, Email, Contact, Password) are visible.
+    '----------------------------------
+    Private Sub CheckNextButton()
+        btnNext.Enabled = Not (lblUserIDError.Visible OrElse lblFirstNameError.Visible OrElse
+                                lblLastNameError.Visible OrElse lblEmailError.Visible OrElse
+                                lblContactError.Visible OrElse lblPasswordError.Visible)
+    End Sub
+
+    '----------------------------------
     ' txtUserID_TextChanged: Validates that the User ID is in the format 2XXX-XXXXX.
     '----------------------------------
     Private Sub txtUserID_TextChanged(sender As Object, e As EventArgs) Handles txtUserID.TextChanged
@@ -47,6 +56,7 @@ Public Class SignUpForm
             lblUserIDError.Text = ""
             lblUserIDError.Visible = False
         End If
+        CheckNextButton()
     End Sub
 
     '----------------------------------
@@ -64,6 +74,7 @@ Public Class SignUpForm
             lblFirstNameError.Text = ""
             lblFirstNameError.Visible = False
         End If
+        CheckNextButton()
     End Sub
 
     '----------------------------------
@@ -81,6 +92,7 @@ Public Class SignUpForm
             lblLastNameError.Text = ""
             lblLastNameError.Visible = False
         End If
+        CheckNextButton()
     End Sub
 
     '----------------------------------
@@ -92,18 +104,18 @@ Public Class SignUpForm
         Dim emailInput As String = txtEmail.Text.Trim()
         Dim allowedDomain As String = "@lpulaguna.edu.ph"
 
-        ' Email must not be empty.
         If String.IsNullOrEmpty(emailInput) Then
             lblEmailError.Text = "Email is required. *"
             lblEmailError.Visible = True
+            CheckNextButton()
             Return
         End If
 
-        ' If "@" is present, ensure it ends with the allowed domain.
         If emailInput.Contains("@") Then
             If Not emailInput.EndsWith(allowedDomain, StringComparison.OrdinalIgnoreCase) Then
                 lblEmailError.Text = "Only " & allowedDomain & " emails are allowed. *"
                 lblEmailError.Visible = True
+                CheckNextButton()
                 Return
             Else
                 lblEmailError.Text = ""
@@ -114,6 +126,7 @@ Public Class SignUpForm
             lblEmailError.Text = ""
             lblEmailError.Visible = False
         End If
+        CheckNextButton()
     End Sub
 
     '----------------------------------
@@ -130,6 +143,7 @@ Public Class SignUpForm
             lblPasswordError.Text = ""
             lblPasswordError.Visible = False
         End If
+        CheckNextButton()
     End Sub
 
     '----------------------------------
@@ -158,6 +172,7 @@ Public Class SignUpForm
             lblContactError.Text = ""
             lblContactError.Visible = False
         End If
+        CheckNextButton()
     End Sub
 
     '----------------------------------
@@ -407,15 +422,20 @@ Public Class SignUpForm
         End If
     End Sub
 
-    Private Sub lblSecurityQuestionError_Click(sender As Object, e As EventArgs) Handles lblSecurityQuestionError.Click
-
+    '----------------------------------
+    ' btnNext_Click: Hides pnlShadow1 and shows pnlShadow2 when Next is clicked.
+    '----------------------------------
+    Private Sub btnNext_Click(sender As Object, e As EventArgs) Handles btnNext.Click
+        pnlShadow1.Visible = False
+        pnlShadow2.Visible = True
     End Sub
 
-    Private Sub lblEmailError_Click(sender As Object, e As EventArgs) Handles lblEmailError.Click
-
+    '----------------------------------
+    ' btnBack_Click: Shows pnlShadow1 and hides pnlShadow2 when Back is clicked.
+    '----------------------------------
+    Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
+        pnlShadow1.Visible = True
+        pnlShadow2.Visible = False
     End Sub
 
-    Private Sub lblPasswordError_Click(sender As Object, e As EventArgs) Handles lblPasswordError.Click
-
-    End Sub
 End Class
