@@ -125,4 +125,8 @@ Public Class LoginForm
     Private Sub lblLogin_Click(sender As Object, e As EventArgs) Handles lblLogin.Click
 
     End Sub
+
+    Private Sub Guna2Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Guna2Panel1.Paint
+
+    End Sub
 End Class

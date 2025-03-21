@@ -845,7 +845,7 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2CustomGradientPanel1.Controls.Add(Me.lblRole)
         Me.Guna2CustomGradientPanel1.Location = New System.Drawing.Point(0, 1)
         Me.Guna2CustomGradientPanel1.Name = "Guna2CustomGradientPanel1"
-        Me.Guna2CustomGradientPanel1.Size = New System.Drawing.Size(964, 529)
+        Me.Guna2CustomGradientPanel1.Size = New System.Drawing.Size(1025, 529)
         Me.Guna2CustomGradientPanel1.TabIndex = 9
         '
         'AdminStaffDashboardForm
