@@ -60,14 +60,23 @@ Public Class SignUpForm
     End Sub
 
     '----------------------------------
-    ' txtFirstName_TextChanged: Validates that the First Name is not empty and contains only letters.
+    ' txtFirstName_TextChanged: Validates that the First Name is not empty and contains only Unicode letters.
     '----------------------------------
     Private Sub txtFirstName_TextChanged(sender As Object, e As EventArgs) Handles txtFirstName.TextChanged
+        ' Remove emojis
+        Dim originalText As String = txtFirstName.Text
+        Dim filteredText As String = RemoveEmojis(originalText)
+        If filteredText <> originalText Then
+            txtFirstName.Text = filteredText
+            txtFirstName.SelectionStart = filteredText.Length
+        End If
+
+        ' Validate first name (allow Unicode letters, spaces, hyphens, apostrophes)
         Dim firstName As String = txtFirstName.Text.Trim()
         If String.IsNullOrEmpty(firstName) Then
             lblFirstNameError.Text = "First Name is required. *"
             lblFirstNameError.Visible = True
-        ElseIf Not Regex.IsMatch(firstName, "^[A-Za-z]+$") Then
+        ElseIf Not Regex.IsMatch(firstName, "^[\p{L}]+([\s'-][\p{L}]+)*$") Then
             lblFirstNameError.Text = "Only letters allowed. *"
             lblFirstNameError.Visible = True
         Else
@@ -76,16 +85,24 @@ Public Class SignUpForm
         End If
         CheckNextButton()
     End Sub
-
     '----------------------------------
-    ' txtLastName_TextChanged: Validates that the Last Name is not empty and contains only letters.
+    ' txtLastName_TextChanged: Validates that the Last Name is not empty and contains only Unicode letters.
     '----------------------------------
     Private Sub txtLastName_TextChanged(sender As Object, e As EventArgs) Handles txtLastName.TextChanged
+        ' Remove emojis
+        Dim originalText As String = txtLastName.Text
+        Dim filteredText As String = RemoveEmojis(originalText)
+        If filteredText <> originalText Then
+            txtLastName.Text = filteredText
+            txtLastName.SelectionStart = filteredText.Length
+        End If
+
+        ' Validate last name (allow Unicode letters, spaces, hyphens, apostrophes)
         Dim lastName As String = txtLastName.Text.Trim()
         If String.IsNullOrEmpty(lastName) Then
             lblLastNameError.Text = "Last Name is required. *"
             lblLastNameError.Visible = True
-        ElseIf Not Regex.IsMatch(lastName, "^[A-Za-z]+$") Then
+        ElseIf Not Regex.IsMatch(lastName, "^[\p{L}]+([\s'-][\p{L}]+)*$") Then
             lblLastNameError.Text = "Only letters allowed. *"
             lblLastNameError.Visible = True
         Else
@@ -97,37 +114,37 @@ Public Class SignUpForm
 
     '----------------------------------
     ' txtEmail_TextChanged: Validates the email input.
-    ' If only a username is provided, it’s allowed (will auto-complete on Leave event).
-    ' If an "@" is present, checks that the domain is correct.
     '----------------------------------
     Private Sub txtEmail_TextChanged(sender As Object, e As EventArgs) Handles txtEmail.TextChanged
+        ' Remove emojis from the email textbox
+        Dim originalText As String = txtEmail.Text
+        Dim filteredText As String = RemoveEmojis(originalText)
+        If filteredText <> originalText Then
+            txtEmail.Text = filteredText
+            txtEmail.SelectionStart = filteredText.Length
+        End If
+
+        ' Validate email input
         Dim emailInput As String = txtEmail.Text.Trim()
         Dim allowedDomain As String = "@lpulaguna.edu.ph"
-
         If String.IsNullOrEmpty(emailInput) Then
             lblEmailError.Text = "Email is required. *"
             lblEmailError.Visible = True
-            CheckNextButton()
-            Return
-        End If
-
-        If emailInput.Contains("@") Then
-            If Not emailInput.EndsWith(allowedDomain, StringComparison.OrdinalIgnoreCase) Then
-                lblEmailError.Text = "Only " & allowedDomain & " emails are allowed. *"
-                lblEmailError.Visible = True
-                CheckNextButton()
-                Return
-            Else
-                lblEmailError.Text = ""
-                lblEmailError.Visible = False
-            End If
+        ElseIf emailInput.Contains("@") AndAlso Not emailInput.EndsWith(allowedDomain, StringComparison.OrdinalIgnoreCase) Then
+            lblEmailError.Text = "Only " & allowedDomain & " emails are allowed. *"
+            lblEmailError.Visible = True
         Else
-            ' When only username is typed, no error (domain will be appended later).
             lblEmailError.Text = ""
             lblEmailError.Visible = False
         End If
         CheckNextButton()
     End Sub
+
+
+    Private Function RemoveEmojis(ByVal input As String) As String
+        Dim emojiRegex As New Regex("([\uD800-\uDBFF][\uDC00-\uDFFF])")
+        Return emojiRegex.Replace(input, "")
+    End Function
 
     '----------------------------------
     ' txtPassword_TextChanged: Validates the password strength.
@@ -150,15 +167,15 @@ Public Class SignUpForm
     ' txtConfirmPass_TextChanged: Checks that the Confirm Password matches the Password.
     '----------------------------------
     Private Sub txtConfirmPass_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPass.TextChanged
-        Dim confirmPassword As String = txtConfirmPass.Text
-        If confirmPassword <> txtPassword.Text Then
-            lblConfirmPasswordError.Text = "Passwords does not match. *"
+        If txtConfirmPass.Text <> txtPassword.Text Then
+            lblConfirmPasswordError.Text = "Passwords do not match. *"
             lblConfirmPasswordError.Visible = True
         Else
             lblConfirmPasswordError.Text = ""
             lblConfirmPasswordError.Visible = False
         End If
     End Sub
+
 
     '----------------------------------
     ' txtContact_TextChanged: Validates the contact number to be exactly 11 digits.
@@ -175,44 +192,28 @@ Public Class SignUpForm
         CheckNextButton()
     End Sub
 
-    '----------------------------------
-    ' txtConfirmSecQ1_TextChanged: Validates that Security Answer 1 confirmation matches the original answer.
-    '----------------------------------
+    Private Sub ValidateSecurityAnswer(confirmTextBox As Guna.UI2.WinForms.Guna2TextBox, originalTextBox As Guna.UI2.WinForms.Guna2TextBox, errorLabel As Guna.UI2.WinForms.Guna2HtmlLabel, answerNumber As Integer)
+        If confirmTextBox.Text <> originalTextBox.Text Then
+            errorLabel.Text = "Security answer " & answerNumber.ToString() & " does not match. *"
+            errorLabel.Visible = True
+        Else
+            errorLabel.Text = ""
+            errorLabel.Visible = False
+        End If
+    End Sub
+
     Private Sub txtConfirmSecQ1_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmSecQ1.TextChanged
-        If txtConfirmSecQ1.Text <> txtSecQ1.Text Then
-            lblConfirmSecQ1Error.Text = "Security answer 1 does not match. *"
-            lblConfirmSecQ1Error.Visible = True
-        Else
-            lblConfirmSecQ1Error.Text = ""
-            lblConfirmSecQ1Error.Visible = False
-        End If
+        ValidateSecurityAnswer(txtConfirmSecQ1, txtSecQ1, lblConfirmSecQ1Error, 1)
     End Sub
 
-    '----------------------------------
-    ' txtConfirmSecQ2_TextChanged: Validates that Security Answer 2 confirmation matches the original answer.
-    '----------------------------------
     Private Sub txtConfirmSecQ2_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmSecQ2.TextChanged
-        If txtConfirmSecQ2.Text <> txtSecQ2.Text Then
-            lblConfirmSecQ2Error.Text = "Security answer 2 does not match. *"
-            lblConfirmSecQ2Error.Visible = True
-        Else
-            lblConfirmSecQ2Error.Text = ""
-            lblConfirmSecQ2Error.Visible = False
-        End If
+        ValidateSecurityAnswer(txtConfirmSecQ2, txtSecQ2, lblConfirmSecQ2Error, 2)
     End Sub
 
-    '----------------------------------
-    ' txtConfirmSecQ3_TextChanged: Validates that Security Answer 3 confirmation matches the original answer.
-    '----------------------------------
     Private Sub txtConfirmSecQ3_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmSecQ3.TextChanged
-        If txtConfirmSecQ3.Text <> txtSecQ3.Text Then
-            lblConfirmSecQ3Error.Text = "Security answer 3 does not match. *"
-            lblConfirmSecQ3Error.Visible = True
-        Else
-            lblConfirmSecQ3Error.Text = ""
-            lblConfirmSecQ3Error.Visible = False
-        End If
+        ValidateSecurityAnswer(txtConfirmSecQ3, txtSecQ3, lblConfirmSecQ3Error, 3)
     End Sub
+
 
     '----------------------------------
     ' ValidateSecurityQuestions: Ensures that all three security questions are selected and are unique.

@@ -1,6 +1,8 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class UserDashboardForm
+    Private WithEvents Timer1 As New Timer()
+
 
     Private Sub UserDashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "User Dashboard"
@@ -13,6 +15,16 @@ Public Class UserDashboardForm
         LoadInventoryData()
         LoadNotificationsData()
         UpdateDashboardSummary()
+
+        ' Configure Timer
+        Timer1.Interval = 1000 ' 1 seconds
+        Timer1.Enabled = True
+        Timer1.Start()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        CheckForOverdueRequests()  ' Check and update overdue requests.
+        LoadNotificationsData()     ' Refresh the notifications grid.
     End Sub
 
     Private Sub LoadUserProfileData()
@@ -48,26 +60,30 @@ Public Class UserDashboardForm
             Try
                 conn.Open()
                 Dim query As String = "
-                    SELECT 
-                        bt.transaction_id AS 'RequestID', 
-                        (CASE 
-                            WHEN bt.equipment_id IS NOT NULL THEN 
-                                (SELECT item_name FROM unified_inventory WHERE category='Equipment' AND item_id = bt.equipment_id)
-                            WHEN bt.accessory_id IS NOT NULL THEN 
-                                (SELECT item_name FROM unified_inventory WHERE category='Accessory' AND item_id = bt.accessory_id)
-                            ELSE 'Unknown'
-                         END) AS 'ItemName',
-                        bt.borrow_date AS 'RequestDate', 
-                        bt.due_date AS 'DueDate',
-                        bt.status AS 'Status'
-                    FROM borrow_transactions bt
-                    WHERE bt.user_id = @userId"
+            SELECT 
+                bt.transaction_id AS 'RequestID', 
+                (CASE 
+                    WHEN bt.equipment_id IS NOT NULL THEN 
+                        (SELECT item_name FROM unified_inventory WHERE category='Equipment' AND item_id = bt.equipment_id)
+                    WHEN bt.accessory_id IS NOT NULL THEN 
+                        (SELECT item_name FROM unified_inventory WHERE category='Accessory' AND item_id = bt.accessory_id)
+                    ELSE 'Unknown'
+                 END) AS 'ItemName',
+                bt.borrow_date AS 'RequestDate', 
+                bt.due_date AS 'DueDate',
+                bt.status AS 'Status'
+            FROM borrow_transactions bt
+            WHERE bt.user_id = @userId"
                 Using cmd As New MySqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@userId", Common.CurrentUserId)
                     Dim adapter As New MySqlDataAdapter(cmd)
                     adapter.Fill(dt)
                 End Using
                 dgvBorrowRequests.DataSource = dt
+
+                ' Hide the RequestID column.
+                If dgvBorrowRequests.Columns.Contains("RequestID") Then dgvBorrowRequests.Columns("RequestID").Visible = False
+
             Catch ex As Exception
                 MessageBox.Show("Error loading borrow transactions: " & ex.Message)
             End Try
@@ -159,6 +175,7 @@ Public Class UserDashboardForm
                 dgvInventory.DataSource = dt
 
                 ' Hide unwanted columns.
+                If dgvInventory.Columns.Contains("item_id") Then dgvInventory.Columns("item_id").Visible = False
                 If dgvInventory.Columns.Contains("quantity") Then dgvInventory.Columns("quantity").Visible = False
                 If dgvInventory.Columns.Contains("status") Then dgvInventory.Columns("status").Visible = False
                 If dgvInventory.Columns.Contains("added_at") Then dgvInventory.Columns("added_at").Visible = False
@@ -202,7 +219,7 @@ Public Class UserDashboardForm
             Dim dt As New DataTable()
             Try
                 conn.Open()
-                Dim query As String = "SELECT message AS 'Notification', created_at AS 'Date' FROM notifications WHERE user_id = @userId"
+                Dim query As String = "SELECT message AS 'Notification', created_at AS 'Date' FROM notifications WHERE user_id = @userId ORDER BY created_at DESC"
                 Using cmd As New MySqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@userId", Common.CurrentUserId)
                     Dim adapter As New MySqlDataAdapter(cmd)
@@ -214,6 +231,7 @@ Public Class UserDashboardForm
             End Try
         End Using
     End Sub
+
 
     Private Sub btnClearNotifications_Click(sender As Object, e As EventArgs) Handles btnClearNotifications.Click
         MessageBox.Show("Clear Notifications clicked. Implement notification clearing.")
@@ -292,5 +310,81 @@ Public Class UserDashboardForm
             MessageBox.Show("Error returning item: " & ex.Message)
         End Try
     End Sub
+
+    Private Sub UpdateBorrowRequestStatus(transactionId As Integer, newStatus As String)
+        Using conn As MySqlConnection = Common.getDBConnection()
+            Try
+                conn.Open()
+                Dim query As String = "UPDATE borrow_transactions SET status = @newStatus WHERE transaction_id = @transactionId"
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@newStatus", newStatus)
+                    cmd.Parameters.AddWithValue("@transactionId", transactionId)
+                    cmd.ExecuteNonQuery()
+                End Using
+
+                ' Insert notification for the user
+                Dim notificationMessage As String = "Your borrow request (ID: " & transactionId.ToString() & ") has been " & newStatus & "."
+                Dim insertQuery As String = "INSERT INTO notifications (user_id, message, is_read, created_at) VALUES (@userId, @message, 0, NOW())"
+                Using insertCmd As New MySqlCommand(insertQuery, conn)
+                    insertCmd.Parameters.AddWithValue("@userId", Common.CurrentUserId)
+                    insertCmd.Parameters.AddWithValue("@message", notificationMessage)
+                    insertCmd.ExecuteNonQuery()
+                End Using
+
+            Catch ex As Exception
+                MessageBox.Show("Error updating request status: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+    Private Sub CheckForOverdueRequests()
+        Using conn As MySqlConnection = Common.getDBConnection()
+            Try
+                conn.Open()
+                ' Retrieve approved transactions that are overdue.
+                Dim overdueQuery As String = "SELECT transaction_id, user_id FROM borrow_transactions WHERE due_date < NOW() AND status = 'approved'"
+                Dim dtOverdue As New DataTable()
+                Using cmd As New MySqlCommand(overdueQuery, conn)
+                    Dim adapter As New MySqlDataAdapter(cmd)
+                    adapter.Fill(dtOverdue)
+                End Using
+
+                For Each row As DataRow In dtOverdue.Rows
+                    Dim transactionId As Integer = Convert.ToInt32(row("transaction_id"))
+                    Dim userId As String = row("user_id").ToString()
+
+                    ' Check if a notification for this overdue transaction already exists.
+                    Dim checkQuery As String = "SELECT COUNT(*) FROM notifications WHERE message LIKE @msg AND user_id = @userId"
+                    Dim msgPattern As String = "Your borrow request (ID: " & transactionId.ToString() & ") is now overdue%"
+                    Using checkCmd As New MySqlCommand(checkQuery, conn)
+                        checkCmd.Parameters.AddWithValue("@msg", msgPattern)
+                        checkCmd.Parameters.AddWithValue("@userId", userId)
+                        Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
+                        If count = 0 Then
+                            ' Insert a notification.
+                            Dim insertQuery As String = "INSERT INTO notifications (user_id, message, is_read, created_at) VALUES (@userId, @message, 0, NOW())"
+                            Using insertCmd As New MySqlCommand(insertQuery, conn)
+                                insertCmd.Parameters.AddWithValue("@userId", userId)
+                                insertCmd.Parameters.AddWithValue("@message", "Your borrow request (ID: " & transactionId.ToString() & ") is now overdue.")
+                                insertCmd.ExecuteNonQuery()
+                            End Using
+                        End If
+                    End Using
+
+                    ' Update the transaction status to overdue.
+                    Dim updateQuery As String = "UPDATE borrow_transactions SET status = 'overdue' WHERE transaction_id = @transactionId"
+                    Using updateCmd As New MySqlCommand(updateQuery, conn)
+                        updateCmd.Parameters.AddWithValue("@transactionId", transactionId)
+                        updateCmd.ExecuteNonQuery()
+                    End Using
+                Next
+            Catch ex As Exception
+                MessageBox.Show("Error checking overdue requests: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+
+
 
 End Class
