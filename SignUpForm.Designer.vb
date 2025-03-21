@@ -552,7 +552,6 @@ Partial Class SignUpForm
         '
         Me.pnlShadow2.BackColor = System.Drawing.Color.Transparent
         Me.pnlShadow2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pnlShadow2.Controls.Add(Me.pnlShadow1)
         Me.pnlShadow2.Controls.Add(Me.btnSignup)
         Me.pnlShadow2.Controls.Add(Me.btnBack)
         Me.pnlShadow2.Controls.Add(Me.lblConfirmSecQ3Error)
@@ -616,7 +615,7 @@ Partial Class SignUpForm
         Me.pnlShadow1.EdgeWidth = 10
         Me.pnlShadow1.FillColor = System.Drawing.Color.White
         Me.pnlShadow1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.pnlShadow1.Location = New System.Drawing.Point(0, 3)
+        Me.pnlShadow1.Location = New System.Drawing.Point(125, 29)
         Me.pnlShadow1.Name = "pnlShadow1"
         Me.pnlShadow1.Radius = 15
         Me.pnlShadow1.ShadowColor = System.Drawing.Color.DimGray
@@ -932,6 +931,7 @@ Partial Class SignUpForm
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1463, 903)
+        Me.Controls.Add(Me.pnlShadow1)
         Me.Controls.Add(Me.pnlShadow2)
         Me.Controls.Add(Me.lblTitle)
         Me.Controls.Add(Me.Guna2HtmlLabel4)

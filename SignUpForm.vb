@@ -44,7 +44,6 @@ Public Class SignUpForm
     ' Panel 1 Validation Helpers (Basic Information)
     '----------------------------------
     Private Function IsPanel1Valid() As Boolean
-        ' Ensure all required textboxes are filled.
         Dim fieldsFilled As Boolean = Not String.IsNullOrEmpty(txtUserID.Text.Trim()) AndAlso
             Not String.IsNullOrEmpty(txtFirstName.Text.Trim()) AndAlso
             Not String.IsNullOrEmpty(txtLastName.Text.Trim()) AndAlso
@@ -52,18 +51,15 @@ Public Class SignUpForm
             Not String.IsNullOrEmpty(txtContact.Text.Trim()) AndAlso
             Not String.IsNullOrEmpty(txtPassword.Text) AndAlso
             Not String.IsNullOrEmpty(txtConfirmPass.Text)
-        ' Ensure no error label is visible in panel 1.
         Dim noErrors As Boolean = Not (lblUserIDError.Visible OrElse lblFirstNameError.Visible OrElse
                                         lblLastNameError.Visible OrElse lblEmailError.Visible OrElse
                                         lblContactError.Visible OrElse lblPasswordError.Visible OrElse
                                         lblConfirmPasswordError.Visible)
-        ' Ensure password and confirmation match.
         Dim passwordMatch As Boolean = (txtPassword.Text = txtConfirmPass.Text)
         Return fieldsFilled AndAlso noErrors AndAlso passwordMatch
     End Function
 
     Private Sub CheckNextButton()
-        ' Enable btnNext only if panel 1 is valid.
         btnNext.Enabled = IsPanel1Valid()
     End Sub
 
@@ -201,7 +197,7 @@ Public Class SignUpForm
     End Sub
 
     '----------------------------------
-    ' txtConfirmPass_TextChanged: Checks that password confirmation matches and calls CheckNextButton.
+    ' txtConfirmPass_TextChanged: Checks that password confirmation matches.
     '----------------------------------
     Private Sub txtConfirmPass_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPass.TextChanged
         If txtConfirmPass.Text <> txtPassword.Text Then
@@ -237,15 +233,11 @@ Public Class SignUpForm
                                          errorLabel As Guna.UI2.WinForms.Guna2HtmlLabel, answerNumber As Integer)
         Dim originalFiltered As String = RemoveEmojis(originalTextBox.Text)
         Dim confirmFiltered As String = RemoveEmojis(confirmTextBox.Text)
-
-        ' If an emoji is detected in either textbox, show error.
         If originalTextBox.Text <> originalFiltered OrElse confirmTextBox.Text <> confirmFiltered Then
             errorLabel.Text = "Please refrain from using emoji characters in security answer " & answerNumber.ToString() & "."
             errorLabel.Visible = True
             Exit Sub
         End If
-
-        ' Check if the confirmation matches the original.
         If confirmTextBox.Text <> originalTextBox.Text Then
             errorLabel.Text = "Security answer " & answerNumber.ToString() & " does not match. *"
             errorLabel.Visible = True
@@ -394,7 +386,6 @@ Public Class SignUpForm
     ' btnSignUp_Click: Final validation and database insertion.
     '----------------------------------
     Private Sub btnSignUp_Click(sender As Object, e As EventArgs) Handles btnSignup.Click
-        ' Final check: if any error labels are visible, stop and prompt the user.
         If lblUserIDError.Visible OrElse lblFirstNameError.Visible OrElse lblLastNameError.Visible OrElse
            lblEmailError.Visible OrElse lblPasswordError.Visible OrElse lblConfirmPasswordError.Visible OrElse
            lblContactError.Visible OrElse lblSecurityQuestionError.Visible OrElse
@@ -403,7 +394,6 @@ Public Class SignUpForm
             Return
         End If
 
-        ' Normalize Email if necessary.
         Dim emailInput As String = txtEmail.Text.Trim()
         Dim allowedDomain As String = "@lpulaguna.edu.ph"
         If Not emailInput.Contains("@") Then
@@ -411,7 +401,6 @@ Public Class SignUpForm
             txtEmail.Text = emailInput
         End If
 
-        ' Proceed with database insertion.
         Dim conn As MySqlConnection = Common.getDBConnection()
         Try
             conn.Open()
@@ -469,8 +458,6 @@ Public Class SignUpForm
         cmbSecQ3.SelectedIndex = -1
         txtPassword.UseSystemPasswordChar = True
         txtConfirmPass.UseSystemPasswordChar = True
-
-        ' Initially disable navigation buttons.
         btnNext.Enabled = False
         btnSignup.Enabled = False
     End Sub
@@ -507,6 +494,7 @@ Public Class SignUpForm
     '----------------------------------
     Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
         pnlShadow1.Visible = True
+        pnlShadow1.BringToFront()
         pnlShadow2.Visible = False
     End Sub
 
