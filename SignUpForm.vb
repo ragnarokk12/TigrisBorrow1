@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿' Fix error label in password nd emoji in security questions.
+Imports MySql.Data.MySqlClient
 Imports System.Security.Cryptography
 Imports System.Text
 Imports System.Text.RegularExpressions
