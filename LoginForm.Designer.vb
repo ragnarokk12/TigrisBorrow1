@@ -59,7 +59,7 @@ Partial Class LoginForm
         Me.btnSignUp.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.btnSignUp.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnSignUp.FillColor = System.Drawing.Color.Transparent
-        Me.btnSignUp.Font = New System.Drawing.Font("Sifonn", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSignUp.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSignUp.ForeColor = System.Drawing.Color.Black
         Me.btnSignUp.Location = New System.Drawing.Point(39, 334)
         Me.btnSignUp.Margin = New System.Windows.Forms.Padding(4)
@@ -173,11 +173,11 @@ Partial Class LoginForm
         'Guna2HtmlLabel1
         '
         Me.Guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel1.Font = New System.Drawing.Font("Sifonn", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel1.ForeColor = System.Drawing.Color.Black
         Me.Guna2HtmlLabel1.Location = New System.Drawing.Point(12, 6)
         Me.Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
-        Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(112, 19)
+        Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(125, 18)
         Me.Guna2HtmlLabel1.TabIndex = 10
         Me.Guna2HtmlLabel1.Text = "TIGRIS BORROW"
         '
@@ -260,10 +260,10 @@ Partial Class LoginForm
         'lblLogin
         '
         Me.lblLogin.BackColor = System.Drawing.Color.Transparent
-        Me.lblLogin.Font = New System.Drawing.Font("Sifonn", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLogin.Location = New System.Drawing.Point(67, 38)
         Me.lblLogin.Name = "lblLogin"
-        Me.lblLogin.Size = New System.Drawing.Size(121, 47)
+        Me.lblLogin.Size = New System.Drawing.Size(115, 41)
         Me.lblLogin.TabIndex = 8
         Me.lblLogin.Text = "LOGIN"
         '
@@ -278,7 +278,7 @@ Partial Class LoginForm
         Me.btnLogin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnLogin.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.btnLogin.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(218, Byte), Integer))
-        Me.btnLogin.Font = New System.Drawing.Font("Sifonn", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.btnLogin.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold)
         Me.btnLogin.ForeColor = System.Drawing.Color.White
         Me.btnLogin.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal
         Me.btnLogin.Location = New System.Drawing.Point(39, 282)
@@ -310,20 +310,20 @@ Partial Class LoginForm
         'Guna2HtmlLabel2
         '
         Me.Guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Sifonn", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(47, 249)
         Me.Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
-        Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(136, 27)
+        Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(130, 26)
         Me.Guna2HtmlLabel2.TabIndex = 10
         Me.Guna2HtmlLabel2.Text = "LPU LAGUNA"
         '
         'Guna2HtmlLabel3
         '
         Me.Guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("Sifonn", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel3.Location = New System.Drawing.Point(47, 399)
         Me.Guna2HtmlLabel3.Name = "Guna2HtmlLabel3"
-        Me.Guna2HtmlLabel3.Size = New System.Drawing.Size(414, 21)
+        Me.Guna2HtmlLabel3.Size = New System.Drawing.Size(419, 20)
         Me.Guna2HtmlLabel3.TabIndex = 11
         Me.Guna2HtmlLabel3.Text = "The only app you'll need to get the equipment you seek!"
         '

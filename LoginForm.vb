@@ -6,8 +6,9 @@ Imports Guna.UI2.WinForms
 Public Class LoginForm
     ' Handles Login button click event
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        ' Validate input fields
+        ' Validate input fields before attempting login
         If String.IsNullOrWhiteSpace(txtUserID.Text) OrElse String.IsNullOrWhiteSpace(txtPassword.Text) Then
+            ValidateInputFields()
             MessageBox.Show("Please enter both User ID and Password!", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
@@ -94,6 +95,7 @@ Public Class LoginForm
         txtUserID.Focus()
     End Sub
 
+    ' This function validates the input fields and updates lblInstruction accordingly.
     Private Sub ValidateInputFields()
         If String.IsNullOrWhiteSpace(txtUserID.Text) OrElse String.IsNullOrWhiteSpace(txtPassword.Text) Then
             lblInstruction.Text = "Please fill in all fields!"
@@ -101,6 +103,15 @@ Public Class LoginForm
         Else
             lblInstruction.Visible = False
         End If
+    End Sub
+
+    ' Call ValidateInputFields when user types in either field.
+    Private Sub txtUserID_TextChanged(sender As Object, e As EventArgs) Handles txtUserID.TextChanged
+        ValidateInputFields()
+    End Sub
+
+    Private Sub txtPassword_TextChanged(sender As Object, e As EventArgs) Handles txtPassword.TextChanged
+        ValidateInputFields()
     End Sub
 
     Private Sub txtUserID_KeyDown(sender As Object, e As KeyEventArgs) Handles txtUserID.KeyDown
@@ -123,6 +134,7 @@ Public Class LoginForm
     End Sub
 
     Private Sub lblLogin_Click(sender As Object, e As EventArgs) Handles lblLogin.Click
-
+        ' Additional logic can be added here if needed.
     End Sub
+
 End Class

@@ -43,11 +43,17 @@ Partial Class AdminStaffDashboardForm
         Me.lblRole = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.tbcAdminDashboard = New Guna.UI2.WinForms.Guna2TabControl()
         Me.tbcReport = New System.Windows.Forms.TabPage()
-        Me.Guna2TabControl1 = New Guna.UI2.WinForms.Guna2TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.tbcDataReport = New Guna.UI2.WinForms.Guna2TabControl()
+        Me.tpDailyReport = New System.Windows.Forms.TabPage()
+        Me.cbActionType = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.dtpEndDate = New Guna.UI2.WinForms.Guna2DateTimePicker()
+        Me.lblSummary = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.dtpStartDate = New Guna.UI2.WinForms.Guna2DateTimePicker()
         Me.dgvDailyDataReport = New Guna.UI2.WinForms.Guna2DataGridView()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.tpMonthlyReport = New System.Windows.Forms.TabPage()
         Me.dgvMonthlyDataReport = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.cbYear = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.cbMonth = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.btnGenerateReport = New Guna.UI2.WinForms.Guna2Button()
         Me.lblDataReport = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.tbpDeployment = New System.Windows.Forms.TabPage()
@@ -81,10 +87,10 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2AnimateWindow1 = New Guna.UI2.WinForms.Guna2AnimateWindow(Me.components)
         Me.tbcAdminDashboard.SuspendLayout()
         Me.tbcReport.SuspendLayout()
-        Me.Guna2TabControl1.SuspendLayout()
-        Me.TabPage1.SuspendLayout()
+        Me.tbcDataReport.SuspendLayout()
+        Me.tpDailyReport.SuspendLayout()
         CType(Me.dgvDailyDataReport, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage2.SuspendLayout()
+        Me.tpMonthlyReport.SuspendLayout()
         CType(Me.dgvMonthlyDataReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tbpDeployment.SuspendLayout()
         CType(Me.dgvBorrowRequests, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,7 +146,7 @@ Partial Class AdminStaffDashboardForm
         Me.tbcAdminDashboard.Location = New System.Drawing.Point(0, 71)
         Me.tbcAdminDashboard.Name = "tbcAdminDashboard"
         Me.tbcAdminDashboard.SelectedIndex = 0
-        Me.tbcAdminDashboard.Size = New System.Drawing.Size(964, 458)
+        Me.tbcAdminDashboard.Size = New System.Drawing.Size(1057, 501)
         Me.tbcAdminDashboard.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty
         Me.tbcAdminDashboard.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.tbcAdminDashboard.TabButtonHoverState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
@@ -162,56 +168,110 @@ Partial Class AdminStaffDashboardForm
         '
         'tbcReport
         '
-        Me.tbcReport.Controls.Add(Me.Guna2TabControl1)
+        Me.tbcReport.Controls.Add(Me.tbcDataReport)
         Me.tbcReport.Controls.Add(Me.btnGenerateReport)
         Me.tbcReport.Controls.Add(Me.lblDataReport)
         Me.tbcReport.Location = New System.Drawing.Point(184, 4)
         Me.tbcReport.Name = "tbcReport"
         Me.tbcReport.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbcReport.Size = New System.Drawing.Size(776, 450)
+        Me.tbcReport.Size = New System.Drawing.Size(869, 493)
         Me.tbcReport.TabIndex = 3
         Me.tbcReport.Text = "Data Report"
         Me.tbcReport.UseVisualStyleBackColor = True
         '
-        'Guna2TabControl1
+        'tbcDataReport
         '
-        Me.Guna2TabControl1.Controls.Add(Me.TabPage1)
-        Me.Guna2TabControl1.Controls.Add(Me.TabPage2)
-        Me.Guna2TabControl1.ItemSize = New System.Drawing.Size(180, 40)
-        Me.Guna2TabControl1.Location = New System.Drawing.Point(6, 40)
-        Me.Guna2TabControl1.Name = "Guna2TabControl1"
-        Me.Guna2TabControl1.SelectedIndex = 0
-        Me.Guna2TabControl1.Size = New System.Drawing.Size(764, 404)
-        Me.Guna2TabControl1.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty
-        Me.Guna2TabControl1.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.Guna2TabControl1.TabButtonHoverState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
-        Me.Guna2TabControl1.TabButtonHoverState.ForeColor = System.Drawing.Color.White
-        Me.Guna2TabControl1.TabButtonHoverState.InnerColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.Guna2TabControl1.TabButtonIdleState.BorderColor = System.Drawing.Color.Empty
-        Me.Guna2TabControl1.TabButtonIdleState.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(57, Byte), Integer))
-        Me.Guna2TabControl1.TabButtonIdleState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
-        Me.Guna2TabControl1.TabButtonIdleState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(167, Byte), Integer))
-        Me.Guna2TabControl1.TabButtonIdleState.InnerColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(57, Byte), Integer))
-        Me.Guna2TabControl1.TabButtonSelectedState.BorderColor = System.Drawing.Color.Empty
-        Me.Guna2TabControl1.TabButtonSelectedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(29, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(49, Byte), Integer))
-        Me.Guna2TabControl1.TabButtonSelectedState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
-        Me.Guna2TabControl1.TabButtonSelectedState.ForeColor = System.Drawing.Color.White
-        Me.Guna2TabControl1.TabButtonSelectedState.InnerColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(132, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.Guna2TabControl1.TabButtonSize = New System.Drawing.Size(180, 40)
-        Me.Guna2TabControl1.TabIndex = 4
-        Me.Guna2TabControl1.TabMenuBackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(57, Byte), Integer))
-        Me.Guna2TabControl1.TabMenuOrientation = Guna.UI2.WinForms.TabMenuOrientation.HorizontalTop
+        Me.tbcDataReport.Controls.Add(Me.tpDailyReport)
+        Me.tbcDataReport.Controls.Add(Me.tpMonthlyReport)
+        Me.tbcDataReport.ItemSize = New System.Drawing.Size(180, 40)
+        Me.tbcDataReport.Location = New System.Drawing.Point(6, 40)
+        Me.tbcDataReport.Name = "tbcDataReport"
+        Me.tbcDataReport.SelectedIndex = 0
+        Me.tbcDataReport.Size = New System.Drawing.Size(764, 450)
+        Me.tbcDataReport.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty
+        Me.tbcDataReport.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.tbcDataReport.TabButtonHoverState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
+        Me.tbcDataReport.TabButtonHoverState.ForeColor = System.Drawing.Color.White
+        Me.tbcDataReport.TabButtonHoverState.InnerColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.tbcDataReport.TabButtonIdleState.BorderColor = System.Drawing.Color.Empty
+        Me.tbcDataReport.TabButtonIdleState.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(57, Byte), Integer))
+        Me.tbcDataReport.TabButtonIdleState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
+        Me.tbcDataReport.TabButtonIdleState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(167, Byte), Integer))
+        Me.tbcDataReport.TabButtonIdleState.InnerColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(57, Byte), Integer))
+        Me.tbcDataReport.TabButtonSelectedState.BorderColor = System.Drawing.Color.Empty
+        Me.tbcDataReport.TabButtonSelectedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(29, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.tbcDataReport.TabButtonSelectedState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
+        Me.tbcDataReport.TabButtonSelectedState.ForeColor = System.Drawing.Color.White
+        Me.tbcDataReport.TabButtonSelectedState.InnerColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(132, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.tbcDataReport.TabButtonSize = New System.Drawing.Size(180, 40)
+        Me.tbcDataReport.TabIndex = 4
+        Me.tbcDataReport.TabMenuBackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(57, Byte), Integer))
+        Me.tbcDataReport.TabMenuOrientation = Guna.UI2.WinForms.TabMenuOrientation.HorizontalTop
         '
-        'TabPage1
+        'tpDailyReport
         '
-        Me.TabPage1.Controls.Add(Me.dgvDailyDataReport)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 44)
-        Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(756, 356)
-        Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "TabPage1"
-        Me.TabPage1.UseVisualStyleBackColor = True
+        Me.tpDailyReport.Controls.Add(Me.cbActionType)
+        Me.tpDailyReport.Controls.Add(Me.dtpEndDate)
+        Me.tpDailyReport.Controls.Add(Me.lblSummary)
+        Me.tpDailyReport.Controls.Add(Me.dtpStartDate)
+        Me.tpDailyReport.Controls.Add(Me.dgvDailyDataReport)
+        Me.tpDailyReport.Location = New System.Drawing.Point(4, 44)
+        Me.tpDailyReport.Name = "tpDailyReport"
+        Me.tpDailyReport.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpDailyReport.Size = New System.Drawing.Size(756, 402)
+        Me.tpDailyReport.TabIndex = 0
+        Me.tpDailyReport.Text = "Daily Report"
+        Me.tpDailyReport.UseVisualStyleBackColor = True
+        '
+        'cbActionType
+        '
+        Me.cbActionType.BackColor = System.Drawing.Color.Transparent
+        Me.cbActionType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbActionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbActionType.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbActionType.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbActionType.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cbActionType.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cbActionType.ItemHeight = 30
+        Me.cbActionType.Location = New System.Drawing.Point(541, 353)
+        Me.cbActionType.Name = "cbActionType"
+        Me.cbActionType.Size = New System.Drawing.Size(116, 36)
+        Me.cbActionType.TabIndex = 9
+        '
+        'dtpEndDate
+        '
+        Me.dtpEndDate.Checked = True
+        Me.dtpEndDate.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.dtpEndDate.Location = New System.Drawing.Point(335, 360)
+        Me.dtpEndDate.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
+        Me.dtpEndDate.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
+        Me.dtpEndDate.Name = "dtpEndDate"
+        Me.dtpEndDate.Size = New System.Drawing.Size(200, 36)
+        Me.dtpEndDate.TabIndex = 6
+        Me.dtpEndDate.Value = New Date(2025, 3, 22, 7, 42, 20, 74)
+        '
+        'lblSummary
+        '
+        Me.lblSummary.BackColor = System.Drawing.Color.Transparent
+        Me.lblSummary.Location = New System.Drawing.Point(6, 356)
+        Me.lblSummary.Name = "lblSummary"
+        Me.lblSummary.Size = New System.Drawing.Size(88, 15)
+        Me.lblSummary.TabIndex = 4
+        Me.lblSummary.Text = "Guna2HtmlLabel1"
+        '
+        'dtpStartDate
+        '
+        Me.dtpStartDate.Checked = True
+        Me.dtpStartDate.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.[Long]
+        Me.dtpStartDate.Location = New System.Drawing.Point(129, 360)
+        Me.dtpStartDate.MaxDate = New Date(9998, 12, 31, 0, 0, 0, 0)
+        Me.dtpStartDate.MinDate = New Date(1753, 1, 1, 0, 0, 0, 0)
+        Me.dtpStartDate.Name = "dtpStartDate"
+        Me.dtpStartDate.Size = New System.Drawing.Size(200, 36)
+        Me.dtpStartDate.TabIndex = 5
+        Me.dtpStartDate.Value = New Date(2025, 3, 22, 7, 42, 6, 212)
         '
         'dgvDailyDataReport
         '
@@ -263,16 +323,18 @@ Partial Class AdminStaffDashboardForm
         Me.dgvDailyDataReport.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvDailyDataReport.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
         '
-        'TabPage2
+        'tpMonthlyReport
         '
-        Me.TabPage2.Controls.Add(Me.dgvMonthlyDataReport)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 44)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(756, 356)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "TabPage2"
-        Me.TabPage2.UseVisualStyleBackColor = True
+        Me.tpMonthlyReport.Controls.Add(Me.dgvMonthlyDataReport)
+        Me.tpMonthlyReport.Controls.Add(Me.cbYear)
+        Me.tpMonthlyReport.Controls.Add(Me.cbMonth)
+        Me.tpMonthlyReport.Location = New System.Drawing.Point(4, 44)
+        Me.tpMonthlyReport.Name = "tpMonthlyReport"
+        Me.tpMonthlyReport.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpMonthlyReport.Size = New System.Drawing.Size(756, 402)
+        Me.tpMonthlyReport.TabIndex = 1
+        Me.tpMonthlyReport.Text = "Monthly Report"
+        Me.tpMonthlyReport.UseVisualStyleBackColor = True
         '
         'dgvMonthlyDataReport
         '
@@ -324,6 +386,36 @@ Partial Class AdminStaffDashboardForm
         Me.dgvMonthlyDataReport.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvMonthlyDataReport.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
         '
+        'cbYear
+        '
+        Me.cbYear.BackColor = System.Drawing.Color.Transparent
+        Me.cbYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbYear.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbYear.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbYear.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cbYear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cbYear.ItemHeight = 30
+        Me.cbYear.Location = New System.Drawing.Point(226, 356)
+        Me.cbYear.Name = "cbYear"
+        Me.cbYear.Size = New System.Drawing.Size(140, 36)
+        Me.cbYear.TabIndex = 2
+        '
+        'cbMonth
+        '
+        Me.cbMonth.BackColor = System.Drawing.Color.Transparent
+        Me.cbMonth.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbMonth.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbMonth.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbMonth.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cbMonth.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cbMonth.ItemHeight = 30
+        Me.cbMonth.Location = New System.Drawing.Point(29, 357)
+        Me.cbMonth.Name = "cbMonth"
+        Me.cbMonth.Size = New System.Drawing.Size(140, 36)
+        Me.cbMonth.TabIndex = 1
+        '
         'btnGenerateReport
         '
         Me.btnGenerateReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray
@@ -360,7 +452,7 @@ Partial Class AdminStaffDashboardForm
         Me.tbpDeployment.Location = New System.Drawing.Point(184, 4)
         Me.tbpDeployment.Name = "tbpDeployment"
         Me.tbpDeployment.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbpDeployment.Size = New System.Drawing.Size(776, 450)
+        Me.tbpDeployment.Size = New System.Drawing.Size(869, 493)
         Me.tbpDeployment.TabIndex = 0
         Me.tbpDeployment.Text = "Deployment"
         Me.tbpDeployment.UseVisualStyleBackColor = True
@@ -494,7 +586,7 @@ Partial Class AdminStaffDashboardForm
         Me.tbpInventory.Location = New System.Drawing.Point(184, 4)
         Me.tbpInventory.Name = "tbpInventory"
         Me.tbpInventory.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbpInventory.Size = New System.Drawing.Size(776, 450)
+        Me.tbpInventory.Size = New System.Drawing.Size(869, 493)
         Me.tbpInventory.TabIndex = 1
         Me.tbpInventory.Text = "Inventory"
         Me.tbpInventory.UseVisualStyleBackColor = True
@@ -700,7 +792,7 @@ Partial Class AdminStaffDashboardForm
         Me.tbpAccount.Location = New System.Drawing.Point(184, 4)
         Me.tbpAccount.Name = "tbpAccount"
         Me.tbpAccount.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbpAccount.Size = New System.Drawing.Size(776, 450)
+        Me.tbpAccount.Size = New System.Drawing.Size(869, 493)
         Me.tbpAccount.TabIndex = 2
         Me.tbpAccount.Text = "Account"
         Me.tbpAccount.UseVisualStyleBackColor = True
@@ -845,7 +937,7 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2CustomGradientPanel1.Controls.Add(Me.lblRole)
         Me.Guna2CustomGradientPanel1.Location = New System.Drawing.Point(0, 1)
         Me.Guna2CustomGradientPanel1.Name = "Guna2CustomGradientPanel1"
-        Me.Guna2CustomGradientPanel1.Size = New System.Drawing.Size(964, 529)
+        Me.Guna2CustomGradientPanel1.Size = New System.Drawing.Size(1100, 592)
         Me.Guna2CustomGradientPanel1.TabIndex = 9
         '
         'AdminStaffDashboardForm
@@ -859,10 +951,11 @@ Partial Class AdminStaffDashboardForm
         Me.tbcAdminDashboard.ResumeLayout(False)
         Me.tbcReport.ResumeLayout(False)
         Me.tbcReport.PerformLayout()
-        Me.Guna2TabControl1.ResumeLayout(False)
-        Me.TabPage1.ResumeLayout(False)
+        Me.tbcDataReport.ResumeLayout(False)
+        Me.tpDailyReport.ResumeLayout(False)
+        Me.tpDailyReport.PerformLayout()
         CType(Me.dgvDailyDataReport, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage2.ResumeLayout(False)
+        Me.tpMonthlyReport.ResumeLayout(False)
         CType(Me.dgvMonthlyDataReport, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbpDeployment.ResumeLayout(False)
         Me.tbpDeployment.PerformLayout()
@@ -915,8 +1008,14 @@ Partial Class AdminStaffDashboardForm
     Friend WithEvents btnCheckReturn As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnDeny As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnApprove As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Guna2TabControl1 As Guna.UI2.WinForms.Guna2TabControl
-    Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents tbcDataReport As Guna.UI2.WinForms.Guna2TabControl
+    Friend WithEvents tpDailyReport As TabPage
+    Friend WithEvents tpMonthlyReport As TabPage
     Friend WithEvents dgvMonthlyDataReport As Guna.UI2.WinForms.Guna2DataGridView
+    Friend WithEvents lblSummary As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents dtpEndDate As Guna.UI2.WinForms.Guna2DateTimePicker
+    Friend WithEvents dtpStartDate As Guna.UI2.WinForms.Guna2DateTimePicker
+    Friend WithEvents cbActionType As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents cbYear As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents cbMonth As Guna.UI2.WinForms.Guna2ComboBox
 End Class
