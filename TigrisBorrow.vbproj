@@ -255,5 +255,23 @@
   <ItemGroup>
     <None Include="Resources\user.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\envelope.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\key %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shuttle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\policeman.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
