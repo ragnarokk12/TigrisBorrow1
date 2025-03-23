@@ -77,6 +77,7 @@ Partial Class ForgotPasswordForm
         Me.cbexit = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
+        Me.Guna2PictureBox2 = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.spnlS1.SuspendLayout()
@@ -86,6 +87,7 @@ Partial Class ForgotPasswordForm
         Me.TabPage3.SuspendLayout()
         Me.Guna2ShadowPanel2.SuspendLayout()
         Me.pnlControlBx.SuspendLayout()
+        CType(Me.Guna2PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -124,10 +126,10 @@ Partial Class ForgotPasswordForm
         Me.TabPage1.BackColor = System.Drawing.Color.White
         Me.TabPage1.BackgroundImage = CType(resources.GetObject("TabPage1.BackgroundImage"), System.Drawing.Image)
         Me.TabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage1.Controls.Add(Me.Guna2HtmlLabel11)
         Me.TabPage1.Controls.Add(Me.Guna2TileButton1)
         Me.TabPage1.Controls.Add(Me.Guna2HtmlLabel9)
         Me.TabPage1.Controls.Add(Me.Guna2HtmlLabel8)
-        Me.TabPage1.Controls.Add(Me.Guna2HtmlLabel11)
         Me.TabPage1.Controls.Add(Me.Guna2HtmlLabel7)
         Me.TabPage1.Controls.Add(Me.spnlS1)
         Me.TabPage1.Controls.Add(Me.btnCancel)
@@ -192,7 +194,7 @@ Partial Class ForgotPasswordForm
         Me.Guna2HtmlLabel11.BackColor = System.Drawing.Color.Transparent
         Me.Guna2HtmlLabel11.Font = New System.Drawing.Font("Sifonn", 72.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
-        Me.Guna2HtmlLabel11.Location = New System.Drawing.Point(413, 76)
+        Me.Guna2HtmlLabel11.Location = New System.Drawing.Point(400, 68)
         Me.Guna2HtmlLabel11.Name = "Guna2HtmlLabel11"
         Me.Guna2HtmlLabel11.Size = New System.Drawing.Size(45, 126)
         Me.Guna2HtmlLabel11.TabIndex = 10
@@ -331,6 +333,7 @@ Partial Class ForgotPasswordForm
         Me.TabPage2.BackColor = System.Drawing.Color.White
         Me.TabPage2.BackgroundImage = CType(resources.GetObject("TabPage2.BackgroundImage"), System.Drawing.Image)
         Me.TabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage2.Controls.Add(Me.Guna2PictureBox2)
         Me.TabPage2.Controls.Add(Me.btnBackQuestion)
         Me.TabPage2.Controls.Add(Me.Guna2TileButton2)
         Me.TabPage2.Controls.Add(Me.Guna2HtmlLabel13)
@@ -933,6 +936,19 @@ Partial Class ForgotPasswordForm
         '
         Me.Guna2Elipse1.TargetControl = Me
         '
+        'Guna2PictureBox2
+        '
+        Me.Guna2PictureBox2.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2PictureBox2.FillColor = System.Drawing.Color.Transparent
+        Me.Guna2PictureBox2.Image = Global.TigrisBorrow.My.Resources.Resources.policeman
+        Me.Guna2PictureBox2.ImageRotate = 0!
+        Me.Guna2PictureBox2.Location = New System.Drawing.Point(275, 172)
+        Me.Guna2PictureBox2.Name = "Guna2PictureBox2"
+        Me.Guna2PictureBox2.Size = New System.Drawing.Size(100, 100)
+        Me.Guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.Guna2PictureBox2.TabIndex = 18
+        Me.Guna2PictureBox2.TabStop = False
+        '
         'ForgotPasswordForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -959,6 +975,7 @@ Partial Class ForgotPasswordForm
         Me.Guna2ShadowPanel2.PerformLayout()
         Me.pnlControlBx.ResumeLayout(False)
         Me.pnlControlBx.PerformLayout()
+        CType(Me.Guna2PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1021,4 +1038,5 @@ Partial Class ForgotPasswordForm
     Friend WithEvents txtsecuq1 As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents lblConfirmNewPasswordError As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblNewPasswordError As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2PictureBox2 As Guna.UI2.WinForms.Guna2PictureBox
 End Class
