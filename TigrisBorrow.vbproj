@@ -205,6 +205,9 @@
     <EmbeddedResource Include="AddItemForm.resx">
       <DependentUpon>AddItemForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChangeRoleForm.resx">
       <DependentUpon>ChangeRoleForm.vb</DependentUpon>
     </EmbeddedResource>
