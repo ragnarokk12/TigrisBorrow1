@@ -15,12 +15,10 @@ Public Class AdminStaffDashboardForm
         SetAccessByRole()
         LoadSortOptions()
         LoadBorrowRequests()
-        PopulateMonthAndYearFilters()   ' Populate the combo boxes
-        LoadDailyReport()               ' Load daily report if needed
-        ' Optionally, load monthly report without filters to test:
-        ' Await LoadMonthlyReportAsync() ' if using Async in an Async Form_Load event
+        PopulateMonthAndYearFilters()   ' Populate the month and year combo boxes.
+        LoadActionTypeOptions()           ' Populate the action type ComboBox.
+        LoadDailyReport()               ' Load daily report if needed.
     End Sub
-
     Private Sub FetchUserRole()
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
@@ -338,65 +336,112 @@ WHERE transaction_id = @transactionId AND status = 'pending'
         End If
 
         Dim transactionId As Integer = Convert.ToInt32(dgvBorrowRequests.SelectedRows(0).Cells("transaction_id").Value)
-        Dim returnCondition As String = InputBox("Enter the condition of the item upon return (new, good, fair, poor, damaged):", "Return Condition")
-
-        If String.IsNullOrEmpty(returnCondition) Then
-            MessageBox.Show("Return condition is required.")
-            Return
-        End If
-
-        Dim validConditions As New List(Of String) From {"new", "good", "fair", "poor", "damaged"}
-        If Not validConditions.Contains(returnCondition.ToLower()) Then
-            MessageBox.Show("Invalid condition entered. Please enter one of: new, good, fair, poor, damaged.")
-            Return
-        End If
+        Dim itemCategory As String = dgvBorrowRequests.SelectedRows(0).Cells("item_category").Value.ToString()
 
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
-            Dim updateQuery As String = "
+
+            If itemCategory = "Equipment" Then
+                Dim returnCondition As String = InputBox("Enter the condition of the equipment upon return (new, good, fair, poor, damaged):", "Return Condition")
+                If String.IsNullOrEmpty(returnCondition) Then
+                    MessageBox.Show("Return condition is required for equipment.")
+                    Return
+                End If
+
+                Dim validConditions As New List(Of String) From {"new", "good", "fair", "poor", "damaged"}
+                If Not validConditions.Contains(returnCondition.ToLower()) Then
+                    MessageBox.Show("Invalid condition entered. Please enter one of: new, good, fair, poor, damaged.")
+                    Return
+                End If
+
+                Dim updateQuery As String = "
 UPDATE borrow_transactions
 SET return_condition = @return_condition,
     status = 'pending_inspection'
 WHERE transaction_id = @transactionId AND status = 'returned'
 "
-            Dim cmd As New MySqlCommand(updateQuery, conn)
-            cmd.Parameters.AddWithValue("@return_condition", returnCondition.ToLower())
-            cmd.Parameters.AddWithValue("@transactionId", transactionId)
-            Dim rowsAffected = cmd.ExecuteNonQuery()
+                Using cmd As New MySqlCommand(updateQuery, conn)
+                    cmd.Parameters.AddWithValue("@return_condition", returnCondition.ToLower())
+                    cmd.Parameters.AddWithValue("@transactionId", transactionId)
+                    Dim rowsAffected = cmd.ExecuteNonQuery()
+                    If rowsAffected > 0 Then
+                        MessageBox.Show("Equipment return is pending inspection.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        MessageBox.Show("Failed to update equipment return. It may have been updated already.")
+                    End If
+                End Using
 
-            If rowsAffected > 0 Then
-                MessageBox.Show("Return approved and status updated to pending inspection.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Else
-                MessageBox.Show("Failed to update the return information. It may have been updated already.")
+            ElseIf itemCategory = "Accessory" Then
+                ' For accessories, no condition is needed; update status directly to "completed".
+                Dim updateQuery As String = "
+UPDATE borrow_transactions
+SET status = 'completed'
+WHERE transaction_id = @transactionId AND status = 'returned'
+"
+                Using cmd As New MySqlCommand(updateQuery, conn)
+                    cmd.Parameters.AddWithValue("@transactionId", transactionId)
+                    Dim rowsAffected = cmd.ExecuteNonQuery()
+                    If rowsAffected > 0 Then
+                        MessageBox.Show("Accessory return processed and marked as completed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Else
+                        MessageBox.Show("Failed to update accessory return. It may have been updated already.")
+                    End If
+                End Using
             End If
+
         Catch ex As Exception
-            MessageBox.Show("Error updating return condition: " & ex.Message)
+            MessageBox.Show("Error updating return status: " & ex.Message)
         Finally
             conn.Close()
         End Try
+
         LoadBorrowRequests()
     End Sub
 
+
+    ' Update LoadDailyReport to show item name in the Details column.
     Private Sub LoadDailyReport(Optional ByVal startDate As DateTime? = Nothing, Optional ByVal endDate As DateTime? = Nothing, Optional ByVal actionTypeFilter As String = "")
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
 
-            Dim query As String = "SELECT CAST(bt.transaction_id AS CHAR) AS ID, CONCAT(u.first_name, ' ', u.last_name) AS UserName, " &
-                              "bt.status AS ActionType, CONCAT('Borrow Date: ', DATE_FORMAT(bt.borrow_date, '%Y-%m-%d'), ', Due Date: ', DATE_FORMAT(bt.due_date, '%Y-%m-%d')) AS Details, " &
-                              "bt.borrow_date AS ActionTime " &
-                              "FROM borrow_transactions bt JOIN users u ON bt.user_id = u.user_id WHERE 1=1"
+            Dim query As String = "SELECT u.user_id AS ID, " &
+                              "CONCAT(u.first_name, ' ', u.last_name) AS UserName, " &
+                              "bt.status AS ActionType, " &
+                              "CASE " &
+                              "    WHEN bt.equipment_id IS NOT NULL THEN e.equipment_name " &
+                              "    WHEN bt.accessory_id IS NOT NULL THEN a.accessory_name " &
+                              "    ELSE 'N/A' " &
+                              "END AS Details, " &
+                              "bt.borrow_date AS ActionTime, " &
+                              "bt.approved_by AS ApprovedBy, " &
+                              "bt.return_condition AS ReturnCondition " &
+                              "FROM borrow_transactions bt " &
+                              "JOIN users u ON bt.user_id = u.user_id " &
+                              "LEFT JOIN equipment e ON bt.equipment_id = e.equipment_id " &
+                              "LEFT JOIN accessories a ON bt.accessory_id = a.accessory_id " &
+                              "WHERE 1=1 AND bt.status <> 'pending'"
 
-            ' Append filters if provided
-            If startDate.HasValue Then query &= " AND bt.borrow_date >= @startDate"
-            If endDate.HasValue Then query &= " AND bt.borrow_date <= @endDate"
-            If Not String.IsNullOrEmpty(actionTypeFilter) Then query &= " AND bt.status = @actionTypeFilter"
+            ' Add date range filters:
+            If startDate.HasValue Then
+                query &= " AND bt.borrow_date >= @startDate"
+            End If
+            If endDate.HasValue Then
+                query &= " AND bt.borrow_date <= @endDate"
+            End If
+
+            ' Add action type filter if not "All"
+            If Not String.IsNullOrEmpty(actionTypeFilter) AndAlso actionTypeFilter <> "All" Then
+                query &= " AND bt.status = @actionTypeFilter"
+            End If
 
             query &= " ORDER BY ActionTime DESC"
 
             Using cmd As New MySqlCommand(query, conn)
                 If startDate.HasValue Then cmd.Parameters.AddWithValue("@startDate", startDate.Value)
                 If endDate.HasValue Then cmd.Parameters.AddWithValue("@endDate", endDate.Value)
-                If Not String.IsNullOrEmpty(actionTypeFilter) Then cmd.Parameters.AddWithValue("@actionTypeFilter", actionTypeFilter)
+                If Not String.IsNullOrEmpty(actionTypeFilter) AndAlso actionTypeFilter <> "All" Then
+                    cmd.Parameters.AddWithValue("@actionTypeFilter", actionTypeFilter)
+                End If
 
                 Dim adapter As New MySqlDataAdapter(cmd)
                 Dim table As New DataTable()
@@ -406,14 +451,16 @@ WHERE transaction_id = @transactionId AND status = 'returned'
 
             dgvDailyDataReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
-            If dgvDailyDataReport.Columns.Contains("ID") Then dgvDailyDataReport.Columns("ID").HeaderText = "ID"
+            If dgvDailyDataReport.Columns.Contains("ID") Then dgvDailyDataReport.Columns("ID").HeaderText = "User ID"
             If dgvDailyDataReport.Columns.Contains("UserName") Then dgvDailyDataReport.Columns("UserName").HeaderText = "User Name"
             If dgvDailyDataReport.Columns.Contains("ActionType") Then dgvDailyDataReport.Columns("ActionType").HeaderText = "Action Type"
-            If dgvDailyDataReport.Columns.Contains("Details") Then dgvDailyDataReport.Columns("Details").HeaderText = "Details"
+            If dgvDailyDataReport.Columns.Contains("Details") Then dgvDailyDataReport.Columns("Details").HeaderText = "Item Name"
             If dgvDailyDataReport.Columns.Contains("ActionTime") Then
                 dgvDailyDataReport.Columns("ActionTime").HeaderText = "Action Time"
                 dgvDailyDataReport.Columns("ActionTime").DefaultCellStyle.Format = "yyyy-MM-dd HH:mm:ss"
             End If
+            If dgvDailyDataReport.Columns.Contains("ApprovedBy") Then dgvDailyDataReport.Columns("ApprovedBy").HeaderText = "Approved By"
+            If dgvDailyDataReport.Columns.Contains("ReturnCondition") Then dgvDailyDataReport.Columns("ReturnCondition").HeaderText = "Return Condition"
 
             lblSummary.Text = "Total Records: " & dgvDailyDataReport.Rows.Count.ToString()
 
@@ -423,6 +470,8 @@ WHERE transaction_id = @transactionId AND status = 'returned'
             conn.Close()
         End Try
     End Sub
+
+
 
     ' Event handlers for dynamic filtering:
     Private Sub dtpStartDate_ValueChanged(sender As Object, e As EventArgs) Handles dtpStartDate.ValueChanged
@@ -439,12 +488,9 @@ WHERE transaction_id = @transactionId AND status = 'returned'
 
     ' Common subroutine to apply filters:
     Private Sub ApplyDailyReportFilters()
-        Dim startDate As DateTime? = Nothing
-        Dim endDate As DateTime? = Nothing
-
-        ' Use the Checked property to see if the DateTimePicker is enabled for filtering.
-        If dtpStartDate.Checked Then startDate = dtpStartDate.Value
-        If dtpEndDate.Checked Then endDate = dtpEndDate.Value
+        ' Always use the dtp values.
+        Dim startDate As DateTime = dtpStartDate.Value
+        Dim endDate As DateTime = dtpEndDate.Value
 
         Dim actionTypeFilter As String = ""
         If cbActionType.SelectedItem IsNot Nothing AndAlso Not String.IsNullOrEmpty(cbActionType.SelectedItem.ToString()) Then
@@ -455,14 +501,14 @@ WHERE transaction_id = @transactionId AND status = 'returned'
         LoadDailyReport(startDate, endDate, actionTypeFilter)
     End Sub
 
+
     Private Sub LoadActionTypeOptions()
         cbActionType.Items.Clear()
-        ' Add the action types you want for filtering
+        ' "All" includes all action types except pending (which is always excluded by the query)
+        cbActionType.Items.Add("All")
         cbActionType.Items.Add("approved")
         cbActionType.Items.Add("denied")
         cbActionType.Items.Add("returned")
-        cbActionType.Items.Add("pending")
-        ' Optionally, set a default selected index
         cbActionType.SelectedIndex = 0
     End Sub
 
