@@ -234,5 +234,8 @@
   <ItemGroup>
     <None Include="Resources\policeman.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password %281%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
