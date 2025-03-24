@@ -139,9 +139,7 @@
     <Compile Include="AdminStaffDashboardForm.Designer.vb">
       <DependentUpon>AdminStaffDashboardForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="AdminStaffDashboardForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="AdminStaffDashboardForm.vb" />
     <Compile Include="BaseForm.vb">
       <SubType>Form</SubType>
     </Compile>
