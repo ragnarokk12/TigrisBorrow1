@@ -1,7 +1,10 @@
-﻿Imports MySql.Data.MySqlClient
+﻿Imports System.Security.Cryptography
+Imports System.Text
+Imports MySql.Data.MySqlClient
 
 Public Class UserDashboardForm
     Private WithEvents Timer1 As New Timer()
+    Private conn As MySqlConnection = Common.getDBConnection()
 
 
     Private Sub UserDashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -20,7 +23,78 @@ Public Class UserDashboardForm
         Timer1.Interval = 1000 ' 1 seconds
         Timer1.Enabled = True
         Timer1.Start()
+
+        ' Check if user is forced to change password.
+        If UserMustChangePassword(Common.CurrentUserId) Then
+            MessageBox.Show("Your password has been reset by an administrator. You must change your password.", "Change Password", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Dim changeForm As New ChangePasswordForm()
+            ' Loop until the password is successfully changed.
+            Do
+                If changeForm.ShowDialog(Me) = DialogResult.OK Then
+                    Dim newPwd As String = changeForm.NewPasswordText
+                    If UpdateUserPassword(Common.CurrentUserId, newPwd) Then
+                        MessageBox.Show("Password changed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Exit Do
+                    Else
+                        MessageBox.Show("Failed to update password. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
+                Else
+                    ' Optionally, you can force the user to change by not allowing cancelation.
+                    MessageBox.Show("You must change your password to continue.", "Action Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            Loop
+        End If
     End Sub
+
+    ' Checks if the current user is forced to change password.
+    Private Function UserMustChangePassword(userId As String) As Boolean
+        Dim mustChange As Boolean = False
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+            Dim query As String = "SELECT force_password_change FROM users WHERE user_id = @userId"
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@userId", userId)
+                Dim result = cmd.ExecuteScalar()
+                If result IsNot Nothing AndAlso Boolean.TryParse(result.ToString(), mustChange) Then
+                    Return mustChange
+                End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error checking password change requirement: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+        Return mustChange
+    End Function
+
+    ' Updates the user's password, clears the force change flag, and updates last_password_change.
+    Private Function UpdateUserPassword(userId As String, newPassword As String) As Boolean
+        Dim hashedPassword As String = HashPassword(newPassword)
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+            Dim query As String = "UPDATE users SET password_hash = @hashedPassword, last_password_change = NOW(), force_password_change = FALSE WHERE user_id = @userId"
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@hashedPassword", hashedPassword)
+                cmd.Parameters.AddWithValue("@userId", userId)
+                Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+                Return rowsAffected > 0
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error updating password: " & ex.Message)
+            Return False
+        Finally
+            conn.Close()
+        End Try
+    End Function
+
+    Private Function HashPassword(password As String) As String
+        Using sha256 As SHA256 = sha256.Create()
+            Dim bytes As Byte() = Encoding.UTF8.GetBytes(password)
+            Dim hash As Byte() = sha256.ComputeHash(bytes)
+            Return BitConverter.ToString(hash).Replace("-", "").ToLower()
+        End Using
+    End Function
+
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         CheckForOverdueRequests()  ' Check and update overdue requests.

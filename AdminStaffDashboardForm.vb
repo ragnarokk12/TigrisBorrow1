@@ -448,22 +448,22 @@ Public Class AdminStaffDashboardForm
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to reset the password for account: " & selectedUserId & "?", "Confirm Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result <> DialogResult.Yes Then Return
 
-
         ' Define the default password and hash it.
         Dim defaultPassword As String = "password123"
         Dim hashedPassword As String = HashPassword(defaultPassword)
 
-        ' Update the user's password in the database.
+        ' Update the user's password, last_password_change, and force a password change.
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
-            Dim query As String = "UPDATE users SET password_hash = @hashedPassword WHERE user_id = @userId"
+            Dim query As String = "UPDATE users SET password_hash = @hashedPassword, last_password_change = NOW(), force_password_change = TRUE WHERE user_id = @userId"
             Using cmd As New MySqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@hashedPassword", hashedPassword)
                 cmd.Parameters.AddWithValue("@userId", selectedUserId)
                 Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
                 If rowsAffected > 0 Then
+                    ' Log the admin action.
+                    Common.LogAction("RESET_PASSWORD", selectedUserId, "USER", "Password reset to default by admin.")
                     MessageBox.Show("Password reset successfully. The default password is: " & defaultPassword, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    ' Optionally, log the action here if needed.
                 Else
                     MessageBox.Show("Failed to reset the password. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
@@ -474,6 +474,7 @@ Public Class AdminStaffDashboardForm
             If conn.State <> ConnectionState.Closed Then conn.Close()
         End Try
     End Sub
+
 
     Private Function HashPassword(password As String) As String
         Using sha256 As SHA256 = SHA256.Create()
