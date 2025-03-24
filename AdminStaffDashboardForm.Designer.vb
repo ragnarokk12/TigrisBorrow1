@@ -44,31 +44,18 @@ Partial Class AdminStaffDashboardForm
         Me.tbcAdminDashboard = New Guna.UI2.WinForms.Guna2TabControl()
         Me.tbpAccount = New System.Windows.Forms.TabPage()
         Me.Guna2Separator3 = New Guna.UI2.WinForms.Guna2Separator()
-        Me.btnResetPassword = New Guna.UI2.WinForms.Guna2Button()
         Me.cbAccountRoleFilter = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.txtSearchAccount = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.btnEditAccount = New Guna.UI2.WinForms.Guna2Button()
         Me.dgvAccount = New Guna.UI2.WinForms.Guna2DataGridView()
-        Me.btnNewAccount = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2HtmlLabel5 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.tbpInventory = New System.Windows.Forms.TabPage()
-        Me.btnRefreshInventory = New Guna.UI2.WinForms.Guna2Button()
         Me.lblFilterSummary = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.btnClearFilters = New Guna.UI2.WinForms.Guna2Button()
         Me.cbCategoryFilter = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.txtSearchInv = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.btnEditQuantity = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Separator2 = New Guna.UI2.WinForms.Guna2Separator()
-        Me.btnDeleteItems = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnAdditem = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2HtmlLabel4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.dgvInventory = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.tbpDeployment = New System.Windows.Forms.TabPage()
         Me.dgvBorrowRequests = New Guna.UI2.WinForms.Guna2DataGridView()
-        Me.btnRefreshDeploy = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCheckReturn = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnDeny = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnApprove = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Separator1 = New Guna.UI2.WinForms.Guna2Separator()
         Me.tbcReport = New System.Windows.Forms.TabPage()
         Me.tbcDataReport = New Guna.UI2.WinForms.Guna2TabControl()
@@ -82,7 +69,6 @@ Partial Class AdminStaffDashboardForm
         Me.dgvMonthlyDataReport = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.cbYear = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.cbMonth = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.btnGenerateReport = New Guna.UI2.WinForms.Guna2Button()
         Me.lblDataReport = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblYourName = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2CustomGradientPanel1 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
@@ -91,6 +77,7 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2HtmlLabel3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel7 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.pnlControlBox = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2HtmlLabel6 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2ControlBox2 = New Guna.UI2.WinForms.Guna2ControlBox()
@@ -98,10 +85,23 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2AnimateWindow1 = New Guna.UI2.WinForms.Guna2AnimateWindow(Me.components)
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
-        Me.Guna2HtmlLabel7 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
+        Me.btnResetPassword = New Guna.UI2.WinForms.Guna2Button()
         Me.btnClearAccountFilters = New Guna.UI2.WinForms.Guna2Button()
+        Me.txtSearchAccount = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.btnEditAccount = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnNewAccount = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnRefreshInventory = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnClearFilters = New Guna.UI2.WinForms.Guna2Button()
+        Me.txtSearchInv = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.btnEditQuantity = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnDeleteItems = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnAdditem = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnRefreshDeploy = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnDeny = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnApprove = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnGenerateReport = New Guna.UI2.WinForms.Guna2Button()
         Me.tbcAdminDashboard.SuspendLayout()
         Me.tbpAccount.SuspendLayout()
         CType(Me.dgvAccount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -201,27 +201,10 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2Separator3.Size = New System.Drawing.Size(931, 10)
         Me.Guna2Separator3.TabIndex = 14
         '
-        'btnResetPassword
-        '
-        Me.btnResetPassword.BorderRadius = 10
-        Me.btnResetPassword.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnResetPassword.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnResetPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnResetPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnResetPassword.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnResetPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnResetPassword.ForeColor = System.Drawing.Color.Black
-        Me.btnResetPassword.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnResetPassword.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnResetPassword.Location = New System.Drawing.Point(154, 558)
-        Me.btnResetPassword.Name = "btnResetPassword"
-        Me.btnResetPassword.Size = New System.Drawing.Size(141, 36)
-        Me.btnResetPassword.TabIndex = 13
-        Me.btnResetPassword.Text = "Reset Password"
-        '
         'cbAccountRoleFilter
         '
         Me.cbAccountRoleFilter.BackColor = System.Drawing.Color.Transparent
+        Me.cbAccountRoleFilter.BorderColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.cbAccountRoleFilter.BorderRadius = 10
         Me.cbAccountRoleFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.cbAccountRoleFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -234,43 +217,6 @@ Partial Class AdminStaffDashboardForm
         Me.cbAccountRoleFilter.Name = "cbAccountRoleFilter"
         Me.cbAccountRoleFilter.Size = New System.Drawing.Size(140, 36)
         Me.cbAccountRoleFilter.TabIndex = 11
-        '
-        'txtSearchAccount
-        '
-        Me.txtSearchAccount.BorderRadius = 10
-        Me.txtSearchAccount.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtSearchAccount.DefaultText = ""
-        Me.txtSearchAccount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtSearchAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtSearchAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtSearchAccount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtSearchAccount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearchAccount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.txtSearchAccount.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearchAccount.Location = New System.Drawing.Point(7, 48)
-        Me.txtSearchAccount.Name = "txtSearchAccount"
-        Me.txtSearchAccount.PlaceholderText = "Search Account"
-        Me.txtSearchAccount.SelectedText = ""
-        Me.txtSearchAccount.Size = New System.Drawing.Size(664, 36)
-        Me.txtSearchAccount.TabIndex = 10
-        '
-        'btnEditAccount
-        '
-        Me.btnEditAccount.BorderRadius = 10
-        Me.btnEditAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnEditAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnEditAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnEditAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnEditAccount.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnEditAccount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnEditAccount.ForeColor = System.Drawing.Color.Black
-        Me.btnEditAccount.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnEditAccount.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnEditAccount.Location = New System.Drawing.Point(7, 558)
-        Me.btnEditAccount.Name = "btnEditAccount"
-        Me.btnEditAccount.Size = New System.Drawing.Size(141, 36)
-        Me.btnEditAccount.TabIndex = 9
-        Me.btnEditAccount.Text = "Edit"
         '
         'dgvAccount
         '
@@ -323,24 +269,6 @@ Partial Class AdminStaffDashboardForm
         Me.dgvAccount.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvAccount.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
         '
-        'btnNewAccount
-        '
-        Me.btnNewAccount.BorderRadius = 10
-        Me.btnNewAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnNewAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnNewAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnNewAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnNewAccount.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnNewAccount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnNewAccount.ForeColor = System.Drawing.Color.Black
-        Me.btnNewAccount.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnNewAccount.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnNewAccount.Location = New System.Drawing.Point(797, 558)
-        Me.btnNewAccount.Name = "btnNewAccount"
-        Me.btnNewAccount.Size = New System.Drawing.Size(141, 36)
-        Me.btnNewAccount.TabIndex = 1
-        Me.btnNewAccount.Text = "Create New Account"
-        '
         'Guna2HtmlLabel5
         '
         Me.Guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent
@@ -356,39 +284,21 @@ Partial Class AdminStaffDashboardForm
         Me.tbpInventory.BackColor = System.Drawing.Color.LightGray
         Me.tbpInventory.Controls.Add(Me.btnRefreshInventory)
         Me.tbpInventory.Controls.Add(Me.lblFilterSummary)
-        Me.tbpInventory.Controls.Add(Me.btnClearFilters)
         Me.tbpInventory.Controls.Add(Me.cbCategoryFilter)
-        Me.tbpInventory.Controls.Add(Me.txtSearchInv)
-        Me.tbpInventory.Controls.Add(Me.btnEditQuantity)
         Me.tbpInventory.Controls.Add(Me.Guna2Separator2)
-        Me.tbpInventory.Controls.Add(Me.btnDeleteItems)
-        Me.tbpInventory.Controls.Add(Me.btnAdditem)
         Me.tbpInventory.Controls.Add(Me.Guna2HtmlLabel4)
         Me.tbpInventory.Controls.Add(Me.dgvInventory)
+        Me.tbpInventory.Controls.Add(Me.btnClearFilters)
+        Me.tbpInventory.Controls.Add(Me.txtSearchInv)
+        Me.tbpInventory.Controls.Add(Me.btnEditQuantity)
+        Me.tbpInventory.Controls.Add(Me.btnDeleteItems)
+        Me.tbpInventory.Controls.Add(Me.btnAdditem)
         Me.tbpInventory.Location = New System.Drawing.Point(184, 4)
         Me.tbpInventory.Name = "tbpInventory"
         Me.tbpInventory.Padding = New System.Windows.Forms.Padding(3)
         Me.tbpInventory.Size = New System.Drawing.Size(945, 600)
         Me.tbpInventory.TabIndex = 1
         Me.tbpInventory.Text = "Inventory"
-        '
-        'btnRefreshInventory
-        '
-        Me.btnRefreshInventory.BorderRadius = 10
-        Me.btnRefreshInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnRefreshInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnRefreshInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnRefreshInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnRefreshInventory.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnRefreshInventory.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnRefreshInventory.ForeColor = System.Drawing.Color.Black
-        Me.btnRefreshInventory.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnRefreshInventory.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnRefreshInventory.Location = New System.Drawing.Point(826, 48)
-        Me.btnRefreshInventory.Name = "btnRefreshInventory"
-        Me.btnRefreshInventory.Size = New System.Drawing.Size(113, 36)
-        Me.btnRefreshInventory.TabIndex = 16
-        Me.btnRefreshInventory.Text = "Refresh"
         '
         'lblFilterSummary
         '
@@ -398,24 +308,6 @@ Partial Class AdminStaffDashboardForm
         Me.lblFilterSummary.Size = New System.Drawing.Size(30, 15)
         Me.lblFilterSummary.TabIndex = 15
         Me.lblFilterSummary.Text = "Filters"
-        '
-        'btnClearFilters
-        '
-        Me.btnClearFilters.BorderRadius = 10
-        Me.btnClearFilters.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnClearFilters.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnClearFilters.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnClearFilters.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnClearFilters.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnClearFilters.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnClearFilters.ForeColor = System.Drawing.Color.Black
-        Me.btnClearFilters.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnClearFilters.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnClearFilters.Location = New System.Drawing.Point(654, 48)
-        Me.btnClearFilters.Name = "btnClearFilters"
-        Me.btnClearFilters.Size = New System.Drawing.Size(113, 36)
-        Me.btnClearFilters.TabIndex = 14
-        Me.btnClearFilters.Text = "Clear Filter"
         '
         'cbCategoryFilter
         '
@@ -433,43 +325,6 @@ Partial Class AdminStaffDashboardForm
         Me.cbCategoryFilter.Size = New System.Drawing.Size(140, 36)
         Me.cbCategoryFilter.TabIndex = 13
         '
-        'txtSearchInv
-        '
-        Me.txtSearchInv.BorderRadius = 10
-        Me.txtSearchInv.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtSearchInv.DefaultText = ""
-        Me.txtSearchInv.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtSearchInv.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtSearchInv.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtSearchInv.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtSearchInv.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearchInv.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.txtSearchInv.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearchInv.Location = New System.Drawing.Point(7, 48)
-        Me.txtSearchInv.Name = "txtSearchInv"
-        Me.txtSearchInv.PlaceholderText = "Search Inventory"
-        Me.txtSearchInv.SelectedText = ""
-        Me.txtSearchInv.Size = New System.Drawing.Size(495, 36)
-        Me.txtSearchInv.TabIndex = 12
-        '
-        'btnEditQuantity
-        '
-        Me.btnEditQuantity.BorderRadius = 10
-        Me.btnEditQuantity.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnEditQuantity.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnEditQuantity.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnEditQuantity.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnEditQuantity.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnEditQuantity.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnEditQuantity.ForeColor = System.Drawing.Color.Black
-        Me.btnEditQuantity.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnEditQuantity.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnEditQuantity.Location = New System.Drawing.Point(834, 565)
-        Me.btnEditQuantity.Name = "btnEditQuantity"
-        Me.btnEditQuantity.Size = New System.Drawing.Size(104, 29)
-        Me.btnEditQuantity.TabIndex = 3
-        Me.btnEditQuantity.Text = "Edit"
-        '
         'Guna2Separator2
         '
         Me.Guna2Separator2.BackColor = System.Drawing.Color.Transparent
@@ -478,42 +333,6 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2Separator2.Name = "Guna2Separator2"
         Me.Guna2Separator2.Size = New System.Drawing.Size(930, 10)
         Me.Guna2Separator2.TabIndex = 7
-        '
-        'btnDeleteItems
-        '
-        Me.btnDeleteItems.BorderRadius = 10
-        Me.btnDeleteItems.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnDeleteItems.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnDeleteItems.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnDeleteItems.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnDeleteItems.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnDeleteItems.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnDeleteItems.ForeColor = System.Drawing.Color.Black
-        Me.btnDeleteItems.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnDeleteItems.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnDeleteItems.Location = New System.Drawing.Point(724, 565)
-        Me.btnDeleteItems.Name = "btnDeleteItems"
-        Me.btnDeleteItems.Size = New System.Drawing.Size(104, 29)
-        Me.btnDeleteItems.TabIndex = 2
-        Me.btnDeleteItems.Text = "Delete Items"
-        '
-        'btnAdditem
-        '
-        Me.btnAdditem.BorderRadius = 10
-        Me.btnAdditem.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnAdditem.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnAdditem.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnAdditem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnAdditem.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnAdditem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnAdditem.ForeColor = System.Drawing.Color.Black
-        Me.btnAdditem.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnAdditem.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnAdditem.Location = New System.Drawing.Point(614, 565)
-        Me.btnAdditem.Name = "btnAdditem"
-        Me.btnAdditem.Size = New System.Drawing.Size(104, 29)
-        Me.btnAdditem.TabIndex = 1
-        Me.btnAdditem.Text = "Add Items"
         '
         'Guna2HtmlLabel4
         '
@@ -578,12 +397,12 @@ Partial Class AdminStaffDashboardForm
         'tbpDeployment
         '
         Me.tbpDeployment.Controls.Add(Me.dgvBorrowRequests)
-        Me.tbpDeployment.Controls.Add(Me.btnRefreshDeploy)
         Me.tbpDeployment.Controls.Add(Me.btnCheckReturn)
-        Me.tbpDeployment.Controls.Add(Me.btnDeny)
-        Me.tbpDeployment.Controls.Add(Me.btnApprove)
         Me.tbpDeployment.Controls.Add(Me.Guna2Separator1)
         Me.tbpDeployment.Controls.Add(Me.Guna2HtmlLabel2)
+        Me.tbpDeployment.Controls.Add(Me.btnRefreshDeploy)
+        Me.tbpDeployment.Controls.Add(Me.btnDeny)
+        Me.tbpDeployment.Controls.Add(Me.btnApprove)
         Me.tbpDeployment.Location = New System.Drawing.Point(184, 4)
         Me.tbpDeployment.Name = "tbpDeployment"
         Me.tbpDeployment.Padding = New System.Windows.Forms.Padding(3)
@@ -642,24 +461,6 @@ Partial Class AdminStaffDashboardForm
         Me.dgvBorrowRequests.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvBorrowRequests.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
         '
-        'btnRefreshDeploy
-        '
-        Me.btnRefreshDeploy.BorderRadius = 10
-        Me.btnRefreshDeploy.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnRefreshDeploy.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnRefreshDeploy.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnRefreshDeploy.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnRefreshDeploy.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnRefreshDeploy.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnRefreshDeploy.ForeColor = System.Drawing.Color.Black
-        Me.btnRefreshDeploy.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnRefreshDeploy.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnRefreshDeploy.Location = New System.Drawing.Point(824, 6)
-        Me.btnRefreshDeploy.Name = "btnRefreshDeploy"
-        Me.btnRefreshDeploy.Size = New System.Drawing.Size(114, 39)
-        Me.btnRefreshDeploy.TabIndex = 6
-        Me.btnRefreshDeploy.Text = "Refresh"
-        '
         'btnCheckReturn
         '
         Me.btnCheckReturn.BorderRadius = 10
@@ -677,42 +478,6 @@ Partial Class AdminStaffDashboardForm
         Me.btnCheckReturn.Size = New System.Drawing.Size(114, 39)
         Me.btnCheckReturn.TabIndex = 5
         Me.btnCheckReturn.Text = "Check Return"
-        '
-        'btnDeny
-        '
-        Me.btnDeny.BorderRadius = 10
-        Me.btnDeny.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnDeny.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnDeny.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnDeny.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnDeny.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnDeny.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnDeny.ForeColor = System.Drawing.Color.Black
-        Me.btnDeny.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnDeny.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnDeny.Location = New System.Drawing.Point(130, 555)
-        Me.btnDeny.Name = "btnDeny"
-        Me.btnDeny.Size = New System.Drawing.Size(114, 39)
-        Me.btnDeny.TabIndex = 4
-        Me.btnDeny.Text = "Deny"
-        '
-        'btnApprove
-        '
-        Me.btnApprove.BorderRadius = 10
-        Me.btnApprove.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnApprove.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnApprove.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnApprove.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnApprove.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnApprove.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnApprove.ForeColor = System.Drawing.Color.Black
-        Me.btnApprove.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnApprove.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnApprove.Location = New System.Drawing.Point(10, 555)
-        Me.btnApprove.Name = "btnApprove"
-        Me.btnApprove.Size = New System.Drawing.Size(114, 39)
-        Me.btnApprove.TabIndex = 3
-        Me.btnApprove.Text = "Approve"
         '
         'Guna2Separator1
         '
@@ -974,24 +739,6 @@ Partial Class AdminStaffDashboardForm
         Me.cbMonth.Size = New System.Drawing.Size(140, 36)
         Me.cbMonth.TabIndex = 1
         '
-        'btnGenerateReport
-        '
-        Me.btnGenerateReport.BorderRadius = 10
-        Me.btnGenerateReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnGenerateReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnGenerateReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnGenerateReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnGenerateReport.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnGenerateReport.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnGenerateReport.ForeColor = System.Drawing.Color.Black
-        Me.btnGenerateReport.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnGenerateReport.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnGenerateReport.Location = New System.Drawing.Point(813, 3)
-        Me.btnGenerateReport.Name = "btnGenerateReport"
-        Me.btnGenerateReport.Size = New System.Drawing.Size(125, 28)
-        Me.btnGenerateReport.TabIndex = 2
-        Me.btnGenerateReport.Text = "Generate Report"
-        '
         'lblDataReport
         '
         Me.lblDataReport.BackColor = System.Drawing.Color.Transparent
@@ -1082,6 +829,17 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2HtmlLabel1.TabIndex = 0
         Me.Guna2HtmlLabel1.Text = "Guna2HtmlLabel1"
         '
+        'Guna2HtmlLabel7
+        '
+        Me.Guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel7.Font = New System.Drawing.Font("Sifonn", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
+        Me.Guna2HtmlLabel7.Location = New System.Drawing.Point(19, 59)
+        Me.Guna2HtmlLabel7.Name = "Guna2HtmlLabel7"
+        Me.Guna2HtmlLabel7.Size = New System.Drawing.Size(119, 24)
+        Me.Guna2HtmlLabel7.TabIndex = 12
+        Me.Guna2HtmlLabel7.Text = "Administration"
+        '
         'pnlControlBox
         '
         Me.pnlControlBox.BackColor = System.Drawing.Color.FromArgb(CType(CType(150, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
@@ -1137,17 +895,6 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2DragControl1.TargetControl = Me.pnlControlBox
         Me.Guna2DragControl1.UseTransparentDrag = True
         '
-        'Guna2HtmlLabel7
-        '
-        Me.Guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel7.Font = New System.Drawing.Font("Sifonn", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
-        Me.Guna2HtmlLabel7.Location = New System.Drawing.Point(19, 59)
-        Me.Guna2HtmlLabel7.Name = "Guna2HtmlLabel7"
-        Me.Guna2HtmlLabel7.Size = New System.Drawing.Size(119, 24)
-        Me.Guna2HtmlLabel7.TabIndex = 12
-        Me.Guna2HtmlLabel7.Text = "Administration"
-        '
         'btnLogout
         '
         Me.btnLogout.BorderRadius = 10
@@ -1179,6 +926,25 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2PictureBox1.TabStop = False
         Me.Guna2PictureBox1.UseTransparentBackground = True
         '
+        'btnResetPassword
+        '
+        Me.btnResetPassword.BorderRadius = 10
+        Me.btnResetPassword.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnResetPassword.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnResetPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnResetPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnResetPassword.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnResetPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnResetPassword.ForeColor = System.Drawing.Color.Black
+        Me.btnResetPassword.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnResetPassword.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnResetPassword.Image = Global.TigrisBorrow.My.Resources.Resources.synchronize
+        Me.btnResetPassword.Location = New System.Drawing.Point(154, 558)
+        Me.btnResetPassword.Name = "btnResetPassword"
+        Me.btnResetPassword.Size = New System.Drawing.Size(141, 36)
+        Me.btnResetPassword.TabIndex = 13
+        Me.btnResetPassword.Text = "Reset Password"
+        '
         'btnClearAccountFilters
         '
         Me.btnClearAccountFilters.BorderRadius = 10
@@ -1197,6 +963,264 @@ Partial Class AdminStaffDashboardForm
         Me.btnClearAccountFilters.Size = New System.Drawing.Size(115, 36)
         Me.btnClearAccountFilters.TabIndex = 12
         Me.btnClearAccountFilters.Text = "Clear Filter"
+        '
+        'txtSearchAccount
+        '
+        Me.txtSearchAccount.Animated = True
+        Me.txtSearchAccount.BorderColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
+        Me.txtSearchAccount.BorderRadius = 10
+        Me.txtSearchAccount.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSearchAccount.DefaultText = ""
+        Me.txtSearchAccount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtSearchAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtSearchAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearchAccount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearchAccount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearchAccount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtSearchAccount.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearchAccount.IconLeft = Global.TigrisBorrow.My.Resources.Resources.search
+        Me.txtSearchAccount.IconLeftOffset = New System.Drawing.Point(3, 0)
+        Me.txtSearchAccount.IconLeftSize = New System.Drawing.Size(17, 17)
+        Me.txtSearchAccount.Location = New System.Drawing.Point(7, 48)
+        Me.txtSearchAccount.Name = "txtSearchAccount"
+        Me.txtSearchAccount.PlaceholderText = "Search Account"
+        Me.txtSearchAccount.SelectedText = ""
+        Me.txtSearchAccount.Size = New System.Drawing.Size(664, 36)
+        Me.txtSearchAccount.TabIndex = 10
+        '
+        'btnEditAccount
+        '
+        Me.btnEditAccount.BorderRadius = 10
+        Me.btnEditAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnEditAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnEditAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnEditAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnEditAccount.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnEditAccount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnEditAccount.ForeColor = System.Drawing.Color.Black
+        Me.btnEditAccount.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnEditAccount.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnEditAccount.Image = Global.TigrisBorrow.My.Resources.Resources.editing
+        Me.btnEditAccount.Location = New System.Drawing.Point(7, 558)
+        Me.btnEditAccount.Name = "btnEditAccount"
+        Me.btnEditAccount.Size = New System.Drawing.Size(141, 36)
+        Me.btnEditAccount.TabIndex = 9
+        Me.btnEditAccount.Text = "Edit"
+        '
+        'btnNewAccount
+        '
+        Me.btnNewAccount.BorderRadius = 10
+        Me.btnNewAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnNewAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnNewAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnNewAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnNewAccount.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnNewAccount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnNewAccount.ForeColor = System.Drawing.Color.Black
+        Me.btnNewAccount.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnNewAccount.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnNewAccount.Image = Global.TigrisBorrow.My.Resources.Resources.people
+        Me.btnNewAccount.Location = New System.Drawing.Point(754, 558)
+        Me.btnNewAccount.Name = "btnNewAccount"
+        Me.btnNewAccount.Size = New System.Drawing.Size(184, 36)
+        Me.btnNewAccount.TabIndex = 1
+        Me.btnNewAccount.Text = "Create New Account"
+        '
+        'btnRefreshInventory
+        '
+        Me.btnRefreshInventory.BorderRadius = 10
+        Me.btnRefreshInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnRefreshInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnRefreshInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnRefreshInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnRefreshInventory.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnRefreshInventory.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnRefreshInventory.ForeColor = System.Drawing.Color.Black
+        Me.btnRefreshInventory.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnRefreshInventory.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnRefreshInventory.Image = Global.TigrisBorrow.My.Resources.Resources.refresh
+        Me.btnRefreshInventory.Location = New System.Drawing.Point(826, 48)
+        Me.btnRefreshInventory.Name = "btnRefreshInventory"
+        Me.btnRefreshInventory.Size = New System.Drawing.Size(113, 36)
+        Me.btnRefreshInventory.TabIndex = 16
+        Me.btnRefreshInventory.Text = "Refresh"
+        '
+        'btnClearFilters
+        '
+        Me.btnClearFilters.BorderRadius = 10
+        Me.btnClearFilters.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnClearFilters.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnClearFilters.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnClearFilters.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnClearFilters.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnClearFilters.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnClearFilters.ForeColor = System.Drawing.Color.Black
+        Me.btnClearFilters.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnClearFilters.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnClearFilters.Image = Global.TigrisBorrow.My.Resources.Resources.filter
+        Me.btnClearFilters.Location = New System.Drawing.Point(654, 48)
+        Me.btnClearFilters.Name = "btnClearFilters"
+        Me.btnClearFilters.Size = New System.Drawing.Size(113, 36)
+        Me.btnClearFilters.TabIndex = 14
+        Me.btnClearFilters.Text = "Clear Filter"
+        '
+        'txtSearchInv
+        '
+        Me.txtSearchInv.BorderRadius = 10
+        Me.txtSearchInv.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSearchInv.DefaultText = ""
+        Me.txtSearchInv.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtSearchInv.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtSearchInv.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearchInv.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearchInv.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearchInv.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtSearchInv.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearchInv.IconLeft = Global.TigrisBorrow.My.Resources.Resources.search
+        Me.txtSearchInv.IconLeftOffset = New System.Drawing.Point(3, 0)
+        Me.txtSearchInv.IconLeftSize = New System.Drawing.Size(17, 17)
+        Me.txtSearchInv.Location = New System.Drawing.Point(7, 48)
+        Me.txtSearchInv.Name = "txtSearchInv"
+        Me.txtSearchInv.PlaceholderText = "Search Inventory"
+        Me.txtSearchInv.SelectedText = ""
+        Me.txtSearchInv.Size = New System.Drawing.Size(495, 36)
+        Me.txtSearchInv.TabIndex = 12
+        '
+        'btnEditQuantity
+        '
+        Me.btnEditQuantity.BorderRadius = 10
+        Me.btnEditQuantity.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnEditQuantity.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnEditQuantity.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnEditQuantity.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnEditQuantity.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnEditQuantity.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnEditQuantity.ForeColor = System.Drawing.Color.Black
+        Me.btnEditQuantity.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnEditQuantity.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnEditQuantity.Image = Global.TigrisBorrow.My.Resources.Resources.editing
+        Me.btnEditQuantity.ImageSize = New System.Drawing.Size(17, 17)
+        Me.btnEditQuantity.Location = New System.Drawing.Point(834, 565)
+        Me.btnEditQuantity.Name = "btnEditQuantity"
+        Me.btnEditQuantity.Size = New System.Drawing.Size(104, 29)
+        Me.btnEditQuantity.TabIndex = 3
+        Me.btnEditQuantity.Text = "Edit"
+        '
+        'btnDeleteItems
+        '
+        Me.btnDeleteItems.BorderRadius = 10
+        Me.btnDeleteItems.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnDeleteItems.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnDeleteItems.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnDeleteItems.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnDeleteItems.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnDeleteItems.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnDeleteItems.ForeColor = System.Drawing.Color.Black
+        Me.btnDeleteItems.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnDeleteItems.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnDeleteItems.Image = Global.TigrisBorrow.My.Resources.Resources.bin
+        Me.btnDeleteItems.ImageSize = New System.Drawing.Size(17, 17)
+        Me.btnDeleteItems.Location = New System.Drawing.Point(724, 565)
+        Me.btnDeleteItems.Name = "btnDeleteItems"
+        Me.btnDeleteItems.Size = New System.Drawing.Size(104, 29)
+        Me.btnDeleteItems.TabIndex = 2
+        Me.btnDeleteItems.Text = "Delete Items"
+        '
+        'btnAdditem
+        '
+        Me.btnAdditem.BorderRadius = 10
+        Me.btnAdditem.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnAdditem.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnAdditem.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnAdditem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnAdditem.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnAdditem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnAdditem.ForeColor = System.Drawing.Color.Black
+        Me.btnAdditem.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnAdditem.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnAdditem.Image = Global.TigrisBorrow.My.Resources.Resources.add
+        Me.btnAdditem.ImageSize = New System.Drawing.Size(17, 17)
+        Me.btnAdditem.Location = New System.Drawing.Point(614, 565)
+        Me.btnAdditem.Name = "btnAdditem"
+        Me.btnAdditem.Size = New System.Drawing.Size(104, 29)
+        Me.btnAdditem.TabIndex = 1
+        Me.btnAdditem.Text = "Add Items"
+        '
+        'btnRefreshDeploy
+        '
+        Me.btnRefreshDeploy.BorderRadius = 10
+        Me.btnRefreshDeploy.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnRefreshDeploy.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnRefreshDeploy.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnRefreshDeploy.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnRefreshDeploy.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnRefreshDeploy.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnRefreshDeploy.ForeColor = System.Drawing.Color.Black
+        Me.btnRefreshDeploy.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnRefreshDeploy.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnRefreshDeploy.Image = Global.TigrisBorrow.My.Resources.Resources.refresh1
+        Me.btnRefreshDeploy.Location = New System.Drawing.Point(824, 6)
+        Me.btnRefreshDeploy.Name = "btnRefreshDeploy"
+        Me.btnRefreshDeploy.Size = New System.Drawing.Size(114, 39)
+        Me.btnRefreshDeploy.TabIndex = 6
+        Me.btnRefreshDeploy.Text = "Refresh"
+        '
+        'btnDeny
+        '
+        Me.btnDeny.BorderRadius = 10
+        Me.btnDeny.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnDeny.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnDeny.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnDeny.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnDeny.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnDeny.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnDeny.ForeColor = System.Drawing.Color.Black
+        Me.btnDeny.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnDeny.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnDeny.Image = Global.TigrisBorrow.My.Resources.Resources.delete
+        Me.btnDeny.Location = New System.Drawing.Point(130, 555)
+        Me.btnDeny.Name = "btnDeny"
+        Me.btnDeny.Size = New System.Drawing.Size(114, 39)
+        Me.btnDeny.TabIndex = 4
+        Me.btnDeny.Text = "Deny"
+        '
+        'btnApprove
+        '
+        Me.btnApprove.BorderRadius = 10
+        Me.btnApprove.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnApprove.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnApprove.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnApprove.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnApprove.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnApprove.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnApprove.ForeColor = System.Drawing.Color.Black
+        Me.btnApprove.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnApprove.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnApprove.Image = Global.TigrisBorrow.My.Resources.Resources.check
+        Me.btnApprove.Location = New System.Drawing.Point(10, 555)
+        Me.btnApprove.Name = "btnApprove"
+        Me.btnApprove.Size = New System.Drawing.Size(114, 39)
+        Me.btnApprove.TabIndex = 3
+        Me.btnApprove.Text = "Approve"
+        '
+        'btnGenerateReport
+        '
+        Me.btnGenerateReport.BorderRadius = 10
+        Me.btnGenerateReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnGenerateReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnGenerateReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnGenerateReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnGenerateReport.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnGenerateReport.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnGenerateReport.ForeColor = System.Drawing.Color.Black
+        Me.btnGenerateReport.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnGenerateReport.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnGenerateReport.Image = Global.TigrisBorrow.My.Resources.Resources.generate
+        Me.btnGenerateReport.Location = New System.Drawing.Point(803, 3)
+        Me.btnGenerateReport.Name = "btnGenerateReport"
+        Me.btnGenerateReport.Size = New System.Drawing.Size(135, 28)
+        Me.btnGenerateReport.TabIndex = 2
+        Me.btnGenerateReport.Text = "Generate Report"
         '
         'AdminStaffDashboardForm
         '
