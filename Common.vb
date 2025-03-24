@@ -11,10 +11,10 @@ Public Class Common
     ' Function to get the database connection
     Public Shared Function getDBConnection() As MySqlConnection
         ' Always create a new connection instance.
-        Return New MySqlConnection("Server=localhost;" &
+        Return New MySqlConnection("Server=192.168.1.51;" &
                                "Database=tigris;" &
-                               "User ID=root;" &
-                               "Password=17boknoy17;" &
+                               "User ID=eksi;" &
+                               "Password=@Masterzed21;" &
                                "Port=3306;" &
                                "Command Timeout=600;")
     End Function
