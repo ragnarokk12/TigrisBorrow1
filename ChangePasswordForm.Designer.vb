@@ -34,6 +34,7 @@ Partial Class ChangePasswordForm
         Me.lblCriteriaLength = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblPasswordMatch = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.chkShowPassword = New Guna.UI2.WinForms.Guna2CheckBox()
+        Me.lblEmojiError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.SuspendLayout()
         '
         'lblNewPassword
@@ -68,7 +69,7 @@ Partial Class ChangePasswordForm
         Me.txtNewPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtNewPassword.Location = New System.Drawing.Point(281, 73)
         Me.txtNewPassword.Name = "txtNewPassword"
-        Me.txtNewPassword.PlaceholderText = ""
+        Me.txtNewPassword.PlaceholderText = "Create a strong password"
         Me.txtNewPassword.SelectedText = ""
         Me.txtNewPassword.Size = New System.Drawing.Size(200, 36)
         Me.txtNewPassword.TabIndex = 2
@@ -88,7 +89,7 @@ Partial Class ChangePasswordForm
         Me.txtConfirmPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtConfirmPassword.Location = New System.Drawing.Point(281, 196)
         Me.txtConfirmPassword.Name = "txtConfirmPassword"
-        Me.txtConfirmPassword.PlaceholderText = ""
+        Me.txtConfirmPassword.PlaceholderText = "Re-enter your password"
         Me.txtConfirmPassword.SelectedText = ""
         Me.txtConfirmPassword.Size = New System.Drawing.Size(200, 36)
         Me.txtConfirmPassword.TabIndex = 3
@@ -185,11 +186,22 @@ Partial Class ChangePasswordForm
         Me.chkShowPassword.UncheckedState.BorderThickness = 0
         Me.chkShowPassword.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
         '
+        'lblEmojiError
+        '
+        Me.lblEmojiError.BackColor = System.Drawing.Color.Transparent
+        Me.lblEmojiError.Location = New System.Drawing.Point(281, 335)
+        Me.lblEmojiError.Name = "lblEmojiError"
+        Me.lblEmojiError.Size = New System.Drawing.Size(167, 15)
+        Me.lblEmojiError.TabIndex = 12
+        Me.lblEmojiError.Text = "Displays when Emojis are detected"
+        Me.lblEmojiError.Visible = False
+        '
         'ChangePasswordForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.lblEmojiError)
         Me.Controls.Add(Me.chkShowPassword)
         Me.Controls.Add(Me.lblPasswordMatch)
         Me.Controls.Add(Me.lblCriteriaLength)
@@ -221,4 +233,5 @@ Partial Class ChangePasswordForm
     Friend WithEvents lblCriteriaLength As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblPasswordMatch As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents chkShowPassword As Guna.UI2.WinForms.Guna2CheckBox
+    Friend WithEvents lblEmojiError As Guna.UI2.WinForms.Guna2HtmlLabel
 End Class

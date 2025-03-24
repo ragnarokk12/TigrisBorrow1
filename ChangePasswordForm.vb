@@ -1,4 +1,6 @@
 ﻿Imports Guna.UI2.WinForms
+Imports System.Drawing
+Imports System.Text.RegularExpressions
 
 Public Class ChangePasswordForm
     Inherits BaseForm
@@ -9,78 +11,52 @@ Public Class ChangePasswordForm
     Private Const NewPasswordPlaceholder As String = "Enter new password"
     Private Const ConfirmPasswordPlaceholder As String = "Confirm new password"
 
-    ' Flags to indicate if the placeholder is currently active.
-    Private _isNewPasswordPlaceholderActive As Boolean = True
-    Private _isConfirmPasswordPlaceholderActive As Boolean = True
-
+    ' Form Load: clear textboxes, set masking, and hide error label.
     Private Sub ChangePasswordForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        SetPlaceholder(txtNewPassword, NewPasswordPlaceholder)
-        _isNewPasswordPlaceholderActive = True
-        SetPlaceholder(txtConfirmPassword, ConfirmPasswordPlaceholder)
-        _isConfirmPasswordPlaceholderActive = True
+        txtNewPassword.Text = ""
+        txtConfirmPassword.Text = ""
+        txtNewPassword.ForeColor = Color.Black
+        txtConfirmPassword.ForeColor = Color.Black
+
+        ' Use custom masking without UseSystemPasswordChar.
+        txtNewPassword.PasswordChar = "●"c
+        txtConfirmPassword.PasswordChar = "●"c
+
+        ' Hide the password match and emoji error labels initially.
+        lblPasswordMatch.Visible = False
+        lblEmojiError.Visible = False
+
+        ' Enable Save button initially.
+        btnSave.Enabled = True
     End Sub
 
-    Private Sub SetPlaceholder(tb As Guna2TextBox, placeholder As String)
-        tb.Text = placeholder
-        tb.ForeColor = Color.Gray
-        ' Turn off password masking so that the placeholder text is visible.
-        tb.UseSystemPasswordChar = False
-    End Sub
-
-    Private Sub RemovePlaceholder(tb As Guna2TextBox)
-        tb.Text = ""
-        tb.ForeColor = Color.Black
-    End Sub
-
-    Private Sub txtNewPassword_GotFocus(sender As Object, e As EventArgs) Handles txtNewPassword.GotFocus
-        If _isNewPasswordPlaceholderActive Then
-            RemovePlaceholder(txtNewPassword)
-            _isNewPasswordPlaceholderActive = False
-        End If
-    End Sub
-
-    Private Sub txtConfirmPassword_GotFocus(sender As Object, e As EventArgs) Handles txtConfirmPassword.GotFocus
-        If _isConfirmPasswordPlaceholderActive Then
-            RemovePlaceholder(txtConfirmPassword)
-            _isConfirmPasswordPlaceholderActive = False
-        End If
-    End Sub
-
-    Private Sub txtNewPassword_LostFocus(sender As Object, e As EventArgs) Handles txtNewPassword.LostFocus
-        If String.IsNullOrWhiteSpace(txtNewPassword.Text) Then
-            SetPlaceholder(txtNewPassword, NewPasswordPlaceholder)
-            _isNewPasswordPlaceholderActive = True
-        End If
-    End Sub
-
-    Private Sub txtConfirmPassword_LostFocus(sender As Object, e As EventArgs) Handles txtConfirmPassword.LostFocus
-        If String.IsNullOrWhiteSpace(txtConfirmPassword.Text) Then
-            SetPlaceholder(txtConfirmPassword, ConfirmPasswordPlaceholder)
-            _isConfirmPasswordPlaceholderActive = True
-        End If
-    End Sub
-
-    ' Remove masking code completely.
-    ' Therefore, the chkShowPassword control will have no effect.
+    ' Show Password checkbox toggles the PasswordChar property.
     Private Sub chkShowPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowPassword.CheckedChanged
-        ' Optionally, you can remove this event handler entirely if you no longer need the checkbox.
+        If chkShowPassword.Checked Then
+            txtNewPassword.PasswordChar = ControlChars.NullChar
+            txtConfirmPassword.PasswordChar = ControlChars.NullChar
+        Else
+            txtNewPassword.PasswordChar = "●"c
+            txtConfirmPassword.PasswordChar = "●"c
+        End If
     End Sub
 
-    ' Real-time validation events.
+    ' Real-time validation on new password text change.
     Private Sub txtNewPassword_TextChanged(sender As Object, e As EventArgs) Handles txtNewPassword.TextChanged
-        ' Only update criteria if user input is active.
-        If _isNewPasswordPlaceholderActive Then Return
         UpdatePasswordCriteriaLabels()
         UpdatePasswordMatchLabel()
+        CheckForEmojisAndUpdate()
     End Sub
 
     Private Sub txtConfirmPassword_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPassword.TextChanged
-        If _isConfirmPasswordPlaceholderActive Then Return
         UpdatePasswordMatchLabel()
+        CheckForEmojisAndUpdate()
     End Sub
 
+    ' Updates the criteria labels.
     Private Sub UpdatePasswordCriteriaLabels()
         Dim pwd As String = txtNewPassword.Text
+
         lblCriteriaLength.Text = "8+ characters"
         lblCriteriaLength.ForeColor = If(pwd.Length >= 8, Color.Green, Color.Red)
 
@@ -94,15 +70,19 @@ Public Class ChangePasswordForm
         lblCriteriaDigit.ForeColor = If(pwd.Any(Function(c) Char.IsDigit(c)), Color.Green, Color.Red)
     End Sub
 
+    ' Updates the password match label.
     Private Sub UpdatePasswordMatchLabel()
         Dim pwd As String = txtNewPassword.Text
         Dim confirmPwd As String = txtConfirmPassword.Text
 
-        ' If either textbox is still showing the placeholder, clear the label.
-        If _isNewPasswordPlaceholderActive OrElse _isConfirmPasswordPlaceholderActive Then
+        ' Hide the match label if both fields are empty.
+        If String.IsNullOrEmpty(pwd) AndAlso String.IsNullOrEmpty(confirmPwd) Then
+            lblPasswordMatch.Visible = False
             lblPasswordMatch.Text = ""
             Return
         End If
+
+        lblPasswordMatch.Visible = True
 
         If pwd = confirmPwd Then
             lblPasswordMatch.Text = "Passwords match"
@@ -113,20 +93,43 @@ Public Class ChangePasswordForm
         End If
     End Sub
 
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        ' Only proceed if the placeholders are not active.
-        Dim newPwd As String = txtNewPassword.Text.Trim()
-        Dim confirmPwd As String = txtConfirmPassword.Text.Trim()
+    ' Checks if the new password input contains emojis.
+    ' If emojis are found, display an error label and disable Save button.
+    Private Sub CheckForEmojisAndUpdate()
+        Dim pwdOriginal As String = txtNewPassword.Text
+        Dim pwdClean As String = RemoveEmojis(pwdOriginal)
 
-        If _isNewPasswordPlaceholderActive OrElse String.IsNullOrEmpty(newPwd) Then
+        If pwdOriginal <> pwdClean Then
+            lblEmojiError.Text = "Emojis are not allowed in the password."
+            lblEmojiError.ForeColor = Color.Red
+            lblEmojiError.Visible = True
+            btnSave.Enabled = False
+        Else
+            lblEmojiError.Visible = False
+            ' Optionally, re-enable the Save button if all other validations pass.
+            btnSave.Enabled = True
+        End If
+    End Sub
+
+    ' RemoveEmojis: Removes surrogate pairs (most emojis) using regex.
+    Private Function RemoveEmojis(ByVal input As String) As String
+        Dim emojiRegex As New Regex("([\uD800-\uDBFF][\uDC00-\uDFFF])")
+        Return emojiRegex.Replace(input, "")
+    End Function
+
+    ' Save button: validate input and save the new password.
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Dim newPwd As String = RemoveEmojis(txtNewPassword.Text.Trim())
+        Dim confirmPwd As String = RemoveEmojis(txtConfirmPassword.Text.Trim())
+
+        If String.IsNullOrEmpty(newPwd) Then
             MessageBox.Show("Please enter a new password.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
         If newPwd.Length < 8 OrElse Not newPwd.Any(Function(c) Char.IsUpper(c)) OrElse
            Not newPwd.Any(Function(c) Char.IsLower(c)) OrElse Not newPwd.Any(Function(c) Char.IsDigit(c)) Then
-            MessageBox.Show("Password must be 8+ characters with uppercase, lowercase, and a number.",
-                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Password must be 8+ characters with uppercase, lowercase, and a number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
 
