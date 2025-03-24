@@ -36,6 +36,7 @@ Partial Class LoginForm
         Me.Guna2ControlBox2 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.Guna2Button1 = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2HtmlLabel4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.chkShowPassword = New Guna.UI2.WinForms.Guna2CustomCheckBox()
         Me.lblLogin = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -45,15 +46,18 @@ Partial Class LoginForm
         Me.Guna2AnimateWindow1 = New Guna.UI2.WinForms.Guna2AnimateWindow(Me.components)
         Me.Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2HtmlLabel3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
         Me.pnlControlPanel.SuspendLayout()
         Me.Guna2ShadowPanel1.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Guna2Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btnSignUp
         '
         Me.btnSignUp.Animated = True
         Me.btnSignUp.BorderRadius = 5
+        Me.btnSignUp.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnSignUp.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnSignUp.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnSignUp.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -79,9 +83,13 @@ Partial Class LoginForm
         Me.txtPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.txtPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
         Me.txtPassword.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtPassword.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtPassword.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.txtPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtPassword.ForeColor = System.Drawing.Color.Black
+        Me.txtPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.txtPassword.IconLeft = Global.TigrisBorrow.My.Resources.Resources.key__1_
+        Me.txtPassword.IconLeftOffset = New System.Drawing.Point(3, 0)
+        Me.txtPassword.IconLeftSize = New System.Drawing.Size(17, 17)
         Me.txtPassword.Location = New System.Drawing.Point(27, 155)
         Me.txtPassword.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtPassword.Name = "txtPassword"
@@ -96,7 +104,7 @@ Partial Class LoginForm
         Me.lblForgotPassword.AutoSize = False
         Me.lblForgotPassword.AutoSizeHeightOnly = True
         Me.lblForgotPassword.BackColor = System.Drawing.Color.Transparent
-        Me.lblForgotPassword.Location = New System.Drawing.Point(85, 262)
+        Me.lblForgotPassword.Location = New System.Drawing.Point(86, 239)
         Me.lblForgotPassword.Name = "lblForgotPassword"
         Me.lblForgotPassword.Size = New System.Drawing.Size(88, 14)
         Me.lblForgotPassword.TabIndex = 2
@@ -130,9 +138,13 @@ Partial Class LoginForm
         Me.txtUserID.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.txtUserID.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
         Me.txtUserID.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtUserID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtUserID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.txtUserID.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.txtUserID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtUserID.ForeColor = System.Drawing.Color.Black
+        Me.txtUserID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.txtUserID.IconLeft = Global.TigrisBorrow.My.Resources.Resources.user1
+        Me.txtUserID.IconLeftOffset = New System.Drawing.Point(3, 0)
+        Me.txtUserID.IconLeftSize = New System.Drawing.Size(17, 17)
         Me.txtUserID.Location = New System.Drawing.Point(27, 113)
         Me.txtUserID.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtUserID.Name = "txtUserID"
@@ -149,7 +161,6 @@ Partial Class LoginForm
         Me.lblInstruction.Size = New System.Drawing.Size(197, 15)
         Me.lblInstruction.TabIndex = 6
         Me.lblInstruction.Text = "Please enter your User ID and Password."
-        Me.lblInstruction.Visible = False
         '
         'Guna2DragControl1
         '
@@ -208,19 +219,21 @@ Partial Class LoginForm
         '
         'Guna2ShadowPanel1
         '
+        Me.Guna2ShadowPanel1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2ShadowPanel1.Controls.Add(Me.lblInstruction)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.Guna2Button1)
         Me.Guna2ShadowPanel1.Controls.Add(Me.Guna2HtmlLabel4)
         Me.Guna2ShadowPanel1.Controls.Add(Me.chkShowPassword)
         Me.Guna2ShadowPanel1.Controls.Add(Me.lblLogin)
         Me.Guna2ShadowPanel1.Controls.Add(Me.btnLogin)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtPassword)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblInstruction)
         Me.Guna2ShadowPanel1.Controls.Add(Me.btnSignUp)
         Me.Guna2ShadowPanel1.Controls.Add(Me.lblForgotPassword)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtUserID)
         Me.Guna2ShadowPanel1.EdgeWidth = 10
         Me.Guna2ShadowPanel1.FillColor = System.Drawing.Color.White
-        Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(505, 56)
+        Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(508, 30)
         Me.Guna2ShadowPanel1.Name = "Guna2ShadowPanel1"
         Me.Guna2ShadowPanel1.Radius = 15
         Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.DimGray
@@ -229,6 +242,31 @@ Partial Class LoginForm
         Me.Guna2ShadowPanel1.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.ForwardDiagonal
         Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(266, 419)
         Me.Guna2ShadowPanel1.TabIndex = 7
+        '
+        'Guna2Button1
+        '
+        Me.Guna2Button1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2Button1.CheckedState.BorderColor = System.Drawing.Color.Transparent
+        Me.Guna2Button1.CheckedState.CustomBorderColor = System.Drawing.Color.Transparent
+        Me.Guna2Button1.CheckedState.FillColor = System.Drawing.Color.Transparent
+        Me.Guna2Button1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.Guna2Button1.DisabledState.BorderColor = System.Drawing.Color.Transparent
+        Me.Guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent
+        Me.Guna2Button1.DisabledState.FillColor = System.Drawing.Color.Transparent
+        Me.Guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.Guna2Button1.FillColor = System.Drawing.Color.Transparent
+        Me.Guna2Button1.FocusedColor = System.Drawing.Color.Transparent
+        Me.Guna2Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2Button1.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.Guna2Button1.HoverState.FillColor = System.Drawing.Color.Transparent
+        Me.Guna2Button1.HoverState.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2Button1.HoverState.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.Guna2Button1.Location = New System.Drawing.Point(67, 259)
+        Me.Guna2Button1.Name = "Guna2Button1"
+        Me.Guna2Button1.PressedColor = System.Drawing.Color.Transparent
+        Me.Guna2Button1.Size = New System.Drawing.Size(128, 20)
+        Me.Guna2Button1.TabIndex = 12
+        Me.Guna2Button1.Text = "Forgot Password?"
         '
         'Guna2HtmlLabel4
         '
@@ -271,6 +309,7 @@ Partial Class LoginForm
         '
         Me.btnLogin.Animated = True
         Me.btnLogin.BorderRadius = 5
+        Me.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnLogin.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnLogin.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnLogin.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -289,10 +328,11 @@ Partial Class LoginForm
         '
         'Guna2PictureBox1
         '
+        Me.Guna2PictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Guna2PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.Guna2PictureBox1.Image = CType(resources.GetObject("Guna2PictureBox1.Image"), System.Drawing.Image)
         Me.Guna2PictureBox1.ImageRotate = 0!
-        Me.Guna2PictureBox1.Location = New System.Drawing.Point(-43, 134)
+        Me.Guna2PictureBox1.Location = New System.Drawing.Point(-40, 108)
         Me.Guna2PictureBox1.Name = "Guna2PictureBox1"
         Me.Guna2PictureBox1.Size = New System.Drawing.Size(520, 185)
         Me.Guna2PictureBox1.TabIndex = 8
@@ -309,9 +349,11 @@ Partial Class LoginForm
         '
         'Guna2HtmlLabel2
         '
+        Me.Guna2HtmlLabel2.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(47, 249)
+        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Sifonn", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(50, 223)
         Me.Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
         Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(130, 26)
         Me.Guna2HtmlLabel2.TabIndex = 10
@@ -319,13 +361,27 @@ Partial Class LoginForm
         '
         'Guna2HtmlLabel3
         '
+        Me.Guna2HtmlLabel3.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel3.Location = New System.Drawing.Point(47, 399)
+        Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("Sifonn", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel3.Location = New System.Drawing.Point(50, 373)
         Me.Guna2HtmlLabel3.Name = "Guna2HtmlLabel3"
         Me.Guna2HtmlLabel3.Size = New System.Drawing.Size(419, 20)
         Me.Guna2HtmlLabel3.TabIndex = 11
         Me.Guna2HtmlLabel3.Text = "The only app you'll need to get the equipment you seek!"
+        '
+        'Guna2Panel1
+        '
+        Me.Guna2Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2Panel1.Controls.Add(Me.Guna2HtmlLabel2)
+        Me.Guna2Panel1.Controls.Add(Me.Guna2ShadowPanel1)
+        Me.Guna2Panel1.Controls.Add(Me.Guna2HtmlLabel3)
+        Me.Guna2Panel1.Controls.Add(Me.Guna2PictureBox1)
+        Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Guna2Panel1.Location = New System.Drawing.Point(0, 29)
+        Me.Guna2Panel1.Name = "Guna2Panel1"
+        Me.Guna2Panel1.Size = New System.Drawing.Size(819, 484)
+        Me.Guna2Panel1.TabIndex = 12
         '
         'LoginForm
         '
@@ -335,11 +391,8 @@ Partial Class LoginForm
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(819, 513)
-        Me.Controls.Add(Me.Guna2HtmlLabel3)
-        Me.Controls.Add(Me.Guna2HtmlLabel2)
+        Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.pnlControlPanel)
-        Me.Controls.Add(Me.Guna2ShadowPanel1)
-        Me.Controls.Add(Me.Guna2PictureBox1)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -350,8 +403,9 @@ Partial Class LoginForm
         Me.Guna2ShadowPanel1.ResumeLayout(False)
         Me.Guna2ShadowPanel1.PerformLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Guna2Panel1.ResumeLayout(False)
+        Me.Guna2Panel1.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents btnSignUp As Guna.UI2.WinForms.Guna2Button
@@ -375,4 +429,6 @@ Partial Class LoginForm
     Friend WithEvents Guna2HtmlLabel3 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents chkShowPassword As Guna.UI2.WinForms.Guna2CustomCheckBox
     Friend WithEvents Guna2HtmlLabel4 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
+    Friend WithEvents Guna2Button1 As Guna.UI2.WinForms.Guna2Button
 End Class

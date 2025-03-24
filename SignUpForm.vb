@@ -1,4 +1,5 @@
-﻿Imports MySql.Data.MySqlClient
+﻿' Fix error label in password nd emoji in security questions.
+Imports MySql.Data.MySqlClient
 Imports System.Security.Cryptography
 Imports System.Text
 Imports System.Text.RegularExpressions
@@ -512,5 +513,9 @@ Public Class SignUpForm
         If FromLogin AndAlso Not AccountCreated AndAlso Not LoginForm.Visible Then
             LoginForm.Show()
         End If
+    End Sub
+
+    Private Sub Guna2HtmlLabel6_Click(sender As Object, e As EventArgs) Handles Guna2HtmlLabel6.Click
+
     End Sub
 End Class

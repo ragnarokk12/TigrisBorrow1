@@ -47,4 +47,19 @@ Public Class BaseForm
             e.SuppressKeyPress = True
         End If
     End Sub
+
+    Private Sub InitializeComponent()
+        Me.SuspendLayout()
+        '
+        'BaseForm
+        '
+        Me.ClientSize = New System.Drawing.Size(284, 261)
+        Me.Name = "BaseForm"
+        Me.ResumeLayout(False)
+
+    End Sub
+
+    Private Sub BaseForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
