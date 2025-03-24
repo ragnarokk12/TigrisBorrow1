@@ -45,14 +45,23 @@ Partial Class UserDashboardForm
         Me.txtEmail = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtFullName = New Guna.UI2.WinForms.Guna2TextBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.btnResetFilter = New Guna.UI2.WinForms.Guna2Button()
+        Me.cbStatusFilter = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.btnReturnItem = New Guna.UI2.WinForms.Guna2Button()
         Me.dgvInventory = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.COLitem_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colitem_type = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colbrand = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colmodel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colcategory = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colstatus = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colitem_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgvBorrowRequests = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.txtSearchInventory = New Guna.UI2.WinForms.Guna2TextBox()
         Me.btnSubmitRequest = New Guna.UI2.WinForms.Guna2Button()
         Me.tbcNotification = New System.Windows.Forms.TabPage()
-        Me.btnClearNotifications = New Guna.UI2.WinForms.Guna2Button()
         Me.dgvNotifications = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.btnClearNotifications = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.Guna2CustomGradientPanel1 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
         Me.lblActiveRequests = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -62,13 +71,7 @@ Partial Class UserDashboardForm
         Me.lblItemsBorrowed = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2CustomGradientPanel4 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
-        Me.COLitem_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colitem_type = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colbrand = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colmodel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colcategory = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colstatus = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colitem_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.tabControlDashboard.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -194,8 +197,10 @@ Partial Class UserDashboardForm
         Me.txtStudentID.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.txtStudentID.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
         Me.txtStudentID.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtStudentID.Enabled = False
         Me.txtStudentID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtStudentID.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtStudentID.HideSelection = False
         Me.txtStudentID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtStudentID.Location = New System.Drawing.Point(481, 117)
         Me.txtStudentID.Name = "txtStudentID"
@@ -213,8 +218,10 @@ Partial Class UserDashboardForm
         Me.txtPhoneNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.txtPhoneNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
         Me.txtPhoneNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtPhoneNumber.Enabled = False
         Me.txtPhoneNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtPhoneNumber.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtPhoneNumber.HideSelection = False
         Me.txtPhoneNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtPhoneNumber.Location = New System.Drawing.Point(481, 243)
         Me.txtPhoneNumber.Name = "txtPhoneNumber"
@@ -232,8 +239,10 @@ Partial Class UserDashboardForm
         Me.txtEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.txtEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
         Me.txtEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtEmail.Enabled = False
         Me.txtEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtEmail.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtEmail.HideSelection = False
         Me.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtEmail.Location = New System.Drawing.Point(481, 201)
         Me.txtEmail.Name = "txtEmail"
@@ -251,8 +260,10 @@ Partial Class UserDashboardForm
         Me.txtFullName.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
         Me.txtFullName.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
         Me.txtFullName.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtFullName.Enabled = False
         Me.txtFullName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtFullName.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtFullName.HideSelection = False
         Me.txtFullName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtFullName.Location = New System.Drawing.Point(481, 159)
         Me.txtFullName.Name = "txtFullName"
@@ -264,6 +275,8 @@ Partial Class UserDashboardForm
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.btnResetFilter)
+        Me.TabPage3.Controls.Add(Me.cbStatusFilter)
         Me.TabPage3.Controls.Add(Me.btnReturnItem)
         Me.TabPage3.Controls.Add(Me.dgvInventory)
         Me.TabPage3.Controls.Add(Me.dgvBorrowRequests)
@@ -276,6 +289,35 @@ Partial Class UserDashboardForm
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Borrow Request"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'btnResetFilter
+        '
+        Me.btnResetFilter.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnResetFilter.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnResetFilter.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnResetFilter.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnResetFilter.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnResetFilter.ForeColor = System.Drawing.Color.White
+        Me.btnResetFilter.Location = New System.Drawing.Point(869, 9)
+        Me.btnResetFilter.Name = "btnResetFilter"
+        Me.btnResetFilter.Size = New System.Drawing.Size(131, 38)
+        Me.btnResetFilter.TabIndex = 6
+        Me.btnResetFilter.Text = "Reset Filter"
+        '
+        'cbStatusFilter
+        '
+        Me.cbStatusFilter.BackColor = System.Drawing.Color.Transparent
+        Me.cbStatusFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbStatusFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbStatusFilter.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbStatusFilter.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbStatusFilter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cbStatusFilter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cbStatusFilter.ItemHeight = 30
+        Me.cbStatusFilter.Location = New System.Drawing.Point(714, 9)
+        Me.cbStatusFilter.Name = "cbStatusFilter"
+        Me.cbStatusFilter.Size = New System.Drawing.Size(140, 36)
+        Me.cbStatusFilter.TabIndex = 5
         '
         'btnReturnItem
         '
@@ -344,6 +386,51 @@ Partial Class UserDashboardForm
         Me.dgvInventory.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvInventory.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
         '
+        'COLitem_name
+        '
+        Me.COLitem_name.FillWeight = 200.0!
+        Me.COLitem_name.HeaderText = "Name"
+        Me.COLitem_name.Name = "COLitem_name"
+        Me.COLitem_name.ReadOnly = True
+        '
+        'Colitem_type
+        '
+        Me.Colitem_type.HeaderText = "type"
+        Me.Colitem_type.Name = "Colitem_type"
+        Me.Colitem_type.ReadOnly = True
+        '
+        'Colbrand
+        '
+        Me.Colbrand.HeaderText = "brand"
+        Me.Colbrand.Name = "Colbrand"
+        Me.Colbrand.ReadOnly = True
+        '
+        'Colmodel
+        '
+        Me.Colmodel.HeaderText = "Model"
+        Me.Colmodel.Name = "Colmodel"
+        Me.Colmodel.ReadOnly = True
+        '
+        'Colcategory
+        '
+        Me.Colcategory.HeaderText = "Category"
+        Me.Colcategory.Name = "Colcategory"
+        Me.Colcategory.ReadOnly = True
+        '
+        'Colstatus
+        '
+        Me.Colstatus.HeaderText = "status"
+        Me.Colstatus.Name = "Colstatus"
+        Me.Colstatus.ReadOnly = True
+        Me.Colstatus.Visible = False
+        '
+        'Colitem_id
+        '
+        Me.Colitem_id.HeaderText = "item_id"
+        Me.Colitem_id.Name = "Colitem_id"
+        Me.Colitem_id.ReadOnly = True
+        Me.Colitem_id.Visible = False
+        '
         'dgvBorrowRequests
         '
         DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
@@ -367,11 +454,11 @@ Partial Class UserDashboardForm
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvBorrowRequests.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgvBorrowRequests.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvBorrowRequests.Location = New System.Drawing.Point(702, 6)
+        Me.dgvBorrowRequests.Location = New System.Drawing.Point(702, 51)
         Me.dgvBorrowRequests.Name = "dgvBorrowRequests"
         Me.dgvBorrowRequests.ReadOnly = True
         Me.dgvBorrowRequests.RowHeadersVisible = False
-        Me.dgvBorrowRequests.Size = New System.Drawing.Size(326, 471)
+        Me.dgvBorrowRequests.Size = New System.Drawing.Size(326, 426)
         Me.dgvBorrowRequests.TabIndex = 1
         Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -430,8 +517,8 @@ Partial Class UserDashboardForm
         '
         'tbcNotification
         '
-        Me.tbcNotification.Controls.Add(Me.btnClearNotifications)
         Me.tbcNotification.Controls.Add(Me.dgvNotifications)
+        Me.tbcNotification.Controls.Add(Me.btnClearNotifications)
         Me.tbcNotification.Location = New System.Drawing.Point(184, 4)
         Me.tbcNotification.Name = "tbcNotification"
         Me.tbcNotification.Padding = New System.Windows.Forms.Padding(3)
@@ -439,20 +526,6 @@ Partial Class UserDashboardForm
         Me.tbcNotification.TabIndex = 4
         Me.tbcNotification.Text = "Notification"
         Me.tbcNotification.UseVisualStyleBackColor = True
-        '
-        'btnClearNotifications
-        '
-        Me.btnClearNotifications.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnClearNotifications.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnClearNotifications.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnClearNotifications.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnClearNotifications.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnClearNotifications.ForeColor = System.Drawing.Color.White
-        Me.btnClearNotifications.Location = New System.Drawing.Point(126, 434)
-        Me.btnClearNotifications.Name = "btnClearNotifications"
-        Me.btnClearNotifications.Size = New System.Drawing.Size(180, 45)
-        Me.btnClearNotifications.TabIndex = 1
-        Me.btnClearNotifications.Text = "Clear Notification"
         '
         'dgvNotifications
         '
@@ -503,6 +576,20 @@ Partial Class UserDashboardForm
         Me.dgvNotifications.ThemeStyle.RowsStyle.Height = 22
         Me.dgvNotifications.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvNotifications.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        '
+        'btnClearNotifications
+        '
+        Me.btnClearNotifications.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnClearNotifications.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnClearNotifications.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnClearNotifications.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnClearNotifications.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnClearNotifications.ForeColor = System.Drawing.Color.White
+        Me.btnClearNotifications.Location = New System.Drawing.Point(126, 434)
+        Me.btnClearNotifications.Name = "btnClearNotifications"
+        Me.btnClearNotifications.Size = New System.Drawing.Size(180, 45)
+        Me.btnClearNotifications.TabIndex = 1
+        Me.btnClearNotifications.Text = "Clear Notification"
         '
         'Guna2CustomGradientPanel1
         '
@@ -579,6 +666,7 @@ Partial Class UserDashboardForm
         '
         'Guna2CustomGradientPanel4
         '
+        Me.Guna2CustomGradientPanel4.Controls.Add(Me.btnLogout)
         Me.Guna2CustomGradientPanel4.Controls.Add(Me.Guna2CustomGradientPanel1)
         Me.Guna2CustomGradientPanel4.Controls.Add(Me.Guna2CustomGradientPanel2)
         Me.Guna2CustomGradientPanel4.Controls.Add(Me.Guna2CustomGradientPanel3)
@@ -589,50 +677,19 @@ Partial Class UserDashboardForm
         Me.Guna2CustomGradientPanel4.Size = New System.Drawing.Size(1226, 149)
         Me.Guna2CustomGradientPanel4.TabIndex = 10
         '
-        'COLitem_name
+        'btnLogout
         '
-        Me.COLitem_name.FillWeight = 200.0!
-        Me.COLitem_name.HeaderText = "Name"
-        Me.COLitem_name.Name = "COLitem_name"
-        Me.COLitem_name.ReadOnly = True
-        '
-        'Colitem_type
-        '
-        Me.Colitem_type.HeaderText = "type"
-        Me.Colitem_type.Name = "Colitem_type"
-        Me.Colitem_type.ReadOnly = True
-        '
-        'Colbrand
-        '
-        Me.Colbrand.HeaderText = "brand"
-        Me.Colbrand.Name = "Colbrand"
-        Me.Colbrand.ReadOnly = True
-        '
-        'Colmodel
-        '
-        Me.Colmodel.HeaderText = "Model"
-        Me.Colmodel.Name = "Colmodel"
-        Me.Colmodel.ReadOnly = True
-        '
-        'Colcategory
-        '
-        Me.Colcategory.HeaderText = "Category"
-        Me.Colcategory.Name = "Colcategory"
-        Me.Colcategory.ReadOnly = True
-        '
-        'Colstatus
-        '
-        Me.Colstatus.HeaderText = "status"
-        Me.Colstatus.Name = "Colstatus"
-        Me.Colstatus.ReadOnly = True
-        Me.Colstatus.Visible = False
-        '
-        'Colitem_id
-        '
-        Me.Colitem_id.HeaderText = "item_id"
-        Me.Colitem_id.Name = "Colitem_id"
-        Me.Colitem_id.ReadOnly = True
-        Me.Colitem_id.Visible = False
+        Me.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnLogout.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnLogout.ForeColor = System.Drawing.Color.White
+        Me.btnLogout.Location = New System.Drawing.Point(31, 12)
+        Me.btnLogout.Name = "btnLogout"
+        Me.btnLogout.Size = New System.Drawing.Size(180, 45)
+        Me.btnLogout.TabIndex = 10
+        Me.btnLogout.Text = "Logout"
         '
         'UserDashboardForm
         '
@@ -700,4 +757,7 @@ Partial Class UserDashboardForm
     Friend WithEvents Colcategory As DataGridViewTextBoxColumn
     Friend WithEvents Colitem_id As DataGridViewTextBoxColumn
     Friend WithEvents Colstatus As DataGridViewTextBoxColumn
+    Friend WithEvents cbStatusFilter As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents btnResetFilter As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnLogout As Guna.UI2.WinForms.Guna2Button
 End Class

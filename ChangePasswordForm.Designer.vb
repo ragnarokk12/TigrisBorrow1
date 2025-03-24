@@ -73,7 +73,6 @@ Partial Class ChangePasswordForm
         Me.txtNewPassword.SelectedText = ""
         Me.txtNewPassword.Size = New System.Drawing.Size(200, 36)
         Me.txtNewPassword.TabIndex = 2
-        Me.txtNewPassword.UseSystemPasswordChar = True
         '
         'txtConfirmPassword
         '
@@ -93,7 +92,6 @@ Partial Class ChangePasswordForm
         Me.txtConfirmPassword.SelectedText = ""
         Me.txtConfirmPassword.Size = New System.Drawing.Size(200, 36)
         Me.txtConfirmPassword.TabIndex = 3
-        Me.txtConfirmPassword.UseSystemPasswordChar = True
         '
         'btnCancel
         '
