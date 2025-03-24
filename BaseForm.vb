@@ -3,8 +3,6 @@
 Public Class BaseForm
     Inherits Form
 
-    ' Override OnLoad to attach Ctrl + A handler for all Guna2TextBoxes 
-    ' and set all Guna2DataGridView controls to read-only.
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
         AttachCtrlAHandler(Me)
@@ -15,10 +13,13 @@ Public Class BaseForm
     Private Sub AttachCtrlAHandler(ctrl As Control)
         For Each c As Control In ctrl.Controls
             If TypeOf c Is Guna2TextBox Then
-                AddHandler DirectCast(c, Guna2TextBox).KeyDown, AddressOf GunaTextBox_KeyDown
+                Dim tb As Guna2TextBox = DirectCast(c, Guna2TextBox)
+                ' Use the Tag property as a flag to ensure we attach only once.
+                If tb.Tag Is Nothing OrElse Not CType(tb.Tag, Boolean) Then
+                    AddHandler tb.KeyDown, AddressOf GunaTextBox_KeyDown
+                    tb.Tag = True
+                End If
             End If
-
-            ' Recursively check child controls.
             If c.HasChildren Then
                 AttachCtrlAHandler(c)
             End If
@@ -33,15 +34,12 @@ Public Class BaseForm
                 dgv.ReadOnly = True
                 dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect
             End If
-
-            ' Recursively check child controls.
             If c.HasChildren Then
                 AttachDataGridViewReadOnly(c)
             End If
         Next
     End Sub
 
-    ' KeyDown event handler for Guna2TextBox controls.
     Private Sub GunaTextBox_KeyDown(sender As Object, e As KeyEventArgs)
         If e.Control AndAlso e.KeyCode = Keys.A Then
             Dim tb As Guna2TextBox = CType(sender, Guna2TextBox)

@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class ChangePasswordForm
-    Inherits System.Windows.Forms.Form
+    Inherits BaseForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -56,6 +56,7 @@ Partial Class ChangePasswordForm
         '
         'txtNewPassword
         '
+        Me.txtNewPassword.AcceptsReturn = True
         Me.txtNewPassword.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtNewPassword.DefaultText = ""
         Me.txtNewPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -71,9 +72,11 @@ Partial Class ChangePasswordForm
         Me.txtNewPassword.SelectedText = ""
         Me.txtNewPassword.Size = New System.Drawing.Size(200, 36)
         Me.txtNewPassword.TabIndex = 2
+        Me.txtNewPassword.UseSystemPasswordChar = True
         '
         'txtConfirmPassword
         '
+        Me.txtConfirmPassword.AcceptsReturn = True
         Me.txtConfirmPassword.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtConfirmPassword.DefaultText = ""
         Me.txtConfirmPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -89,6 +92,7 @@ Partial Class ChangePasswordForm
         Me.txtConfirmPassword.SelectedText = ""
         Me.txtConfirmPassword.Size = New System.Drawing.Size(200, 36)
         Me.txtConfirmPassword.TabIndex = 3
+        Me.txtConfirmPassword.UseSystemPasswordChar = True
         '
         'btnCancel
         '

@@ -5,7 +5,13 @@ Imports MySql.Data.MySqlClient
 Public Class UserDashboardForm
     Private WithEvents Timer1 As New Timer()
     Private conn As MySqlConnection = Common.getDBConnection()
+    Private TimerTickHandler As EventHandler = AddressOf Timer1_Tick
 
+    Public Sub New()
+        InitializeComponent()
+        ' Ensure the delegate is added so it won’t be garbage collected.
+        AddHandler Timer1.Tick, TimerTickHandler
+    End Sub
 
     Private Sub UserDashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "User Dashboard"
