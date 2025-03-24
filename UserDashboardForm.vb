@@ -1,8 +1,9 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports System.Security.Cryptography
+Imports System.Text
 
 Public Class UserDashboardForm
     Private WithEvents Timer1 As New Timer()
-
 
     Private Sub UserDashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "User Dashboard"
@@ -17,7 +18,7 @@ Public Class UserDashboardForm
         UpdateDashboardSummary()
 
         ' Configure Timer
-        Timer1.Interval = 1000 ' 1 seconds
+        Timer1.Interval = 1000 ' 1 second
         Timer1.Enabled = True
         Timer1.Start()
     End Sub
@@ -50,9 +51,47 @@ Public Class UserDashboardForm
         End Using
     End Sub
 
+    ' Reset Password Button Implementation
     Private Sub btnResetPassword_Click(sender As Object, e As EventArgs) Handles btnResetPassword.Click
-        MessageBox.Show("Reset Password clicked. Implement password reset functionality.")
+        Dim changeForm As New ChangePasswordForm()
+        ' Show the ChangePasswordForm as a modal dialog.
+        If changeForm.ShowDialog(Me) = DialogResult.OK Then
+            Dim newPwd As String = changeForm.NewPasswordText
+            If UpdateUserPassword(Common.CurrentUserId, newPwd) Then
+                MessageBox.Show("Password updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                MessageBox.Show("Password update failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        End If
     End Sub
+
+    ' Updates the user's password in the database.
+    Private Function UpdateUserPassword(userId As String, newPassword As String) As Boolean
+        Dim hashedPassword As String = HashPassword(newPassword)
+        Using conn As MySqlConnection = Common.getDBConnection()
+            Try
+                conn.Open()
+                Dim query As String = "UPDATE users SET password_hash = @hashedPassword, last_password_change = NOW(), force_password_change = FALSE WHERE user_id = @userId"
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@hashedPassword", hashedPassword)
+                    cmd.Parameters.AddWithValue("@userId", userId)
+                    Return cmd.ExecuteNonQuery() > 0
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error updating password: " & ex.Message)
+                Return False
+            End Try
+        End Using
+    End Function
+
+    ' HashPassword helper: hashes a password using SHA256.
+    Private Function HashPassword(password As String) As String
+        Using sha256 As SHA256 = SHA256.Create()
+            Dim bytes As Byte() = Encoding.UTF8.GetBytes(password)
+            Dim hash As Byte() = sha256.ComputeHash(bytes)
+            Return BitConverter.ToString(hash).Replace("-", "").ToLower()
+        End Using
+    End Function
 
     Private Sub LoadBorrowRequestData()
         Using conn As MySqlConnection = Common.getDBConnection()
@@ -123,13 +162,11 @@ Public Class UserDashboardForm
                 cmd.Parameters.AddWithValue("@dueDate", dueDate)
 
                 If category.ToLower() = "equipment" Then
-                    ' For equipment, no quantity input is needed.
                     query = "INSERT INTO borrow_transactions (user_id, equipment_id, accessory_id, borrow_date, due_date, status) " &
                         "VALUES (@userId, @equipmentId, @accessoryId, @borrowDate, @dueDate, 'pending')"
                     cmd.Parameters.AddWithValue("@equipmentId", itemId)
                     cmd.Parameters.AddWithValue("@accessoryId", DBNull.Value)
                 ElseIf category.ToLower() = "accessory" Then
-                    ' For accessories, prompt the user for quantity.
                     Dim inputQuantity As String = InputBox("Enter the quantity to borrow:", "Quantity", "1")
                     Dim borrowQuantity As Integer = 0
                     If Not Integer.TryParse(inputQuantity, borrowQuantity) OrElse borrowQuantity <= 0 Then
@@ -161,7 +198,6 @@ Public Class UserDashboardForm
             MessageBox.Show("Error submitting borrow request: " & ex.Message)
         End Try
     End Sub
-
 
     Private Sub LoadInventoryData()
         Using conn As MySqlConnection = Common.getDBConnection()
@@ -197,7 +233,6 @@ Public Class UserDashboardForm
         End Using
     End Sub
 
-
     Private Sub LoadNotificationsData()
         Using conn As MySqlConnection = Common.getDBConnection()
             Dim dt As New DataTable()
@@ -215,7 +250,6 @@ Public Class UserDashboardForm
             End Try
         End Using
     End Sub
-
 
     Private Sub btnClearNotifications_Click(sender As Object, e As EventArgs) Handles btnClearNotifications.Click
         MessageBox.Show("Clear Notifications clicked. Implement notification clearing.")
@@ -257,7 +291,6 @@ Public Class UserDashboardForm
 
     ' Return Item process: Prevents returning an item if its request status is "denied."
     Private Sub btnReturnItem_Click(sender As Object, e As EventArgs) Handles btnReturnItem.Click
-        ' Ensure a borrow transaction is selected.
         If dgvBorrowRequests.SelectedRows.Count = 0 Then
             MessageBox.Show("Please select a transaction to return.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -267,7 +300,6 @@ Public Class UserDashboardForm
         Dim transactionId As Integer = Convert.ToInt32(selectedRow.Cells("RequestID").Value)
         Dim currentStatus As String = selectedRow.Cells("Status").Value.ToString().ToLower()
 
-        ' Prevent return if the status is "denied."
         If currentStatus = "denied" Then
             MessageBox.Show("You cannot return an item when the request status is 'denied'.", "Return Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
@@ -283,8 +315,8 @@ Public Class UserDashboardForm
                     Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
                         MessageBox.Show("Item returned successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        LoadBorrowRequestData()  ' Refresh the borrow request grid.
-                        UpdateDashboardSummary() ' Update dashboard counts.
+                        LoadBorrowRequestData()
+                        UpdateDashboardSummary()
                     Else
                         MessageBox.Show("Failed to update the transaction. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End If
@@ -306,7 +338,6 @@ Public Class UserDashboardForm
                     cmd.ExecuteNonQuery()
                 End Using
 
-                ' Insert notification for the user
                 Dim notificationMessage As String = "Your borrow request (ID: " & transactionId.ToString() & ") has been " & newStatus & "."
                 Dim insertQuery As String = "INSERT INTO notifications (user_id, message, is_read, created_at) VALUES (@userId, @message, 0, NOW())"
                 Using insertCmd As New MySqlCommand(insertQuery, conn)
@@ -325,7 +356,6 @@ Public Class UserDashboardForm
         Using conn As MySqlConnection = Common.getDBConnection()
             Try
                 conn.Open()
-                ' Retrieve approved transactions that are overdue.
                 Dim overdueQuery As String = "SELECT transaction_id, user_id FROM borrow_transactions WHERE due_date < NOW() AND status = 'approved'"
                 Dim dtOverdue As New DataTable()
                 Using cmd As New MySqlCommand(overdueQuery, conn)
@@ -336,8 +366,6 @@ Public Class UserDashboardForm
                 For Each row As DataRow In dtOverdue.Rows
                     Dim transactionId As Integer = Convert.ToInt32(row("transaction_id"))
                     Dim userId As String = row("user_id").ToString()
-
-                    ' Check if a notification for this overdue transaction already exists.
                     Dim checkQuery As String = "SELECT COUNT(*) FROM notifications WHERE message LIKE @msg AND user_id = @userId"
                     Dim msgPattern As String = "Your borrow request (ID: " & transactionId.ToString() & ") is now overdue%"
                     Using checkCmd As New MySqlCommand(checkQuery, conn)
@@ -345,7 +373,6 @@ Public Class UserDashboardForm
                         checkCmd.Parameters.AddWithValue("@userId", userId)
                         Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
                         If count = 0 Then
-                            ' Insert a notification.
                             Dim insertQuery As String = "INSERT INTO notifications (user_id, message, is_read, created_at) VALUES (@userId, @message, 0, NOW())"
                             Using insertCmd As New MySqlCommand(insertQuery, conn)
                                 insertCmd.Parameters.AddWithValue("@userId", userId)
@@ -355,7 +382,6 @@ Public Class UserDashboardForm
                         End If
                     End Using
 
-                    ' Update the transaction status to overdue.
                     Dim updateQuery As String = "UPDATE borrow_transactions SET status = 'overdue' WHERE transaction_id = @transactionId"
                     Using updateCmd As New MySqlCommand(updateQuery, conn)
                         updateCmd.Parameters.AddWithValue("@transactionId", transactionId)
@@ -393,16 +419,14 @@ Public Class UserDashboardForm
                     adapter.Fill(dt)
                 End Using
 
-                dgvInventory.AutoGenerateColumns = False ' Prevent automatic column creation
+                dgvInventory.AutoGenerateColumns = False
                 dgvInventory.DataSource = dt
 
-                ' Hide unwanted columns if they exist.
                 If dgvInventory.Columns.Contains("quantity") Then dgvInventory.Columns("quantity").Visible = False
                 If dgvInventory.Columns.Contains("status") Then dgvInventory.Columns("status").Visible = False
                 If dgvInventory.Columns.Contains("added_at") Then dgvInventory.Columns("added_at").Visible = False
                 If dgvInventory.Columns.Contains("serial_number") Then dgvInventory.Columns("serial_number").Visible = False
 
-                ' Ensure the columns exist before setting DataPropertyName
                 If dgvInventory.Columns.Contains("COLitem_name") Then dgvInventory.Columns("COLitem_name").DataPropertyName = "item_name"
                 If dgvInventory.Columns.Contains("Colitem_type") Then dgvInventory.Columns("Colitem_type").DataPropertyName = "item_type"
                 If dgvInventory.Columns.Contains("Colbrand") Then dgvInventory.Columns("Colbrand").DataPropertyName = "brand"
@@ -411,12 +435,10 @@ Public Class UserDashboardForm
                 If dgvInventory.Columns.Contains("Colitem_id") Then dgvInventory.Columns("Colitem_id").DataPropertyName = "item_id"
                 If dgvInventory.Columns.Contains("Colstatus") Then dgvInventory.Columns("Colstatus").DataPropertyName = "status"
 
-
             Catch ex As Exception
                 MessageBox.Show("Error searching inventory: " & ex.Message)
             End Try
         End Using
     End Sub
-
 
 End Class
