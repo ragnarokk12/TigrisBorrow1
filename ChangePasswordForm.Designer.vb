@@ -33,6 +33,7 @@ Partial Class ChangePasswordForm
         Me.lblCriteriaDigit = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblCriteriaLength = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblPasswordMatch = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.chkShowPassword = New Guna.UI2.WinForms.Guna2CheckBox()
         Me.SuspendLayout()
         '
         'lblNewPassword
@@ -163,11 +164,29 @@ Partial Class ChangePasswordForm
         Me.lblPasswordMatch.Text = "Displays whether the passwords match"
         Me.lblPasswordMatch.Visible = False
         '
+        'chkShowPassword
+        '
+        Me.chkShowPassword.AutoSize = True
+        Me.chkShowPassword.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.chkShowPassword.CheckedState.BorderRadius = 0
+        Me.chkShowPassword.CheckedState.BorderThickness = 0
+        Me.chkShowPassword.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.chkShowPassword.Location = New System.Drawing.Point(508, 83)
+        Me.chkShowPassword.Name = "chkShowPassword"
+        Me.chkShowPassword.Size = New System.Drawing.Size(102, 17)
+        Me.chkShowPassword.TabIndex = 11
+        Me.chkShowPassword.Text = "Show Password"
+        Me.chkShowPassword.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        Me.chkShowPassword.UncheckedState.BorderRadius = 0
+        Me.chkShowPassword.UncheckedState.BorderThickness = 0
+        Me.chkShowPassword.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
+        '
         'ChangePasswordForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.chkShowPassword)
         Me.Controls.Add(Me.lblPasswordMatch)
         Me.Controls.Add(Me.lblCriteriaLength)
         Me.Controls.Add(Me.lblCriteriaDigit)
@@ -197,4 +216,5 @@ Partial Class ChangePasswordForm
     Friend WithEvents lblCriteriaDigit As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblCriteriaLength As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblPasswordMatch As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents chkShowPassword As Guna.UI2.WinForms.Guna2CheckBox
 End Class

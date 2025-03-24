@@ -9,11 +9,19 @@ Public Class ChangePasswordForm
     Private Const NewPasswordPlaceholder As String = "Enter new password"
     Private Const ConfirmPasswordPlaceholder As String = "Confirm new password"
 
-    ' Form Load event to initialize placeholders.
+    ' Form Load event to initialize placeholders and password character.
     Private Sub ChangePasswordForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Set placeholder text and initial color.
         SetPlaceholder(txtNewPassword, NewPasswordPlaceholder)
         SetPlaceholder(txtConfirmPassword, ConfirmPasswordPlaceholder)
+
+        ' Set the password character to a circle.
+        txtNewPassword.PasswordChar = "●"c
+        txtConfirmPassword.PasswordChar = "●"c
+
+        ' Ensure the text boxes use the system password character.
+        txtNewPassword.UseSystemPasswordChar = True
+        txtConfirmPassword.UseSystemPasswordChar = True
     End Sub
 
     ' Helper to set placeholder on a Guna2TextBox.
@@ -50,42 +58,21 @@ Public Class ChangePasswordForm
         End If
     End Sub
 
-    ' btnSave and btnCancel event handlers.
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        Dim newPwd As String = txtNewPassword.Text.Trim()
-        Dim confirmPwd As String = txtConfirmPassword.Text.Trim()
-
-        ' Ensure that placeholder text is not considered a valid password.
-        If newPwd = NewPasswordPlaceholder OrElse String.IsNullOrEmpty(newPwd) Then
-            MessageBox.Show("Please enter a new password.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
+    ' Show Password CheckBox event.
+    Private Sub chkShowPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowPassword.CheckedChanged
+        If chkShowPassword.Checked Then
+            txtNewPassword.UseSystemPasswordChar = False
+            txtConfirmPassword.UseSystemPasswordChar = False
+        Else
+            txtNewPassword.UseSystemPasswordChar = True
+            txtConfirmPassword.UseSystemPasswordChar = True
+            ' Ensure the password char is set to the circle.
+            txtNewPassword.PasswordChar = "●"c
+            txtConfirmPassword.PasswordChar = "●"c
         End If
-
-        ' Validate password strength.
-        If newPwd.Length < 8 OrElse Not newPwd.Any(Function(c) Char.IsUpper(c)) OrElse
-           Not newPwd.Any(Function(c) Char.IsLower(c)) OrElse Not newPwd.Any(Function(c) Char.IsDigit(c)) Then
-            MessageBox.Show("Password must be 8+ characters with uppercase, lowercase, and a number.",
-                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        ' Ensure confirmation matches.
-        If newPwd <> confirmPwd Then
-            MessageBox.Show("The passwords do not match.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        ' If validation passes, set the property and close the form.
-        NewPasswordText = newPwd
-        Me.DialogResult = DialogResult.OK
-        Me.Close()
     End Sub
 
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Me.DialogResult = DialogResult.Cancel
-        Me.Close()
-    End Sub
-
+    ' Real-time validation events.
     Private Sub txtNewPassword_TextChanged(sender As Object, e As EventArgs) Handles txtNewPassword.TextChanged
         ' Avoid updating criteria if placeholder is visible.
         If txtNewPassword.Text = NewPasswordPlaceholder Then Return
@@ -154,5 +141,41 @@ Public Class ChangePasswordForm
             lblPasswordMatch.Text = "Passwords do not match"
             lblPasswordMatch.ForeColor = Color.Red
         End If
+    End Sub
+
+    ' btnSave and btnCancel event handlers.
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Dim newPwd As String = txtNewPassword.Text.Trim()
+        Dim confirmPwd As String = txtConfirmPassword.Text.Trim()
+
+        ' Ensure that placeholder text is not considered a valid password.
+        If newPwd = NewPasswordPlaceholder OrElse String.IsNullOrEmpty(newPwd) Then
+            MessageBox.Show("Please enter a new password.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ' Validate password strength.
+        If newPwd.Length < 8 OrElse Not newPwd.Any(Function(c) Char.IsUpper(c)) OrElse
+           Not newPwd.Any(Function(c) Char.IsLower(c)) OrElse Not newPwd.Any(Function(c) Char.IsDigit(c)) Then
+            MessageBox.Show("Password must be 8+ characters with uppercase, lowercase, and a number.",
+                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ' Ensure confirmation matches.
+        If newPwd <> confirmPwd Then
+            MessageBox.Show("The passwords do not match.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ' If validation passes, set the property and close the form.
+        NewPasswordText = newPwd
+        Me.DialogResult = DialogResult.OK
+        Me.Close()
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Me.DialogResult = DialogResult.Cancel
+        Me.Close()
     End Sub
 End Class
