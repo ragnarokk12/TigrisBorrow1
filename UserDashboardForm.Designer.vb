@@ -46,7 +46,6 @@ Partial Class UserDashboardForm
         Me.txtFullName = New Guna.UI2.WinForms.Guna2TextBox()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.btnReturnItem = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnSearchInventory = New Guna.UI2.WinForms.Guna2Button()
         Me.dgvInventory = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.dgvBorrowRequests = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.txtSearchInventory = New Guna.UI2.WinForms.Guna2TextBox()
@@ -54,9 +53,22 @@ Partial Class UserDashboardForm
         Me.tbcNotification = New System.Windows.Forms.TabPage()
         Me.btnClearNotifications = New Guna.UI2.WinForms.Guna2Button()
         Me.dgvNotifications = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
+        Me.Guna2CustomGradientPanel1 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
         Me.lblActiveRequests = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.lblItemsBorrowed = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2CustomGradientPanel2 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
         Me.lblOverdueItems = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2CustomGradientPanel3 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
+        Me.lblItemsBorrowed = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Guna2CustomGradientPanel4 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
+        Me.COLitem_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colitem_type = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colbrand = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colmodel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colcategory = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colstatus = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colitem_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tabControlDashboard.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage3.SuspendLayout()
@@ -64,37 +76,45 @@ Partial Class UserDashboardForm
         CType(Me.dgvBorrowRequests, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tbcNotification.SuspendLayout()
         CType(Me.dgvNotifications, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Guna2CustomGradientPanel1.SuspendLayout()
+        Me.Guna2CustomGradientPanel2.SuspendLayout()
+        Me.Guna2CustomGradientPanel3.SuspendLayout()
+        Me.Guna2Panel1.SuspendLayout()
+        Me.Guna2CustomGradientPanel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'tabControlDashboard
         '
         Me.tabControlDashboard.Alignment = System.Windows.Forms.TabAlignment.Left
+        Me.tabControlDashboard.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabControlDashboard.Controls.Add(Me.TabPage1)
         Me.tabControlDashboard.Controls.Add(Me.TabPage3)
         Me.tabControlDashboard.Controls.Add(Me.tbcNotification)
         Me.tabControlDashboard.ItemSize = New System.Drawing.Size(180, 40)
-        Me.tabControlDashboard.Location = New System.Drawing.Point(1, 70)
+        Me.tabControlDashboard.Location = New System.Drawing.Point(0, 85)
         Me.tabControlDashboard.Name = "tabControlDashboard"
         Me.tabControlDashboard.SelectedIndex = 0
-        Me.tabControlDashboard.Size = New System.Drawing.Size(1222, 558)
+        Me.tabControlDashboard.Size = New System.Drawing.Size(1226, 558)
         Me.tabControlDashboard.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty
-        Me.tabControlDashboard.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.tabControlDashboard.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.tabControlDashboard.TabButtonHoverState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
         Me.tabControlDashboard.TabButtonHoverState.ForeColor = System.Drawing.Color.White
-        Me.tabControlDashboard.TabButtonHoverState.InnerColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.tabControlDashboard.TabButtonHoverState.InnerColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.tabControlDashboard.TabButtonIdleState.BorderColor = System.Drawing.Color.Empty
-        Me.tabControlDashboard.TabButtonIdleState.FillColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(57, Byte), Integer))
+        Me.tabControlDashboard.TabButtonIdleState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.tabControlDashboard.TabButtonIdleState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
         Me.tabControlDashboard.TabButtonIdleState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(167, Byte), Integer))
-        Me.tabControlDashboard.TabButtonIdleState.InnerColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(57, Byte), Integer))
+        Me.tabControlDashboard.TabButtonIdleState.InnerColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.tabControlDashboard.TabButtonSelectedState.BorderColor = System.Drawing.Color.Empty
-        Me.tabControlDashboard.TabButtonSelectedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(29, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(49, Byte), Integer))
+        Me.tabControlDashboard.TabButtonSelectedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.tabControlDashboard.TabButtonSelectedState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
         Me.tabControlDashboard.TabButtonSelectedState.ForeColor = System.Drawing.Color.White
         Me.tabControlDashboard.TabButtonSelectedState.InnerColor = System.Drawing.Color.FromArgb(CType(CType(76, Byte), Integer), CType(CType(132, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.tabControlDashboard.TabButtonSize = New System.Drawing.Size(180, 40)
         Me.tabControlDashboard.TabIndex = 1
-        Me.tabControlDashboard.TabMenuBackColor = System.Drawing.Color.FromArgb(CType(CType(33, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(57, Byte), Integer))
+        Me.tabControlDashboard.TabMenuBackColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(205, Byte), Integer))
         '
         'TabPage1
         '
@@ -107,10 +127,11 @@ Partial Class UserDashboardForm
         Me.TabPage1.Controls.Add(Me.txtPhoneNumber)
         Me.TabPage1.Controls.Add(Me.txtEmail)
         Me.TabPage1.Controls.Add(Me.txtFullName)
+        Me.TabPage1.ForeColor = System.Drawing.SystemColors.AppWorkspace
         Me.TabPage1.Location = New System.Drawing.Point(184, 4)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1034, 550)
+        Me.TabPage1.Size = New System.Drawing.Size(1038, 550)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "User Profile"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -123,7 +144,7 @@ Partial Class UserDashboardForm
         Me.btnResetPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnResetPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnResetPassword.ForeColor = System.Drawing.Color.White
-        Me.btnResetPassword.Location = New System.Drawing.Point(364, 326)
+        Me.btnResetPassword.Location = New System.Drawing.Point(481, 341)
         Me.btnResetPassword.Name = "btnResetPassword"
         Me.btnResetPassword.Size = New System.Drawing.Size(180, 45)
         Me.btnResetPassword.TabIndex = 8
@@ -132,7 +153,7 @@ Partial Class UserDashboardForm
         'lblEmail
         '
         Me.lblEmail.BackColor = System.Drawing.Color.Transparent
-        Me.lblEmail.Location = New System.Drawing.Point(224, 207)
+        Me.lblEmail.Location = New System.Drawing.Point(341, 222)
         Me.lblEmail.Name = "lblEmail"
         Me.lblEmail.Size = New System.Drawing.Size(31, 15)
         Me.lblEmail.TabIndex = 7
@@ -141,7 +162,7 @@ Partial Class UserDashboardForm
         'lblPhoneNumber
         '
         Me.lblPhoneNumber.BackColor = System.Drawing.Color.Transparent
-        Me.lblPhoneNumber.Location = New System.Drawing.Point(224, 249)
+        Me.lblPhoneNumber.Location = New System.Drawing.Point(341, 264)
         Me.lblPhoneNumber.Name = "lblPhoneNumber"
         Me.lblPhoneNumber.Size = New System.Drawing.Size(77, 15)
         Me.lblPhoneNumber.TabIndex = 6
@@ -150,7 +171,7 @@ Partial Class UserDashboardForm
         'lblFullName
         '
         Me.lblFullName.BackColor = System.Drawing.Color.Transparent
-        Me.lblFullName.Location = New System.Drawing.Point(221, 156)
+        Me.lblFullName.Location = New System.Drawing.Point(338, 171)
         Me.lblFullName.Name = "lblFullName"
         Me.lblFullName.Size = New System.Drawing.Size(34, 15)
         Me.lblFullName.TabIndex = 5
@@ -159,7 +180,7 @@ Partial Class UserDashboardForm
         'lblStudentID
         '
         Me.lblStudentID.BackColor = System.Drawing.Color.Transparent
-        Me.lblStudentID.Location = New System.Drawing.Point(195, 102)
+        Me.lblStudentID.Location = New System.Drawing.Point(312, 117)
         Me.lblStudentID.Name = "lblStudentID"
         Me.lblStudentID.Size = New System.Drawing.Size(57, 15)
         Me.lblStudentID.TabIndex = 4
@@ -176,7 +197,7 @@ Partial Class UserDashboardForm
         Me.txtStudentID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtStudentID.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtStudentID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtStudentID.Location = New System.Drawing.Point(364, 102)
+        Me.txtStudentID.Location = New System.Drawing.Point(481, 117)
         Me.txtStudentID.Name = "txtStudentID"
         Me.txtStudentID.PlaceholderText = ""
         Me.txtStudentID.ReadOnly = True
@@ -195,7 +216,7 @@ Partial Class UserDashboardForm
         Me.txtPhoneNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtPhoneNumber.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtPhoneNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPhoneNumber.Location = New System.Drawing.Point(364, 228)
+        Me.txtPhoneNumber.Location = New System.Drawing.Point(481, 243)
         Me.txtPhoneNumber.Name = "txtPhoneNumber"
         Me.txtPhoneNumber.PlaceholderText = ""
         Me.txtPhoneNumber.ReadOnly = True
@@ -214,7 +235,7 @@ Partial Class UserDashboardForm
         Me.txtEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtEmail.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtEmail.Location = New System.Drawing.Point(364, 186)
+        Me.txtEmail.Location = New System.Drawing.Point(481, 201)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.PlaceholderText = ""
         Me.txtEmail.ReadOnly = True
@@ -233,7 +254,7 @@ Partial Class UserDashboardForm
         Me.txtFullName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtFullName.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtFullName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtFullName.Location = New System.Drawing.Point(364, 144)
+        Me.txtFullName.Location = New System.Drawing.Point(481, 159)
         Me.txtFullName.Name = "txtFullName"
         Me.txtFullName.PlaceholderText = ""
         Me.txtFullName.ReadOnly = True
@@ -244,7 +265,6 @@ Partial Class UserDashboardForm
         'TabPage3
         '
         Me.TabPage3.Controls.Add(Me.btnReturnItem)
-        Me.TabPage3.Controls.Add(Me.btnSearchInventory)
         Me.TabPage3.Controls.Add(Me.dgvInventory)
         Me.TabPage3.Controls.Add(Me.dgvBorrowRequests)
         Me.TabPage3.Controls.Add(Me.txtSearchInventory)
@@ -252,7 +272,7 @@ Partial Class UserDashboardForm
         Me.TabPage3.Location = New System.Drawing.Point(184, 4)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(1034, 550)
+        Me.TabPage3.Size = New System.Drawing.Size(1038, 550)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Borrow Request"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -263,33 +283,19 @@ Partial Class UserDashboardForm
         Me.btnReturnItem.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnReturnItem.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.btnReturnItem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnReturnItem.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.btnReturnItem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnReturnItem.ForeColor = System.Drawing.Color.White
-        Me.btnReturnItem.Location = New System.Drawing.Point(756, 498)
+        Me.btnReturnItem.Location = New System.Drawing.Point(792, 504)
         Me.btnReturnItem.Name = "btnReturnItem"
-        Me.btnReturnItem.Size = New System.Drawing.Size(180, 45)
+        Me.btnReturnItem.Size = New System.Drawing.Size(180, 43)
         Me.btnReturnItem.TabIndex = 4
         Me.btnReturnItem.Text = "Return Item"
-        '
-        'btnSearchInventory
-        '
-        Me.btnSearchInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnSearchInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnSearchInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnSearchInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnSearchInventory.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnSearchInventory.ForeColor = System.Drawing.Color.White
-        Me.btnSearchInventory.Location = New System.Drawing.Point(271, 0)
-        Me.btnSearchInventory.Name = "btnSearchInventory"
-        Me.btnSearchInventory.Size = New System.Drawing.Size(180, 45)
-        Me.btnSearchInventory.TabIndex = 2
-        Me.btnSearchInventory.Text = "Search"
         '
         'dgvInventory
         '
         DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
         Me.dgvInventory.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.dgvInventory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -298,8 +304,9 @@ Partial Class UserDashboardForm
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgvInventory.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.dgvInventory.ColumnHeadersHeight = 4
+        Me.dgvInventory.ColumnHeadersHeight = 15
         Me.dgvInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Me.dgvInventory.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.COLitem_name, Me.Colitem_type, Me.Colbrand, Me.Colmodel, Me.Colcategory, Me.Colstatus, Me.Colitem_id})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -309,7 +316,7 @@ Partial Class UserDashboardForm
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvInventory.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvInventory.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvInventory.Location = New System.Drawing.Point(6, 45)
+        Me.dgvInventory.Location = New System.Drawing.Point(32, 51)
         Me.dgvInventory.Name = "dgvInventory"
         Me.dgvInventory.ReadOnly = True
         Me.dgvInventory.RowHeadersVisible = False
@@ -327,7 +334,7 @@ Partial Class UserDashboardForm
         Me.dgvInventory.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dgvInventory.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White
         Me.dgvInventory.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        Me.dgvInventory.ThemeStyle.HeaderStyle.Height = 4
+        Me.dgvInventory.ThemeStyle.HeaderStyle.Height = 15
         Me.dgvInventory.ThemeStyle.ReadOnly = True
         Me.dgvInventory.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvInventory.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
@@ -360,7 +367,7 @@ Partial Class UserDashboardForm
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvBorrowRequests.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgvBorrowRequests.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvBorrowRequests.Location = New System.Drawing.Point(702, 21)
+        Me.dgvBorrowRequests.Location = New System.Drawing.Point(702, 6)
         Me.dgvBorrowRequests.Name = "dgvBorrowRequests"
         Me.dgvBorrowRequests.ReadOnly = True
         Me.dgvBorrowRequests.RowHeadersVisible = False
@@ -399,11 +406,11 @@ Partial Class UserDashboardForm
         Me.txtSearchInventory.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtSearchInventory.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtSearchInventory.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearchInventory.Location = New System.Drawing.Point(36, 3)
+        Me.txtSearchInventory.Location = New System.Drawing.Point(32, 9)
         Me.txtSearchInventory.Name = "txtSearchInventory"
         Me.txtSearchInventory.PlaceholderText = ""
         Me.txtSearchInventory.SelectedText = ""
-        Me.txtSearchInventory.Size = New System.Drawing.Size(200, 36)
+        Me.txtSearchInventory.Size = New System.Drawing.Size(331, 36)
         Me.txtSearchInventory.TabIndex = 1
         '
         'btnSubmitRequest
@@ -412,11 +419,12 @@ Partial Class UserDashboardForm
         Me.btnSubmitRequest.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnSubmitRequest.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.btnSubmitRequest.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnSubmitRequest.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.btnSubmitRequest.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnSubmitRequest.ForeColor = System.Drawing.Color.White
-        Me.btnSubmitRequest.Location = New System.Drawing.Point(398, 498)
+        Me.btnSubmitRequest.Location = New System.Drawing.Point(403, 504)
         Me.btnSubmitRequest.Name = "btnSubmitRequest"
-        Me.btnSubmitRequest.Size = New System.Drawing.Size(180, 45)
+        Me.btnSubmitRequest.Size = New System.Drawing.Size(180, 38)
         Me.btnSubmitRequest.TabIndex = 0
         Me.btnSubmitRequest.Text = "Sumbit"
         '
@@ -427,7 +435,7 @@ Partial Class UserDashboardForm
         Me.tbcNotification.Location = New System.Drawing.Point(184, 4)
         Me.tbcNotification.Name = "tbcNotification"
         Me.tbcNotification.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbcNotification.Size = New System.Drawing.Size(1034, 550)
+        Me.tbcNotification.Size = New System.Drawing.Size(1038, 550)
         Me.tbcNotification.TabIndex = 4
         Me.tbcNotification.Text = "Notification"
         Me.tbcNotification.UseVisualStyleBackColor = True
@@ -496,42 +504,144 @@ Partial Class UserDashboardForm
         Me.dgvNotifications.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvNotifications.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
         '
+        'Guna2CustomGradientPanel1
+        '
+        Me.Guna2CustomGradientPanel1.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Guna2CustomGradientPanel1.BorderRadius = 7
+        Me.Guna2CustomGradientPanel1.Controls.Add(Me.lblActiveRequests)
+        Me.Guna2CustomGradientPanel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Guna2CustomGradientPanel1.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.Guna2CustomGradientPanel1.FillColor3 = System.Drawing.Color.Lime
+        Me.Guna2CustomGradientPanel1.FillColor4 = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Guna2CustomGradientPanel1.Location = New System.Drawing.Point(230, 12)
+        Me.Guna2CustomGradientPanel1.Name = "Guna2CustomGradientPanel1"
+        Me.Guna2CustomGradientPanel1.Size = New System.Drawing.Size(300, 60)
+        Me.Guna2CustomGradientPanel1.TabIndex = 5
+        '
         'lblActiveRequests
         '
+        Me.lblActiveRequests.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.lblActiveRequests.BackColor = System.Drawing.Color.Transparent
-        Me.lblActiveRequests.Location = New System.Drawing.Point(488, 25)
+        Me.lblActiveRequests.Location = New System.Drawing.Point(78, 23)
         Me.lblActiveRequests.Name = "lblActiveRequests"
         Me.lblActiveRequests.Size = New System.Drawing.Size(148, 15)
         Me.lblActiveRequests.TabIndex = 2
         Me.lblActiveRequests.Text = "Active Borrow Requests Count"
         '
-        'lblItemsBorrowed
+        'Guna2CustomGradientPanel2
         '
-        Me.lblItemsBorrowed.BackColor = System.Drawing.Color.Transparent
-        Me.lblItemsBorrowed.Location = New System.Drawing.Point(488, 46)
-        Me.lblItemsBorrowed.Name = "lblItemsBorrowed"
-        Me.lblItemsBorrowed.Size = New System.Drawing.Size(120, 15)
-        Me.lblItemsBorrowed.TabIndex = 3
-        Me.lblItemsBorrowed.Text = "Items Currently Borrowed"
+        Me.Guna2CustomGradientPanel2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Guna2CustomGradientPanel2.Controls.Add(Me.lblOverdueItems)
+        Me.Guna2CustomGradientPanel2.Location = New System.Drawing.Point(898, 12)
+        Me.Guna2CustomGradientPanel2.Name = "Guna2CustomGradientPanel2"
+        Me.Guna2CustomGradientPanel2.Size = New System.Drawing.Size(300, 60)
+        Me.Guna2CustomGradientPanel2.TabIndex = 6
         '
         'lblOverdueItems
         '
+        Me.lblOverdueItems.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.lblOverdueItems.BackColor = System.Drawing.Color.Transparent
-        Me.lblOverdueItems.Location = New System.Drawing.Point(640, 25)
+        Me.lblOverdueItems.Location = New System.Drawing.Point(108, 23)
         Me.lblOverdueItems.Name = "lblOverdueItems"
         Me.lblOverdueItems.Size = New System.Drawing.Size(103, 15)
         Me.lblOverdueItems.TabIndex = 4
         Me.lblOverdueItems.Text = "Overdue Items Count"
         '
+        'Guna2CustomGradientPanel3
+        '
+        Me.Guna2CustomGradientPanel3.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Guna2CustomGradientPanel3.BorderRadius = 7
+        Me.Guna2CustomGradientPanel3.Controls.Add(Me.lblItemsBorrowed)
+        Me.Guna2CustomGradientPanel3.Location = New System.Drawing.Point(561, 12)
+        Me.Guna2CustomGradientPanel3.Name = "Guna2CustomGradientPanel3"
+        Me.Guna2CustomGradientPanel3.Size = New System.Drawing.Size(300, 60)
+        Me.Guna2CustomGradientPanel3.TabIndex = 9
+        '
+        'lblItemsBorrowed
+        '
+        Me.lblItemsBorrowed.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.lblItemsBorrowed.BackColor = System.Drawing.Color.Transparent
+        Me.lblItemsBorrowed.Location = New System.Drawing.Point(86, 23)
+        Me.lblItemsBorrowed.Name = "lblItemsBorrowed"
+        Me.lblItemsBorrowed.Size = New System.Drawing.Size(120, 15)
+        Me.lblItemsBorrowed.TabIndex = 3
+        Me.lblItemsBorrowed.Text = "Items Currently Borrowed"
+        '
+        'Guna2Panel1
+        '
+        Me.Guna2Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2Panel1.Controls.Add(Me.Guna2CustomGradientPanel4)
+        Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Guna2Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Guna2Panel1.Name = "Guna2Panel1"
+        Me.Guna2Panel1.Size = New System.Drawing.Size(1226, 85)
+        Me.Guna2Panel1.TabIndex = 10
+        '
+        'Guna2CustomGradientPanel4
+        '
+        Me.Guna2CustomGradientPanel4.Controls.Add(Me.Guna2CustomGradientPanel1)
+        Me.Guna2CustomGradientPanel4.Controls.Add(Me.Guna2CustomGradientPanel2)
+        Me.Guna2CustomGradientPanel4.Controls.Add(Me.Guna2CustomGradientPanel3)
+        Me.Guna2CustomGradientPanel4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Guna2CustomGradientPanel4.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.Guna2CustomGradientPanel4.Location = New System.Drawing.Point(0, 0)
+        Me.Guna2CustomGradientPanel4.Name = "Guna2CustomGradientPanel4"
+        Me.Guna2CustomGradientPanel4.Size = New System.Drawing.Size(1226, 149)
+        Me.Guna2CustomGradientPanel4.TabIndex = 10
+        '
+        'COLitem_name
+        '
+        Me.COLitem_name.FillWeight = 200.0!
+        Me.COLitem_name.HeaderText = "Name"
+        Me.COLitem_name.Name = "COLitem_name"
+        Me.COLitem_name.ReadOnly = True
+        '
+        'Colitem_type
+        '
+        Me.Colitem_type.HeaderText = "type"
+        Me.Colitem_type.Name = "Colitem_type"
+        Me.Colitem_type.ReadOnly = True
+        '
+        'Colbrand
+        '
+        Me.Colbrand.HeaderText = "brand"
+        Me.Colbrand.Name = "Colbrand"
+        Me.Colbrand.ReadOnly = True
+        '
+        'Colmodel
+        '
+        Me.Colmodel.HeaderText = "Model"
+        Me.Colmodel.Name = "Colmodel"
+        Me.Colmodel.ReadOnly = True
+        '
+        'Colcategory
+        '
+        Me.Colcategory.HeaderText = "Category"
+        Me.Colcategory.Name = "Colcategory"
+        Me.Colcategory.ReadOnly = True
+        '
+        'Colstatus
+        '
+        Me.Colstatus.HeaderText = "status"
+        Me.Colstatus.Name = "Colstatus"
+        Me.Colstatus.ReadOnly = True
+        Me.Colstatus.Visible = False
+        '
+        'Colitem_id
+        '
+        Me.Colitem_id.HeaderText = "item_id"
+        Me.Colitem_id.Name = "Colitem_id"
+        Me.Colitem_id.ReadOnly = True
+        Me.Colitem_id.Visible = False
+        '
         'UserDashboardForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1226, 629)
-        Me.Controls.Add(Me.lblOverdueItems)
-        Me.Controls.Add(Me.lblItemsBorrowed)
-        Me.Controls.Add(Me.lblActiveRequests)
+        Me.ClientSize = New System.Drawing.Size(1226, 643)
+        Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.tabControlDashboard)
+        Me.MinimumSize = New System.Drawing.Size(1242, 659)
         Me.Name = "UserDashboardForm"
         Me.Text = "UserDashboardForm"
         Me.tabControlDashboard.ResumeLayout(False)
@@ -542,14 +652,29 @@ Partial Class UserDashboardForm
         CType(Me.dgvBorrowRequests, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbcNotification.ResumeLayout(False)
         CType(Me.dgvNotifications, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Guna2CustomGradientPanel1.ResumeLayout(False)
+        Me.Guna2CustomGradientPanel1.PerformLayout()
+        Me.Guna2CustomGradientPanel2.ResumeLayout(False)
+        Me.Guna2CustomGradientPanel2.PerformLayout()
+        Me.Guna2CustomGradientPanel3.ResumeLayout(False)
+        Me.Guna2CustomGradientPanel3.PerformLayout()
+        Me.Guna2Panel1.ResumeLayout(False)
+        Me.Guna2CustomGradientPanel4.ResumeLayout(False)
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Guna2AnimateWindow1 As Guna.UI2.WinForms.Guna2AnimateWindow
     Friend WithEvents tabControlDashboard As Guna.UI2.WinForms.Guna2TabControl
-    Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents txtSearchInventory As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents tbcNotification As TabPage
+    Friend WithEvents btnSubmitRequest As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents dgvNotifications As Guna.UI2.WinForms.Guna2DataGridView
+    Friend WithEvents btnClearNotifications As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents dgvBorrowRequests As Guna.UI2.WinForms.Guna2DataGridView
+    Friend WithEvents btnReturnItem As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents Guna2Elipse1 As Guna.UI2.WinForms.Guna2Elipse
+    Friend WithEvents TabPage1 As TabPage
     Friend WithEvents btnResetPassword As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents lblEmail As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblPhoneNumber As Guna.UI2.WinForms.Guna2HtmlLabel
@@ -559,16 +684,20 @@ Partial Class UserDashboardForm
     Friend WithEvents txtPhoneNumber As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtEmail As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtFullName As Guna.UI2.WinForms.Guna2TextBox
-    Friend WithEvents btnSearchInventory As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents txtSearchInventory As Guna.UI2.WinForms.Guna2TextBox
-    Friend WithEvents tbcNotification As TabPage
+    Friend WithEvents Guna2CustomGradientPanel1 As Guna.UI2.WinForms.Guna2CustomGradientPanel
     Friend WithEvents lblActiveRequests As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents lblItemsBorrowed As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2CustomGradientPanel2 As Guna.UI2.WinForms.Guna2CustomGradientPanel
     Friend WithEvents lblOverdueItems As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2CustomGradientPanel3 As Guna.UI2.WinForms.Guna2CustomGradientPanel
+    Friend WithEvents lblItemsBorrowed As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
+    Friend WithEvents Guna2CustomGradientPanel4 As Guna.UI2.WinForms.Guna2CustomGradientPanel
     Friend WithEvents dgvInventory As Guna.UI2.WinForms.Guna2DataGridView
-    Friend WithEvents btnSubmitRequest As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents dgvNotifications As Guna.UI2.WinForms.Guna2DataGridView
-    Friend WithEvents btnClearNotifications As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents dgvBorrowRequests As Guna.UI2.WinForms.Guna2DataGridView
-    Friend WithEvents btnReturnItem As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents COLitem_name As DataGridViewTextBoxColumn
+    Friend WithEvents Colitem_type As DataGridViewTextBoxColumn
+    Friend WithEvents Colbrand As DataGridViewTextBoxColumn
+    Friend WithEvents Colmodel As DataGridViewTextBoxColumn
+    Friend WithEvents Colcategory As DataGridViewTextBoxColumn
+    Friend WithEvents Colitem_id As DataGridViewTextBoxColumn
+    Friend WithEvents Colstatus As DataGridViewTextBoxColumn
 End Class
