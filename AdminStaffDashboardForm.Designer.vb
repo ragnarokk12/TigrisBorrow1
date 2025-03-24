@@ -64,27 +64,29 @@ Partial Class AdminStaffDashboardForm
         Me.btnApprove = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Separator1 = New Guna.UI2.WinForms.Guna2Separator()
         Me.tbpInventory = New System.Windows.Forms.TabPage()
+        Me.btnRefreshInventory = New Guna.UI2.WinForms.Guna2Button()
+        Me.lblFilterSummary = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.btnClearFilters = New Guna.UI2.WinForms.Guna2Button()
+        Me.cbCategoryFilter = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.txtSearchInv = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.chkDescending = New Guna.UI2.WinForms.Guna2CheckBox()
-        Me.cbSortBy = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.btnInvEdit = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnEditQuantity = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Separator2 = New Guna.UI2.WinForms.Guna2Separator()
-        Me.btnSort = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnGo = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDeleteItems = New Guna.UI2.WinForms.Guna2Button()
         Me.btnAdditem = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2HtmlLabel4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.dgvInventory = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.tbpAccount = New System.Windows.Forms.TabPage()
+        Me.btnClearAccountFilters = New Guna.UI2.WinForms.Guna2Button()
+        Me.cbAccountRoleFilter = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.txtSearchAccount = New Guna.UI2.WinForms.Guna2TextBox()
         Me.btnEditAccount = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnGoAccount = New Guna.UI2.WinForms.Guna2Button()
         Me.dgvAccount = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.btnNewAccount = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2HtmlLabel5 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblYourName = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2CustomGradientPanel1 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
         Me.Guna2AnimateWindow1 = New Guna.UI2.WinForms.Guna2AnimateWindow(Me.components)
+        Me.btnResetPassword = New Guna.UI2.WinForms.Guna2Button()
         Me.tbcAdminDashboard.SuspendLayout()
         Me.tbcReport.SuspendLayout()
         Me.tbcDataReport.SuspendLayout()
@@ -572,13 +574,13 @@ Partial Class AdminStaffDashboardForm
         '
         'tbpInventory
         '
+        Me.tbpInventory.Controls.Add(Me.btnRefreshInventory)
+        Me.tbpInventory.Controls.Add(Me.lblFilterSummary)
+        Me.tbpInventory.Controls.Add(Me.btnClearFilters)
+        Me.tbpInventory.Controls.Add(Me.cbCategoryFilter)
         Me.tbpInventory.Controls.Add(Me.txtSearchInv)
-        Me.tbpInventory.Controls.Add(Me.chkDescending)
-        Me.tbpInventory.Controls.Add(Me.cbSortBy)
-        Me.tbpInventory.Controls.Add(Me.btnInvEdit)
+        Me.tbpInventory.Controls.Add(Me.btnEditQuantity)
         Me.tbpInventory.Controls.Add(Me.Guna2Separator2)
-        Me.tbpInventory.Controls.Add(Me.btnSort)
-        Me.tbpInventory.Controls.Add(Me.btnGo)
         Me.tbpInventory.Controls.Add(Me.btnDeleteItems)
         Me.tbpInventory.Controls.Add(Me.btnAdditem)
         Me.tbpInventory.Controls.Add(Me.Guna2HtmlLabel4)
@@ -590,6 +592,58 @@ Partial Class AdminStaffDashboardForm
         Me.tbpInventory.TabIndex = 1
         Me.tbpInventory.Text = "Inventory"
         Me.tbpInventory.UseVisualStyleBackColor = True
+        '
+        'btnRefreshInventory
+        '
+        Me.btnRefreshInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnRefreshInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnRefreshInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnRefreshInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnRefreshInventory.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnRefreshInventory.ForeColor = System.Drawing.Color.White
+        Me.btnRefreshInventory.Location = New System.Drawing.Point(212, 38)
+        Me.btnRefreshInventory.Name = "btnRefreshInventory"
+        Me.btnRefreshInventory.Size = New System.Drawing.Size(113, 38)
+        Me.btnRefreshInventory.TabIndex = 16
+        Me.btnRefreshInventory.Text = "Refresh"
+        '
+        'lblFilterSummary
+        '
+        Me.lblFilterSummary.BackColor = System.Drawing.Color.Transparent
+        Me.lblFilterSummary.Location = New System.Drawing.Point(6, 434)
+        Me.lblFilterSummary.Name = "lblFilterSummary"
+        Me.lblFilterSummary.Size = New System.Drawing.Size(30, 15)
+        Me.lblFilterSummary.TabIndex = 15
+        Me.lblFilterSummary.Text = "Filters"
+        '
+        'btnClearFilters
+        '
+        Me.btnClearFilters.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnClearFilters.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnClearFilters.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnClearFilters.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnClearFilters.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnClearFilters.ForeColor = System.Drawing.Color.White
+        Me.btnClearFilters.Location = New System.Drawing.Point(498, 41)
+        Me.btnClearFilters.Name = "btnClearFilters"
+        Me.btnClearFilters.Size = New System.Drawing.Size(150, 33)
+        Me.btnClearFilters.TabIndex = 14
+        Me.btnClearFilters.Text = "Clear Filter"
+        '
+        'cbCategoryFilter
+        '
+        Me.cbCategoryFilter.BackColor = System.Drawing.Color.Transparent
+        Me.cbCategoryFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbCategoryFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbCategoryFilter.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbCategoryFilter.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbCategoryFilter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cbCategoryFilter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cbCategoryFilter.ItemHeight = 30
+        Me.cbCategoryFilter.Location = New System.Drawing.Point(333, 38)
+        Me.cbCategoryFilter.Name = "cbCategoryFilter"
+        Me.cbCategoryFilter.Size = New System.Drawing.Size(140, 36)
+        Me.cbCategoryFilter.TabIndex = 13
         '
         'txtSearchInv
         '
@@ -604,58 +658,24 @@ Partial Class AdminStaffDashboardForm
         Me.txtSearchInv.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtSearchInv.Location = New System.Drawing.Point(6, 38)
         Me.txtSearchInv.Name = "txtSearchInv"
-        Me.txtSearchInv.PlaceholderText = ""
+        Me.txtSearchInv.PlaceholderText = "Search Inventory"
         Me.txtSearchInv.SelectedText = ""
         Me.txtSearchInv.Size = New System.Drawing.Size(200, 36)
         Me.txtSearchInv.TabIndex = 12
         '
-        'chkDescending
+        'btnEditQuantity
         '
-        Me.chkDescending.AutoSize = True
-        Me.chkDescending.CheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.chkDescending.CheckedState.BorderRadius = 0
-        Me.chkDescending.CheckedState.BorderThickness = 0
-        Me.chkDescending.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.chkDescending.Location = New System.Drawing.Point(646, 53)
-        Me.chkDescending.Name = "chkDescending"
-        Me.chkDescending.Size = New System.Drawing.Size(51, 17)
-        Me.chkDescending.TabIndex = 10
-        Me.chkDescending.Text = "Desc"
-        Me.chkDescending.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
-        Me.chkDescending.UncheckedState.BorderRadius = 0
-        Me.chkDescending.UncheckedState.BorderThickness = 0
-        Me.chkDescending.UncheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
-        Me.chkDescending.Visible = False
-        '
-        'cbSortBy
-        '
-        Me.cbSortBy.BackColor = System.Drawing.Color.Transparent
-        Me.cbSortBy.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cbSortBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbSortBy.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbSortBy.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbSortBy.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cbSortBy.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.cbSortBy.ItemHeight = 30
-        Me.cbSortBy.Location = New System.Drawing.Point(500, 38)
-        Me.cbSortBy.Name = "cbSortBy"
-        Me.cbSortBy.Size = New System.Drawing.Size(140, 36)
-        Me.cbSortBy.TabIndex = 9
-        Me.cbSortBy.Visible = False
-        '
-        'btnInvEdit
-        '
-        Me.btnInvEdit.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnInvEdit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnInvEdit.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnInvEdit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnInvEdit.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnInvEdit.ForeColor = System.Drawing.Color.White
-        Me.btnInvEdit.Location = New System.Drawing.Point(665, 6)
-        Me.btnInvEdit.Name = "btnInvEdit"
-        Me.btnInvEdit.Size = New System.Drawing.Size(104, 29)
-        Me.btnInvEdit.TabIndex = 3
-        Me.btnInvEdit.Text = "Edit"
+        Me.btnEditQuantity.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnEditQuantity.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnEditQuantity.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnEditQuantity.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnEditQuantity.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnEditQuantity.ForeColor = System.Drawing.Color.White
+        Me.btnEditQuantity.Location = New System.Drawing.Point(665, 6)
+        Me.btnEditQuantity.Name = "btnEditQuantity"
+        Me.btnEditQuantity.Size = New System.Drawing.Size(104, 29)
+        Me.btnEditQuantity.TabIndex = 3
+        Me.btnEditQuantity.Text = "Edit"
         '
         'Guna2Separator2
         '
@@ -663,35 +683,6 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2Separator2.Name = "Guna2Separator2"
         Me.Guna2Separator2.Size = New System.Drawing.Size(755, 10)
         Me.Guna2Separator2.TabIndex = 7
-        '
-        'btnSort
-        '
-        Me.btnSort.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnSort.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnSort.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnSort.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnSort.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnSort.ForeColor = System.Drawing.Color.White
-        Me.btnSort.Location = New System.Drawing.Point(715, 50)
-        Me.btnSort.Name = "btnSort"
-        Me.btnSort.Size = New System.Drawing.Size(55, 20)
-        Me.btnSort.TabIndex = 6
-        Me.btnSort.Text = "Sort"
-        Me.btnSort.Visible = False
-        '
-        'btnGo
-        '
-        Me.btnGo.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnGo.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnGo.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnGo.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnGo.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnGo.ForeColor = System.Drawing.Color.White
-        Me.btnGo.Location = New System.Drawing.Point(206, 50)
-        Me.btnGo.Name = "btnGo"
-        Me.btnGo.Size = New System.Drawing.Size(51, 20)
-        Me.btnGo.TabIndex = 5
-        Me.btnGo.Text = "Go"
         '
         'btnDeleteItems
         '
@@ -783,9 +774,11 @@ Partial Class AdminStaffDashboardForm
         '
         'tbpAccount
         '
+        Me.tbpAccount.Controls.Add(Me.btnResetPassword)
+        Me.tbpAccount.Controls.Add(Me.btnClearAccountFilters)
+        Me.tbpAccount.Controls.Add(Me.cbAccountRoleFilter)
         Me.tbpAccount.Controls.Add(Me.txtSearchAccount)
         Me.tbpAccount.Controls.Add(Me.btnEditAccount)
-        Me.tbpAccount.Controls.Add(Me.btnGoAccount)
         Me.tbpAccount.Controls.Add(Me.dgvAccount)
         Me.tbpAccount.Controls.Add(Me.btnNewAccount)
         Me.tbpAccount.Controls.Add(Me.Guna2HtmlLabel5)
@@ -796,6 +789,35 @@ Partial Class AdminStaffDashboardForm
         Me.tbpAccount.TabIndex = 2
         Me.tbpAccount.Text = "Account"
         Me.tbpAccount.UseVisualStyleBackColor = True
+        '
+        'btnClearAccountFilters
+        '
+        Me.btnClearAccountFilters.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnClearAccountFilters.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnClearAccountFilters.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnClearAccountFilters.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnClearAccountFilters.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnClearAccountFilters.ForeColor = System.Drawing.Color.White
+        Me.btnClearAccountFilters.Location = New System.Drawing.Point(357, 14)
+        Me.btnClearAccountFilters.Name = "btnClearAccountFilters"
+        Me.btnClearAccountFilters.Size = New System.Drawing.Size(150, 36)
+        Me.btnClearAccountFilters.TabIndex = 12
+        Me.btnClearAccountFilters.Text = "Clear Filter"
+        '
+        'cbAccountRoleFilter
+        '
+        Me.cbAccountRoleFilter.BackColor = System.Drawing.Color.Transparent
+        Me.cbAccountRoleFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbAccountRoleFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbAccountRoleFilter.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbAccountRoleFilter.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbAccountRoleFilter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cbAccountRoleFilter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cbAccountRoleFilter.ItemHeight = 30
+        Me.cbAccountRoleFilter.Location = New System.Drawing.Point(220, 14)
+        Me.cbAccountRoleFilter.Name = "cbAccountRoleFilter"
+        Me.cbAccountRoleFilter.Size = New System.Drawing.Size(140, 36)
+        Me.cbAccountRoleFilter.TabIndex = 11
         '
         'txtSearchAccount
         '
@@ -823,25 +845,11 @@ Partial Class AdminStaffDashboardForm
         Me.btnEditAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnEditAccount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnEditAccount.ForeColor = System.Drawing.Color.White
-        Me.btnEditAccount.Location = New System.Drawing.Point(410, 14)
+        Me.btnEditAccount.Location = New System.Drawing.Point(533, 14)
         Me.btnEditAccount.Name = "btnEditAccount"
         Me.btnEditAccount.Size = New System.Drawing.Size(180, 45)
         Me.btnEditAccount.TabIndex = 9
         Me.btnEditAccount.Text = "Edit"
-        '
-        'btnGoAccount
-        '
-        Me.btnGoAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnGoAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnGoAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnGoAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnGoAccount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnGoAccount.ForeColor = System.Drawing.Color.White
-        Me.btnGoAccount.Location = New System.Drawing.Point(207, 39)
-        Me.btnGoAccount.Name = "btnGoAccount"
-        Me.btnGoAccount.Size = New System.Drawing.Size(51, 20)
-        Me.btnGoAccount.TabIndex = 7
-        Me.btnGoAccount.Text = "Go"
         '
         'dgvAccount
         '
@@ -902,7 +910,7 @@ Partial Class AdminStaffDashboardForm
         Me.btnNewAccount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnNewAccount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnNewAccount.ForeColor = System.Drawing.Color.White
-        Me.btnNewAccount.Location = New System.Drawing.Point(612, 20)
+        Me.btnNewAccount.Location = New System.Drawing.Point(719, 33)
         Me.btnNewAccount.Name = "btnNewAccount"
         Me.btnNewAccount.Size = New System.Drawing.Size(144, 26)
         Me.btnNewAccount.TabIndex = 1
@@ -939,6 +947,20 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2CustomGradientPanel1.Name = "Guna2CustomGradientPanel1"
         Me.Guna2CustomGradientPanel1.Size = New System.Drawing.Size(1100, 592)
         Me.Guna2CustomGradientPanel1.TabIndex = 9
+        '
+        'btnResetPassword
+        '
+        Me.btnResetPassword.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnResetPassword.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnResetPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnResetPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnResetPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnResetPassword.ForeColor = System.Drawing.Color.White
+        Me.btnResetPassword.Location = New System.Drawing.Point(503, 442)
+        Me.btnResetPassword.Name = "btnResetPassword"
+        Me.btnResetPassword.Size = New System.Drawing.Size(180, 45)
+        Me.btnResetPassword.TabIndex = 13
+        Me.btnResetPassword.Text = "Reset Password"
         '
         'AdminStaffDashboardForm
         '
@@ -981,14 +1003,12 @@ Partial Class AdminStaffDashboardForm
     Friend WithEvents tbpAccount As TabPage
     Friend WithEvents Guna2HtmlLabel5 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents btnAdditem As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents btnInvEdit As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnEditQuantity As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnDeleteItems As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents lblYourName As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2CustomGradientPanel1 As Guna.UI2.WinForms.Guna2CustomGradientPanel
     Friend WithEvents Guna2AnimateWindow1 As Guna.UI2.WinForms.Guna2AnimateWindow
-    Friend WithEvents btnGo As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnNewAccount As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents btnSort As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Separator1 As Guna.UI2.WinForms.Guna2Separator
     Friend WithEvents Guna2Separator2 As Guna.UI2.WinForms.Guna2Separator
     Friend WithEvents tbcReport As TabPage
@@ -996,10 +1016,7 @@ Partial Class AdminStaffDashboardForm
     Friend WithEvents dgvAccount As Guna.UI2.WinForms.Guna2DataGridView
     Friend WithEvents dgvDailyDataReport As Guna.UI2.WinForms.Guna2DataGridView
     Friend WithEvents btnGenerateReport As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents btnGoAccount As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents dgvInventory As Guna.UI2.WinForms.Guna2DataGridView
-    Friend WithEvents chkDescending As Guna.UI2.WinForms.Guna2CheckBox
-    Friend WithEvents cbSortBy As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents btnEditAccount As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents txtSearchAccount As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtSearchInv As Guna.UI2.WinForms.Guna2TextBox
@@ -1018,4 +1035,11 @@ Partial Class AdminStaffDashboardForm
     Friend WithEvents cbActionType As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents cbYear As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents cbMonth As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents lblFilterSummary As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents btnClearFilters As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents cbCategoryFilter As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents btnRefreshInventory As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents cbAccountRoleFilter As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents btnClearAccountFilters As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnResetPassword As Guna.UI2.WinForms.Guna2Button
 End Class

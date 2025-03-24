@@ -7,17 +7,24 @@ Public Class AdminStaffDashboardForm
 
     Private conn As MySqlConnection = Common.getDBConnection()
     Private role As String = ""
+    Private WithEvents searchTimer As New Timer With {.Interval = 500} ' 500ms debounce interval
+    Private Const InventorySearchPlaceholder As String = "Search Inventory"
 
     Private Sub AdminStaffDashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FetchUserRole()
         LoadInventory()
         LoadAccounts()
         SetAccessByRole()
-        LoadSortOptions()
         LoadBorrowRequests()
         PopulateMonthAndYearFilters()   ' Populate the month and year combo boxes.
         LoadActionTypeOptions()           ' Populate the action type ComboBox.
         LoadDailyReport()               ' Load daily report if needed.
+        LoadCategoryFilter()
+        LoadAccountRoleFilter()
+        txtSearchInv.Text = InventorySearchPlaceholder
+        txtSearchInv.ForeColor = Color.Gray
+        txtSearchInv.AccessibleName = "Inventory Search"
+        txtSearchInv.AccessibleDescription = "Enter keywords to search inventory items."
     End Sub
     Private Sub FetchUserRole()
         Try
@@ -41,17 +48,26 @@ Public Class AdminStaffDashboardForm
         End Try
     End Sub
 
-    Private Sub LoadInventory(Optional ByVal search As String = "", Optional ByVal sortBy As String = "item_name", Optional ByVal sortOrder As String = "ASC")
+    ' Updated LoadInventory method with an additional category filter parameter.
+    Private Sub LoadInventory(Optional ByVal search As String = "", Optional ByVal sortBy As String = "item_name", Optional ByVal sortOrder As String = "ASC", Optional ByVal categoryFilter As String = "")
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
             Dim validColumns As New List(Of String)({"item_name", "category", "status", "quantity", "added_at"})
             If Not validColumns.Contains(sortBy) Then sortBy = "item_name"
-            If sortOrder.ToUpper() <> "ASC" AndAlso sortOrder.ToUpper() <> "DESC" Then
-                sortOrder = "ASC"
+            If sortOrder.ToUpper() <> "ASC" AndAlso sortOrder.ToUpper() <> "DESC" Then sortOrder = "ASC"
+
+            Dim query As String = "SELECT * FROM unified_inventory WHERE (item_name LIKE @search OR serial_number LIKE @search)"
+            ' Apply category filter if not empty.
+            If Not String.IsNullOrEmpty(categoryFilter) Then
+                query &= " AND category = @categoryFilter"
             End If
-            Dim query As String = $"SELECT * FROM unified_inventory WHERE item_name LIKE @search ORDER BY {sortBy} {sortOrder}"
+            query &= $" ORDER BY {sortBy} {sortOrder}"
+
             Using cmd As New MySqlCommand(query, conn)
                 cmd.Parameters.AddWithValue("@search", "%" & search & "%")
+                If Not String.IsNullOrEmpty(categoryFilter) Then
+                    cmd.Parameters.AddWithValue("@categoryFilter", categoryFilter)
+                End If
                 Dim adapter As New MySqlDataAdapter(cmd)
                 Dim table As New DataTable()
                 adapter.Fill(table)
@@ -59,12 +75,19 @@ Public Class AdminStaffDashboardForm
             End Using
 
             dgvInventory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            If dgvInventory.Columns.Contains("item_id") Then dgvInventory.Columns("item_id").Visible = False
+
+            ' Update headers as needed.
             If dgvInventory.Columns.Contains("item_name") Then dgvInventory.Columns("item_name").HeaderText = "Item Name"
+            If dgvInventory.Columns.Contains("item_type") Then dgvInventory.Columns("item_type").HeaderText = "Item Type"
             If dgvInventory.Columns.Contains("category") Then dgvInventory.Columns("category").HeaderText = "Category"
+            If dgvInventory.Columns.Contains("brand") Then dgvInventory.Columns("brand").HeaderText = "Brand"
+            If dgvInventory.Columns.Contains("model") Then dgvInventory.Columns("model").HeaderText = "Model"
+            If dgvInventory.Columns.Contains("serial_number") Then dgvInventory.Columns("serial_number").HeaderText = "Serial Number"
             If dgvInventory.Columns.Contains("status") Then dgvInventory.Columns("status").HeaderText = "Status"
             If dgvInventory.Columns.Contains("quantity") Then dgvInventory.Columns("quantity").HeaderText = "Quantity"
             If dgvInventory.Columns.Contains("added_at") Then
-                dgvInventory.Columns("added_at").HeaderText = "Added At"
+                dgvInventory.Columns("added_at").HeaderText = "Date Added"
                 dgvInventory.Columns("added_at").DefaultCellStyle.Format = "yyyy-MM-dd HH:mm"
             End If
         Catch ex As Exception
@@ -73,24 +96,204 @@ Public Class AdminStaffDashboardForm
             conn.Close()
         End Try
     End Sub
+    Private Sub btnEditQuantity_Click(sender As Object, e As EventArgs) Handles btnEditQuantity.Click
+        ' Check if a row is selected in the inventory DataGridView.
+        If dgvInventory.SelectedRows.Count = 0 Then
+            MessageBox.Show("Please select an accessory from the inventory.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
 
-    Private Sub btnGo_Click(sender As Object, e As EventArgs) Handles btnGo.Click
-        LoadInventory(txtSearchInv.Text.Trim())
+        Dim selectedRow As DataGridViewRow = dgvInventory.SelectedRows(0)
+        Dim itemCategory As String = selectedRow.Cells("category").Value.ToString().ToLower()
+
+        ' Ensure the selected item is an accessory.
+        If itemCategory <> "accessory" Then
+            MessageBox.Show("Quantity editing is only applicable for accessories.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        ' Retrieve the accessory ID and current quantity.
+        Dim accessoryId As Integer
+        Dim currentQuantity As Integer
+        If Not Integer.TryParse(selectedRow.Cells("item_id").Value.ToString(), accessoryId) Then
+            MessageBox.Show("Failed to retrieve accessory ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        If Not Integer.TryParse(selectedRow.Cells("quantity").Value.ToString(), currentQuantity) Then
+            MessageBox.Show("Failed to retrieve current quantity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        ' Prompt the user for the new quantity.
+        Dim input As String = InputBox("Enter the new quantity for the selected accessory:", "Edit Quantity", currentQuantity.ToString())
+        Dim newQuantity As Integer
+        If String.IsNullOrWhiteSpace(input) Then
+            MessageBox.Show("No quantity entered. Operation cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        If Not Integer.TryParse(input, newQuantity) OrElse newQuantity < 0 Then
+            MessageBox.Show("Please enter a valid non-negative integer for quantity.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ' Update the quantity in the database.
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+            Dim updateQuery As String = "UPDATE accessories SET quantity = @quantity WHERE accessory_id = @accessoryId"
+            Using cmd As New MySqlCommand(updateQuery, conn)
+                cmd.Parameters.AddWithValue("@quantity", newQuantity)
+                cmd.Parameters.AddWithValue("@accessoryId", accessoryId)
+                Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+                If rowsAffected > 0 Then
+                    MessageBox.Show("Accessory quantity updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    LoadInventory() ' Refresh the inventory to reflect changes.
+                Else
+                    MessageBox.Show("No changes were made. Please try again.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error updating accessory quantity: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            If conn.State <> ConnectionState.Closed Then conn.Close()
+        End Try
+    End Sub
+    Private Sub LoadCategoryFilter()
+        cbCategoryFilter.Items.Clear()
+        cbCategoryFilter.Items.Add("All")
+        cbCategoryFilter.Items.Add("Accessory")
+        cbCategoryFilter.Items.Add("Equipment")
+        cbCategoryFilter.SelectedIndex = 0  ' This sets the default text to "All"
     End Sub
 
-    Private Sub btnSort_Click(sender As Object, e As EventArgs) Handles btnSort.Click
-        Dim sortBy As String = If(cbSortBy.SelectedItem IsNot Nothing, cbSortBy.SelectedItem.ToString(), "item_name")
-        Dim sortOrder As String = If(chkDescending.Checked, "DESC", "ASC")
-        LoadInventory(txtSearchInv.Text.Trim(), sortBy, sortOrder)
+    ' New subroutine to apply inventory filters.
+    Private Sub ApplyInventoryFilters()
+        Dim searchTerm As String = If(txtSearchInv.Text = InventorySearchPlaceholder, "", txtSearchInv.Text.Trim())
+        Dim categoryFilter As String = ""
+        If cbCategoryFilter.SelectedItem IsNot Nothing AndAlso cbCategoryFilter.SelectedItem.ToString().ToLower() <> "all" Then
+            categoryFilter = cbCategoryFilter.SelectedItem.ToString()
+        End If
+        LoadInventory(searchTerm, "item_name", "ASC", categoryFilter)
+        lblFilterSummary.Text = "Filters - Search: " & If(String.IsNullOrEmpty(searchTerm), "None", searchTerm) & ", Category: " & If(String.IsNullOrEmpty(categoryFilter), "All", categoryFilter)
     End Sub
+    ' Event handler for when the category filter changes.
+    Private Sub cbCategoryFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbCategoryFilter.SelectedIndexChanged
+        ApplyInventoryFilters()
+    End Sub
+    ' Event handler for Clear Filters button.
+    Private Sub btnClearFilters_Click(sender As Object, e As EventArgs) Handles btnClearFilters.Click
+        txtSearchInv.Text = InventorySearchPlaceholder
+        cbCategoryFilter.SelectedItem = "All"
+        lblFilterSummary.Text = "Filters - None"
+        LoadInventory() ' Reload inventory without filters.
+    End Sub
+
+    Private Sub btnRefreshInventory_Click(sender As Object, e As EventArgs) Handles btnRefreshInventory.Click
+        ' Reset filters to default values.
+        txtSearchInv.Text = InventorySearchPlaceholder
+        cbCategoryFilter.SelectedIndex = 0
+        lblFilterSummary.Text = "Filters - None"
+
+        ' Reload the inventory.
+        LoadInventory()
+
+        MessageBox.Show("Inventory refreshed.", "Refresh", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefreshDeploy.Click
-        LoadInventory()
         LoadBorrowRequests()
         LoadDailyReport() ' Refresh the daily report as well
-        MessageBox.Show("Dashboard refreshed.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+    Private Sub btnDeleteItems_Click(sender As Object, e As EventArgs) Handles btnDeleteItems.Click
+        ' Ensure a row is selected.
+        If dgvInventory.SelectedRows.Count = 0 Then
+            MessageBox.Show("Please select an item to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim selectedRow As DataGridViewRow = dgvInventory.SelectedRows(0)
+        Dim itemCategory As String = selectedRow.Cells("category").Value.ToString().ToLower()
+        Dim itemId As Integer
+        If Not Integer.TryParse(selectedRow.Cells("item_id").Value.ToString(), itemId) Then
+            MessageBox.Show("Invalid item ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        ' Confirm deletion with the user.
+        Dim confirmResult As DialogResult = MessageBox.Show("Are you sure you want to delete the selected " & itemCategory & " item?",
+                                                         "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If confirmResult <> DialogResult.Yes Then
+            Return
+        End If
+
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+            Dim deleteQuery As String = ""
+
+            ' Determine which underlying table to delete from.
+            If itemCategory = "accessory" Then
+                deleteQuery = "DELETE FROM accessories WHERE accessory_id = @itemId"
+            ElseIf itemCategory = "equipment" Then
+                deleteQuery = "DELETE FROM equipment WHERE equipment_id = @itemId"
+            Else
+                MessageBox.Show("Unknown item category.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+
+            Using cmd As New MySqlCommand(deleteQuery, conn)
+                cmd.Parameters.AddWithValue("@itemId", itemId)
+                Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+                If rowsAffected > 0 Then
+                    MessageBox.Show("Item deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    LoadInventory() ' Refresh inventory to reflect deletion.
+                Else
+                    MessageBox.Show("Failed to delete the item. It may have already been removed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error deleting item: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            If conn.State <> ConnectionState.Closed Then conn.Close()
+        End Try
     End Sub
 
+    Private Sub txtSearchInv_Enter(sender As Object, e As EventArgs) Handles txtSearchInv.Enter
+        If txtSearchInv.Text = InventorySearchPlaceholder Then
+            txtSearchInv.Text = ""
+            txtSearchInv.ForeColor = Color.Black
+        End If
+    End Sub
+
+    Private Sub txtSearchInv_Leave(sender As Object, e As EventArgs) Handles txtSearchInv.Leave
+        If String.IsNullOrWhiteSpace(txtSearchInv.Text) Then
+            txtSearchInv.Text = InventorySearchPlaceholder
+            txtSearchInv.ForeColor = Color.Gray
+        End If
+    End Sub
+    ' Trigger search on Enter key press.
+    Private Sub txtSearchInv_KeyDown(sender As Object, e As KeyEventArgs) Handles txtSearchInv.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True ' Prevent default beep sound.
+            Dim searchTerm As String = If(txtSearchInv.Text = InventorySearchPlaceholder, "", txtSearchInv.Text.Trim())
+            LoadInventory(searchTerm)
+        End If
+    End Sub
+
+    ' Debounce search while typing to avoid excessive calls.
+    Private Sub txtSearchInv_TextChanged(sender As Object, e As EventArgs) Handles txtSearchInv.TextChanged
+        searchTimer.Stop()
+        searchTimer.Start()
+    End Sub
+
+    ' Timer tick event to trigger the search after the debounce interval.
+    Private Sub searchTimer_Tick(sender As Object, e As EventArgs) Handles searchTimer.Tick
+        searchTimer.Stop()
+        Dim searchTerm As String = If(txtSearchInv.Text = InventorySearchPlaceholder, "", txtSearchInv.Text.Trim())
+        LoadInventory(searchTerm)
+        ApplyInventoryFilters()
+    End Sub
     Private Sub btnAdditem_Click(sender As Object, e As EventArgs) Handles btnAdditem.Click
         If role <> "admin" Then
             MessageBox.Show("Only admins can add items.")
@@ -104,17 +307,32 @@ Public Class AdminStaffDashboardForm
         End If
     End Sub
 
-    Private Sub LoadAccounts(Optional ByVal searchQuery As String = "")
+    Private Sub LoadAccounts(Optional ByVal searchQuery As String = "", Optional ByVal roleFilter As String = "")
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
             Dim query As String = "SELECT user_id, first_name, last_name, email, contact_number, role, created_at FROM users"
+            Dim whereClauses As New List(Of String)
+
             If Not String.IsNullOrEmpty(searchQuery) Then
-                query &= " WHERE user_id LIKE @search OR first_name LIKE @search OR last_name LIKE @search OR email LIKE @search"
+                whereClauses.Add("(user_id LIKE @search OR first_name LIKE @search OR last_name LIKE @search OR email LIKE @search)")
             End If
+
+            If Not String.IsNullOrEmpty(roleFilter) AndAlso roleFilter.ToLower() <> "all" Then
+                whereClauses.Add("role = @roleFilter")
+            End If
+
+            If whereClauses.Count > 0 Then
+                query &= " WHERE " & String.Join(" AND ", whereClauses)
+            End If
+
             Using cmd As New MySqlCommand(query, conn)
                 If Not String.IsNullOrEmpty(searchQuery) Then
                     cmd.Parameters.AddWithValue("@search", "%" & searchQuery & "%")
                 End If
+                If Not String.IsNullOrEmpty(roleFilter) AndAlso roleFilter.ToLower() <> "all" Then
+                    cmd.Parameters.AddWithValue("@roleFilter", roleFilter.ToLower())
+                End If
+
                 Dim adapter As New MySqlDataAdapter(cmd)
                 Dim table As New DataTable()
                 adapter.Fill(table)
@@ -139,14 +357,60 @@ Public Class AdminStaffDashboardForm
         End Try
     End Sub
 
-    Private Sub btnGoAccount_Click(sender As Object, e As EventArgs) Handles btnGoAccount.Click
-        LoadAccounts(txtSearchAccount.Text.Trim())
+    Private Sub ApplyAccountFilters()
+        Dim searchQuery As String = ""
+        If txtSearchAccount.Text <> AccountSearchPlaceholder Then
+            searchQuery = txtSearchAccount.Text.Trim()
+        End If
+
+        Dim roleFilter As String = ""
+        If cbAccountRoleFilter.SelectedItem IsNot Nothing AndAlso cbAccountRoleFilter.SelectedItem.ToString().ToLower() <> "all" Then
+            roleFilter = cbAccountRoleFilter.SelectedItem.ToString()
+        End If
+
+        LoadAccounts(searchQuery, roleFilter)
     End Sub
 
-    Private Sub txtSearchAccount_KeyDown(sender As Object, e As KeyEventArgs) Handles txtSearchAccount.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            btnGoAccount.PerformClick()
+
+    Private Const AccountSearchPlaceholder As String = "Search Account"
+    Private Sub txtSearchAccount_Enter(sender As Object, e As EventArgs) Handles txtSearchAccount.Enter
+        If txtSearchAccount.Text = AccountSearchPlaceholder Then
+            txtSearchAccount.Text = ""
+            txtSearchAccount.ForeColor = Color.Black
         End If
+    End Sub
+
+    Private Sub txtSearchAccount_Leave(sender As Object, e As EventArgs) Handles txtSearchAccount.Leave
+        If String.IsNullOrWhiteSpace(txtSearchAccount.Text) Then
+            txtSearchAccount.Text = AccountSearchPlaceholder
+            txtSearchAccount.ForeColor = Color.Gray
+        End If
+    End Sub
+
+
+    ' When the search text changes (you can use a debounce mechanism similar to inventory if needed)
+    Private Sub txtSearchAccount_TextChanged(sender As Object, e As EventArgs) Handles txtSearchAccount.TextChanged
+        ApplyAccountFilters()
+    End Sub
+
+    ' When the role filter selection changes
+    Private Sub cbAccountRoleFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbAccountRoleFilter.SelectedIndexChanged
+        ApplyAccountFilters()
+    End Sub
+
+    Private Sub btnClearAccountFilters_Click(sender As Object, e As EventArgs) Handles btnClearAccountFilters.Click
+        txtSearchAccount.Text = AccountSearchPlaceholder
+        txtSearchAccount.ForeColor = Color.Gray
+        cbAccountRoleFilter.SelectedIndex = 0 ' Assuming "All" is the first item.
+        LoadAccounts()
+    End Sub
+    Private Sub LoadAccountRoleFilter()
+        cbAccountRoleFilter.Items.Clear()
+        cbAccountRoleFilter.Items.Add("All")
+        cbAccountRoleFilter.Items.Add("admin")
+        cbAccountRoleFilter.Items.Add("staff")
+        cbAccountRoleFilter.Items.Add("student")
+        cbAccountRoleFilter.SelectedIndex = 0
     End Sub
 
     Private Sub btnEditAccount_Click(sender As Object, e As EventArgs) Handles btnEditAccount.Click
@@ -164,11 +428,60 @@ Public Class AdminStaffDashboardForm
         End If
     End Sub
 
-    Private Sub LoadSortOptions()
-        cbSortBy.Items.Clear()
-        cbSortBy.Items.AddRange(New String() {"item_name", "category", "status", "quantity", "added_at"})
-        cbSortBy.SelectedIndex = 0
+    Private Sub btnResetPassword_Click(sender As Object, e As EventArgs) Handles btnResetPassword.Click
+        ' Ensure only admin can reset passwords.
+        If role <> "admin" Then
+            MessageBox.Show("Only admin users can reset passwords.", "Permission Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ' Check if an account is selected in the DataGridView.
+        If dgvAccount.SelectedRows.Count = 0 Then
+            MessageBox.Show("Please select an account to reset its password.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim selectedRow As DataGridViewRow = dgvAccount.SelectedRows(0)
+        Dim selectedUserId As String = selectedRow.Cells("user_id").Value.ToString()
+
+        ' Confirm the reset action.
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to reset the password for account: " & selectedUserId & "?", "Confirm Reset", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result <> DialogResult.Yes Then Return
+
+
+        ' Define the default password and hash it.
+        Dim defaultPassword As String = "password123"
+        Dim hashedPassword As String = HashPassword(defaultPassword)
+
+        ' Update the user's password in the database.
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+            Dim query As String = "UPDATE users SET password_hash = @hashedPassword WHERE user_id = @userId"
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@hashedPassword", hashedPassword)
+                cmd.Parameters.AddWithValue("@userId", selectedUserId)
+                Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+                If rowsAffected > 0 Then
+                    MessageBox.Show("Password reset successfully. The default password is: " & defaultPassword, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ' Optionally, log the action here if needed.
+                Else
+                    MessageBox.Show("Failed to reset the password. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error resetting password: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            If conn.State <> ConnectionState.Closed Then conn.Close()
+        End Try
     End Sub
+
+    Private Function HashPassword(password As String) As String
+        Using sha256 As SHA256 = SHA256.Create()
+            Dim bytes As Byte() = Encoding.UTF8.GetBytes(password)
+            Dim hash As Byte() = sha256.ComputeHash(bytes)
+            Return BitConverter.ToString(hash).Replace("-", "").ToLower()
+        End Using
+    End Function
 
     Private Sub SetAccessByRole()
         btnAdditem.Enabled = (role = "admin")
@@ -200,14 +513,10 @@ SELECT
          WHEN bt.equipment_id IS NOT NULL THEN e.item_condition
          WHEN bt.accessory_id IS NOT NULL THEN a.item_condition
     END AS condition_before,
-    CASE 
-         WHEN bt.accessory_id IS NOT NULL THEN a.quantity 
-         ELSE NULL 
-    END AS quantity,
+    bt.borrow_quantity AS quantity,
     bt.status,
     bt.approved_by,
     bt.approval_date,
-    bt.approval_time,
     bt.return_date,
     bt.return_condition
 FROM borrow_transactions bt
@@ -230,7 +539,9 @@ LEFT JOIN accessories a ON bt.accessory_id = a.accessory_id
             dgvBorrowRequests.DataSource = table
 
             dgvBorrowRequests.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            If dgvBorrowRequests.Columns.Contains("transaction_id") Then dgvBorrowRequests.Columns("transaction_id").HeaderText = "Transaction ID"
+            If dgvBorrowRequests.Columns.Contains("transaction_id") Then
+                dgvBorrowRequests.Columns("transaction_id").Visible = False
+            End If
             If dgvBorrowRequests.Columns.Contains("borrower") Then dgvBorrowRequests.Columns("borrower").HeaderText = "Borrower"
             If dgvBorrowRequests.Columns.Contains("item_category") Then dgvBorrowRequests.Columns("item_category").HeaderText = "Category"
             If dgvBorrowRequests.Columns.Contains("item_name") Then dgvBorrowRequests.Columns("item_name").HeaderText = "Item Name"
@@ -247,7 +558,7 @@ LEFT JOIN accessories a ON bt.accessory_id = a.accessory_id
             If dgvBorrowRequests.Columns.Contains("status") Then dgvBorrowRequests.Columns("status").HeaderText = "Status"
             If dgvBorrowRequests.Columns.Contains("approved_by") Then dgvBorrowRequests.Columns("approved_by").HeaderText = "Approved By"
             If dgvBorrowRequests.Columns.Contains("approval_date") Then dgvBorrowRequests.Columns("approval_date").HeaderText = "Approval Date"
-            If dgvBorrowRequests.Columns.Contains("approval_time") Then dgvBorrowRequests.Columns("approval_time").HeaderText = "Approval Time"
+            'If dgvBorrowRequests.Columns.Contains("approval_time") Then dgvBorrowRequests.Columns("approval_time").HeaderText = "Approval Time"
             If dgvBorrowRequests.Columns.Contains("return_date") Then dgvBorrowRequests.Columns("return_date").HeaderText = "Return Date"
             If dgvBorrowRequests.Columns.Contains("return_condition") Then dgvBorrowRequests.Columns("return_condition").HeaderText = "Return Condition"
         Catch ex As Exception
@@ -292,9 +603,10 @@ WHERE transaction_id = @transactionId AND status = 'pending'
         LoadBorrowRequests()
     End Sub
 
+    ' Updated btnDeny_Click event handler
     Private Sub btnDeny_Click(sender As Object, e As EventArgs) Handles btnDeny.Click
         If dgvBorrowRequests.SelectedRows.Count = 0 Then
-            MessageBox.Show("Please select a borrow request to deny.")
+            MessageBox.Show("Please select a borrow request to decline.")
             Return
         End If
 
@@ -303,7 +615,7 @@ WHERE transaction_id = @transactionId AND status = 'pending'
             If conn.State = ConnectionState.Closed Then conn.Open()
             Dim updateQuery As String = "
 UPDATE borrow_transactions
-SET status = 'denied'
+SET status = 'declined'
 WHERE transaction_id = @transactionId AND status = 'pending'
 "
             Dim cmd As New MySqlCommand(updateQuery, conn)
@@ -311,12 +623,12 @@ WHERE transaction_id = @transactionId AND status = 'pending'
             Dim rowsAffected = cmd.ExecuteNonQuery()
 
             If rowsAffected > 0 Then
-                MessageBox.Show("Borrow request denied successfully.")
+                MessageBox.Show("Borrow request declined successfully.")
             Else
-                MessageBox.Show("Failed to deny the request. It may have been updated already.")
+                MessageBox.Show("Failed to decline the request. It may have been updated already.")
             End If
         Catch ex As Exception
-            MessageBox.Show("Error denying borrow request: " & ex.Message)
+            MessageBox.Show("Error declining borrow request: " & ex.Message)
         Finally
             conn.Close()
         End Try
@@ -329,8 +641,8 @@ WHERE transaction_id = @transactionId AND status = 'pending'
             Return
         End If
 
-        Dim status As String = dgvBorrowRequests.SelectedRows(0).Cells("status").Value.ToString()
-        If status <> "returned" Then
+        Dim currentStatus As String = dgvBorrowRequests.SelectedRows(0).Cells("status").Value.ToString().ToLower()
+        If currentStatus <> "returned" Then
             MessageBox.Show("Selected transaction is not marked as returned.")
             Return
         End If
@@ -342,45 +654,44 @@ WHERE transaction_id = @transactionId AND status = 'pending'
             If conn.State = ConnectionState.Closed Then conn.Open()
 
             If itemCategory = "Equipment" Then
-                Dim returnCondition As String = InputBox("Enter the condition of the equipment upon return (new, good, fair, poor, damaged):", "Return Condition")
-                If String.IsNullOrEmpty(returnCondition) Then
+                ' For equipment, prompt for condition and then update directly to "completed"
+                Dim conditionInput As String = InputBox("Enter the condition of the equipment upon return (new, good, fair, poor, damaged):", "Return Condition")
+                If String.IsNullOrEmpty(conditionInput) Then
                     MessageBox.Show("Return condition is required for equipment.")
                     Return
                 End If
 
                 Dim validConditions As New List(Of String) From {"new", "good", "fair", "poor", "damaged"}
-                If Not validConditions.Contains(returnCondition.ToLower()) Then
+                If Not validConditions.Contains(conditionInput.ToLower()) Then
                     MessageBox.Show("Invalid condition entered. Please enter one of: new, good, fair, poor, damaged.")
                     Return
                 End If
 
                 Dim updateQuery As String = "
 UPDATE borrow_transactions
-SET return_condition = @return_condition,
-    status = 'pending_inspection'
-WHERE transaction_id = @transactionId AND status = 'returned'
-"
+SET return_condition = @condition,
+    status = 'completed'
+WHERE transaction_id = @transactionId AND status = 'returned'"
                 Using cmd As New MySqlCommand(updateQuery, conn)
-                    cmd.Parameters.AddWithValue("@return_condition", returnCondition.ToLower())
+                    cmd.Parameters.AddWithValue("@condition", conditionInput.ToLower())
                     cmd.Parameters.AddWithValue("@transactionId", transactionId)
-                    Dim rowsAffected = cmd.ExecuteNonQuery()
+                    Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
-                        MessageBox.Show("Equipment return is pending inspection.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        MessageBox.Show("Equipment return processed and marked as completed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Else
                         MessageBox.Show("Failed to update equipment return. It may have been updated already.")
                     End If
                 End Using
 
             ElseIf itemCategory = "Accessory" Then
-                ' For accessories, no condition is needed; update status directly to "completed".
+                ' For accessories, update status directly to "completed"
                 Dim updateQuery As String = "
 UPDATE borrow_transactions
 SET status = 'completed'
-WHERE transaction_id = @transactionId AND status = 'returned'
-"
+WHERE transaction_id = @transactionId AND status = 'returned'"
                 Using cmd As New MySqlCommand(updateQuery, conn)
                     cmd.Parameters.AddWithValue("@transactionId", transactionId)
-                    Dim rowsAffected = cmd.ExecuteNonQuery()
+                    Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
                     If rowsAffected > 0 Then
                         MessageBox.Show("Accessory return processed and marked as completed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Else
@@ -507,7 +818,7 @@ WHERE transaction_id = @transactionId AND status = 'returned'
         ' "All" includes all action types except pending (which is always excluded by the query)
         cbActionType.Items.Add("All")
         cbActionType.Items.Add("approved")
-        cbActionType.Items.Add("denied")
+        cbActionType.Items.Add("declined")
         cbActionType.Items.Add("returned")
         cbActionType.SelectedIndex = 0
     End Sub
@@ -573,7 +884,7 @@ WHERE transaction_id = @transactionId AND status = 'returned'
                               "MAX(MONTHNAME(borrow_date)) AS MonthName, " &
                               "COUNT(*) AS TotalTransactions, " &
                               "SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) AS Approved, " &
-                              "SUM(CASE WHEN status = 'denied' THEN 1 ELSE 0 END) AS Denied, " &
+                              "SUM(CASE WHEN status = 'declined' THEN 1 ELSE 0 END) AS Declined, " &
                               "SUM(CASE WHEN status = 'returned' THEN 1 ELSE 0 END) AS Returned " &
                               "FROM borrow_transactions WHERE 1=1 "
 
@@ -644,6 +955,5 @@ WHERE transaction_id = @transactionId AND status = 'returned'
         Common.CurrentUserRole = String.Empty
         Me.Close()
     End Sub
-
 
 End Class
