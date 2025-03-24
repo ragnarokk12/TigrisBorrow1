@@ -1,6 +1,4 @@
-﻿Imports System.Security.Cryptography
-Imports System.Text
-Imports MySql.Data.MySqlClient
+﻿Imports MySql.Data.MySqlClient
 Imports System.Security.Cryptography
 Imports System.Text
 
@@ -27,8 +25,8 @@ Public Class UserDashboardForm
         LoadNotificationsData()
         UpdateDashboardSummary()
 
-        ' Configure Timer
-        Timer1.Interval = 1000 ' 1 second
+        ' Configure and start Timer (1 second interval)
+        Timer1.Interval = 1000
         Timer1.Enabled = True
         Timer1.Start()
 
@@ -36,7 +34,6 @@ Public Class UserDashboardForm
         If UserMustChangePassword(Common.CurrentUserId) Then
             MessageBox.Show("Your password has been reset by an administrator. You must change your password.", "Change Password", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Dim changeForm As New ChangePasswordForm()
-            ' Loop until the password is successfully changed.
             Do
                 If changeForm.ShowDialog(Me) = DialogResult.OK Then
                     Dim newPwd As String = changeForm.NewPasswordText
@@ -47,66 +44,15 @@ Public Class UserDashboardForm
                         MessageBox.Show("Failed to update password. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End If
                 Else
-                    ' Optionally, you can force the user to change by not allowing cancelation.
                     MessageBox.Show("You must change your password to continue.", "Action Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
             Loop
         End If
     End Sub
 
-    ' Checks if the current user is forced to change password.
-    Private Function UserMustChangePassword(userId As String) As Boolean
-        Dim mustChange As Boolean = False
-        Try
-            If conn.State = ConnectionState.Closed Then conn.Open()
-            Dim query As String = "SELECT force_password_change FROM users WHERE user_id = @userId"
-            Using cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@userId", userId)
-                Dim result = cmd.ExecuteScalar()
-                If result IsNot Nothing AndAlso Boolean.TryParse(result.ToString(), mustChange) Then
-                    Return mustChange
-                End If
-            End Using
-        Catch ex As Exception
-            MessageBox.Show("Error checking password change requirement: " & ex.Message)
-        Finally
-            conn.Close()
-        End Try
-        Return mustChange
-    End Function
-
-    ' Updates the user's password, clears the force change flag, and updates last_password_change.
-    Private Function UpdateUserPassword(userId As String, newPassword As String) As Boolean
-        Dim hashedPassword As String = HashPassword(newPassword)
-        Try
-            If conn.State = ConnectionState.Closed Then conn.Open()
-            Dim query As String = "UPDATE users SET password_hash = @hashedPassword, last_password_change = NOW(), force_password_change = FALSE WHERE user_id = @userId"
-            Using cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@hashedPassword", hashedPassword)
-                cmd.Parameters.AddWithValue("@userId", userId)
-                Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
-                Return rowsAffected > 0
-            End Using
-        Catch ex As Exception
-            MessageBox.Show("Error updating password: " & ex.Message)
-            Return False
-        Finally
-            conn.Close()
-        End Try
-    End Function
-
-    Private Function HashPassword(password As String) As String
-        Using sha256 As SHA256 = sha256.Create()
-            Dim bytes As Byte() = Encoding.UTF8.GetBytes(password)
-            Dim hash As Byte() = sha256.ComputeHash(bytes)
-            Return BitConverter.ToString(hash).Replace("-", "").ToLower()
-        End Using
-    End Function
-
-
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        CheckForOverdueRequests()  ' Check and update overdue requests.
-        LoadNotificationsData()     ' Refresh the notifications grid.
+        CheckForOverdueRequests()  ' Update overdue requests.
+        LoadNotificationsData()     ' Refresh notifications.
     End Sub
 
     Private Sub LoadUserProfileData()
@@ -135,7 +81,6 @@ Public Class UserDashboardForm
     ' Reset Password Button Implementation
     Private Sub btnResetPassword_Click(sender As Object, e As EventArgs) Handles btnResetPassword.Click
         Dim changeForm As New ChangePasswordForm()
-        ' Show the ChangePasswordForm as a modal dialog.
         If changeForm.ShowDialog(Me) = DialogResult.OK Then
             Dim newPwd As String = changeForm.NewPasswordText
             If UpdateUserPassword(Common.CurrentUserId, newPwd) Then
@@ -167,11 +112,31 @@ Public Class UserDashboardForm
 
     ' HashPassword helper: hashes a password using SHA256.
     Private Function HashPassword(password As String) As String
-        Using sha256 As SHA256 = sha256.Create()
+        Using sha256 As SHA256 = SHA256.Create()
             Dim bytes As Byte() = Encoding.UTF8.GetBytes(password)
             Dim hash As Byte() = sha256.ComputeHash(bytes)
             Return BitConverter.ToString(hash).Replace("-", "").ToLower()
         End Using
+    End Function
+
+    Private Function UserMustChangePassword(userId As String) As Boolean
+        Dim mustChange As Boolean = False
+        Using conn As MySqlConnection = Common.getDBConnection()
+            Try
+                conn.Open()
+                Dim query As String = "SELECT force_password_change FROM users WHERE user_id = @userId"
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@userId", userId)
+                    Dim result = cmd.ExecuteScalar()
+                    If result IsNot Nothing AndAlso Boolean.TryParse(result.ToString(), mustChange) Then
+                        Return mustChange
+                    End If
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error checking password change requirement: " & ex.Message)
+            End Try
+        End Using
+        Return mustChange
     End Function
 
     Private Sub LoadBorrowRequestData()
@@ -200,20 +165,16 @@ Public Class UserDashboardForm
                     adapter.Fill(dt)
                 End Using
                 dgvBorrowRequests.DataSource = dt
-
-                ' Hide the RequestID column.
                 If dgvBorrowRequests.Columns.Contains("RequestID") Then dgvBorrowRequests.Columns("RequestID").Visible = False
-
             Catch ex As Exception
                 MessageBox.Show("Error loading borrow transactions: " & ex.Message)
             End Try
         End Using
     End Sub
 
-    ' Borrow Request submission: if the item is an accessory, prompt for quantity.
+    ' Borrow Request submission.
     Private Sub btnSubmitRequest_Click(sender As Object, e As EventArgs) Handles btnSubmitRequest.Click
         Try
-            ' Ensure an inventory item is selected.
             If dgvInventory.SelectedRows.Count = 0 Then
                 MessageBox.Show("Please select an item to borrow.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
@@ -222,14 +183,13 @@ Public Class UserDashboardForm
             Dim selectedRow As DataGridViewRow = dgvInventory.SelectedRows(0)
             Dim itemId As Integer = Convert.ToInt32(selectedRow.Cells("Colitem_id").Value)
             Dim category As String = selectedRow.Cells("Colcategory").Value.ToString()
-            Dim itemStatus As String = selectedRow.Cells("colstatus").Value.ToString() ' Ensure correct column name
+            Dim itemStatus As String = selectedRow.Cells("colstatus").Value.ToString()
 
             If itemStatus.ToLower() <> "available" Then
                 MessageBox.Show("The selected item is not available for borrowing.", "Unavailable Item", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Return
             End If
 
-            ' Set default borrow details.
             Dim dueDate As DateTime = DateTime.Now.AddDays(7)
             Dim borrowDate As DateTime = DateTime.Now
 
@@ -293,7 +253,6 @@ Public Class UserDashboardForm
                 dgvInventory.AutoGenerateColumns = False
                 dgvInventory.DataSource = dt
 
-                ' Hide unwanted columns.
                 If dgvInventory.Columns.Contains("item_id") Then dgvInventory.Columns("item_id").Visible = False
                 If dgvInventory.Columns.Contains("quantity") Then dgvInventory.Columns("quantity").Visible = False
                 If dgvInventory.Columns.Contains("status") Then dgvInventory.Columns("status").Visible = False
@@ -521,5 +480,4 @@ Public Class UserDashboardForm
             End Try
         End Using
     End Sub
-
 End Class
