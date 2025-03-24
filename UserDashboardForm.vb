@@ -100,9 +100,9 @@ Public Class UserDashboardForm
             End If
 
             Dim selectedRow As DataGridViewRow = dgvInventory.SelectedRows(0)
-            Dim itemId As Integer = Convert.ToInt32(selectedRow.Cells("item_id").Value)
-            Dim category As String = selectedRow.Cells("category").Value.ToString()
-            Dim itemStatus As String = selectedRow.Cells("status").Value.ToString()
+            Dim itemId As Integer = Convert.ToInt32(selectedRow.Cells("Colitem_id").Value)
+            Dim category As String = selectedRow.Cells("Colcategory").Value.ToString()
+            Dim itemStatus As String = selectedRow.Cells("colstatus").Value.ToString() ' Ensure correct column name
 
             If itemStatus.ToLower() <> "available" Then
                 MessageBox.Show("The selected item is not available for borrowing.", "Unavailable Item", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -125,7 +125,7 @@ Public Class UserDashboardForm
                 If category.ToLower() = "equipment" Then
                     ' For equipment, no quantity input is needed.
                     query = "INSERT INTO borrow_transactions (user_id, equipment_id, accessory_id, borrow_date, due_date, status) " &
-                            "VALUES (@userId, @equipmentId, @accessoryId, @borrowDate, @dueDate, 'pending')"
+                        "VALUES (@userId, @equipmentId, @accessoryId, @borrowDate, @dueDate, 'pending')"
                     cmd.Parameters.AddWithValue("@equipmentId", itemId)
                     cmd.Parameters.AddWithValue("@accessoryId", DBNull.Value)
                 ElseIf category.ToLower() = "accessory" Then
@@ -137,7 +137,7 @@ Public Class UserDashboardForm
                         Return
                     End If
                     query = "INSERT INTO borrow_transactions (user_id, equipment_id, accessory_id, borrow_date, due_date, status, borrow_quantity) " &
-                            "VALUES (@userId, @equipmentId, @accessoryId, @borrowDate, @dueDate, 'pending', @borrowQuantity)"
+                        "VALUES (@userId, @equipmentId, @accessoryId, @borrowDate, @dueDate, 'pending', @borrowQuantity)"
                     cmd.Parameters.AddWithValue("@equipmentId", DBNull.Value)
                     cmd.Parameters.AddWithValue("@accessoryId", itemId)
                     cmd.Parameters.AddWithValue("@borrowQuantity", borrowQuantity)
@@ -162,6 +162,7 @@ Public Class UserDashboardForm
         End Try
     End Sub
 
+
     Private Sub LoadInventoryData()
         Using conn As MySqlConnection = Common.getDBConnection()
             Dim dt As New DataTable()
@@ -172,6 +173,7 @@ Public Class UserDashboardForm
                     Dim adapter As New MySqlDataAdapter(cmd)
                     adapter.Fill(dt)
                 End Using
+                dgvInventory.AutoGenerateColumns = False
                 dgvInventory.DataSource = dt
 
                 ' Hide unwanted columns.
@@ -181,38 +183,20 @@ Public Class UserDashboardForm
                 If dgvInventory.Columns.Contains("added_at") Then dgvInventory.Columns("added_at").Visible = False
                 If dgvInventory.Columns.Contains("serial_number") Then dgvInventory.Columns("serial_number").Visible = False
 
+                dgvInventory.Columns("COLitem_name").DataPropertyName = "item_name"
+                dgvInventory.Columns("Colitem_type").DataPropertyName = "item_type"
+                dgvInventory.Columns("Colbrand").DataPropertyName = "brand"
+                dgvInventory.Columns("Colmodel").DataPropertyName = "model"
+                dgvInventory.Columns("Colcategory").DataPropertyName = "category"
+                dgvInventory.Columns("Colitem_id").DataPropertyName = "item_id"
+                dgvInventory.Columns("Colstatus").DataPropertyName = "status"
+
             Catch ex As Exception
                 MessageBox.Show("Error loading inventory: " & ex.Message)
             End Try
         End Using
     End Sub
 
-    Private Sub btnSearchInventory_Click(sender As Object, e As EventArgs) Handles btnSearchInventory.Click
-        Dim searchTerm As String = txtSearchInventory.Text.Trim()
-        Using conn As MySqlConnection = Common.getDBConnection()
-            Dim dt As New DataTable()
-            Try
-                conn.Open()
-                Dim query As String = "SELECT item_id, item_name, item_type, quantity, status, added_at, brand, model, serial_number, category " &
-                                      "FROM unified_inventory WHERE item_name LIKE @searchTerm"
-                Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@searchTerm", "%" & searchTerm & "%")
-                    Dim adapter As New MySqlDataAdapter(cmd)
-                    adapter.Fill(dt)
-                End Using
-                dgvInventory.DataSource = dt
-
-                ' Hide unwanted columns after search.
-                If dgvInventory.Columns.Contains("quantity") Then dgvInventory.Columns("quantity").Visible = False
-                If dgvInventory.Columns.Contains("status") Then dgvInventory.Columns("status").Visible = False
-                If dgvInventory.Columns.Contains("added_at") Then dgvInventory.Columns("added_at").Visible = False
-                If dgvInventory.Columns.Contains("serial_number") Then dgvInventory.Columns("serial_number").Visible = False
-
-            Catch ex As Exception
-                MessageBox.Show("Error searching inventory: " & ex.Message)
-            End Try
-        End Using
-    End Sub
 
     Private Sub LoadNotificationsData()
         Using conn As MySqlConnection = Common.getDBConnection()
@@ -384,7 +368,55 @@ Public Class UserDashboardForm
         End Using
     End Sub
 
+    Private Sub ontextchange(sender As Object, e As EventArgs) Handles txtSearchInventory.TextChanged
+        Dim searchTerm As String = txtSearchInventory.Text.Trim()
+        Using conn As MySqlConnection = Common.getDBConnection()
+            Dim dt As New DataTable()
+            Try
+                conn.Open()
+                Dim query As String = "SELECT item_id, item_name, item_type, quantity, status, added_at, brand, model, serial_number, category " &
+                                      "FROM unified_inventory " &
+                                      "WHERE item_id LIKE @searchTerm OR " &
+                                      "item_name LIKE @searchTerm OR " &
+                                      "item_type LIKE @searchTerm OR " &
+                                      "quantity LIKE @searchTerm OR " &
+                                      "status LIKE @searchTerm OR " &
+                                      "added_at LIKE @searchTerm OR " &
+                                      "brand LIKE @searchTerm OR " &
+                                      "model LIKE @searchTerm OR " &
+                                      "serial_number LIKE @searchTerm OR " &
+                                      "category LIKE @searchTerm"
 
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@searchTerm", "%" & searchTerm & "%")
+                    Dim adapter As New MySqlDataAdapter(cmd)
+                    adapter.Fill(dt)
+                End Using
+
+                dgvInventory.AutoGenerateColumns = False ' Prevent automatic column creation
+                dgvInventory.DataSource = dt
+
+                ' Hide unwanted columns if they exist.
+                If dgvInventory.Columns.Contains("quantity") Then dgvInventory.Columns("quantity").Visible = False
+                If dgvInventory.Columns.Contains("status") Then dgvInventory.Columns("status").Visible = False
+                If dgvInventory.Columns.Contains("added_at") Then dgvInventory.Columns("added_at").Visible = False
+                If dgvInventory.Columns.Contains("serial_number") Then dgvInventory.Columns("serial_number").Visible = False
+
+                ' Ensure the columns exist before setting DataPropertyName
+                If dgvInventory.Columns.Contains("COLitem_name") Then dgvInventory.Columns("COLitem_name").DataPropertyName = "item_name"
+                If dgvInventory.Columns.Contains("Colitem_type") Then dgvInventory.Columns("Colitem_type").DataPropertyName = "item_type"
+                If dgvInventory.Columns.Contains("Colbrand") Then dgvInventory.Columns("Colbrand").DataPropertyName = "brand"
+                If dgvInventory.Columns.Contains("Colmodel") Then dgvInventory.Columns("Colmodel").DataPropertyName = "model"
+                If dgvInventory.Columns.Contains("Colcategory") Then dgvInventory.Columns("Colcategory").DataPropertyName = "category"
+                If dgvInventory.Columns.Contains("Colitem_id") Then dgvInventory.Columns("Colitem_id").DataPropertyName = "item_id"
+                If dgvInventory.Columns.Contains("Colstatus") Then dgvInventory.Columns("Colstatus").DataPropertyName = "status"
+
+
+            Catch ex As Exception
+                MessageBox.Show("Error searching inventory: " & ex.Message)
+            End Try
+        End Using
+    End Sub
 
 
 End Class
