@@ -1,5 +1,4 @@
-﻿' Fix error label in password nd emoji in security questions.
-Imports MySql.Data.MySqlClient
+﻿Imports MySql.Data.MySqlClient
 Imports System.Security.Cryptography
 Imports System.Text
 Imports System.Text.RegularExpressions
@@ -53,12 +52,17 @@ Public Class SignUpForm
             Not String.IsNullOrEmpty(txtContact.Text.Trim()) AndAlso
             Not String.IsNullOrEmpty(txtPassword.Text) AndAlso
             Not String.IsNullOrEmpty(txtConfirmPass.Text)
-        Dim noErrors As Boolean = Not (lblUserIDError.Visible OrElse lblFirstNameError.Visible OrElse
-                                        lblLastNameError.Visible OrElse lblEmailError.Visible OrElse
-                                        lblContactError.Visible OrElse lblPasswordError.Visible OrElse
-                                        lblConfirmPasswordError.Visible)
+
+        ' Exclude lblPasswordError since it displays a status (even when valid)
+        Dim otherErrors As Boolean = lblUserIDError.Visible OrElse lblFirstNameError.Visible OrElse
+                                       lblLastNameError.Visible OrElse lblEmailError.Visible OrElse
+                                       lblContactError.Visible
+
+        Dim confirmPasswordValid As Boolean = (lblConfirmPasswordError.Text = "✔ Passwords match.")
+
         Dim passwordMatch As Boolean = (txtPassword.Text = txtConfirmPass.Text)
-        Return fieldsFilled AndAlso noErrors AndAlso passwordMatch
+
+        Return fieldsFilled AndAlso Not otherErrors AndAlso confirmPasswordValid AndAlso passwordMatch
     End Function
 
     Private Sub CheckNextButton()
@@ -79,8 +83,7 @@ Public Class SignUpForm
                                        Not String.IsNullOrEmpty(txtConfirmSecQ2.Text.Trim()) AndAlso
                                        Not String.IsNullOrEmpty(txtConfirmSecQ3.Text.Trim())
         Dim noErrors As Boolean = Not (lblSecurityQuestionError.Visible OrElse
-                                       lblConfirmSecQ1Error.Visible OrElse lblConfirmSecQ2Error.Visible OrElse
-                                       lblConfirmSecQ3Error.Visible)
+                                       lblConfirmSecQ1Error.Visible OrElse lblConfirmSecQ2Error.Visible OrElse lblConfirmSecQ3Error.Visible)
         Return questionsSelected AndAlso answersFilled AndAlso noErrors
     End Function
 
@@ -172,7 +175,6 @@ Public Class SignUpForm
         CheckNextButton()
     End Sub
 
-
     '----------------------------------
     ' txtLastName_TextChanged: Validates Last Name, supports modern Latin characters, and removes emojis.
     '----------------------------------
@@ -241,7 +243,6 @@ Public Class SignUpForm
         CheckNextButton()
     End Sub
 
-
     '----------------------------------
     ' CheckEmailExists: Checks if the given email already exists in the database.
     '----------------------------------
@@ -265,7 +266,6 @@ Public Class SignUpForm
         Return exists
     End Function
 
-
     '----------------------------------
     ' txtPassword_TextChanged: Validates password strength in real-time with color feedback.
     '----------------------------------
@@ -281,9 +281,8 @@ Public Class SignUpForm
             lblPasswordError6.Visible = False
             lblPasswordError.Visible = False
 
-            ' 🔹 Force confirm password validation when main password is deleted
+            ' Force confirm password validation when main password is deleted
             txtConfirmPass_TextChanged(Nothing, Nothing)
-
             Exit Sub
         Else
             lblPasswordError2.Visible = True
@@ -342,10 +341,10 @@ Public Class SignUpForm
         ' General password status message
         lblPasswordError.Visible = True
         If lblPasswordError2.ForeColor = Color.Green And
-       lblPasswordError3.ForeColor = Color.Green And
-       lblPasswordError4.ForeColor = Color.Green And
-       lblPasswordError5.ForeColor = Color.Green And
-       lblPasswordError6.ForeColor = Color.Green Then
+           lblPasswordError3.ForeColor = Color.Green And
+           lblPasswordError4.ForeColor = Color.Green And
+           lblPasswordError5.ForeColor = Color.Green And
+           lblPasswordError6.ForeColor = Color.Green Then
             lblPasswordError.Text = "✔ Password meets all requirements!"
             lblPasswordError.ForeColor = Color.Green
         Else
@@ -356,17 +355,14 @@ Public Class SignUpForm
         ' Enable/Disable Next button based on password validity
         CheckNextButton()
 
-        ' 🔹 Revalidate Confirm Password when Password changes
+        ' Revalidate Confirm Password when Password changes
         txtConfirmPass_TextChanged(Nothing, Nothing)
     End Sub
-
-
 
     '----------------------------------
     ' txtConfirmPass_TextChanged: Checks that password confirmation matches.
     '----------------------------------
     Private Sub txtConfirmPass_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPass.TextChanged
-        ' If the Confirm Password field is empty, still show "✖ Passwords do not match."
         If String.IsNullOrEmpty(txtConfirmPass.Text) Then
             lblConfirmPasswordError.Text = "✖ Passwords do not match."
             lblConfirmPasswordError.ForeColor = Color.Red
@@ -380,13 +376,8 @@ Public Class SignUpForm
             lblConfirmPasswordError.ForeColor = Color.Green
             lblConfirmPasswordError.Visible = True
         End If
-
-        ' Enable/Disable Next button
         CheckNextButton()
     End Sub
-
-
-
 
     '----------------------------------
     ' txtContact_TextChanged: Validates that contact number is exactly 11 digits.
@@ -624,7 +615,6 @@ Public Class SignUpForm
         End Try
     End Sub
 
-
     '----------------------------------
     ' Form Load: Initializes the form, populates security questions, sets password masking, and disables buttons initially.
     '----------------------------------
@@ -692,6 +682,5 @@ Public Class SignUpForm
             LoginForm.Show()
         End If
     End Sub
-
 
 End Class
