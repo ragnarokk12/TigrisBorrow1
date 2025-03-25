@@ -14,7 +14,7 @@ Public Class Common
         Return New MySqlConnection("Server=192.168.1.51;" &
                                "Database=tigris;" &
                                "User ID=eksi;" &
-                               "Password=@Masterzed21;" &
+                               "Password=;" &
                                "Port=3306;" &
                                "Command Timeout=600;")
     End Function

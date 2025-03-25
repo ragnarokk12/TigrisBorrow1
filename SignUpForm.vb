@@ -280,6 +280,10 @@ Public Class SignUpForm
             lblPasswordError5.Visible = False
             lblPasswordError6.Visible = False
             lblPasswordError.Visible = False
+
+            ' 🔹 Force confirm password validation when main password is deleted
+            txtConfirmPass_TextChanged(Nothing, Nothing)
+
             Exit Sub
         Else
             lblPasswordError2.Visible = True
@@ -351,16 +355,22 @@ Public Class SignUpForm
 
         ' Enable/Disable Next button based on password validity
         CheckNextButton()
+
+        ' 🔹 Revalidate Confirm Password when Password changes
+        txtConfirmPass_TextChanged(Nothing, Nothing)
     End Sub
+
 
 
     '----------------------------------
     ' txtConfirmPass_TextChanged: Checks that password confirmation matches.
     '----------------------------------
     Private Sub txtConfirmPass_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPass.TextChanged
-        ' Hide the error label when the field is empty
+        ' If the Confirm Password field is empty, still show "✖ Passwords do not match."
         If String.IsNullOrEmpty(txtConfirmPass.Text) Then
-            lblConfirmPasswordError.Visible = False
+            lblConfirmPasswordError.Text = "✖ Passwords do not match."
+            lblConfirmPasswordError.ForeColor = Color.Red
+            lblConfirmPasswordError.Visible = True
         ElseIf txtConfirmPass.Text <> txtPassword.Text Then
             lblConfirmPasswordError.Text = "✖ Passwords do not match."
             lblConfirmPasswordError.ForeColor = Color.Red
@@ -374,6 +384,7 @@ Public Class SignUpForm
         ' Enable/Disable Next button
         CheckNextButton()
     End Sub
+
 
 
 
