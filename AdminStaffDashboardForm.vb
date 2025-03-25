@@ -2,6 +2,7 @@
 Imports System.Security.Cryptography
 Imports System.Text
 Imports System.Globalization
+'Imports Excel = Microsoft.Office.Interop.Excel
 
 Public Class AdminStaffDashboardForm
 
@@ -96,6 +97,152 @@ Public Class AdminStaffDashboardForm
             conn.Close()
         End Try
     End Sub
+    Private Sub btnExportCSV_Click(sender As Object, e As EventArgs) Handles btnExportCSV.Click
+        Try
+            Dim sfd As New SaveFileDialog()
+            sfd.Filter = "CSV files (*.csv)|*.csv"
+            sfd.Title = "Save Daily Data Report as CSV"
+            sfd.FileName = "DailyDataReport.csv"
+
+            If sfd.ShowDialog() <> DialogResult.OK Then
+                Return
+            End If
+
+            Using sw As New System.IO.StreamWriter(sfd.FileName)
+                ' Write column headers.
+                Dim headerValues As New List(Of String)
+                For Each col As DataGridViewColumn In dgvDailyDataReport.Columns
+                    headerValues.Add("""" & col.HeaderText.Replace("""", """""") & """")
+                Next
+                sw.WriteLine(String.Join(",", headerValues))
+
+                ' Write data rows.
+                For Each row As DataGridViewRow In dgvDailyDataReport.Rows
+                    ' Skip the new row placeholder.
+                    If Not row.IsNewRow Then
+                        Dim rowValues As New List(Of String)
+                        For Each cell As DataGridViewCell In row.Cells
+                            If cell.Value IsNot Nothing Then
+                                rowValues.Add("""" & cell.Value.ToString().Replace("""", """""") & """")
+                            Else
+                                rowValues.Add("")
+                            End If
+                        Next
+                        sw.WriteLine(String.Join(",", rowValues))
+                    End If
+                Next
+
+                ' Add a blank line and then a summary count.
+                sw.WriteLine()
+                sw.WriteLine("Total Records: " & dgvDailyDataReport.Rows.Count.ToString())
+            End Using
+
+            MessageBox.Show("CSV export successful!", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        Catch ex As Exception
+            MessageBox.Show("Error exporting CSV: " & ex.Message, "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    'Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
+    '    Try
+    '        ' Create an instance of Excel and add a workbook.
+    '        Dim xlApp As New Excel.Application
+    '        Dim xlWorkbook As Excel.Workbook = xlApp.Workbooks.Add()
+    '        Dim xlWorksheet As Excel.Worksheet = CType(xlWorkbook.Sheets(1), Excel.Worksheet)
+
+    '        ' Save the header image (from project resources) to a temporary file.
+    '        ' Build the full path to the image from the application's startup path.
+    '        Dim imagePath As String = IO.Path.Combine(Application.StartupPath, "Logo", "HeaderImage.png")
+
+    '        ' Verify that the image file exists.
+    '        If Not IO.File.Exists(imagePath) Then
+    '            MessageBox.Show("Header image not found at: " & imagePath)
+    '            Return
+    '        End If
+
+    '        ' Use the imagePath directly when adding the picture.
+    '        xlWorksheet.Shapes.AddPicture(imagePath,
+    '                          LinkToFile:=False,
+    '                          SaveWithDocument:=True,
+    '                          Left:=10,
+    '                          Top:=10,
+    '                          Width:=100,
+    '                          Height:=50)
+
+
+    '        ' Define starting positions for the export (leave room for the image).
+    '        Dim startRow As Integer = 3
+    '        Dim startCol As Integer = 1
+
+    '        ' Write column headers from dgvDailyDataReport.
+    '        For colIndex As Integer = 0 To dgvDailyDataReport.Columns.Count - 1
+    '            xlWorksheet.Cells(startRow, startCol + colIndex) = dgvDailyDataReport.Columns(colIndex).HeaderText
+
+    '            ' Get the range for the header cell.
+    '            Dim headerRange As Excel.Range = CType(xlWorksheet.Cells(startRow, startCol + colIndex), Excel.Range)
+    '            headerRange.Font.Bold = True
+
+    '            ' Apply a subtle gradient-like effect using a light pink background.
+    '            ' (Note: True gradient fill via Interop is more complex. Here we use a solid fill for simplicity.)
+    '            headerRange.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightPink)
+    '        Next
+
+    '        ' Write data rows starting just below the headers.
+    '        For rowIndex As Integer = 0 To dgvDailyDataReport.Rows.Count - 1
+    '            For colIndex As Integer = 0 To dgvDailyDataReport.Columns.Count - 1
+    '                Dim cellValue = dgvDailyDataReport.Rows(rowIndex).Cells(colIndex).Value
+    '                xlWorksheet.Cells(startRow + 1 + rowIndex, startCol + colIndex) = cellValue
+    '            Next
+    '        Next
+
+    '        ' Add a summary count at the end (total records).
+    '        Dim summaryRow As Integer = startRow + 1 + dgvDailyDataReport.Rows.Count
+    '        xlWorksheet.Cells(summaryRow, startCol) = "Total Records: " & dgvDailyDataReport.Rows.Count.ToString()
+
+    '        ' Auto-fit columns for better appearance.
+    '        xlWorksheet.Columns.AutoFit()
+
+    '        ' Show a SaveFileDialog to choose where to save the Excel file.
+    '        Dim sfd As New SaveFileDialog()
+    '        sfd.Filter = "Excel Workbook|*.xlsx"
+    '        sfd.Title = "Save Daily Data Report"
+    '        sfd.FileName = "DailyDataReport.xlsx"
+
+    '        If sfd.ShowDialog() = DialogResult.OK Then
+    '            xlWorkbook.SaveAs(sfd.FileName)
+    '            MessageBox.Show("Export successful!", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '        End If
+
+    '        ' Clean up Excel objects.
+    '        xlWorkbook.Close()
+    '        xlApp.Quit()
+    '        ReleaseObject(xlWorksheet)
+    '        ReleaseObject(xlWorkbook)
+    '        ReleaseObject(xlApp)
+
+    '        ' Delete the temporary image file.
+    '        If IO.File.Exists(tempImagePath) Then
+    '            IO.File.Delete(tempImagePath)
+    '        End If
+
+    '    Catch ex As Exception
+    '        MessageBox.Show("Error exporting report: " & ex.Message, "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
+
+    '' Helper subroutine to release COM objects.
+    'Private Sub ReleaseObject(ByVal obj As Object)
+    '    Try
+    '        System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
+    '        obj = Nothing
+    '    Catch ex As Exception
+    '        obj = Nothing
+    '    Finally
+    '        GC.Collect()
+    '    End Try
+    'End Sub
+
     Private Sub btnEditQuantity_Click(sender As Object, e As EventArgs) Handles btnEditQuantity.Click
         ' Check if a row is selected in the inventory DataGridView.
         If dgvInventory.SelectedRows.Count = 0 Then
@@ -493,7 +640,7 @@ Public Class AdminStaffDashboardForm
         btnCheckReturn.Enabled = (role = "admin" Or role = "staff")
     End Sub
 
-    Private Sub LoadBorrowRequests(Optional ByVal statusFilter As String = "")
+    Private Sub LoadBorrowRequests(Optional ByVal statusFilter As String = "", Optional ByVal search As String = "")
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
             Dim query As String = "
@@ -524,14 +671,24 @@ FROM borrow_transactions bt
 JOIN users u ON bt.user_id = u.user_id
 LEFT JOIN equipment e ON bt.equipment_id = e.equipment_id
 LEFT JOIN accessories a ON bt.accessory_id = a.accessory_id
+WHERE 1 = 1
 "
+            ' Append status filter if provided.
             If Not String.IsNullOrEmpty(statusFilter) Then
-                query &= " WHERE bt.status = @statusFilter"
+                query &= " AND bt.status = @statusFilter"
+            End If
+
+            ' Append search filter if provided.
+            If Not String.IsNullOrEmpty(search) Then
+                query &= " AND (CONCAT(u.first_name, ' ', u.last_name) LIKE @search OR e.equipment_name LIKE @search OR a.accessory_name LIKE @search)"
             End If
 
             Dim cmd As New MySqlCommand(query, conn)
             If Not String.IsNullOrEmpty(statusFilter) Then
                 cmd.Parameters.AddWithValue("@statusFilter", statusFilter)
+            End If
+            If Not String.IsNullOrEmpty(search) Then
+                cmd.Parameters.AddWithValue("@search", "%" & search & "%")
             End If
 
             Dim adapter As New MySqlDataAdapter(cmd)
@@ -543,9 +700,17 @@ LEFT JOIN accessories a ON bt.accessory_id = a.accessory_id
             If dgvBorrowRequests.Columns.Contains("transaction_id") Then
                 dgvBorrowRequests.Columns("transaction_id").Visible = False
             End If
-            If dgvBorrowRequests.Columns.Contains("borrower") Then dgvBorrowRequests.Columns("borrower").HeaderText = "Borrower"
-            If dgvBorrowRequests.Columns.Contains("item_category") Then dgvBorrowRequests.Columns("item_category").HeaderText = "Category"
-            If dgvBorrowRequests.Columns.Contains("item_name") Then dgvBorrowRequests.Columns("item_name").HeaderText = "Item Name"
+
+            ' Set header text for clarity.
+            If dgvBorrowRequests.Columns.Contains("borrower") Then
+                dgvBorrowRequests.Columns("borrower").HeaderText = "Borrower"
+            End If
+            If dgvBorrowRequests.Columns.Contains("item_category") Then
+                dgvBorrowRequests.Columns("item_category").HeaderText = "Category"
+            End If
+            If dgvBorrowRequests.Columns.Contains("item_name") Then
+                dgvBorrowRequests.Columns("item_name").HeaderText = "Item Name"
+            End If
             If dgvBorrowRequests.Columns.Contains("borrow_date") Then
                 dgvBorrowRequests.Columns("borrow_date").HeaderText = "Borrow Date"
                 dgvBorrowRequests.Columns("borrow_date").DefaultCellStyle.Format = "yyyy-MM-dd"
@@ -554,20 +719,47 @@ LEFT JOIN accessories a ON bt.accessory_id = a.accessory_id
                 dgvBorrowRequests.Columns("due_date").HeaderText = "Due Date"
                 dgvBorrowRequests.Columns("due_date").DefaultCellStyle.Format = "yyyy-MM-dd"
             End If
-            If dgvBorrowRequests.Columns.Contains("condition_before") Then dgvBorrowRequests.Columns("condition_before").HeaderText = "Condition Before"
-            If dgvBorrowRequests.Columns.Contains("quantity") Then dgvBorrowRequests.Columns("quantity").HeaderText = "Quantity"
-            If dgvBorrowRequests.Columns.Contains("status") Then dgvBorrowRequests.Columns("status").HeaderText = "Status"
-            If dgvBorrowRequests.Columns.Contains("approved_by") Then dgvBorrowRequests.Columns("approved_by").HeaderText = "Approved By"
-            If dgvBorrowRequests.Columns.Contains("approval_date") Then dgvBorrowRequests.Columns("approval_date").HeaderText = "Approval Date"
-            'If dgvBorrowRequests.Columns.Contains("approval_time") Then dgvBorrowRequests.Columns("approval_time").HeaderText = "Approval Time"
-            If dgvBorrowRequests.Columns.Contains("return_date") Then dgvBorrowRequests.Columns("return_date").HeaderText = "Return Date"
-            If dgvBorrowRequests.Columns.Contains("return_condition") Then dgvBorrowRequests.Columns("return_condition").HeaderText = "Return Condition"
+            If dgvBorrowRequests.Columns.Contains("condition_before") Then
+                dgvBorrowRequests.Columns("condition_before").HeaderText = "Condition Before"
+            End If
+            If dgvBorrowRequests.Columns.Contains("quantity") Then
+                dgvBorrowRequests.Columns("quantity").HeaderText = "Quantity"
+            End If
+            If dgvBorrowRequests.Columns.Contains("status") Then
+                dgvBorrowRequests.Columns("status").HeaderText = "Status"
+            End If
+            If dgvBorrowRequests.Columns.Contains("approved_by") Then
+                dgvBorrowRequests.Columns("approved_by").HeaderText = "Approved By"
+            End If
+            If dgvBorrowRequests.Columns.Contains("approval_date") Then
+                dgvBorrowRequests.Columns("approval_date").HeaderText = "Approval Date"
+            End If
+            If dgvBorrowRequests.Columns.Contains("return_date") Then
+                dgvBorrowRequests.Columns("return_date").HeaderText = "Return Date"
+            End If
+            If dgvBorrowRequests.Columns.Contains("return_condition") Then
+                dgvBorrowRequests.Columns("return_condition").HeaderText = "Return Condition"
+            End If
+
         Catch ex As Exception
             MessageBox.Show("Error loading borrow requests: " & ex.Message)
         Finally
             conn.Close()
         End Try
     End Sub
+
+    Private Sub ApplyBorrowRequestFilters()
+        Dim searchTerm As String = txtSearchBorrowRequests.Text.Trim() ' Ensure this textbox exists on your form.
+        Dim statusFilter As String = ""
+
+        ' Optionally, use a ComboBox for status filtering.
+        If cbBorrowStatusFilter.SelectedItem IsNot Nothing AndAlso cbBorrowStatusFilter.SelectedItem.ToString().ToLower() <> "all" Then
+            statusFilter = cbBorrowStatusFilter.SelectedItem.ToString()
+        End If
+
+        LoadBorrowRequests(statusFilter, searchTerm)
+    End Sub
+
 
     Private Sub btnApprove_Click(sender As Object, e As EventArgs) Handles btnApprove.Click
         If dgvBorrowRequests.SelectedRows.Count = 0 Then

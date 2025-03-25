@@ -607,10 +607,6 @@ Public Class UserDashboardForm
         ' Optionally, clear other session variables if needed:
         ' Common.CurrentUserRole = ""
 
-        ' Show the login form (assuming you have one named LoginForm)
-        Dim loginForm As New LoginForm()
-        loginForm.Show()
-
         ' Close the current dashboard form
         Me.Close()
     End Sub

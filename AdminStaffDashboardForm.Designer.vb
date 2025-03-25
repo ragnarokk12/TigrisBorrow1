@@ -54,7 +54,7 @@ Partial Class AdminStaffDashboardForm
         Me.dgvMonthlyDataReport = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.cbYear = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.cbMonth = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.btnGenerateReport = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnExportCSV = New Guna.UI2.WinForms.Guna2Button()
         Me.lblDataReport = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.tbpDeployment = New System.Windows.Forms.TabPage()
         Me.dgvBorrowRequests = New Guna.UI2.WinForms.Guna2DataGridView()
@@ -76,6 +76,7 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2HtmlLabel4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.dgvInventory = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.tbpAccount = New System.Windows.Forms.TabPage()
+        Me.btnResetPassword = New Guna.UI2.WinForms.Guna2Button()
         Me.btnClearAccountFilters = New Guna.UI2.WinForms.Guna2Button()
         Me.cbAccountRoleFilter = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.txtSearchAccount = New Guna.UI2.WinForms.Guna2TextBox()
@@ -86,7 +87,8 @@ Partial Class AdminStaffDashboardForm
         Me.lblYourName = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2CustomGradientPanel1 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
         Me.Guna2AnimateWindow1 = New Guna.UI2.WinForms.Guna2AnimateWindow(Me.components)
-        Me.btnResetPassword = New Guna.UI2.WinForms.Guna2Button()
+        Me.cbBorrowStatusFilter = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.txtSearchBorrowRequests = New Guna.UI2.WinForms.Guna2TextBox()
         Me.tbcAdminDashboard.SuspendLayout()
         Me.tbcReport.SuspendLayout()
         Me.tbcDataReport.SuspendLayout()
@@ -171,7 +173,7 @@ Partial Class AdminStaffDashboardForm
         'tbcReport
         '
         Me.tbcReport.Controls.Add(Me.tbcDataReport)
-        Me.tbcReport.Controls.Add(Me.btnGenerateReport)
+        Me.tbcReport.Controls.Add(Me.btnExportCSV)
         Me.tbcReport.Controls.Add(Me.lblDataReport)
         Me.tbcReport.Location = New System.Drawing.Point(184, 4)
         Me.tbcReport.Name = "tbcReport"
@@ -418,19 +420,19 @@ Partial Class AdminStaffDashboardForm
         Me.cbMonth.Size = New System.Drawing.Size(140, 36)
         Me.cbMonth.TabIndex = 1
         '
-        'btnGenerateReport
+        'btnExportCSV
         '
-        Me.btnGenerateReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnGenerateReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnGenerateReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnGenerateReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnGenerateReport.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnGenerateReport.ForeColor = System.Drawing.Color.White
-        Me.btnGenerateReport.Location = New System.Drawing.Point(644, 6)
-        Me.btnGenerateReport.Name = "btnGenerateReport"
-        Me.btnGenerateReport.Size = New System.Drawing.Size(125, 28)
-        Me.btnGenerateReport.TabIndex = 2
-        Me.btnGenerateReport.Text = "Generate Report"
+        Me.btnExportCSV.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnExportCSV.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnExportCSV.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnExportCSV.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnExportCSV.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnExportCSV.ForeColor = System.Drawing.Color.White
+        Me.btnExportCSV.Location = New System.Drawing.Point(644, 6)
+        Me.btnExportCSV.Name = "btnExportCSV"
+        Me.btnExportCSV.Size = New System.Drawing.Size(125, 28)
+        Me.btnExportCSV.TabIndex = 2
+        Me.btnExportCSV.Text = "Generate Report"
         '
         'lblDataReport
         '
@@ -444,6 +446,8 @@ Partial Class AdminStaffDashboardForm
         '
         'tbpDeployment
         '
+        Me.tbpDeployment.Controls.Add(Me.txtSearchBorrowRequests)
+        Me.tbpDeployment.Controls.Add(Me.cbBorrowStatusFilter)
         Me.tbpDeployment.Controls.Add(Me.dgvBorrowRequests)
         Me.tbpDeployment.Controls.Add(Me.btnRefreshDeploy)
         Me.tbpDeployment.Controls.Add(Me.btnCheckReturn)
@@ -790,6 +794,20 @@ Partial Class AdminStaffDashboardForm
         Me.tbpAccount.Text = "Account"
         Me.tbpAccount.UseVisualStyleBackColor = True
         '
+        'btnResetPassword
+        '
+        Me.btnResetPassword.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnResetPassword.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnResetPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnResetPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnResetPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnResetPassword.ForeColor = System.Drawing.Color.White
+        Me.btnResetPassword.Location = New System.Drawing.Point(503, 442)
+        Me.btnResetPassword.Name = "btnResetPassword"
+        Me.btnResetPassword.Size = New System.Drawing.Size(180, 45)
+        Me.btnResetPassword.TabIndex = 13
+        Me.btnResetPassword.Text = "Reset Password"
+        '
         'btnClearAccountFilters
         '
         Me.btnClearAccountFilters.DisabledState.BorderColor = System.Drawing.Color.DarkGray
@@ -948,19 +966,38 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2CustomGradientPanel1.Size = New System.Drawing.Size(1100, 592)
         Me.Guna2CustomGradientPanel1.TabIndex = 9
         '
-        'btnResetPassword
+        'cbBorrowStatusFilter
         '
-        Me.btnResetPassword.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnResetPassword.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnResetPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnResetPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnResetPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnResetPassword.ForeColor = System.Drawing.Color.White
-        Me.btnResetPassword.Location = New System.Drawing.Point(503, 442)
-        Me.btnResetPassword.Name = "btnResetPassword"
-        Me.btnResetPassword.Size = New System.Drawing.Size(180, 45)
-        Me.btnResetPassword.TabIndex = 13
-        Me.btnResetPassword.Text = "Reset Password"
+        Me.cbBorrowStatusFilter.BackColor = System.Drawing.Color.Transparent
+        Me.cbBorrowStatusFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbBorrowStatusFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbBorrowStatusFilter.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbBorrowStatusFilter.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbBorrowStatusFilter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cbBorrowStatusFilter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cbBorrowStatusFilter.ItemHeight = 30
+        Me.cbBorrowStatusFilter.Location = New System.Drawing.Point(354, -5)
+        Me.cbBorrowStatusFilter.Name = "cbBorrowStatusFilter"
+        Me.cbBorrowStatusFilter.Size = New System.Drawing.Size(140, 36)
+        Me.cbBorrowStatusFilter.TabIndex = 7
+        '
+        'txtSearchBorrowRequests
+        '
+        Me.txtSearchBorrowRequests.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSearchBorrowRequests.DefaultText = ""
+        Me.txtSearchBorrowRequests.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtSearchBorrowRequests.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtSearchBorrowRequests.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearchBorrowRequests.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearchBorrowRequests.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearchBorrowRequests.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtSearchBorrowRequests.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearchBorrowRequests.Location = New System.Drawing.Point(733, 3)
+        Me.txtSearchBorrowRequests.Name = "txtSearchBorrowRequests"
+        Me.txtSearchBorrowRequests.PlaceholderText = ""
+        Me.txtSearchBorrowRequests.SelectedText = ""
+        Me.txtSearchBorrowRequests.Size = New System.Drawing.Size(111, 31)
+        Me.txtSearchBorrowRequests.TabIndex = 8
         '
         'AdminStaffDashboardForm
         '
@@ -1015,7 +1052,7 @@ Partial Class AdminStaffDashboardForm
     Friend WithEvents lblDataReport As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents dgvAccount As Guna.UI2.WinForms.Guna2DataGridView
     Friend WithEvents dgvDailyDataReport As Guna.UI2.WinForms.Guna2DataGridView
-    Friend WithEvents btnGenerateReport As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnExportCSV As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents dgvInventory As Guna.UI2.WinForms.Guna2DataGridView
     Friend WithEvents btnEditAccount As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents txtSearchAccount As Guna.UI2.WinForms.Guna2TextBox
@@ -1042,4 +1079,6 @@ Partial Class AdminStaffDashboardForm
     Friend WithEvents cbAccountRoleFilter As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents btnClearAccountFilters As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnResetPassword As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents cbBorrowStatusFilter As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents txtSearchBorrowRequests As Guna.UI2.WinForms.Guna2TextBox
 End Class
