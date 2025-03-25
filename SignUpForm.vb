@@ -3,6 +3,7 @@ Imports MySql.Data.MySqlClient
 Imports System.Security.Cryptography
 Imports System.Text
 Imports System.Text.RegularExpressions
+Imports System.Threading.Tasks
 
 Public Class SignUpForm
     ' Properties to control form behavior.
@@ -90,23 +91,62 @@ Public Class SignUpForm
     '----------------------------------
     ' txtUserID_TextChanged: Validates that the User ID is in the format 2XXX-XXXXX.
     '----------------------------------
-    Private Sub txtUserID_TextChanged(sender As Object, e As EventArgs) Handles txtUserID.TextChanged
+    Private Async Sub txtUserID_TextChanged(sender As Object, e As EventArgs) Handles txtUserID.TextChanged
         Dim userId As String = txtUserID.Text.Trim()
+
+        ' Basic format validation
         If String.IsNullOrEmpty(userId) Then
             lblUserIDError.Text = "ID is required."
             lblUserIDError.Visible = True
+            Exit Sub
         ElseIf Not Regex.IsMatch(userId, "^2\d{3}-\d{5}$") Then
             lblUserIDError.Text = "ID must be in format 2XXX-XXXXX. *"
+            lblUserIDError.Visible = True
+            Exit Sub
+        End If
+
+        ' Check database asynchronously
+        Dim userExists As Boolean = Await Task.Run(Function() CheckUserIDExists(userId))
+
+        ' Display error if the ID is taken
+        If userExists Then
+            lblUserIDError.Text = "User ID already exists!"
             lblUserIDError.Visible = True
         Else
             lblUserIDError.Text = ""
             lblUserIDError.Visible = False
         End If
+
+        ' Enable/Disable next button based on validation
         CheckNextButton()
     End Sub
 
+    '----------------------------------------------
+    ' CheckUserIDExists: Checks if a given User ID 
+    ' already exists in the database.
+    '----------------------------------------------
+    Private Function CheckUserIDExists(userId As String) As Boolean
+        Dim exists As Boolean = False
+        Dim conn As MySqlConnection = Common.getDBConnection()
+
+        Try
+            conn.Open()
+            Dim query As String = "SELECT COUNT(*) FROM users WHERE user_id = @userId"
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@userId", userId)
+                exists = Convert.ToInt32(cmd.ExecuteScalar()) > 0
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            conn.Close()
+        End Try
+
+        Return exists
+    End Function
+
     '----------------------------------
-    ' txtFirstName_TextChanged: Validates First Name and removes emojis.
+    ' txtFirstName_TextChanged: Validates First Name, supports modern Latin characters, and removes emojis.
     '----------------------------------
     Private Sub txtFirstName_TextChanged(sender As Object, e As EventArgs) Handles txtFirstName.TextChanged
         Dim originalText As String = txtFirstName.Text
@@ -117,10 +157,12 @@ Public Class SignUpForm
         End If
 
         Dim firstName As String = txtFirstName.Text.Trim()
+        Dim namePattern As String = "^[\p{L}\p{M}]+([\s'-][\p{L}\p{M}]+)*$" ' Allows ñ, é, ü, ç, etc.
+
         If String.IsNullOrEmpty(firstName) Then
             lblFirstNameError.Text = "First Name is required. *"
             lblFirstNameError.Visible = True
-        ElseIf Not Regex.IsMatch(firstName, "^[\p{L}]+([\s'-][\p{L}]+)*$") Then
+        ElseIf Not Regex.IsMatch(firstName, namePattern) Then
             lblFirstNameError.Text = "Only letters allowed. *"
             lblFirstNameError.Visible = True
         Else
@@ -130,8 +172,9 @@ Public Class SignUpForm
         CheckNextButton()
     End Sub
 
+
     '----------------------------------
-    ' txtLastName_TextChanged: Validates Last Name and removes emojis.
+    ' txtLastName_TextChanged: Validates Last Name, supports modern Latin characters, and removes emojis.
     '----------------------------------
     Private Sub txtLastName_TextChanged(sender As Object, e As EventArgs) Handles txtLastName.TextChanged
         Dim originalText As String = txtLastName.Text
@@ -142,10 +185,12 @@ Public Class SignUpForm
         End If
 
         Dim lastName As String = txtLastName.Text.Trim()
+        Dim namePattern As String = "^[\p{L}\p{M}]+([\s'-][\p{L}\p{M}]+)*$" ' Allows ñ, é, ü, ç, etc.
+
         If String.IsNullOrEmpty(lastName) Then
             lblLastNameError.Text = "Last Name is required. *"
             lblLastNameError.Visible = True
-        ElseIf Not Regex.IsMatch(lastName, "^[\p{L}]+([\s'-][\p{L}]+)*$") Then
+        ElseIf Not Regex.IsMatch(lastName, namePattern) Then
             lblLastNameError.Text = "Only letters allowed. *"
             lblLastNameError.Visible = True
         Else
@@ -156,60 +201,192 @@ Public Class SignUpForm
     End Sub
 
     '----------------------------------
-    ' txtEmail_TextChanged: Validates Email, removes emojis, and ensures allowed domain.
+    ' txtEmail_TextChanged: Validates Email, removes emojis, ensures allowed domain, and supports Latin characters.
     '----------------------------------
-    Private Sub txtEmail_TextChanged(sender As Object, e As EventArgs) Handles txtEmail.TextChanged
-        Dim originalText As String = txtEmail.Text
-        Dim filteredText As String = RemoveEmojis(originalText)
-        If filteredText <> originalText Then
-            txtEmail.Text = filteredText
-            txtEmail.SelectionStart = filteredText.Length
-        End If
-
+    Private Async Sub txtEmail_TextChanged(sender As Object, e As EventArgs) Handles txtEmail.TextChanged
         Dim emailInput As String = txtEmail.Text.Trim()
         Dim allowedDomain As String = "@lpulaguna.edu.ph"
+
+        ' Updated regex to allow letters (ñ, é, ü, ç) in the email local part
+        Dim emailPattern As String = "^[\p{L}\p{M}0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+
+        ' Basic email validation
         If String.IsNullOrEmpty(emailInput) Then
             lblEmailError.Text = "Email is required. *"
             lblEmailError.Visible = True
-        ElseIf emailInput.Contains("@") AndAlso Not emailInput.EndsWith(allowedDomain, StringComparison.OrdinalIgnoreCase) Then
+            Exit Sub
+        ElseIf Not Regex.IsMatch(emailInput, emailPattern) Then
+            lblEmailError.Text = "Invalid email format. *"
+            lblEmailError.Visible = True
+            Exit Sub
+        ElseIf Not emailInput.EndsWith(allowedDomain, StringComparison.OrdinalIgnoreCase) Then
             lblEmailError.Text = "Only " & allowedDomain & " emails are allowed. *"
+            lblEmailError.Visible = True
+            Exit Sub
+        End If
+
+        ' Call async function to check database
+        Dim emailExists As Boolean = Await Task.Run(Function() CheckEmailExists(emailInput))
+
+        ' Display error if email already exists
+        If emailExists Then
+            lblEmailError.Text = "Email is already registered!"
             lblEmailError.Visible = True
         Else
             lblEmailError.Text = ""
             lblEmailError.Visible = False
         End If
+
+        ' Enable/Disable sign-up button based on validation
         CheckNextButton()
     End Sub
 
+
     '----------------------------------
-    ' txtPassword_TextChanged: Validates password strength.
+    ' CheckEmailExists: Checks if the given email already exists in the database.
+    '----------------------------------
+    Private Function CheckEmailExists(email As String) As Boolean
+        Dim exists As Boolean = False
+        Dim conn As MySqlConnection = Common.getDBConnection()
+
+        Try
+            conn.Open()
+            Dim query As String = "SELECT COUNT(*) FROM users WHERE email = @Email"
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@Email", email)
+                exists = Convert.ToInt32(cmd.ExecuteScalar()) > 0
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            conn.Close()
+        End Try
+
+        Return exists
+    End Function
+
+
+    '----------------------------------
+    ' txtPassword_TextChanged: Validates password strength in real-time with color feedback.
     '----------------------------------
     Private Sub txtPassword_TextChanged(sender As Object, e As EventArgs) Handles txtPassword.TextChanged
         Dim password As String = txtPassword.Text
-        If password.Length < 8 OrElse Not password.Any(AddressOf Char.IsUpper) OrElse
-           Not password.Any(AddressOf Char.IsLower) OrElse Not password.Any(AddressOf Char.IsDigit) Then
-            lblPasswordError.Text = "Password must be 8+ characters with uppercase, lowercase, and a number. *"
-            lblPasswordError.Visible = True
-        Else
-            lblPasswordError.Text = ""
+
+        ' Hide error labels if the password is empty
+        If String.IsNullOrEmpty(password) Then
+            lblPasswordError2.Visible = False
+            lblPasswordError3.Visible = False
+            lblPasswordError4.Visible = False
+            lblPasswordError5.Visible = False
+            lblPasswordError6.Visible = False
             lblPasswordError.Visible = False
+
+            ' 🔹 Force confirm password validation when main password is deleted
+            txtConfirmPass_TextChanged(Nothing, Nothing)
+
+            Exit Sub
+        Else
+            lblPasswordError2.Visible = True
+            lblPasswordError3.Visible = True
+            lblPasswordError4.Visible = True
+            lblPasswordError5.Visible = True
+            lblPasswordError6.Visible = True
+            lblPasswordError.Visible = True
         End If
+
+        ' Check if password is at least 8 characters
+        If password.Length >= 8 Then
+            lblPasswordError2.Text = "✔ At least 8 characters."
+            lblPasswordError2.ForeColor = Color.Green
+        Else
+            lblPasswordError2.Text = "✖ Must be at least 8 characters."
+            lblPasswordError2.ForeColor = Color.Red
+        End If
+
+        ' Check if password has at least one uppercase letter
+        If Regex.IsMatch(password, "[A-Z]") Then
+            lblPasswordError3.Text = "✔ Contains an uppercase letter."
+            lblPasswordError3.ForeColor = Color.Green
+        Else
+            lblPasswordError3.Text = "✖ Must include at least one uppercase letter."
+            lblPasswordError3.ForeColor = Color.Red
+        End If
+
+        ' Check if password has at least one lowercase letter
+        If Regex.IsMatch(password, "[a-z]") Then
+            lblPasswordError4.Text = "✔ Contains a lowercase letter."
+            lblPasswordError4.ForeColor = Color.Green
+        Else
+            lblPasswordError4.Text = "✖ Must include at least one lowercase letter."
+            lblPasswordError4.ForeColor = Color.Red
+        End If
+
+        ' Check if password has at least one digit
+        If Regex.IsMatch(password, "[0-9]") Then
+            lblPasswordError5.Text = "✔ Contains a digit."
+            lblPasswordError5.ForeColor = Color.Green
+        Else
+            lblPasswordError5.Text = "✖ Must include at least one digit."
+            lblPasswordError5.ForeColor = Color.Red
+        End If
+
+        ' Check if password has at least one special character (!@#$%^&* etc.)
+        If Regex.IsMatch(password, "[^a-zA-Z0-9]") Then
+            lblPasswordError6.Text = "✔ Contains a special character."
+            lblPasswordError6.ForeColor = Color.Green
+        Else
+            lblPasswordError6.Text = "✖ Must include at least one special character."
+            lblPasswordError6.ForeColor = Color.Red
+        End If
+
+        ' General password status message
+        lblPasswordError.Visible = True
+        If lblPasswordError2.ForeColor = Color.Green And
+       lblPasswordError3.ForeColor = Color.Green And
+       lblPasswordError4.ForeColor = Color.Green And
+       lblPasswordError5.ForeColor = Color.Green And
+       lblPasswordError6.ForeColor = Color.Green Then
+            lblPasswordError.Text = "✔ Password meets all requirements!"
+            lblPasswordError.ForeColor = Color.Green
+        Else
+            lblPasswordError.Text = "✖ Password does not meet the requirements."
+            lblPasswordError.ForeColor = Color.Red
+        End If
+
+        ' Enable/Disable Next button based on password validity
         CheckNextButton()
+
+        ' 🔹 Revalidate Confirm Password when Password changes
+        txtConfirmPass_TextChanged(Nothing, Nothing)
     End Sub
+
+
 
     '----------------------------------
     ' txtConfirmPass_TextChanged: Checks that password confirmation matches.
     '----------------------------------
     Private Sub txtConfirmPass_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPass.TextChanged
-        If txtConfirmPass.Text <> txtPassword.Text Then
-            lblConfirmPasswordError.Text = "Passwords do not match. *"
+        ' If the Confirm Password field is empty, still show "✖ Passwords do not match."
+        If String.IsNullOrEmpty(txtConfirmPass.Text) Then
+            lblConfirmPasswordError.Text = "✖ Passwords do not match."
+            lblConfirmPasswordError.ForeColor = Color.Red
+            lblConfirmPasswordError.Visible = True
+        ElseIf txtConfirmPass.Text <> txtPassword.Text Then
+            lblConfirmPasswordError.Text = "✖ Passwords do not match."
+            lblConfirmPasswordError.ForeColor = Color.Red
             lblConfirmPasswordError.Visible = True
         Else
-            lblConfirmPasswordError.Text = ""
-            lblConfirmPasswordError.Visible = False
+            lblConfirmPasswordError.Text = "✔ Passwords match."
+            lblConfirmPasswordError.ForeColor = Color.Green
+            lblConfirmPasswordError.Visible = True
         End If
+
+        ' Enable/Disable Next button
         CheckNextButton()
     End Sub
+
+
+
 
     '----------------------------------
     ' txtContact_TextChanged: Validates that contact number is exactly 11 digits.
@@ -447,6 +624,7 @@ Public Class SignUpForm
         End Try
     End Sub
 
+
     '----------------------------------
     ' Form Load: Initializes the form, populates security questions, sets password masking, and disables buttons initially.
     '----------------------------------
@@ -515,7 +693,5 @@ Public Class SignUpForm
         End If
     End Sub
 
-    Private Sub Guna2HtmlLabel6_Click(sender As Object, e As EventArgs) Handles Guna2HtmlLabel6.Click
 
-    End Sub
 End Class
