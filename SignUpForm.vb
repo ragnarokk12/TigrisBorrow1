@@ -629,6 +629,7 @@ Public Class SignUpForm
         txtConfirmPass.UseSystemPasswordChar = True
         btnNext.Enabled = False
         btnSignup.Enabled = False
+        cbxDepartment.Size = New Point(300, 80)
     End Sub
 
     '----------------------------------
