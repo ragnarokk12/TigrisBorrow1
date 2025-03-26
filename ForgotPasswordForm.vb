@@ -4,14 +4,17 @@ Imports System.Text
 Imports System.Linq ' For LINQ methods like Any()
 Imports System.Text.RegularExpressions
 
-
 Public Class ForgotPasswordForm
-    Private connectionString As String = "Server=192.168.1.51;Database=tigris;User ID=eksi;Password=@Masterzed21;Port=3306;"
+    ' Remove the local connectionString variable
+    ' Assume that Common.vb contains:
+    ' Public Shared Function GetDBConnection() As MySqlConnection
+    '    Dim connectionString As String = "Server=192.168.1.51;Database=tigris;User ID=eksi;Password=@Masterzed21;Port=3306;"
+    '    Return New MySqlConnection(connectionString)
+    ' End Function
 
     ' Load event: Set default email placeholder, hide tab headers, and center the form
     Private Sub ForgotPasswordForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtEmail.Text = "@lpulaguna.edu.ph"
-
         ' Hide the tab headers
         HideTabHeaders()
     End Sub
@@ -40,7 +43,7 @@ Public Class ForgotPasswordForm
             lblNewPasswordError6.Visible = False
             lblNewPasswordError.Visible = False
 
-            ' 🔹 Force confirm password validation when main password is deleted
+            ' Force confirm password validation when main password is deleted
             txtConfirmPass_TextChanged(Nothing, Nothing)
             Exit Sub
         Else
@@ -100,10 +103,10 @@ Public Class ForgotPasswordForm
         ' General password status message
         lblNewPasswordError.Visible = True
         If lblNewPasswordError2.ForeColor = Color.Green And
-       lblNewPasswordError3.ForeColor = Color.Green And
-       lblNewPasswordError4.ForeColor = Color.Green And
-       lblNewPasswordError5.ForeColor = Color.Green And
-       lblNewPasswordError6.ForeColor = Color.Green Then
+           lblNewPasswordError3.ForeColor = Color.Green And
+           lblNewPasswordError4.ForeColor = Color.Green And
+           lblNewPasswordError5.ForeColor = Color.Green And
+           lblNewPasswordError6.ForeColor = Color.Green Then
             lblNewPasswordError.Text = "✔ Password meets all requirements!"
             lblNewPasswordError.ForeColor = Color.Green
         Else
@@ -114,8 +117,14 @@ Public Class ForgotPasswordForm
         ' Enable/Disable Next button based on password validity
         CheckNextButton()
 
-        ' 🔹 Revalidate Confirm Password when Password changes
+        ' Revalidate Confirm Password when Password changes
         txtConfirmPass_TextChanged(Nothing, Nothing)
+    End Sub
+    Private Sub TabControl1_KeyDown(sender As Object, e As KeyEventArgs) Handles TabControl1.KeyDown
+        If e.KeyCode = Keys.Left OrElse e.KeyCode = Keys.Right Then
+            e.SuppressKeyPress = True
+            e.Handled = True
+        End If
     End Sub
 
     '----------------------------------
@@ -140,8 +149,6 @@ Public Class ForgotPasswordForm
             btnConfirmPassword.Enabled = True
         End If
     End Sub
-
-
 
     '----------------------------------
     ' CheckNextButton: Enables or disables the Confirm button based on input validity.
@@ -187,7 +194,8 @@ Public Class ForgotPasswordForm
         End If
 
         Try
-            Using conn As New MySqlConnection(connectionString)
+            ' Use the shared database connection from Common.vb
+            Using conn As MySqlConnection = Common.getDBConnection()
                 conn.Open()
                 Dim cmd As New MySqlCommand("SELECT security_question1, security_question2, security_question3 FROM users WHERE email = @Email", conn)
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim())
@@ -214,7 +222,7 @@ Public Class ForgotPasswordForm
     ' Confirm Security Questions button click event
     Private Sub btnConfirmQuestion_Click(sender As Object, e As EventArgs) Handles btnConfirmQuestion.Click
         Try
-            Using conn As New MySqlConnection(connectionString)
+            Using conn As MySqlConnection = Common.getDBConnection()
                 conn.Open()
                 Dim cmd As New MySqlCommand("SELECT security_answer_hash1, security_answer_hash2, security_answer_hash3 FROM users WHERE email = @Email", conn)
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim())
@@ -259,7 +267,7 @@ Public Class ForgotPasswordForm
         Dim hashedPassword As String = HashPassword(txtNewPassword.Text.Trim())
 
         Try
-            Using conn As New MySqlConnection(connectionString)
+            Using conn As MySqlConnection = Common.getDBConnection()
                 conn.Open()
 
                 ' Step 1: Retrieve the current password hash from the database
@@ -290,7 +298,6 @@ Public Class ForgotPasswordForm
             MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
 
     ' Function to hash passwords using SHA-256
     Private Function HashPassword(password As String) As String
