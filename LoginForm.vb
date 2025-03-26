@@ -98,9 +98,11 @@ Public Class LoginForm
         signUpForm.ShowDialog()
     End Sub
 
-    Private Sub lblForgotPassword_Click(sender As Object, e As EventArgs)
-        ForgotPasswordForm.Show()
+    Private Sub lblForgotPassword_Click(sender As Object, e As EventArgs) Handles lblForgotPassword.Click
+        Dim forgotForm As New ForgotPasswordForm()
+        forgotForm.Show()
     End Sub
+
 
     Private Function HashPassword(password As String) As String
         Using sha256 As SHA256 = SHA256.Create()
