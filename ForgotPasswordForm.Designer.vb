@@ -65,6 +65,11 @@ Partial Class ForgotPasswordForm
         Me.Guna2HtmlLabel16 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.btnBackPassword = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2ShadowPanel2 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.lblNewPasswordError6 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.lblNewPasswordError5 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.lblNewPasswordError4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.lblNewPasswordError3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.lblNewPasswordError2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblConfirmNewPasswordError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblNewPasswordError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.btnConfirmPassword = New Guna.UI2.WinForms.Guna2GradientButton()
@@ -145,11 +150,11 @@ Partial Class ForgotPasswordForm
         'Guna2HtmlLabel11
         '
         Me.Guna2HtmlLabel11.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel11.Font = New System.Drawing.Font("Sifonn", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel11.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.Guna2HtmlLabel11.Location = New System.Drawing.Point(399, 140)
         Me.Guna2HtmlLabel11.Name = "Guna2HtmlLabel11"
-        Me.Guna2HtmlLabel11.Size = New System.Drawing.Size(24, 64)
+        Me.Guna2HtmlLabel11.Size = New System.Drawing.Size(31, 57)
         Me.Guna2HtmlLabel11.TabIndex = 10
         Me.Guna2HtmlLabel11.Text = "?"
         '
@@ -184,31 +189,31 @@ Partial Class ForgotPasswordForm
         'Guna2HtmlLabel9
         '
         Me.Guna2HtmlLabel9.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel9.Font = New System.Drawing.Font("Sifonn", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel9.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel9.Location = New System.Drawing.Point(40, 238)
         Me.Guna2HtmlLabel9.Name = "Guna2HtmlLabel9"
-        Me.Guna2HtmlLabel9.Size = New System.Drawing.Size(180, 43)
+        Me.Guna2HtmlLabel9.Size = New System.Drawing.Size(179, 39)
         Me.Guna2HtmlLabel9.TabIndex = 7
         Me.Guna2HtmlLabel9.Text = "Forgot your"
         '
         'Guna2HtmlLabel8
         '
         Me.Guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel8.Font = New System.Drawing.Font("Sifonn", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel8.Location = New System.Drawing.Point(41, 275)
         Me.Guna2HtmlLabel8.Name = "Guna2HtmlLabel8"
-        Me.Guna2HtmlLabel8.Size = New System.Drawing.Size(361, 27)
+        Me.Guna2HtmlLabel8.Size = New System.Drawing.Size(361, 26)
         Me.Guna2HtmlLabel8.TabIndex = 6
         Me.Guna2HtmlLabel8.Text = "Don't worry, we'll guide you through it."
         '
         'Guna2HtmlLabel7
         '
         Me.Guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel7.Font = New System.Drawing.Font("Sifonn", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel7.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.Guna2HtmlLabel7.Location = New System.Drawing.Point(230, 238)
         Me.Guna2HtmlLabel7.Name = "Guna2HtmlLabel7"
-        Me.Guna2HtmlLabel7.Size = New System.Drawing.Size(157, 43)
+        Me.Guna2HtmlLabel7.Size = New System.Drawing.Size(170, 39)
         Me.Guna2HtmlLabel7.TabIndex = 5
         Me.Guna2HtmlLabel7.Text = "Password?"
         '
@@ -241,7 +246,7 @@ Partial Class ForgotPasswordForm
         Me.btnConfirmEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnConfirmEmail.FillColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.btnConfirmEmail.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(172, Byte), Integer), CType(CType(194, Byte), Integer))
-        Me.btnConfirmEmail.Font = New System.Drawing.Font("Sifonn", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnConfirmEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnConfirmEmail.ForeColor = System.Drawing.Color.White
         Me.btnConfirmEmail.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal
         Me.btnConfirmEmail.HoverState.FillColor = System.Drawing.Color.RosyBrown
@@ -255,10 +260,10 @@ Partial Class ForgotPasswordForm
         'Guna2HtmlLabel5
         '
         Me.Guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel5.Font = New System.Drawing.Font("Sifonn", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel5.Location = New System.Drawing.Point(38, 64)
         Me.Guna2HtmlLabel5.Name = "Guna2HtmlLabel5"
-        Me.Guna2HtmlLabel5.Size = New System.Drawing.Size(272, 43)
+        Me.Guna2HtmlLabel5.Size = New System.Drawing.Size(268, 39)
         Me.Guna2HtmlLabel5.TabIndex = 4
         Me.Guna2HtmlLabel5.Text = "Please enter your"
         '
@@ -289,11 +294,11 @@ Partial Class ForgotPasswordForm
         'PanelEmail
         '
         Me.PanelEmail.BackColor = System.Drawing.Color.Transparent
-        Me.PanelEmail.Font = New System.Drawing.Font("Sifonn", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PanelEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PanelEmail.ForeColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.PanelEmail.Location = New System.Drawing.Point(45, 102)
         Me.PanelEmail.Name = "PanelEmail"
-        Me.PanelEmail.Size = New System.Drawing.Size(257, 43)
+        Me.PanelEmail.Size = New System.Drawing.Size(260, 39)
         Me.PanelEmail.TabIndex = 3
         Me.PanelEmail.Text = "Registered Email"
         '
@@ -308,7 +313,7 @@ Partial Class ForgotPasswordForm
         Me.btnCancel.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.btnCancel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnCancel.FillColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnCancel.Font = New System.Drawing.Font("Sifonn", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancel.ForeColor = System.Drawing.Color.Black
         Me.btnCancel.ImageSize = New System.Drawing.Size(14, 14)
         Me.btnCancel.Location = New System.Drawing.Point(40, 555)
@@ -373,7 +378,7 @@ Partial Class ForgotPasswordForm
         Me.btnBackQuestion.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.btnBackQuestion.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnBackQuestion.FillColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.btnBackQuestion.Font = New System.Drawing.Font("Sifonn", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnBackQuestion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBackQuestion.ForeColor = System.Drawing.Color.Black
         Me.btnBackQuestion.Image = Global.TigrisBorrow.My.Resources.Resources.back_arrow
         Me.btnBackQuestion.Location = New System.Drawing.Point(40, 555)
@@ -413,21 +418,21 @@ Partial Class ForgotPasswordForm
         'Guna2HtmlLabel13
         '
         Me.Guna2HtmlLabel13.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel13.Font = New System.Drawing.Font("Sifonn", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel13.Font = New System.Drawing.Font("Microsoft Sans Serif", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.Guna2HtmlLabel13.Location = New System.Drawing.Point(40, 273)
         Me.Guna2HtmlLabel13.Name = "Guna2HtmlLabel13"
-        Me.Guna2HtmlLabel13.Size = New System.Drawing.Size(330, 50)
+        Me.Guna2HtmlLabel13.Size = New System.Drawing.Size(335, 44)
         Me.Guna2HtmlLabel13.TabIndex = 14
         Me.Guna2HtmlLabel13.Text = "Security Questions"
         '
         'Guna2HtmlLabel12
         '
         Me.Guna2HtmlLabel12.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel12.Font = New System.Drawing.Font("Sifonn", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel12.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel12.Location = New System.Drawing.Point(40, 236)
         Me.Guna2HtmlLabel12.Name = "Guna2HtmlLabel12"
-        Me.Guna2HtmlLabel12.Size = New System.Drawing.Size(192, 47)
+        Me.Guna2HtmlLabel12.Size = New System.Drawing.Size(186, 41)
         Me.Guna2HtmlLabel12.TabIndex = 13
         Me.Guna2HtmlLabel12.Text = "Answer the"
         '
@@ -531,7 +536,7 @@ Partial Class ForgotPasswordForm
         Me.btnConfirmQuestion.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnConfirmQuestion.FillColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.btnConfirmQuestion.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(172, Byte), Integer), CType(CType(194, Byte), Integer))
-        Me.btnConfirmQuestion.Font = New System.Drawing.Font("Sifonn", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnConfirmQuestion.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnConfirmQuestion.ForeColor = System.Drawing.Color.White
         Me.btnConfirmQuestion.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal
         Me.btnConfirmQuestion.HoverState.FillColor = System.Drawing.Color.RosyBrown
@@ -545,10 +550,10 @@ Partial Class ForgotPasswordForm
         'PanelSecurityQuestions
         '
         Me.PanelSecurityQuestions.BackColor = System.Drawing.Color.Transparent
-        Me.PanelSecurityQuestions.Font = New System.Drawing.Font("Sifonn", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PanelSecurityQuestions.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PanelSecurityQuestions.Location = New System.Drawing.Point(81, 37)
         Me.PanelSecurityQuestions.Name = "PanelSecurityQuestions"
-        Me.PanelSecurityQuestions.Size = New System.Drawing.Size(286, 43)
+        Me.PanelSecurityQuestions.Size = New System.Drawing.Size(288, 39)
         Me.PanelSecurityQuestions.TabIndex = 11
         Me.PanelSecurityQuestions.Text = "Security Questions"
         '
@@ -648,10 +653,10 @@ Partial Class ForgotPasswordForm
         'Guna2HtmlLabel14
         '
         Me.Guna2HtmlLabel14.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel14.Font = New System.Drawing.Font("Sifonn", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel14.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel14.Location = New System.Drawing.Point(40, 318)
         Me.Guna2HtmlLabel14.Name = "Guna2HtmlLabel14"
-        Me.Guna2HtmlLabel14.Size = New System.Drawing.Size(359, 27)
+        Me.Guna2HtmlLabel14.Size = New System.Drawing.Size(348, 26)
         Me.Guna2HtmlLabel14.TabIndex = 15
         Me.Guna2HtmlLabel14.Text = "Just so we know that it's actually you." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
@@ -718,33 +723,33 @@ Partial Class ForgotPasswordForm
         'Guna2HtmlLabel15
         '
         Me.Guna2HtmlLabel15.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel15.Font = New System.Drawing.Font("Sifonn", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel15.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel15.ForeColor = System.Drawing.Color.Black
         Me.Guna2HtmlLabel15.Location = New System.Drawing.Point(40, 239)
         Me.Guna2HtmlLabel15.Name = "Guna2HtmlLabel15"
-        Me.Guna2HtmlLabel15.Size = New System.Drawing.Size(118, 47)
+        Me.Guna2HtmlLabel15.Size = New System.Drawing.Size(122, 41)
         Me.Guna2HtmlLabel15.TabIndex = 19
         Me.Guna2HtmlLabel15.Text = "Finally!"
         '
         'Guna2HtmlLabel10
         '
         Me.Guna2HtmlLabel10.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel10.Font = New System.Drawing.Font("Sifonn", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel10.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.Guna2HtmlLabel10.Location = New System.Drawing.Point(40, 276)
         Me.Guna2HtmlLabel10.Name = "Guna2HtmlLabel10"
-        Me.Guna2HtmlLabel10.Size = New System.Drawing.Size(432, 43)
+        Me.Guna2HtmlLabel10.Size = New System.Drawing.Size(426, 39)
         Me.Guna2HtmlLabel10.TabIndex = 20
         Me.Guna2HtmlLabel10.Text = "Create your New Password!"
         '
         'Guna2HtmlLabel16
         '
         Me.Guna2HtmlLabel16.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel16.Font = New System.Drawing.Font("Sifonn", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel16.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel16.ForeColor = System.Drawing.Color.Black
         Me.Guna2HtmlLabel16.Location = New System.Drawing.Point(42, 319)
         Me.Guna2HtmlLabel16.Name = "Guna2HtmlLabel16"
-        Me.Guna2HtmlLabel16.Size = New System.Drawing.Size(139, 27)
+        Me.Guna2HtmlLabel16.Size = New System.Drawing.Size(132, 26)
         Me.Guna2HtmlLabel16.TabIndex = 21
         Me.Guna2HtmlLabel16.Text = "Don't forget it!"
         '
@@ -772,6 +777,11 @@ Partial Class ForgotPasswordForm
         'Guna2ShadowPanel2
         '
         Me.Guna2ShadowPanel2.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2ShadowPanel2.Controls.Add(Me.lblNewPasswordError6)
+        Me.Guna2ShadowPanel2.Controls.Add(Me.lblNewPasswordError5)
+        Me.Guna2ShadowPanel2.Controls.Add(Me.lblNewPasswordError4)
+        Me.Guna2ShadowPanel2.Controls.Add(Me.lblNewPasswordError3)
+        Me.Guna2ShadowPanel2.Controls.Add(Me.lblNewPasswordError2)
         Me.Guna2ShadowPanel2.Controls.Add(Me.lblConfirmNewPasswordError)
         Me.Guna2ShadowPanel2.Controls.Add(Me.lblNewPasswordError)
         Me.Guna2ShadowPanel2.Controls.Add(Me.btnConfirmPassword)
@@ -788,6 +798,51 @@ Partial Class ForgotPasswordForm
         Me.Guna2ShadowPanel2.Size = New System.Drawing.Size(382, 542)
         Me.Guna2ShadowPanel2.TabIndex = 7
         '
+        'lblNewPasswordError6
+        '
+        Me.lblNewPasswordError6.BackColor = System.Drawing.Color.Transparent
+        Me.lblNewPasswordError6.Location = New System.Drawing.Point(207, 215)
+        Me.lblNewPasswordError6.Name = "lblNewPasswordError6"
+        Me.lblNewPasswordError6.Size = New System.Drawing.Size(94, 15)
+        Me.lblNewPasswordError6.TabIndex = 20
+        Me.lblNewPasswordError6.Text = "Guna2HtmlLabel21"
+        '
+        'lblNewPasswordError5
+        '
+        Me.lblNewPasswordError5.BackColor = System.Drawing.Color.Transparent
+        Me.lblNewPasswordError5.Location = New System.Drawing.Point(207, 193)
+        Me.lblNewPasswordError5.Name = "lblNewPasswordError5"
+        Me.lblNewPasswordError5.Size = New System.Drawing.Size(94, 15)
+        Me.lblNewPasswordError5.TabIndex = 19
+        Me.lblNewPasswordError5.Text = "Guna2HtmlLabel20"
+        '
+        'lblNewPasswordError4
+        '
+        Me.lblNewPasswordError4.BackColor = System.Drawing.Color.Transparent
+        Me.lblNewPasswordError4.Location = New System.Drawing.Point(207, 171)
+        Me.lblNewPasswordError4.Name = "lblNewPasswordError4"
+        Me.lblNewPasswordError4.Size = New System.Drawing.Size(94, 15)
+        Me.lblNewPasswordError4.TabIndex = 18
+        Me.lblNewPasswordError4.Text = "Guna2HtmlLabel19"
+        '
+        'lblNewPasswordError3
+        '
+        Me.lblNewPasswordError3.BackColor = System.Drawing.Color.Transparent
+        Me.lblNewPasswordError3.Location = New System.Drawing.Point(74, 210)
+        Me.lblNewPasswordError3.Name = "lblNewPasswordError3"
+        Me.lblNewPasswordError3.Size = New System.Drawing.Size(94, 15)
+        Me.lblNewPasswordError3.TabIndex = 17
+        Me.lblNewPasswordError3.Text = "Guna2HtmlLabel18"
+        '
+        'lblNewPasswordError2
+        '
+        Me.lblNewPasswordError2.BackColor = System.Drawing.Color.Transparent
+        Me.lblNewPasswordError2.Location = New System.Drawing.Point(74, 188)
+        Me.lblNewPasswordError2.Name = "lblNewPasswordError2"
+        Me.lblNewPasswordError2.Size = New System.Drawing.Size(94, 15)
+        Me.lblNewPasswordError2.TabIndex = 16
+        Me.lblNewPasswordError2.Text = "Guna2HtmlLabel17"
+        '
         'lblConfirmNewPasswordError
         '
         Me.lblConfirmNewPasswordError.BackColor = System.Drawing.Color.Transparent
@@ -797,7 +852,6 @@ Partial Class ForgotPasswordForm
         Me.lblConfirmNewPasswordError.Size = New System.Drawing.Size(94, 15)
         Me.lblConfirmNewPasswordError.TabIndex = 15
         Me.lblConfirmNewPasswordError.Text = "Guna2HtmlLabel18"
-        Me.lblConfirmNewPasswordError.Visible = False
         '
         'lblNewPasswordError
         '
@@ -835,11 +889,11 @@ Partial Class ForgotPasswordForm
         'PanelNewPassword
         '
         Me.PanelNewPassword.BackColor = System.Drawing.Color.Transparent
-        Me.PanelNewPassword.Font = New System.Drawing.Font("Sifonn", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PanelNewPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PanelNewPassword.ForeColor = System.Drawing.Color.Black
         Me.PanelNewPassword.Location = New System.Drawing.Point(58, 79)
         Me.PanelNewPassword.Name = "PanelNewPassword"
-        Me.PanelNewPassword.Size = New System.Drawing.Size(171, 23)
+        Me.PanelNewPassword.Size = New System.Drawing.Size(178, 22)
         Me.PanelNewPassword.TabIndex = 2
         Me.PanelNewPassword.Text = "Create New Password"
         '
@@ -874,11 +928,11 @@ Partial Class ForgotPasswordForm
         Me.chkShowPassword.CheckedState.BorderRadius = 0
         Me.chkShowPassword.CheckedState.BorderThickness = 0
         Me.chkShowPassword.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.chkShowPassword.Font = New System.Drawing.Font("Sifonn", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkShowPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkShowPassword.ForeColor = System.Drawing.Color.Black
         Me.chkShowPassword.Location = New System.Drawing.Point(58, 368)
         Me.chkShowPassword.Name = "chkShowPassword"
-        Me.chkShowPassword.Size = New System.Drawing.Size(112, 19)
+        Me.chkShowPassword.Size = New System.Drawing.Size(126, 19)
         Me.chkShowPassword.TabIndex = 4
         Me.chkShowPassword.Text = "Show password"
         Me.chkShowPassword.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(125, Byte), Integer), CType(CType(137, Byte), Integer), CType(CType(149, Byte), Integer))
@@ -913,10 +967,10 @@ Partial Class ForgotPasswordForm
         'Guna2HtmlLabel6
         '
         Me.Guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel6.Font = New System.Drawing.Font("Sifonn", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel6.Location = New System.Drawing.Point(58, 233)
         Me.Guna2HtmlLabel6.Name = "Guna2HtmlLabel6"
-        Me.Guna2HtmlLabel6.Size = New System.Drawing.Size(182, 23)
+        Me.Guna2HtmlLabel6.Size = New System.Drawing.Size(186, 22)
         Me.Guna2HtmlLabel6.TabIndex = 3
         Me.Guna2HtmlLabel6.Text = "Confirm New Password"
         '
@@ -1067,4 +1121,9 @@ Partial Class ForgotPasswordForm
     Friend WithEvents lblNewPasswordError As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2PictureBox2 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents Guna2PictureBox3 As Guna.UI2.WinForms.Guna2PictureBox
+    Friend WithEvents lblNewPasswordError6 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents lblNewPasswordError5 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents lblNewPasswordError4 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents lblNewPasswordError3 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents lblNewPasswordError2 As Guna.UI2.WinForms.Guna2HtmlLabel
 End Class

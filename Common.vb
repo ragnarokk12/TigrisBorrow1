@@ -11,7 +11,7 @@ Public Class Common
                 "Server=192.168.1.51;" &  ' Change to your server (e.g., "10.1.139.203" for remote)
                 "Database=tigris;" &  ' Your database name
                 "User ID=eksi;" &  ' Your MySQL username
-                "Password=;" &  ' Your MySQL password
+                "Password=@Masterzed21;" &  ' Your MySQL password
                 "Port=3306;" &  ' MySQL port
                 "Command Timeout=600;")
         End If

@@ -2,9 +2,11 @@
 Imports System.Security.Cryptography
 Imports System.Text
 Imports System.Linq ' For LINQ methods like Any()
+Imports System.Text.RegularExpressions
+
 
 Public Class ForgotPasswordForm
-    Private connectionString As String = "Server=192.168.1.51;Database=tigris;User ID=eksi;Password=;Port=3306;"
+    Private connectionString As String = "Server=192.168.1.51;Database=tigris;User ID=eksi;Password=@Masterzed21;Port=3306;"
 
     ' Load event: Set default email placeholder, hide tab headers, and center the form
     Private Sub ForgotPasswordForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -24,34 +26,122 @@ Public Class ForgotPasswordForm
     End Sub
 
     '----------------------------------
-    ' txtNewPassword_TextChanged: Validates password strength.
+    ' txtNewPassword_TextChanged: Validates password strength in real-time with color feedback.
     '----------------------------------
     Private Sub txtNewPassword_TextChanged(sender As Object, e As EventArgs) Handles txtNewPassword.TextChanged
         Dim password As String = txtNewPassword.Text
-        If password.Length < 8 OrElse Not password.Any(AddressOf Char.IsUpper) OrElse
-           Not password.Any(AddressOf Char.IsLower) OrElse Not password.Any(AddressOf Char.IsDigit) Then
-            lblNewPasswordError.Text = "Password must be 8+ characters with uppercase, lowercase, and a number."
-            lblNewPasswordError.Visible = True
-        Else
-            lblNewPasswordError.Text = ""
+
+        ' Hide error labels if the password is empty
+        If String.IsNullOrEmpty(password) Then
+            lblNewPasswordError2.Visible = False
+            lblNewPasswordError3.Visible = False
+            lblNewPasswordError4.Visible = False
+            lblNewPasswordError5.Visible = False
+            lblNewPasswordError6.Visible = False
             lblNewPasswordError.Visible = False
+
+            ' 🔹 Force confirm password validation when main password is deleted
+            txtConfirmPass_TextChanged(Nothing, Nothing)
+            Exit Sub
+        Else
+            lblNewPasswordError2.Visible = True
+            lblNewPasswordError3.Visible = True
+            lblNewPasswordError4.Visible = True
+            lblNewPasswordError5.Visible = True
+            lblNewPasswordError6.Visible = True
+            lblNewPasswordError.Visible = True
         End If
+
+        ' Check if password is at least 8 characters
+        If password.Length >= 8 Then
+            lblNewPasswordError2.Text = "✔ At least 8 characters."
+            lblNewPasswordError2.ForeColor = Color.Green
+        Else
+            lblNewPasswordError2.Text = "✖ Must be at least 8 characters."
+            lblNewPasswordError2.ForeColor = Color.Red
+        End If
+
+        ' Check if password has at least one uppercase letter
+        If Regex.IsMatch(password, "[A-Z]") Then
+            lblNewPasswordError3.Text = "✔ Contains an uppercase letter."
+            lblNewPasswordError3.ForeColor = Color.Green
+        Else
+            lblNewPasswordError3.Text = "✖ Must include at least one uppercase letter."
+            lblNewPasswordError3.ForeColor = Color.Red
+        End If
+
+        ' Check if password has at least one lowercase letter
+        If Regex.IsMatch(password, "[a-z]") Then
+            lblNewPasswordError4.Text = "✔ Contains a lowercase letter."
+            lblNewPasswordError4.ForeColor = Color.Green
+        Else
+            lblNewPasswordError4.Text = "✖ Must include at least one lowercase letter."
+            lblNewPasswordError4.ForeColor = Color.Red
+        End If
+
+        ' Check if password has at least one digit
+        If Regex.IsMatch(password, "[0-9]") Then
+            lblNewPasswordError5.Text = "✔ Contains a digit."
+            lblNewPasswordError5.ForeColor = Color.Green
+        Else
+            lblNewPasswordError5.Text = "✖ Must include at least one digit."
+            lblNewPasswordError5.ForeColor = Color.Red
+        End If
+
+        ' Check if password has at least one special character (!@#$%^&* etc.)
+        If Regex.IsMatch(password, "[^a-zA-Z0-9]") Then
+            lblNewPasswordError6.Text = "✔ Contains a special character."
+            lblNewPasswordError6.ForeColor = Color.Green
+        Else
+            lblNewPasswordError6.Text = "✖ Must include at least one special character."
+            lblNewPasswordError6.ForeColor = Color.Red
+        End If
+
+        ' General password status message
+        lblNewPasswordError.Visible = True
+        If lblNewPasswordError2.ForeColor = Color.Green And
+       lblNewPasswordError3.ForeColor = Color.Green And
+       lblNewPasswordError4.ForeColor = Color.Green And
+       lblNewPasswordError5.ForeColor = Color.Green And
+       lblNewPasswordError6.ForeColor = Color.Green Then
+            lblNewPasswordError.Text = "✔ Password meets all requirements!"
+            lblNewPasswordError.ForeColor = Color.Green
+        Else
+            lblNewPasswordError.Text = "✖ Password does not meet the requirements."
+            lblNewPasswordError.ForeColor = Color.Red
+        End If
+
+        ' Enable/Disable Next button based on password validity
         CheckNextButton()
+
+        ' 🔹 Revalidate Confirm Password when Password changes
+        txtConfirmPass_TextChanged(Nothing, Nothing)
     End Sub
 
     '----------------------------------
-    ' txtConfirmPassword_TextChanged: Checks that password confirmation matches.
+    ' txtConfirmPass_TextChanged: Checks password confirmation
     '----------------------------------
-    Private Sub txtConfirmPassword_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPassword.TextChanged
-        If txtConfirmPassword.Text <> txtNewPassword.Text Then
-            lblConfirmNewPasswordError.Text = "Passwords do not match."
-            lblConfirmNewPasswordError.Visible = True
-        Else
-            lblConfirmNewPasswordError.Text = ""
+    Private Sub txtConfirmPass_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPassword.TextChanged
+        If String.IsNullOrEmpty(txtNewPassword.Text) Or String.IsNullOrEmpty(txtConfirmPassword.Text) Then
             lblConfirmNewPasswordError.Visible = False
+            btnConfirmPassword.Enabled = False
+            Exit Sub
         End If
-        CheckNextButton()
+
+        If txtConfirmPassword.Text <> txtNewPassword.Text Then
+            lblConfirmNewPasswordError.Text = "✖ Passwords do not match."
+            lblConfirmNewPasswordError.ForeColor = Color.Red
+            lblConfirmNewPasswordError.Visible = True
+            btnConfirmPassword.Enabled = False
+        Else
+            lblConfirmNewPasswordError.Text = "✔ Passwords match!"
+            lblConfirmNewPasswordError.ForeColor = Color.Green
+            lblConfirmNewPasswordError.Visible = True
+            btnConfirmPassword.Enabled = True
+        End If
     End Sub
+
+
 
     '----------------------------------
     ' CheckNextButton: Enables or disables the Confirm button based on input validity.
