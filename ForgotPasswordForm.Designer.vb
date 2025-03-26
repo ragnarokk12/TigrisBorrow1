@@ -801,7 +801,7 @@ Partial Class ForgotPasswordForm
         'lblNewPasswordError6
         '
         Me.lblNewPasswordError6.BackColor = System.Drawing.Color.Transparent
-        Me.lblNewPasswordError6.Location = New System.Drawing.Point(207, 215)
+        Me.lblNewPasswordError6.Location = New System.Drawing.Point(74, 210)
         Me.lblNewPasswordError6.Name = "lblNewPasswordError6"
         Me.lblNewPasswordError6.Size = New System.Drawing.Size(94, 15)
         Me.lblNewPasswordError6.TabIndex = 20
@@ -810,7 +810,7 @@ Partial Class ForgotPasswordForm
         'lblNewPasswordError5
         '
         Me.lblNewPasswordError5.BackColor = System.Drawing.Color.Transparent
-        Me.lblNewPasswordError5.Location = New System.Drawing.Point(207, 193)
+        Me.lblNewPasswordError5.Location = New System.Drawing.Point(74, 195)
         Me.lblNewPasswordError5.Name = "lblNewPasswordError5"
         Me.lblNewPasswordError5.Size = New System.Drawing.Size(94, 15)
         Me.lblNewPasswordError5.TabIndex = 19
@@ -819,7 +819,7 @@ Partial Class ForgotPasswordForm
         'lblNewPasswordError4
         '
         Me.lblNewPasswordError4.BackColor = System.Drawing.Color.Transparent
-        Me.lblNewPasswordError4.Location = New System.Drawing.Point(207, 171)
+        Me.lblNewPasswordError4.Location = New System.Drawing.Point(74, 179)
         Me.lblNewPasswordError4.Name = "lblNewPasswordError4"
         Me.lblNewPasswordError4.Size = New System.Drawing.Size(94, 15)
         Me.lblNewPasswordError4.TabIndex = 18
@@ -828,7 +828,7 @@ Partial Class ForgotPasswordForm
         'lblNewPasswordError3
         '
         Me.lblNewPasswordError3.BackColor = System.Drawing.Color.Transparent
-        Me.lblNewPasswordError3.Location = New System.Drawing.Point(74, 210)
+        Me.lblNewPasswordError3.Location = New System.Drawing.Point(74, 163)
         Me.lblNewPasswordError3.Name = "lblNewPasswordError3"
         Me.lblNewPasswordError3.Size = New System.Drawing.Size(94, 15)
         Me.lblNewPasswordError3.TabIndex = 17
@@ -837,7 +837,7 @@ Partial Class ForgotPasswordForm
         'lblNewPasswordError2
         '
         Me.lblNewPasswordError2.BackColor = System.Drawing.Color.Transparent
-        Me.lblNewPasswordError2.Location = New System.Drawing.Point(74, 188)
+        Me.lblNewPasswordError2.Location = New System.Drawing.Point(74, 147)
         Me.lblNewPasswordError2.Name = "lblNewPasswordError2"
         Me.lblNewPasswordError2.Size = New System.Drawing.Size(94, 15)
         Me.lblNewPasswordError2.TabIndex = 16
@@ -847,7 +847,7 @@ Partial Class ForgotPasswordForm
         '
         Me.lblConfirmNewPasswordError.BackColor = System.Drawing.Color.Transparent
         Me.lblConfirmNewPasswordError.ForeColor = System.Drawing.Color.Red
-        Me.lblConfirmNewPasswordError.Location = New System.Drawing.Point(74, 320)
+        Me.lblConfirmNewPasswordError.Location = New System.Drawing.Point(74, 331)
         Me.lblConfirmNewPasswordError.Name = "lblConfirmNewPasswordError"
         Me.lblConfirmNewPasswordError.Size = New System.Drawing.Size(94, 15)
         Me.lblConfirmNewPasswordError.TabIndex = 15
@@ -857,7 +857,7 @@ Partial Class ForgotPasswordForm
         '
         Me.lblNewPasswordError.BackColor = System.Drawing.Color.Transparent
         Me.lblNewPasswordError.ForeColor = System.Drawing.Color.Red
-        Me.lblNewPasswordError.Location = New System.Drawing.Point(74, 167)
+        Me.lblNewPasswordError.Location = New System.Drawing.Point(74, 126)
         Me.lblNewPasswordError.Name = "lblNewPasswordError"
         Me.lblNewPasswordError.Size = New System.Drawing.Size(54, 15)
         Me.lblNewPasswordError.TabIndex = 14
@@ -880,7 +880,7 @@ Partial Class ForgotPasswordForm
         Me.btnConfirmPassword.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal
         Me.btnConfirmPassword.HoverState.FillColor = System.Drawing.Color.RosyBrown
         Me.btnConfirmPassword.HoverState.FillColor2 = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnConfirmPassword.Location = New System.Drawing.Point(103, 409)
+        Me.btnConfirmPassword.Location = New System.Drawing.Point(105, 454)
         Me.btnConfirmPassword.Name = "btnConfirmPassword"
         Me.btnConfirmPassword.Size = New System.Drawing.Size(180, 45)
         Me.btnConfirmPassword.TabIndex = 13
@@ -891,7 +891,7 @@ Partial Class ForgotPasswordForm
         Me.PanelNewPassword.BackColor = System.Drawing.Color.Transparent
         Me.PanelNewPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PanelNewPassword.ForeColor = System.Drawing.Color.Black
-        Me.PanelNewPassword.Location = New System.Drawing.Point(58, 79)
+        Me.PanelNewPassword.Location = New System.Drawing.Point(58, 38)
         Me.PanelNewPassword.Name = "PanelNewPassword"
         Me.PanelNewPassword.Size = New System.Drawing.Size(178, 22)
         Me.PanelNewPassword.TabIndex = 2
@@ -913,7 +913,7 @@ Partial Class ForgotPasswordForm
         Me.txtNewPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtNewPassword.IconLeft = Global.TigrisBorrow.My.Resources.Resources.password__1_
         Me.txtNewPassword.IconLeftSize = New System.Drawing.Size(30, 30)
-        Me.txtNewPassword.Location = New System.Drawing.Point(58, 108)
+        Me.txtNewPassword.Location = New System.Drawing.Point(58, 67)
         Me.txtNewPassword.Name = "txtNewPassword"
         Me.txtNewPassword.PlaceholderText = "Enter new password"
         Me.txtNewPassword.SelectedText = ""
@@ -930,7 +930,7 @@ Partial Class ForgotPasswordForm
         Me.chkShowPassword.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.chkShowPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkShowPassword.ForeColor = System.Drawing.Color.Black
-        Me.chkShowPassword.Location = New System.Drawing.Point(58, 368)
+        Me.chkShowPassword.Location = New System.Drawing.Point(58, 379)
         Me.chkShowPassword.Name = "chkShowPassword"
         Me.chkShowPassword.Size = New System.Drawing.Size(126, 19)
         Me.chkShowPassword.TabIndex = 4
@@ -956,7 +956,7 @@ Partial Class ForgotPasswordForm
         Me.txtConfirmPassword.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtConfirmPassword.IconLeft = Global.TigrisBorrow.My.Resources.Resources.password__1_
         Me.txtConfirmPassword.IconLeftSize = New System.Drawing.Size(30, 30)
-        Me.txtConfirmPassword.Location = New System.Drawing.Point(58, 262)
+        Me.txtConfirmPassword.Location = New System.Drawing.Point(58, 273)
         Me.txtConfirmPassword.Name = "txtConfirmPassword"
         Me.txtConfirmPassword.PlaceholderText = "Re-enter new password"
         Me.txtConfirmPassword.SelectedText = ""
@@ -968,7 +968,7 @@ Partial Class ForgotPasswordForm
         '
         Me.Guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent
         Me.Guna2HtmlLabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel6.Location = New System.Drawing.Point(58, 233)
+        Me.Guna2HtmlLabel6.Location = New System.Drawing.Point(58, 244)
         Me.Guna2HtmlLabel6.Name = "Guna2HtmlLabel6"
         Me.Guna2HtmlLabel6.Size = New System.Drawing.Size(186, 22)
         Me.Guna2HtmlLabel6.TabIndex = 3
