@@ -649,9 +649,9 @@ Partial Class AdminStaffDashboardForm
         Me.btnRefreshDeploy.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.btnRefreshDeploy.HoverState.ForeColor = System.Drawing.Color.White
         Me.btnRefreshDeploy.Image = Global.TigrisBorrow.My.Resources.Resources.refresh1
-        Me.btnRefreshDeploy.Location = New System.Drawing.Point(820, 40)
+        Me.btnRefreshDeploy.Location = New System.Drawing.Point(826, 48)
         Me.btnRefreshDeploy.Name = "btnRefreshDeploy"
-        Me.btnRefreshDeploy.Size = New System.Drawing.Size(114, 39)
+        Me.btnRefreshDeploy.Size = New System.Drawing.Size(113, 36)
         Me.btnRefreshDeploy.TabIndex = 6
         Me.btnRefreshDeploy.Text = "Refresh"
         '
@@ -678,10 +678,10 @@ Partial Class AdminStaffDashboardForm
         DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvBorrowRequests.DefaultCellStyle = DataGridViewCellStyle9
         Me.dgvBorrowRequests.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvBorrowRequests.Location = New System.Drawing.Point(4, 86)
+        Me.dgvBorrowRequests.Location = New System.Drawing.Point(4, 90)
         Me.dgvBorrowRequests.Name = "dgvBorrowRequests"
         Me.dgvBorrowRequests.RowHeadersVisible = False
-        Me.dgvBorrowRequests.Size = New System.Drawing.Size(936, 460)
+        Me.dgvBorrowRequests.Size = New System.Drawing.Size(936, 456)
         Me.dgvBorrowRequests.TabIndex = 2
         Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -727,7 +727,7 @@ Partial Class AdminStaffDashboardForm
         '
         Me.Guna2Separator1.BackColor = System.Drawing.Color.Transparent
         Me.Guna2Separator1.FillColor = System.Drawing.Color.Red
-        Me.Guna2Separator1.Location = New System.Drawing.Point(6, 29)
+        Me.Guna2Separator1.Location = New System.Drawing.Point(8, 35)
         Me.Guna2Separator1.Name = "Guna2Separator1"
         Me.Guna2Separator1.Size = New System.Drawing.Size(932, 10)
         Me.Guna2Separator1.TabIndex = 1
@@ -1103,12 +1103,12 @@ Partial Class AdminStaffDashboardForm
         'Guna2GradientPanel1
         '
         Me.Guna2GradientPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Guna2GradientPanel1.Controls.Add(Me.Guna2PictureBox1)
         Me.Guna2GradientPanel1.Controls.Add(Me.lblRole)
         Me.Guna2GradientPanel1.Controls.Add(Me.Guna2ShadowPanel2)
         Me.Guna2GradientPanel1.Controls.Add(Me.Guna2ShadowPanel1)
         Me.Guna2GradientPanel1.Controls.Add(Me.lblYourName)
         Me.Guna2GradientPanel1.Controls.Add(Me.btnLogout)
-        Me.Guna2GradientPanel1.Controls.Add(Me.Guna2PictureBox1)
         Me.Guna2GradientPanel1.Controls.Add(Me.Guna2HtmlLabel7)
         Me.Guna2GradientPanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2GradientPanel1.Location = New System.Drawing.Point(0, 31)
@@ -1194,11 +1194,11 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent
         Me.Guna2HtmlLabel7.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
-        Me.Guna2HtmlLabel7.Location = New System.Drawing.Point(19, 59)
+        Me.Guna2HtmlLabel7.Location = New System.Drawing.Point(27, 57)
         Me.Guna2HtmlLabel7.Name = "Guna2HtmlLabel7"
-        Me.Guna2HtmlLabel7.Size = New System.Drawing.Size(124, 22)
+        Me.Guna2HtmlLabel7.Size = New System.Drawing.Size(94, 22)
         Me.Guna2HtmlLabel7.TabIndex = 12
-        Me.Guna2HtmlLabel7.Text = "Administration"
+        Me.Guna2HtmlLabel7.Text = "Dashboard"
         '
         'pnlControlBox
         '
