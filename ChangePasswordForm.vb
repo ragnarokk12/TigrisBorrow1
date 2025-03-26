@@ -179,7 +179,4 @@ Public Class ChangePasswordForm
         Me.Close()
     End Sub
 
-    Private Sub lblPasswordMatch_Click(sender As Object, e As EventArgs) Handles lblPasswordMatch.Click
-
-    End Sub
 End Class
