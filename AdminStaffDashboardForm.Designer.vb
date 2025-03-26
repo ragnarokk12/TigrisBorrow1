@@ -81,20 +81,16 @@ Partial Class AdminStaffDashboardForm
         Me.dgvDailyDataReport = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.tpMonthlyReport = New System.Windows.Forms.TabPage()
         Me.Guna2HtmlLabel9 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.btnGenerateReport = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2HtmlLabel8 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.dgvMonthlyDataReport = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.cbYear = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.cbMonth = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.btnGenerateReport = New Guna.UI2.WinForms.Guna2Button()
         Me.lblDataReport = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblYourName = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2CustomGradientPanel1 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
         Me.Guna2GradientPanel1 = New Guna.UI2.WinForms.Guna2GradientPanel()
         Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
-        Me.Guna2ShadowPanel2 = New Guna.UI2.WinForms.Guna2ShadowPanel()
-        Me.Guna2HtmlLabel3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
-        Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2HtmlLabel7 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.pnlControlBox = New Guna.UI2.WinForms.Guna2Panel()
@@ -120,8 +116,6 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2CustomGradientPanel1.SuspendLayout()
         Me.Guna2GradientPanel1.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Guna2ShadowPanel2.SuspendLayout()
-        Me.Guna2ShadowPanel1.SuspendLayout()
         Me.pnlControlBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -649,7 +643,7 @@ Partial Class AdminStaffDashboardForm
         Me.btnRefreshDeploy.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.btnRefreshDeploy.HoverState.ForeColor = System.Drawing.Color.White
         Me.btnRefreshDeploy.Image = Global.TigrisBorrow.My.Resources.Resources.refresh1
-        Me.btnRefreshDeploy.Location = New System.Drawing.Point(826, 48)
+        Me.btnRefreshDeploy.Location = New System.Drawing.Point(829, 2)
         Me.btnRefreshDeploy.Name = "btnRefreshDeploy"
         Me.btnRefreshDeploy.Size = New System.Drawing.Size(113, 36)
         Me.btnRefreshDeploy.TabIndex = 6
@@ -678,10 +672,10 @@ Partial Class AdminStaffDashboardForm
         DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvBorrowRequests.DefaultCellStyle = DataGridViewCellStyle9
         Me.dgvBorrowRequests.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvBorrowRequests.Location = New System.Drawing.Point(4, 90)
+        Me.dgvBorrowRequests.Location = New System.Drawing.Point(4, 51)
         Me.dgvBorrowRequests.Name = "dgvBorrowRequests"
         Me.dgvBorrowRequests.RowHeadersVisible = False
-        Me.dgvBorrowRequests.Size = New System.Drawing.Size(936, 456)
+        Me.dgvBorrowRequests.Size = New System.Drawing.Size(936, 495)
         Me.dgvBorrowRequests.TabIndex = 2
         Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -749,7 +743,7 @@ Partial Class AdminStaffDashboardForm
         Me.btnDeny.Name = "btnDeny"
         Me.btnDeny.Size = New System.Drawing.Size(114, 39)
         Me.btnDeny.TabIndex = 4
-        Me.btnDeny.Text = "Deny"
+        Me.btnDeny.Text = "Decline"
         '
         'btnApprove
         '
@@ -774,6 +768,7 @@ Partial Class AdminStaffDashboardForm
         '
         Me.tbcReport.BackColor = System.Drawing.Color.LightGray
         Me.tbcReport.Controls.Add(Me.tbcDataReport)
+        Me.tbcReport.Controls.Add(Me.btnGenerateReport)
         Me.tbcReport.Controls.Add(Me.lblDataReport)
         Me.tbcReport.Location = New System.Drawing.Point(184, 4)
         Me.tbcReport.Name = "tbcReport"
@@ -790,7 +785,7 @@ Partial Class AdminStaffDashboardForm
         Me.tbcDataReport.Location = New System.Drawing.Point(6, 40)
         Me.tbcDataReport.Name = "tbcDataReport"
         Me.tbcDataReport.SelectedIndex = 0
-        Me.tbcDataReport.Size = New System.Drawing.Size(932, 554)
+        Me.tbcDataReport.Size = New System.Drawing.Size(936, 554)
         Me.tbcDataReport.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty
         Me.tbcDataReport.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(52, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.tbcDataReport.TabButtonHoverState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
@@ -822,7 +817,7 @@ Partial Class AdminStaffDashboardForm
         Me.tpDailyReport.Location = New System.Drawing.Point(4, 42)
         Me.tpDailyReport.Name = "tpDailyReport"
         Me.tpDailyReport.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpDailyReport.Size = New System.Drawing.Size(924, 508)
+        Me.tpDailyReport.Size = New System.Drawing.Size(928, 508)
         Me.tpDailyReport.TabIndex = 0
         Me.tpDailyReport.Text = "Daily Report"
         '
@@ -905,7 +900,7 @@ Partial Class AdminStaffDashboardForm
         Me.dgvDailyDataReport.Location = New System.Drawing.Point(6, 6)
         Me.dgvDailyDataReport.Name = "dgvDailyDataReport"
         Me.dgvDailyDataReport.RowHeadersVisible = False
-        Me.dgvDailyDataReport.Size = New System.Drawing.Size(911, 452)
+        Me.dgvDailyDataReport.Size = New System.Drawing.Size(914, 452)
         Me.dgvDailyDataReport.TabIndex = 3
         Me.dgvDailyDataReport.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvDailyDataReport.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -933,7 +928,6 @@ Partial Class AdminStaffDashboardForm
         '
         Me.tpMonthlyReport.BackColor = System.Drawing.Color.LightGray
         Me.tpMonthlyReport.Controls.Add(Me.Guna2HtmlLabel9)
-        Me.tpMonthlyReport.Controls.Add(Me.btnGenerateReport)
         Me.tpMonthlyReport.Controls.Add(Me.Guna2HtmlLabel8)
         Me.tpMonthlyReport.Controls.Add(Me.dgvMonthlyDataReport)
         Me.tpMonthlyReport.Controls.Add(Me.cbYear)
@@ -941,7 +935,7 @@ Partial Class AdminStaffDashboardForm
         Me.tpMonthlyReport.Location = New System.Drawing.Point(4, 42)
         Me.tpMonthlyReport.Name = "tpMonthlyReport"
         Me.tpMonthlyReport.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpMonthlyReport.Size = New System.Drawing.Size(924, 508)
+        Me.tpMonthlyReport.Size = New System.Drawing.Size(928, 508)
         Me.tpMonthlyReport.TabIndex = 1
         Me.tpMonthlyReport.Text = "Monthly Report"
         '
@@ -949,36 +943,17 @@ Partial Class AdminStaffDashboardForm
         '
         Me.Guna2HtmlLabel9.BackColor = System.Drawing.Color.Transparent
         Me.Guna2HtmlLabel9.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel9.Location = New System.Drawing.Point(294, 472)
+        Me.Guna2HtmlLabel9.Location = New System.Drawing.Point(256, 472)
         Me.Guna2HtmlLabel9.Name = "Guna2HtmlLabel9"
         Me.Guna2HtmlLabel9.Size = New System.Drawing.Size(37, 20)
         Me.Guna2HtmlLabel9.TabIndex = 4
         Me.Guna2HtmlLabel9.Text = "Year:"
         '
-        'btnGenerateReport
-        '
-        Me.btnGenerateReport.BorderRadius = 10
-        Me.btnGenerateReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnGenerateReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnGenerateReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnGenerateReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnGenerateReport.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
-        Me.btnGenerateReport.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnGenerateReport.ForeColor = System.Drawing.Color.Black
-        Me.btnGenerateReport.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnGenerateReport.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnGenerateReport.Image = Global.TigrisBorrow.My.Resources.Resources.generate
-        Me.btnGenerateReport.Location = New System.Drawing.Point(777, 464)
-        Me.btnGenerateReport.Name = "btnGenerateReport"
-        Me.btnGenerateReport.Size = New System.Drawing.Size(140, 36)
-        Me.btnGenerateReport.TabIndex = 2
-        Me.btnGenerateReport.Text = "Generate Report"
-        '
         'Guna2HtmlLabel8
         '
         Me.Guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent
         Me.Guna2HtmlLabel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel8.Location = New System.Drawing.Point(54, 472)
+        Me.Guna2HtmlLabel8.Location = New System.Drawing.Point(16, 472)
         Me.Guna2HtmlLabel8.Name = "Guna2HtmlLabel8"
         Me.Guna2HtmlLabel8.Size = New System.Drawing.Size(49, 20)
         Me.Guna2HtmlLabel8.TabIndex = 3
@@ -1010,7 +985,7 @@ Partial Class AdminStaffDashboardForm
         Me.dgvMonthlyDataReport.Location = New System.Drawing.Point(6, 6)
         Me.dgvMonthlyDataReport.Name = "dgvMonthlyDataReport"
         Me.dgvMonthlyDataReport.RowHeadersVisible = False
-        Me.dgvMonthlyDataReport.Size = New System.Drawing.Size(911, 452)
+        Me.dgvMonthlyDataReport.Size = New System.Drawing.Size(916, 452)
         Me.dgvMonthlyDataReport.TabIndex = 0
         Me.dgvMonthlyDataReport.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvMonthlyDataReport.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -1046,7 +1021,7 @@ Partial Class AdminStaffDashboardForm
         Me.cbYear.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cbYear.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
         Me.cbYear.ItemHeight = 30
-        Me.cbYear.Location = New System.Drawing.Point(337, 464)
+        Me.cbYear.Location = New System.Drawing.Point(299, 464)
         Me.cbYear.Name = "cbYear"
         Me.cbYear.Size = New System.Drawing.Size(140, 36)
         Me.cbYear.TabIndex = 2
@@ -1063,10 +1038,29 @@ Partial Class AdminStaffDashboardForm
         Me.cbMonth.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cbMonth.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
         Me.cbMonth.ItemHeight = 30
-        Me.cbMonth.Location = New System.Drawing.Point(109, 464)
+        Me.cbMonth.Location = New System.Drawing.Point(71, 464)
         Me.cbMonth.Name = "cbMonth"
         Me.cbMonth.Size = New System.Drawing.Size(140, 36)
         Me.cbMonth.TabIndex = 1
+        '
+        'btnGenerateReport
+        '
+        Me.btnGenerateReport.BorderRadius = 7
+        Me.btnGenerateReport.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnGenerateReport.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnGenerateReport.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnGenerateReport.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnGenerateReport.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnGenerateReport.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnGenerateReport.ForeColor = System.Drawing.Color.Black
+        Me.btnGenerateReport.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnGenerateReport.HoverState.ForeColor = System.Drawing.Color.White
+        Me.btnGenerateReport.Image = Global.TigrisBorrow.My.Resources.Resources.generate
+        Me.btnGenerateReport.Location = New System.Drawing.Point(793, 3)
+        Me.btnGenerateReport.Name = "btnGenerateReport"
+        Me.btnGenerateReport.Size = New System.Drawing.Size(140, 36)
+        Me.btnGenerateReport.TabIndex = 2
+        Me.btnGenerateReport.Text = "Generate Report"
         '
         'lblDataReport
         '
@@ -1105,8 +1099,6 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2GradientPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.Guna2GradientPanel1.Controls.Add(Me.Guna2PictureBox1)
         Me.Guna2GradientPanel1.Controls.Add(Me.lblRole)
-        Me.Guna2GradientPanel1.Controls.Add(Me.Guna2ShadowPanel2)
-        Me.Guna2GradientPanel1.Controls.Add(Me.Guna2ShadowPanel1)
         Me.Guna2GradientPanel1.Controls.Add(Me.lblYourName)
         Me.Guna2GradientPanel1.Controls.Add(Me.btnLogout)
         Me.Guna2GradientPanel1.Controls.Add(Me.Guna2HtmlLabel7)
@@ -1127,48 +1119,6 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2PictureBox1.TabIndex = 11
         Me.Guna2PictureBox1.TabStop = False
         Me.Guna2PictureBox1.UseTransparentBackground = True
-        '
-        'Guna2ShadowPanel2
-        '
-        Me.Guna2ShadowPanel2.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2ShadowPanel2.Controls.Add(Me.Guna2HtmlLabel3)
-        Me.Guna2ShadowPanel2.FillColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.Guna2ShadowPanel2.Location = New System.Drawing.Point(449, 45)
-        Me.Guna2ShadowPanel2.Name = "Guna2ShadowPanel2"
-        Me.Guna2ShadowPanel2.Radius = 10
-        Me.Guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Black
-        Me.Guna2ShadowPanel2.Size = New System.Drawing.Size(200, 51)
-        Me.Guna2ShadowPanel2.TabIndex = 10
-        '
-        'Guna2HtmlLabel3
-        '
-        Me.Guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel3.Location = New System.Drawing.Point(59, 19)
-        Me.Guna2HtmlLabel3.Name = "Guna2HtmlLabel3"
-        Me.Guna2HtmlLabel3.Size = New System.Drawing.Size(88, 15)
-        Me.Guna2HtmlLabel3.TabIndex = 0
-        Me.Guna2HtmlLabel3.Text = "Guna2HtmlLabel3"
-        '
-        'Guna2ShadowPanel1
-        '
-        Me.Guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2ShadowPanel1.Controls.Add(Me.Guna2HtmlLabel1)
-        Me.Guna2ShadowPanel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(243, 45)
-        Me.Guna2ShadowPanel1.Name = "Guna2ShadowPanel1"
-        Me.Guna2ShadowPanel1.Radius = 10
-        Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black
-        Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(200, 51)
-        Me.Guna2ShadowPanel1.TabIndex = 9
-        '
-        'Guna2HtmlLabel1
-        '
-        Me.Guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel1.Location = New System.Drawing.Point(57, 19)
-        Me.Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
-        Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(88, 15)
-        Me.Guna2HtmlLabel1.TabIndex = 0
-        Me.Guna2HtmlLabel1.Text = "Guna2HtmlLabel1"
         '
         'btnLogout
         '
@@ -1288,10 +1238,6 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2GradientPanel1.ResumeLayout(False)
         Me.Guna2GradientPanel1.PerformLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Guna2ShadowPanel2.ResumeLayout(False)
-        Me.Guna2ShadowPanel2.PerformLayout()
-        Me.Guna2ShadowPanel1.ResumeLayout(False)
-        Me.Guna2ShadowPanel1.PerformLayout()
         Me.pnlControlBox.ResumeLayout(False)
         Me.pnlControlBox.PerformLayout()
         Me.ResumeLayout(False)
@@ -1347,10 +1293,6 @@ Partial Class AdminStaffDashboardForm
     Friend WithEvents btnClearAccountFilters As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnResetPassword As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Separator3 As Guna.UI2.WinForms.Guna2Separator
-    Friend WithEvents Guna2ShadowPanel1 As Guna.UI2.WinForms.Guna2ShadowPanel
-    Friend WithEvents Guna2ShadowPanel2 As Guna.UI2.WinForms.Guna2ShadowPanel
-    Friend WithEvents Guna2HtmlLabel3 As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents Guna2HtmlLabel1 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents pnlControlBox As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Guna2ControlBox2 As Guna.UI2.WinForms.Guna2ControlBox
