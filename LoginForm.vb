@@ -51,6 +51,40 @@ Public Class LoginForm
             conn.Close()
         End Try
     End Sub
+    ' Place this event handler in your LoginForm code.
+    Private Sub txtUserID_Leave(sender As Object, e As EventArgs) Handles txtUserID.Leave
+        ' Remove any dashes and trim spaces.
+        Dim input As String = txtUserID.Text.Replace("-", "").Trim()
+
+        ' Proceed only if there's input.
+        If input.Length > 0 Then
+            Dim prefix As String = ""
+            Dim suffix As String = ""
+
+            ' Ensure we have at least 4 digits for the prefix.
+            If input.Length >= 4 Then
+                prefix = input.Substring(0, 4)
+            Else
+                ' If less than 4, pad to 4 digits.
+                prefix = input.PadRight(4, "0"c)
+            End If
+
+            ' Get the remaining characters for the suffix.
+            If input.Length > 4 Then
+                suffix = input.Substring(4)
+            End If
+
+            ' Ensure the suffix is exactly 5 digits.
+            If suffix.Length < 5 Then
+                suffix = suffix.PadRight(5, "0"c)
+            ElseIf suffix.Length > 5 Then
+                suffix = suffix.Substring(0, 5)
+            End If
+
+            ' Combine prefix and suffix with a dash.
+            txtUserID.Text = prefix & "-" & suffix
+        End If
+    End Sub
 
     Private Sub DashboardFormClosed(sender As Object, e As FormClosedEventArgs)
         Common.CurrentUserId = String.Empty
@@ -89,6 +123,10 @@ Public Class LoginForm
     End Sub
 
     Private Sub LoginForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Set default MaxLength values for textboxes
+        txtUserID.MaxLength = 10     ' Format: "####-#####"
+        txtPassword.MaxLength = 50   ' Adjust as needed
+
         txtPassword.UseSystemPasswordChar = False
         txtPassword.PasswordChar = ChrW(9679)
         lblInstruction.Visible = False

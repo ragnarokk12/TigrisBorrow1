@@ -146,9 +146,9 @@ Partial Class LoginForm
         Me.lblInstruction.BackColor = System.Drawing.Color.Transparent
         Me.lblInstruction.Location = New System.Drawing.Point(29, 91)
         Me.lblInstruction.Name = "lblInstruction"
-        Me.lblInstruction.Size = New System.Drawing.Size(197, 15)
+        Me.lblInstruction.Size = New System.Drawing.Size(212, 15)
         Me.lblInstruction.TabIndex = 6
-        Me.lblInstruction.Text = "Please enter your User ID and Password."
+        Me.lblInstruction.Text = "Please enter your ID Number and Password."
         '
         'Guna2DragControl1
         '
