@@ -521,7 +521,6 @@ Public Class UserDashboardForm
         End Using
     End Sub
 
-    ' Return Item process: Prevents returning an item if its request status is "denied."
     Private Sub btnReturnItem_Click(sender As Object, e As EventArgs) Handles btnReturnItem.Click
         If dgvBorrowRequests.SelectedRows.Count = 0 Then
             MessageBox.Show("Please select a transaction to return.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -532,8 +531,9 @@ Public Class UserDashboardForm
         Dim transactionId As Integer = Convert.ToInt32(selectedRow.Cells("RequestID").Value)
         Dim currentStatus As String = selectedRow.Cells("Status").Value.ToString().ToLower()
 
-        If currentStatus = "denied" Then
-            MessageBox.Show("You cannot return an item when the request status is 'denied'.", "Return Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ' Allow return only when the current status is approved.
+        If currentStatus <> "approved" Then
+            MessageBox.Show("You can only return an item that has been approved.", "Return Not Allowed", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
         End If
 
@@ -558,6 +558,7 @@ Public Class UserDashboardForm
             MessageBox.Show("Error returning item: " & ex.Message)
         End Try
     End Sub
+
 
     Private Sub UpdateBorrowRequestStatus(transactionId As Integer, newStatus As String)
         Using conn As MySqlConnection = Common.getDBConnection()
