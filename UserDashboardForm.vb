@@ -705,5 +705,7 @@ Public Class UserDashboardForm
         End Using
     End Sub
 
+    Private Sub Guna2ShadowPanel4_Paint(sender As Object, e As PaintEventArgs) Handles Guna2ShadowPanel4.Paint
 
+    End Sub
 End Class
