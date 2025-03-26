@@ -12,6 +12,8 @@ Public Class AdminStaffDashboardForm
     Private Const InventorySearchPlaceholder As String = "Search Inventory"
 
     Private Sub AdminStaffDashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        FetchUserDetails()
+        UpdateUserDisplay()
         FetchUserRole()
         LoadInventory()
         LoadAccounts()
@@ -645,6 +647,9 @@ Public Class AdminStaffDashboardForm
         btnDeny.Enabled = (role = "admin" Or role = "staff")
         btnCheckReturn.Enabled = (role = "admin" Or role = "staff")
     End Sub
+    Private Sub UpdateUserDisplay()
+        lblDisplayRole.Text = If(String.IsNullOrEmpty(role), "N/A", role.ToUpper())
+    End Sub
 
     Private Sub LoadBorrowRequests(Optional ByVal statusFilter As String = "", Optional ByVal search As String = "")
         Try
@@ -1056,6 +1061,32 @@ WHERE transaction_id = @transactionId AND status = 'returned'"
         End If
     End Sub
 
+    Private Sub FetchUserDetails()
+        Try
+            If conn.State = ConnectionState.Closed Then conn.Open()
+            Dim query As String = "SELECT first_name, last_name, role FROM users WHERE user_id = @userId"
+            Using cmd As New MySqlCommand(query, conn)
+                Dim currentUser As String = Common.CurrentUserId.Trim()
+                cmd.Parameters.AddWithValue("@userId", currentUser)
+                Dim reader As MySqlDataReader = cmd.ExecuteReader()
+                If reader.Read() Then
+                    Dim firstName As String = reader("first_name").ToString()
+                    Dim lastName As String = reader("last_name").ToString()
+                    role = reader("role").ToString().ToLower()
+
+                    ' Directly update the display name label with the user's full name.
+                    lblDisplayName.Text = firstName & " " & lastName
+                Else
+                    MessageBox.Show("User details not found for user id: " & currentUser)
+                End If
+                reader.Close()
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error fetching user details: " & ex.Message)
+        Finally
+            conn.Close()
+        End Try
+    End Sub
 
 
     Private Async Function LoadMonthlyReportAsync(Optional ByVal selectedMonth As Integer? = Nothing, Optional ByVal selectedYear As Integer? = Nothing) As Task
