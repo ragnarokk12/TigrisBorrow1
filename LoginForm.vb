@@ -64,7 +64,7 @@ Public Class LoginForm
         signUpForm.ShowDialog()
     End Sub
 
-    Private Sub lblForgotPassword_Click(sender As Object, e As EventArgs) Handles lblForgotPassword.Click
+    Private Sub lblForgotPassword_Click(sender As Object, e As EventArgs)
         ForgotPasswordForm.Show()
     End Sub
 

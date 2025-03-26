@@ -26,7 +26,6 @@ Partial Class LoginForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(LoginForm))
         Me.btnSignUp = New Guna.UI2.WinForms.Guna2Button()
         Me.txtPassword = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.lblForgotPassword = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.chkShowPassword2 = New Guna.UI2.WinForms.Guna2CheckBox()
         Me.txtUserID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblInstruction = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -36,7 +35,7 @@ Partial Class LoginForm
         Me.Guna2ControlBox2 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
-        Me.Guna2Button1 = New Guna.UI2.WinForms.Guna2Button()
+        Me.lblForgotPassword = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2HtmlLabel4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.chkShowPassword = New Guna.UI2.WinForms.Guna2CustomCheckBox()
         Me.lblLogin = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -98,17 +97,6 @@ Partial Class LoginForm
         Me.txtPassword.Size = New System.Drawing.Size(200, 36)
         Me.txtPassword.TabIndex = 1
         Me.txtPassword.UseSystemPasswordChar = True
-        '
-        'lblForgotPassword
-        '
-        Me.lblForgotPassword.AutoSize = False
-        Me.lblForgotPassword.AutoSizeHeightOnly = True
-        Me.lblForgotPassword.BackColor = System.Drawing.Color.Transparent
-        Me.lblForgotPassword.Location = New System.Drawing.Point(86, 239)
-        Me.lblForgotPassword.Name = "lblForgotPassword"
-        Me.lblForgotPassword.Size = New System.Drawing.Size(88, 14)
-        Me.lblForgotPassword.TabIndex = 2
-        Me.lblForgotPassword.Text = "Forgot Password?"
         '
         'chkShowPassword2
         '
@@ -222,14 +210,13 @@ Partial Class LoginForm
         Me.Guna2ShadowPanel1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent
         Me.Guna2ShadowPanel1.Controls.Add(Me.lblInstruction)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.Guna2Button1)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.lblForgotPassword)
         Me.Guna2ShadowPanel1.Controls.Add(Me.Guna2HtmlLabel4)
         Me.Guna2ShadowPanel1.Controls.Add(Me.chkShowPassword)
         Me.Guna2ShadowPanel1.Controls.Add(Me.lblLogin)
         Me.Guna2ShadowPanel1.Controls.Add(Me.btnLogin)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtPassword)
         Me.Guna2ShadowPanel1.Controls.Add(Me.btnSignUp)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblForgotPassword)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtUserID)
         Me.Guna2ShadowPanel1.EdgeWidth = 10
         Me.Guna2ShadowPanel1.FillColor = System.Drawing.Color.White
@@ -243,30 +230,30 @@ Partial Class LoginForm
         Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(266, 419)
         Me.Guna2ShadowPanel1.TabIndex = 7
         '
-        'Guna2Button1
+        'lblForgotPassword
         '
-        Me.Guna2Button1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2Button1.CheckedState.BorderColor = System.Drawing.Color.Transparent
-        Me.Guna2Button1.CheckedState.CustomBorderColor = System.Drawing.Color.Transparent
-        Me.Guna2Button1.CheckedState.FillColor = System.Drawing.Color.Transparent
-        Me.Guna2Button1.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Guna2Button1.DisabledState.BorderColor = System.Drawing.Color.Transparent
-        Me.Guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent
-        Me.Guna2Button1.DisabledState.FillColor = System.Drawing.Color.Transparent
-        Me.Guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.Guna2Button1.FillColor = System.Drawing.Color.Transparent
-        Me.Guna2Button1.FocusedColor = System.Drawing.Color.Transparent
-        Me.Guna2Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2Button1.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Guna2Button1.HoverState.FillColor = System.Drawing.Color.Transparent
-        Me.Guna2Button1.HoverState.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2Button1.HoverState.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Guna2Button1.Location = New System.Drawing.Point(67, 259)
-        Me.Guna2Button1.Name = "Guna2Button1"
-        Me.Guna2Button1.PressedColor = System.Drawing.Color.Transparent
-        Me.Guna2Button1.Size = New System.Drawing.Size(128, 20)
-        Me.Guna2Button1.TabIndex = 12
-        Me.Guna2Button1.Text = "Forgot Password?"
+        Me.lblForgotPassword.BackColor = System.Drawing.Color.Transparent
+        Me.lblForgotPassword.CheckedState.BorderColor = System.Drawing.Color.Transparent
+        Me.lblForgotPassword.CheckedState.CustomBorderColor = System.Drawing.Color.Transparent
+        Me.lblForgotPassword.CheckedState.FillColor = System.Drawing.Color.Transparent
+        Me.lblForgotPassword.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.lblForgotPassword.DisabledState.BorderColor = System.Drawing.Color.Transparent
+        Me.lblForgotPassword.DisabledState.CustomBorderColor = System.Drawing.Color.Transparent
+        Me.lblForgotPassword.DisabledState.FillColor = System.Drawing.Color.Transparent
+        Me.lblForgotPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.lblForgotPassword.FillColor = System.Drawing.Color.Transparent
+        Me.lblForgotPassword.FocusedColor = System.Drawing.Color.Transparent
+        Me.lblForgotPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblForgotPassword.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.lblForgotPassword.HoverState.FillColor = System.Drawing.Color.Transparent
+        Me.lblForgotPassword.HoverState.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblForgotPassword.HoverState.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.lblForgotPassword.Location = New System.Drawing.Point(67, 259)
+        Me.lblForgotPassword.Name = "lblForgotPassword"
+        Me.lblForgotPassword.PressedColor = System.Drawing.Color.Transparent
+        Me.lblForgotPassword.Size = New System.Drawing.Size(128, 20)
+        Me.lblForgotPassword.TabIndex = 12
+        Me.lblForgotPassword.Text = "Forgot Password?"
         '
         'Guna2HtmlLabel4
         '
@@ -351,7 +338,7 @@ Partial Class LoginForm
         '
         Me.Guna2HtmlLabel2.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Sifonn", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
         Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(50, 223)
         Me.Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
@@ -363,7 +350,7 @@ Partial Class LoginForm
         '
         Me.Guna2HtmlLabel3.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("Sifonn", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel3.Location = New System.Drawing.Point(50, 373)
         Me.Guna2HtmlLabel3.Name = "Guna2HtmlLabel3"
         Me.Guna2HtmlLabel3.Size = New System.Drawing.Size(419, 20)
@@ -411,7 +398,6 @@ Partial Class LoginForm
     Friend WithEvents btnSignUp As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents txtUserID As Guna.UI2.WinForms.Guna2TextBox
     Friend WithEvents txtPassword As Guna.UI2.WinForms.Guna2TextBox
-    Friend WithEvents lblForgotPassword As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents chkShowPassword2 As Guna.UI2.WinForms.Guna2CheckBox
     Friend WithEvents lblInstruction As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2DragControl1 As Guna.UI2.WinForms.Guna2DragControl
@@ -430,5 +416,5 @@ Partial Class LoginForm
     Friend WithEvents chkShowPassword As Guna.UI2.WinForms.Guna2CustomCheckBox
     Friend WithEvents Guna2HtmlLabel4 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
-    Friend WithEvents Guna2Button1 As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents lblForgotPassword As Guna.UI2.WinForms.Guna2Button
 End Class
