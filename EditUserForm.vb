@@ -105,4 +105,8 @@ Public Class EditUserForm
         Me.DialogResult = DialogResult.Cancel
         Me.Close()
     End Sub
+
+    Private Sub Guna2HtmlLabel5_Click(sender As Object, e As EventArgs) Handles Guna2HtmlLabel5.Click
+
+    End Sub
 End Class
