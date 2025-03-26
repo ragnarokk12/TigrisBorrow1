@@ -15,9 +15,9 @@ Public Class UserDashboardForm
 
     Private Sub UserDashboardForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "User Dashboard"
-        lblActiveRequests.Text = "Active Requests: 0"
-        lblItemsBorrowed.Text = "Items Borrowed: 0"
-        lblOverdueItems.Text = "Overdue Items: 0"
+        'lblActiveRequests.Text = "Active Requests: 0"
+        'lblItemsBorrowed.Text = "Items Borrowed: 0"
+        'lblOverdueItems.Text = "Overdue Items: 0"
 
         LoadUserProfileData()
         LoadBorrowRequestData()
@@ -204,17 +204,18 @@ Public Class UserDashboardForm
         End If
     End Sub
 
-    ' Reset filter button clears the filter.
-    Private Sub btnResetFilter_Click(sender As Object, e As EventArgs) Handles btnResetFilter.Click
-        If _borrowRequestsDT IsNot Nothing Then
-            _borrowRequestsDT.DefaultView.RowFilter = ""
-            cbStatusFilter.SelectedIndex = 0 ' Reset selection to "All"
-        End If
-    End Sub
+    '' Reset filter button clears the filter.
+    'Private Sub btnResetFilter_Click(sender As Object, e As EventArgs) Handles btnResetFilter.Click
+    '    If _borrowRequestsDT IsNot Nothing Then
+    '        _borrowRequestsDT.DefaultView.RowFilter = ""
+    '        cbStatusFilter.SelectedIndex = 0 ' Reset selection to "All"
+    '    End If
+    'End Sub
 
     ' Borrow Request submission.
     Private Sub btnSubmitRequest_Click(sender As Object, e As EventArgs) Handles btnSubmitRequest.Click
         Try
+            ' Ensure an item is selected from the inventory DataGridView.
             If dgvInventory.SelectedRows.Count = 0 Then
                 MessageBox.Show("Please select an item to borrow.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
@@ -222,16 +223,17 @@ Public Class UserDashboardForm
 
             Dim selectedRow As DataGridViewRow = dgvInventory.SelectedRows(0)
             Dim itemId As Integer = Convert.ToInt32(selectedRow.Cells("Colitem_id").Value)
-            Dim category As String = selectedRow.Cells("Colcategory").Value.ToString()
-            Dim itemStatus As String = selectedRow.Cells("colstatus").Value.ToString()
+            Dim category As String = selectedRow.Cells("Colcategory").Value.ToString().ToLower()
+            Dim itemStatus As String = selectedRow.Cells("colstatus").Value.ToString().ToLower()
 
-            If itemStatus.ToLower() <> "available" Then
+            ' Check if the item is available.
+            If itemStatus <> "available" Then
                 MessageBox.Show("The selected item is not available for borrowing.", "Unavailable Item", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Return
             End If
 
-            Dim dueDate As DateTime = DateTime.Now.AddDays(7)
             Dim borrowDate As DateTime = DateTime.Now
+            Dim dueDate As DateTime = DateTime.Now.AddDays(7)
 
             Using conn As MySqlConnection = Common.getDBConnection()
                 conn.Open()
@@ -242,22 +244,56 @@ Public Class UserDashboardForm
                 cmd.Parameters.AddWithValue("@borrowDate", borrowDate)
                 cmd.Parameters.AddWithValue("@dueDate", dueDate)
 
-                If category.ToLower() = "equipment" Then
+                If category = "equipment" Then
+                    ' Check for duplicate equipment request.
+                    Dim checkQuery As String = "SELECT COUNT(*) FROM borrow_transactions WHERE user_id = @userId AND equipment_id = @itemId AND status IN ('pending','approved')"
+                    Using checkCmd As New MySqlCommand(checkQuery, conn)
+                        checkCmd.Parameters.AddWithValue("@userId", Common.CurrentUserId)
+                        checkCmd.Parameters.AddWithValue("@itemId", itemId)
+                        Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
+                        If count > 0 Then
+                            MessageBox.Show("You have already requested this equipment. Cannot request again.", "Duplicate Request", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Return
+                        End If
+                    End Using
+
+                    ' Insert new equipment borrow request.
                     query = "INSERT INTO borrow_transactions (user_id, equipment_id, accessory_id, borrow_date, due_date, status) " &
-                        "VALUES (@userId, @equipmentId, @accessoryId, @borrowDate, @dueDate, 'pending')"
-                    cmd.Parameters.AddWithValue("@equipmentId", itemId)
-                    cmd.Parameters.AddWithValue("@accessoryId", DBNull.Value)
-                ElseIf category.ToLower() = "accessory" Then
+                        "VALUES (@userId, @itemId, NULL, @borrowDate, @dueDate, 'pending')"
+                    cmd.Parameters.AddWithValue("@itemId", itemId)
+
+                ElseIf category = "accessory" Then
+                    ' Check for duplicate accessory request.
+                    Dim checkQuery As String = "SELECT COUNT(*) FROM borrow_transactions WHERE user_id = @userId AND accessory_id = @itemId AND status IN ('pending','approved')"
+                    Using checkCmd As New MySqlCommand(checkQuery, conn)
+                        checkCmd.Parameters.AddWithValue("@userId", Common.CurrentUserId)
+                        checkCmd.Parameters.AddWithValue("@itemId", itemId)
+                        Dim count As Integer = Convert.ToInt32(checkCmd.ExecuteScalar())
+                        If count > 0 Then
+                            MessageBox.Show("You have already requested this accessory. Cannot request again.", "Duplicate Request", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Return
+                        End If
+                    End Using
+
+                    ' Prompt for borrow quantity.
                     Dim inputQuantity As String = InputBox("Enter the quantity to borrow:", "Quantity", "1")
                     Dim borrowQuantity As Integer = 0
                     If Not Integer.TryParse(inputQuantity, borrowQuantity) OrElse borrowQuantity <= 0 Then
                         MessageBox.Show("Please enter a valid quantity greater than zero.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         Return
                     End If
+
+                    ' Retrieve available quantity from the DataGridView (from the unified_inventory view).
+                    Dim availableQuantity As Integer = Convert.ToInt32(selectedRow.Cells("quantity").Value)
+                    If availableQuantity < borrowQuantity Then
+                        MessageBox.Show("The requested quantity exceeds the available stock.", "Insufficient Stock", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Return
+                    End If
+
+                    ' Insert new accessory borrow request.
                     query = "INSERT INTO borrow_transactions (user_id, equipment_id, accessory_id, borrow_date, due_date, status, borrow_quantity) " &
-                        "VALUES (@userId, @equipmentId, @accessoryId, @borrowDate, @dueDate, 'pending', @borrowQuantity)"
-                    cmd.Parameters.AddWithValue("@equipmentId", DBNull.Value)
-                    cmd.Parameters.AddWithValue("@accessoryId", itemId)
+                        "VALUES (@userId, NULL, @itemId, @borrowDate, @dueDate, 'pending', @borrowQuantity)"
+                    cmd.Parameters.AddWithValue("@itemId", itemId)
                     cmd.Parameters.AddWithValue("@borrowQuantity", borrowQuantity)
                 Else
                     MessageBox.Show("Unrecognized item category.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -279,33 +315,60 @@ Public Class UserDashboardForm
             MessageBox.Show("Error submitting borrow request: " & ex.Message)
         End Try
     End Sub
-
+    Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadCategoryFilterOptions()
+        cbCategoryFilter.SelectedIndex = 0  ' Default to "All"
+        LoadInventoryData()
+    End Sub
+    Private Sub LoadCategoryFilterOptions()
+        cbCategoryFilter.Items.Clear()
+        cbCategoryFilter.Items.Add("All")
+        cbCategoryFilter.Items.Add("Equipment")
+        cbCategoryFilter.Items.Add("Accessories")
+        cbCategoryFilter.SelectedIndex = 0 ' Default to "All"
+    End Sub
+    ' Event handler to reload the inventory when the selected category changes.
+    Private Sub cbCategoryFilter_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbCategoryFilter.SelectedIndexChanged
+        LoadInventoryData()
+    End Sub
+    ' Load inventory data from the unified_inventory view with optional category filtering.
     Private Sub LoadInventoryData()
         Using conn As MySqlConnection = Common.getDBConnection()
             Dim dt As New DataTable()
             Try
                 conn.Open()
                 Dim query As String = "SELECT item_id, item_name, item_type, quantity, status, added_at, brand, model, serial_number, category FROM unified_inventory"
+
+                ' Check that the ComboBox has a selection and it's not "All"
+                If cbCategoryFilter.SelectedItem IsNot Nothing AndAlso cbCategoryFilter.SelectedItem.ToString() <> "All" Then
+                    query &= " WHERE category = @category"
+                End If
+
                 Using cmd As New MySqlCommand(query, conn)
+                    If cbCategoryFilter.SelectedItem IsNot Nothing AndAlso cbCategoryFilter.SelectedItem.ToString() <> "All" Then
+                        cmd.Parameters.AddWithValue("@category", cbCategoryFilter.SelectedItem.ToString())
+                    End If
+
                     Dim adapter As New MySqlDataAdapter(cmd)
                     adapter.Fill(dt)
                 End Using
+
                 dgvInventory.AutoGenerateColumns = False
                 dgvInventory.DataSource = dt
 
+                ' Optionally hide columns that you do not want to display.
                 If dgvInventory.Columns.Contains("item_id") Then dgvInventory.Columns("item_id").Visible = False
-                If dgvInventory.Columns.Contains("quantity") Then dgvInventory.Columns("quantity").Visible = False
-                If dgvInventory.Columns.Contains("status") Then dgvInventory.Columns("status").Visible = False
                 If dgvInventory.Columns.Contains("added_at") Then dgvInventory.Columns("added_at").Visible = False
                 If dgvInventory.Columns.Contains("serial_number") Then dgvInventory.Columns("serial_number").Visible = False
 
-                dgvInventory.Columns("COLitem_name").DataPropertyName = "item_name"
-                dgvInventory.Columns("Colitem_type").DataPropertyName = "item_type"
-                dgvInventory.Columns("Colbrand").DataPropertyName = "brand"
-                dgvInventory.Columns("Colmodel").DataPropertyName = "model"
-                dgvInventory.Columns("Colcategory").DataPropertyName = "category"
-                dgvInventory.Columns("Colitem_id").DataPropertyName = "item_id"
-                dgvInventory.Columns("Colstatus").DataPropertyName = "status"
+                ' Map DataGridView columns to the DataTable columns.
+                If dgvInventory.Columns.Contains("COLitem_name") Then dgvInventory.Columns("COLitem_name").DataPropertyName = "item_name"
+                If dgvInventory.Columns.Contains("Colitem_type") Then dgvInventory.Columns("Colitem_type").DataPropertyName = "item_type"
+                If dgvInventory.Columns.Contains("Colbrand") Then dgvInventory.Columns("Colbrand").DataPropertyName = "brand"
+                If dgvInventory.Columns.Contains("Colmodel") Then dgvInventory.Columns("Colmodel").DataPropertyName = "model"
+                If dgvInventory.Columns.Contains("Colcategory") Then dgvInventory.Columns("Colcategory").DataPropertyName = "category"
+                If dgvInventory.Columns.Contains("Colitem_id") Then dgvInventory.Columns("Colitem_id").DataPropertyName = "item_id"
+                If dgvInventory.Columns.Contains("Colstatus") Then dgvInventory.Columns("Colstatus").DataPropertyName = "status"
 
             Catch ex As Exception
                 MessageBox.Show("Error loading inventory: " & ex.Message)
@@ -403,9 +466,9 @@ Public Class UserDashboardForm
                     overdueCount = Convert.ToInt32(cmd.ExecuteScalar())
                 End Using
 
-                lblActiveRequests.Text = "Active Requests: " & activeCount.ToString()
-                lblItemsBorrowed.Text = "Items Borrowed: " & borrowedCount.ToString()
-                lblOverdueItems.Text = "Overdue Items: " & overdueCount.ToString()
+                'lblActiveRequests.Text = "Active Requests: " & activeCount.ToString()
+                'lblItemsBorrowed.Text = "Items Borrowed: " & borrowedCount.ToString()
+                'lblOverdueItems.Text = "Overdue Items: " & overdueCount.ToString()
             Catch ex As Exception
                 MessageBox.Show("Error updating dashboard summary: " & ex.Message)
             End Try
