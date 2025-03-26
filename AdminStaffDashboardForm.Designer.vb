@@ -90,12 +90,12 @@ Partial Class AdminStaffDashboardForm
         Me.lblYourName = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2CustomGradientPanel1 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
         Me.Guna2GradientPanel1 = New Guna.UI2.WinForms.Guna2GradientPanel()
+        Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.Guna2ShadowPanel2 = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.Guna2HtmlLabel3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
-        Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.Guna2HtmlLabel7 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.pnlControlBox = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2HtmlLabel6 = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -119,9 +119,9 @@ Partial Class AdminStaffDashboardForm
         CType(Me.dgvMonthlyDataReport, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Guna2CustomGradientPanel1.SuspendLayout()
         Me.Guna2GradientPanel1.SuspendLayout()
+        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Guna2ShadowPanel2.SuspendLayout()
         Me.Guna2ShadowPanel1.SuspendLayout()
-        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlControlBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -207,7 +207,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnResetPassword
         '
-        Me.btnResetPassword.BorderRadius = 10
+        Me.btnResetPassword.BorderRadius = 7
         Me.btnResetPassword.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnResetPassword.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnResetPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -226,7 +226,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnClearAccountFilters
         '
-        Me.btnClearAccountFilters.BorderRadius = 10
+        Me.btnClearAccountFilters.BorderRadius = 7
         Me.btnClearAccountFilters.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnClearAccountFilters.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnClearAccountFilters.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -247,7 +247,7 @@ Partial Class AdminStaffDashboardForm
         '
         Me.cbAccountRoleFilter.BackColor = System.Drawing.Color.Transparent
         Me.cbAccountRoleFilter.BorderColor = System.Drawing.Color.White
-        Me.cbAccountRoleFilter.BorderRadius = 10
+        Me.cbAccountRoleFilter.BorderRadius = 7
         Me.cbAccountRoleFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.cbAccountRoleFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbAccountRoleFilter.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
@@ -264,7 +264,7 @@ Partial Class AdminStaffDashboardForm
         '
         Me.txtSearchAccount.Animated = True
         Me.txtSearchAccount.BorderColor = System.Drawing.Color.White
-        Me.txtSearchAccount.BorderRadius = 10
+        Me.txtSearchAccount.BorderRadius = 7
         Me.txtSearchAccount.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtSearchAccount.DefaultText = ""
         Me.txtSearchAccount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -286,7 +286,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnEditAccount
         '
-        Me.btnEditAccount.BorderRadius = 10
+        Me.btnEditAccount.BorderRadius = 7
         Me.btnEditAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnEditAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnEditAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -356,7 +356,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnNewAccount
         '
-        Me.btnNewAccount.BorderRadius = 10
+        Me.btnNewAccount.BorderRadius = 7
         Me.btnNewAccount.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnNewAccount.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnNewAccount.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -406,7 +406,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnRefreshInventory
         '
-        Me.btnRefreshInventory.BorderRadius = 10
+        Me.btnRefreshInventory.BorderRadius = 7
         Me.btnRefreshInventory.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnRefreshInventory.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnRefreshInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -436,7 +436,7 @@ Partial Class AdminStaffDashboardForm
         'cbCategoryFilter
         '
         Me.cbCategoryFilter.BackColor = System.Drawing.Color.Transparent
-        Me.cbCategoryFilter.BorderRadius = 10
+        Me.cbCategoryFilter.BorderRadius = 7
         Me.cbCategoryFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.cbCategoryFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbCategoryFilter.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
@@ -491,10 +491,10 @@ Partial Class AdminStaffDashboardForm
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvInventory.DefaultCellStyle = DataGridViewCellStyle6
         Me.dgvInventory.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvInventory.Location = New System.Drawing.Point(4, 93)
+        Me.dgvInventory.Location = New System.Drawing.Point(8, 93)
         Me.dgvInventory.Name = "dgvInventory"
         Me.dgvInventory.RowHeadersVisible = False
-        Me.dgvInventory.Size = New System.Drawing.Size(936, 466)
+        Me.dgvInventory.Size = New System.Drawing.Size(932, 466)
         Me.dgvInventory.TabIndex = 8
         Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -520,7 +520,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnClearFilters
         '
-        Me.btnClearFilters.BorderRadius = 10
+        Me.btnClearFilters.BorderRadius = 7
         Me.btnClearFilters.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnClearFilters.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnClearFilters.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -539,7 +539,7 @@ Partial Class AdminStaffDashboardForm
         '
         'txtSearchInv
         '
-        Me.txtSearchInv.BorderRadius = 10
+        Me.txtSearchInv.BorderRadius = 7
         Me.txtSearchInv.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtSearchInv.DefaultText = ""
         Me.txtSearchInv.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -561,7 +561,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnEditQuantity
         '
-        Me.btnEditQuantity.BorderRadius = 10
+        Me.btnEditQuantity.BorderRadius = 7
         Me.btnEditQuantity.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnEditQuantity.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnEditQuantity.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -581,7 +581,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnDeleteItems
         '
-        Me.btnDeleteItems.BorderRadius = 10
+        Me.btnDeleteItems.BorderRadius = 7
         Me.btnDeleteItems.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnDeleteItems.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnDeleteItems.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -601,7 +601,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnAdditem
         '
-        Me.btnAdditem.BorderRadius = 10
+        Me.btnAdditem.BorderRadius = 7
         Me.btnAdditem.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnAdditem.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnAdditem.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -638,7 +638,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnRefreshDeploy
         '
-        Me.btnRefreshDeploy.BorderRadius = 10
+        Me.btnRefreshDeploy.BorderRadius = 7
         Me.btnRefreshDeploy.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnRefreshDeploy.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnRefreshDeploy.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -707,7 +707,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnCheckReturn
         '
-        Me.btnCheckReturn.BorderRadius = 10
+        Me.btnCheckReturn.BorderRadius = 7
         Me.btnCheckReturn.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnCheckReturn.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnCheckReturn.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -734,7 +734,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnDeny
         '
-        Me.btnDeny.BorderRadius = 10
+        Me.btnDeny.BorderRadius = 7
         Me.btnDeny.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnDeny.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnDeny.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -753,7 +753,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnApprove
         '
-        Me.btnApprove.BorderRadius = 10
+        Me.btnApprove.BorderRadius = 7
         Me.btnApprove.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnApprove.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnApprove.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -829,7 +829,7 @@ Partial Class AdminStaffDashboardForm
         'cbActionType
         '
         Me.cbActionType.BackColor = System.Drawing.Color.Transparent
-        Me.cbActionType.BorderRadius = 10
+        Me.cbActionType.BorderRadius = 7
         Me.cbActionType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.cbActionType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cbActionType.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
@@ -1116,6 +1116,18 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2GradientPanel1.Size = New System.Drawing.Size(1133, 100)
         Me.Guna2GradientPanel1.TabIndex = 13
         '
+        'Guna2PictureBox1
+        '
+        Me.Guna2PictureBox1.Image = CType(resources.GetObject("Guna2PictureBox1.Image"), System.Drawing.Image)
+        Me.Guna2PictureBox1.ImageRotate = 0!
+        Me.Guna2PictureBox1.Location = New System.Drawing.Point(-14, 1)
+        Me.Guna2PictureBox1.Name = "Guna2PictureBox1"
+        Me.Guna2PictureBox1.Size = New System.Drawing.Size(241, 93)
+        Me.Guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.Guna2PictureBox1.TabIndex = 11
+        Me.Guna2PictureBox1.TabStop = False
+        Me.Guna2PictureBox1.UseTransparentBackground = True
+        '
         'Guna2ShadowPanel2
         '
         Me.Guna2ShadowPanel2.BackColor = System.Drawing.Color.Transparent
@@ -1160,7 +1172,7 @@ Partial Class AdminStaffDashboardForm
         '
         'btnLogout
         '
-        Me.btnLogout.BorderRadius = 10
+        Me.btnLogout.BorderRadius = 7
         Me.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
@@ -1176,18 +1188,6 @@ Partial Class AdminStaffDashboardForm
         Me.btnLogout.Size = New System.Drawing.Size(98, 34)
         Me.btnLogout.TabIndex = 2
         Me.btnLogout.Text = "Log Out"
-        '
-        'Guna2PictureBox1
-        '
-        Me.Guna2PictureBox1.Image = CType(resources.GetObject("Guna2PictureBox1.Image"), System.Drawing.Image)
-        Me.Guna2PictureBox1.ImageRotate = 0!
-        Me.Guna2PictureBox1.Location = New System.Drawing.Point(-14, 1)
-        Me.Guna2PictureBox1.Name = "Guna2PictureBox1"
-        Me.Guna2PictureBox1.Size = New System.Drawing.Size(241, 93)
-        Me.Guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.Guna2PictureBox1.TabIndex = 11
-        Me.Guna2PictureBox1.TabStop = False
-        Me.Guna2PictureBox1.UseTransparentBackground = True
         '
         'Guna2HtmlLabel7
         '
@@ -1287,11 +1287,11 @@ Partial Class AdminStaffDashboardForm
         Me.Guna2CustomGradientPanel1.ResumeLayout(False)
         Me.Guna2GradientPanel1.ResumeLayout(False)
         Me.Guna2GradientPanel1.PerformLayout()
+        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Guna2ShadowPanel2.ResumeLayout(False)
         Me.Guna2ShadowPanel2.PerformLayout()
         Me.Guna2ShadowPanel1.ResumeLayout(False)
         Me.Guna2ShadowPanel1.PerformLayout()
-        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlControlBox.ResumeLayout(False)
         Me.pnlControlBox.PerformLayout()
         Me.ResumeLayout(False)
