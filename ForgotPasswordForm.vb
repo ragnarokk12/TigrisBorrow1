@@ -6,7 +6,11 @@ Imports System.Text.RegularExpressions
 
 
 Public Class ForgotPasswordForm
-    Private connectionString As String = "Server=192.168.1.51;Database=tigris;User ID=eksi;Password=@Masterzed21;Port=3306;"
+    Private connectionString As String = "Server=localhost;" &
+                               "Database=tigris_db;" &
+                               "User ID=root;" &
+                               "Password=17boknoy17;" &
+                               "Port=3306;"
 
     ' Load event: Set default email placeholder, hide tab headers, and center the form
     Private Sub ForgotPasswordForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -347,5 +351,9 @@ Public Class ForgotPasswordForm
         If e.KeyCode = Keys.Enter Then
             btnConfirmPassword_Click(sender, e)
         End If
+    End Sub
+
+    Private Sub TabPage1_Click(sender As Object, e As EventArgs)
+
     End Sub
 End Class

@@ -70,6 +70,7 @@ Partial Class SignUpForm
         Me.Guna2HtmlLabel3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.pnlShadow1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.Guna2Separator2 = New Guna.UI2.WinForms.Guna2Separator()
         Me.lblPasswordError6 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2Separator1 = New Guna.UI2.WinForms.Guna2Separator()
         Me.Guna2PictureBox3 = New Guna.UI2.WinForms.Guna2PictureBox()
@@ -93,9 +94,6 @@ Partial Class SignUpForm
         Me.Guna2PictureBox2 = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.lblIntro = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2HtmlLabel7 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.Guna2Separator2 = New Guna.UI2.WinForms.Guna2Separator()
-        Me.Guna2HtmlLabel8 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.cbxDepartment = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.pnlTOP.SuspendLayout()
         Me.pnlShadow2.SuspendLayout()
         CType(Me.Guna2PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,7 +192,7 @@ Partial Class SignUpForm
         '
         Me.lblContact.BackColor = System.Drawing.Color.Transparent
         Me.lblContact.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblContact.Location = New System.Drawing.Point(407, 315)
+        Me.lblContact.Location = New System.Drawing.Point(74, 313)
         Me.lblContact.Name = "lblContact"
         Me.lblContact.Size = New System.Drawing.Size(117, 18)
         Me.lblContact.TabIndex = 6
@@ -287,7 +285,7 @@ Partial Class SignUpForm
         Me.txtContact.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtContact.ForeColor = System.Drawing.Color.Black
         Me.txtContact.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.txtContact.Location = New System.Drawing.Point(381, 324)
+        Me.txtContact.Location = New System.Drawing.Point(48, 322)
         Me.txtContact.Name = "txtContact"
         Me.txtContact.PlaceholderText = "09xxxxxxxxx"
         Me.txtContact.SelectedText = ""
@@ -805,12 +803,11 @@ Partial Class SignUpForm
         Me.pnlShadow1.Anchor = System.Windows.Forms.AnchorStyles.Right
         Me.pnlShadow1.BackColor = System.Drawing.Color.Transparent
         Me.pnlShadow1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pnlShadow1.Controls.Add(Me.Guna2HtmlLabel8)
-        Me.pnlShadow1.Controls.Add(Me.cbxDepartment)
         Me.pnlShadow1.Controls.Add(Me.Guna2Separator2)
         Me.pnlShadow1.Controls.Add(Me.lblConfirmPass)
         Me.pnlShadow1.Controls.Add(Me.lblPassword)
         Me.pnlShadow1.Controls.Add(Me.lblPasswordError6)
+        Me.pnlShadow1.Controls.Add(Me.btnCancel)
         Me.pnlShadow1.Controls.Add(Me.Guna2Separator1)
         Me.pnlShadow1.Controls.Add(Me.Guna2PictureBox3)
         Me.pnlShadow1.Controls.Add(Me.lblPasswordError5)
@@ -818,7 +815,6 @@ Partial Class SignUpForm
         Me.pnlShadow1.Controls.Add(Me.Guna2HtmlLabel5)
         Me.pnlShadow1.Controls.Add(Me.lblPasswordError4)
         Me.pnlShadow1.Controls.Add(Me.btnNext)
-        Me.pnlShadow1.Controls.Add(Me.btnCancel)
         Me.pnlShadow1.Controls.Add(Me.lblPasswordError3)
         Me.pnlShadow1.Controls.Add(Me.lblLastName)
         Me.pnlShadow1.Controls.Add(Me.lblUserID)
@@ -853,6 +849,13 @@ Partial Class SignUpForm
         Me.pnlShadow1.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.Dropped
         Me.pnlShadow1.Size = New System.Drawing.Size(685, 776)
         Me.pnlShadow1.TabIndex = 35
+        '
+        'Guna2Separator2
+        '
+        Me.Guna2Separator2.Location = New System.Drawing.Point(47, 440)
+        Me.Guna2Separator2.Name = "Guna2Separator2"
+        Me.Guna2Separator2.Size = New System.Drawing.Size(593, 10)
+        Me.Guna2Separator2.TabIndex = 47
         '
         'lblPasswordError6
         '
@@ -968,7 +971,7 @@ Partial Class SignUpForm
         Me.lblContactError.BackColor = System.Drawing.Color.Transparent
         Me.lblContactError.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblContactError.ForeColor = System.Drawing.Color.Red
-        Me.lblContactError.Location = New System.Drawing.Point(392, 384)
+        Me.lblContactError.Location = New System.Drawing.Point(59, 382)
         Me.lblContactError.Name = "lblContactError"
         Me.lblContactError.Size = New System.Drawing.Size(122, 17)
         Me.lblContactError.TabIndex = 35
@@ -1114,40 +1117,6 @@ Partial Class SignUpForm
         Me.Guna2HtmlLabel7.TabIndex = 39
         Me.Guna2HtmlLabel7.Text = "started!"
         '
-        'Guna2Separator2
-        '
-        Me.Guna2Separator2.Location = New System.Drawing.Point(47, 440)
-        Me.Guna2Separator2.Name = "Guna2Separator2"
-        Me.Guna2Separator2.Size = New System.Drawing.Size(593, 10)
-        Me.Guna2Separator2.TabIndex = 47
-        '
-        'Guna2HtmlLabel8
-        '
-        Me.Guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel8.Location = New System.Drawing.Point(69, 335)
-        Me.Guna2HtmlLabel8.Name = "Guna2HtmlLabel8"
-        Me.Guna2HtmlLabel8.Size = New System.Drawing.Size(87, 18)
-        Me.Guna2HtmlLabel8.TabIndex = 49
-        Me.Guna2HtmlLabel8.Text = "Department:"
-        '
-        'cbxDepartment
-        '
-        Me.cbxDepartment.BackColor = System.Drawing.Color.Transparent
-        Me.cbxDepartment.BorderColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(202, Byte), Integer), CType(CType(218, Byte), Integer))
-        Me.cbxDepartment.BorderRadius = 10
-        Me.cbxDepartment.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cbxDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxDepartment.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbxDepartment.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbxDepartment.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbxDepartment.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.cbxDepartment.ItemHeight = 30
-        Me.cbxDepartment.Location = New System.Drawing.Point(47, 345)
-        Me.cbxDepartment.Name = "cbxDepartment"
-        Me.cbxDepartment.Size = New System.Drawing.Size(259, 36)
-        Me.cbxDepartment.TabIndex = 50
-        '
         'SignUpForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1251,6 +1220,4 @@ Partial Class SignUpForm
     Friend WithEvents lblPasswordError3 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents lblPasswordError2 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2Separator2 As Guna.UI2.WinForms.Guna2Separator
-    Friend WithEvents Guna2HtmlLabel8 As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents cbxDepartment As Guna.UI2.WinForms.Guna2ComboBox
 End Class
