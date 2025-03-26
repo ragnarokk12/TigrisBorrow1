@@ -49,7 +49,6 @@ Public Class AdminStaffDashboardForm
         End Try
     End Sub
 
-    ' Updated LoadInventory method with an additional category filter parameter.
     Private Sub LoadInventory(Optional ByVal search As String = "", Optional ByVal sortBy As String = "item_name", Optional ByVal sortOrder As String = "ASC", Optional ByVal categoryFilter As String = "")
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
@@ -58,7 +57,6 @@ Public Class AdminStaffDashboardForm
             If sortOrder.ToUpper() <> "ASC" AndAlso sortOrder.ToUpper() <> "DESC" Then sortOrder = "ASC"
 
             Dim query As String = "SELECT * FROM unified_inventory WHERE (item_name LIKE @search OR serial_number LIKE @search)"
-            ' Apply category filter if not empty.
             If Not String.IsNullOrEmpty(categoryFilter) Then
                 query &= " AND category = @categoryFilter"
             End If
@@ -75,10 +73,15 @@ Public Class AdminStaffDashboardForm
                 dgvInventory.DataSource = table
             End Using
 
-            dgvInventory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            If dgvInventory.Columns.Contains("item_id") Then dgvInventory.Columns("item_id").Visible = False
+            ' Automatically size columns and headers.
+            dgvInventory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+            dgvInventory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+            dgvInventory.ColumnHeadersDefaultCellStyle.Padding = New Padding(5, 5, 5, 5)
+            dgvInventory.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+            dgvInventory.ColumnHeadersVisible = True
 
-            ' Update headers as needed.
+            ' Adjust individual columns.
+            If dgvInventory.Columns.Contains("item_id") Then dgvInventory.Columns("item_id").Visible = False
             If dgvInventory.Columns.Contains("item_name") Then dgvInventory.Columns("item_name").HeaderText = "Item Name"
             If dgvInventory.Columns.Contains("item_type") Then dgvInventory.Columns("item_type").HeaderText = "Item Type"
             If dgvInventory.Columns.Contains("category") Then dgvInventory.Columns("category").HeaderText = "Category"
@@ -91,12 +94,15 @@ Public Class AdminStaffDashboardForm
                 dgvInventory.Columns("added_at").HeaderText = "Date Added"
                 dgvInventory.Columns("added_at").DefaultCellStyle.Format = "yyyy-MM-dd HH:mm"
             End If
+
         Catch ex As Exception
             MessageBox.Show("Error loading inventory: " & ex.Message)
         Finally
             conn.Close()
         End Try
     End Sub
+
+
     Private Sub btnExportCSV_Click(sender As Object, e As EventArgs) Handles btnExportCSV.Click
         Try
             Dim sfd As New SaveFileDialog()
@@ -673,12 +679,9 @@ LEFT JOIN equipment e ON bt.equipment_id = e.equipment_id
 LEFT JOIN accessories a ON bt.accessory_id = a.accessory_id
 WHERE 1 = 1
 "
-            ' Append status filter if provided.
             If Not String.IsNullOrEmpty(statusFilter) Then
                 query &= " AND bt.status = @statusFilter"
             End If
-
-            ' Append search filter if provided.
             If Not String.IsNullOrEmpty(search) Then
                 query &= " AND (CONCAT(u.first_name, ' ', u.last_name) LIKE @search OR e.equipment_name LIKE @search OR a.accessory_name LIKE @search)"
             End If
@@ -696,21 +699,18 @@ WHERE 1 = 1
             adapter.Fill(table)
             dgvBorrowRequests.DataSource = table
 
-            dgvBorrowRequests.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            If dgvBorrowRequests.Columns.Contains("transaction_id") Then
-                dgvBorrowRequests.Columns("transaction_id").Visible = False
-            End If
+            ' Automatically size columns and headers.
+            dgvBorrowRequests.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+            dgvBorrowRequests.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+            dgvBorrowRequests.ColumnHeadersDefaultCellStyle.Padding = New Padding(5, 5, 5, 5)
+            dgvBorrowRequests.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+            dgvBorrowRequests.ColumnHeadersVisible = True
 
-            ' Set header text for clarity.
-            If dgvBorrowRequests.Columns.Contains("borrower") Then
-                dgvBorrowRequests.Columns("borrower").HeaderText = "Borrower"
-            End If
-            If dgvBorrowRequests.Columns.Contains("item_category") Then
-                dgvBorrowRequests.Columns("item_category").HeaderText = "Category"
-            End If
-            If dgvBorrowRequests.Columns.Contains("item_name") Then
-                dgvBorrowRequests.Columns("item_name").HeaderText = "Item Name"
-            End If
+            If dgvBorrowRequests.Columns.Contains("transaction_id") Then dgvBorrowRequests.Columns("transaction_id").Visible = False
+
+            If dgvBorrowRequests.Columns.Contains("borrower") Then dgvBorrowRequests.Columns("borrower").HeaderText = "Borrower"
+            If dgvBorrowRequests.Columns.Contains("item_category") Then dgvBorrowRequests.Columns("item_category").HeaderText = "Category"
+            If dgvBorrowRequests.Columns.Contains("item_name") Then dgvBorrowRequests.Columns("item_name").HeaderText = "Item Name"
             If dgvBorrowRequests.Columns.Contains("borrow_date") Then
                 dgvBorrowRequests.Columns("borrow_date").HeaderText = "Borrow Date"
                 dgvBorrowRequests.Columns("borrow_date").DefaultCellStyle.Format = "yyyy-MM-dd"
@@ -719,27 +719,13 @@ WHERE 1 = 1
                 dgvBorrowRequests.Columns("due_date").HeaderText = "Due Date"
                 dgvBorrowRequests.Columns("due_date").DefaultCellStyle.Format = "yyyy-MM-dd"
             End If
-            If dgvBorrowRequests.Columns.Contains("condition_before") Then
-                dgvBorrowRequests.Columns("condition_before").HeaderText = "Condition Before"
-            End If
-            If dgvBorrowRequests.Columns.Contains("quantity") Then
-                dgvBorrowRequests.Columns("quantity").HeaderText = "Quantity"
-            End If
-            If dgvBorrowRequests.Columns.Contains("status") Then
-                dgvBorrowRequests.Columns("status").HeaderText = "Status"
-            End If
-            If dgvBorrowRequests.Columns.Contains("approved_by") Then
-                dgvBorrowRequests.Columns("approved_by").HeaderText = "Approved By"
-            End If
-            If dgvBorrowRequests.Columns.Contains("approval_date") Then
-                dgvBorrowRequests.Columns("approval_date").HeaderText = "Approval Date"
-            End If
-            If dgvBorrowRequests.Columns.Contains("return_date") Then
-                dgvBorrowRequests.Columns("return_date").HeaderText = "Return Date"
-            End If
-            If dgvBorrowRequests.Columns.Contains("return_condition") Then
-                dgvBorrowRequests.Columns("return_condition").HeaderText = "Return Condition"
-            End If
+            If dgvBorrowRequests.Columns.Contains("condition_before") Then dgvBorrowRequests.Columns("condition_before").HeaderText = "Condition Before"
+            If dgvBorrowRequests.Columns.Contains("quantity") Then dgvBorrowRequests.Columns("quantity").HeaderText = "Quantity"
+            If dgvBorrowRequests.Columns.Contains("status") Then dgvBorrowRequests.Columns("status").HeaderText = "Status"
+            If dgvBorrowRequests.Columns.Contains("approved_by") Then dgvBorrowRequests.Columns("approved_by").HeaderText = "Approved By"
+            If dgvBorrowRequests.Columns.Contains("approval_date") Then dgvBorrowRequests.Columns("approval_date").HeaderText = "Approval Date"
+            If dgvBorrowRequests.Columns.Contains("return_date") Then dgvBorrowRequests.Columns("return_date").HeaderText = "Return Date"
+            If dgvBorrowRequests.Columns.Contains("return_condition") Then dgvBorrowRequests.Columns("return_condition").HeaderText = "Return Condition"
 
         Catch ex As Exception
             MessageBox.Show("Error loading borrow requests: " & ex.Message)
@@ -747,6 +733,7 @@ WHERE 1 = 1
             conn.Close()
         End Try
     End Sub
+
 
     Private Sub ApplyBorrowRequestFilters()
         Dim searchTerm As String = txtSearchBorrowRequests.Text.Trim() ' Ensure this textbox exists on your form.
@@ -903,11 +890,9 @@ WHERE transaction_id = @transactionId AND status = 'returned'"
     End Sub
 
 
-    ' Update LoadDailyReport to show item name in the Details column.
     Private Sub LoadDailyReport(Optional ByVal startDate As DateTime? = Nothing, Optional ByVal endDate As DateTime? = Nothing, Optional ByVal actionTypeFilter As String = "")
         Try
             If conn.State = ConnectionState.Closed Then conn.Open()
-
             Dim query As String = "SELECT u.user_id AS ID, " &
                               "CONCAT(u.first_name, ' ', u.last_name) AS UserName, " &
                               "bt.status AS ActionType, " &
@@ -925,7 +910,7 @@ WHERE transaction_id = @transactionId AND status = 'returned'"
                               "LEFT JOIN accessories a ON bt.accessory_id = a.accessory_id " &
                               "WHERE 1=1 AND bt.status <> 'pending'"
 
-            ' Add date range filters:
+            ' Add date range filters if provided.
             If startDate.HasValue Then
                 query &= " AND bt.borrow_date >= @startDate"
             End If
@@ -933,7 +918,7 @@ WHERE transaction_id = @transactionId AND status = 'returned'"
                 query &= " AND bt.borrow_date <= @endDate"
             End If
 
-            ' Add action type filter if not "All"
+            ' Add action type filter if not "All".
             If Not String.IsNullOrEmpty(actionTypeFilter) AndAlso actionTypeFilter <> "All" Then
                 query &= " AND bt.status = @actionTypeFilter"
             End If
@@ -953,8 +938,14 @@ WHERE transaction_id = @transactionId AND status = 'returned'"
                 dgvDailyDataReport.DataSource = table
             End Using
 
-            dgvDailyDataReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            ' Auto-size columns and header.
+            dgvDailyDataReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+            dgvDailyDataReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+            dgvDailyDataReport.ColumnHeadersDefaultCellStyle.Padding = New Padding(5, 5, 5, 5)
+            dgvDailyDataReport.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+            dgvDailyDataReport.ColumnHeadersVisible = True
 
+            ' Set header texts for better clarity.
             If dgvDailyDataReport.Columns.Contains("ID") Then dgvDailyDataReport.Columns("ID").HeaderText = "User ID"
             If dgvDailyDataReport.Columns.Contains("UserName") Then dgvDailyDataReport.Columns("UserName").HeaderText = "User Name"
             If dgvDailyDataReport.Columns.Contains("ActionType") Then dgvDailyDataReport.Columns("ActionType").HeaderText = "Action Type"
@@ -974,7 +965,6 @@ WHERE transaction_id = @transactionId AND status = 'returned'"
             conn.Close()
         End Try
     End Sub
-
 
 
     ' Event handlers for dynamic filtering:
@@ -1103,7 +1093,20 @@ WHERE transaction_id = @transactionId AND status = 'returned'"
             Await Task.Run(Sub() adapter.Fill(table))
 
             dgvMonthlyDataReport.DataSource = table
-            dgvMonthlyDataReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+
+            ' Automatically size columns and headers.
+            dgvMonthlyDataReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells
+            dgvMonthlyDataReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+            dgvMonthlyDataReport.ColumnHeadersDefaultCellStyle.Padding = New Padding(5, 5, 5, 5)
+            dgvMonthlyDataReport.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+            dgvMonthlyDataReport.ColumnHeadersVisible = True
+
+            If dgvMonthlyDataReport.Columns.Contains("Year") Then dgvMonthlyDataReport.Columns("Year").HeaderText = "Year"
+            If dgvMonthlyDataReport.Columns.Contains("MonthName") Then dgvMonthlyDataReport.Columns("MonthName").HeaderText = "Month"
+            If dgvMonthlyDataReport.Columns.Contains("TotalTransactions") Then dgvMonthlyDataReport.Columns("TotalTransactions").HeaderText = "Total Transactions"
+            If dgvMonthlyDataReport.Columns.Contains("Approved") Then dgvMonthlyDataReport.Columns("Approved").HeaderText = "Approved"
+            If dgvMonthlyDataReport.Columns.Contains("Declined") Then dgvMonthlyDataReport.Columns("Declined").HeaderText = "Declined"
+            If dgvMonthlyDataReport.Columns.Contains("Returned") Then dgvMonthlyDataReport.Columns("Returned").HeaderText = "Returned"
 
             If table.Rows.Count = 0 Then
                 MessageBox.Show("No monthly data available for the selected filters.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1115,6 +1118,7 @@ WHERE transaction_id = @transactionId AND status = 'returned'"
             localConn.Close()
         End Try
     End Function
+
 
     Private Sub PopulateMonthAndYearFilters()
         cbMonth.Items.Clear()
