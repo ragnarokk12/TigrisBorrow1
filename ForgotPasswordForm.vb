@@ -261,10 +261,23 @@ Public Class ForgotPasswordForm
         Try
             Using conn As New MySqlConnection(connectionString)
                 conn.Open()
-                Dim cmd As New MySqlCommand("UPDATE users SET password_hash = @Password WHERE email = @Email", conn)
-                cmd.Parameters.AddWithValue("@Password", hashedPassword)
-                cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim())
-                Dim rowsAffected As Integer = cmd.ExecuteNonQuery()
+
+                ' Step 1: Retrieve the current password hash from the database
+                Dim cmdCheck As New MySqlCommand("SELECT password_hash FROM users WHERE email = @Email", conn)
+                cmdCheck.Parameters.AddWithValue("@Email", txtEmail.Text.Trim())
+                Dim currentPasswordHash As String = cmdCheck.ExecuteScalar()?.ToString()
+
+                ' Step 2: Compare new password hash with the stored hash
+                If currentPasswordHash IsNot Nothing AndAlso hashedPassword = currentPasswordHash Then
+                    MessageBox.Show("You cannot reuse your previous password. Please choose a different one.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+
+                ' Step 3: Update password only if it's different from the old one
+                Dim cmdUpdate As New MySqlCommand("UPDATE users SET password_hash = @Password WHERE email = @Email", conn)
+                cmdUpdate.Parameters.AddWithValue("@Password", hashedPassword)
+                cmdUpdate.Parameters.AddWithValue("@Email", txtEmail.Text.Trim())
+                Dim rowsAffected As Integer = cmdUpdate.ExecuteNonQuery()
 
                 If rowsAffected > 0 Then
                     MessageBox.Show("Password successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -277,6 +290,7 @@ Public Class ForgotPasswordForm
             MessageBox.Show("An error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 
     ' Function to hash passwords using SHA-256
     Private Function HashPassword(password As String) As String
