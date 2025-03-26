@@ -299,6 +299,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logo\HeaderImage.png" />
+    <None Include="Resources\vecteezy_abstract-pink-geometric-shapes-background_76797901.jpg" />
     <None Include="Resources\application %281%29.png" />
     <None Include="Resources\vecteezy_abstract-pink-geometric-shapes-background_7679790.jpg" />
     <None Include="Resources\return-box.png" />

@@ -23,17 +23,33 @@ Partial Class UserDashboardForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UserDashboardForm))
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Guna2AnimateWindow1 = New Guna.UI2.WinForms.Guna2AnimateWindow(Me.components)
         Me.tabControlDashboard = New Guna.UI2.WinForms.Guna2TabControl()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.cbCategoryFilter = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.cbStatusFilter = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.btnReturnItem = New Guna.UI2.WinForms.Guna2Button()
+        Me.dgvInventory = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.COLitem_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colitem_type = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colbrand = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colmodel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colcategory = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colstatus = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Colitem_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.dgvBorrowRequests = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.txtSearchInventory = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.btnSubmitRequest = New Guna.UI2.WinForms.Guna2Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.btnResetPassword = New Guna.UI2.WinForms.Guna2Button()
         Me.lblEmail = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -49,42 +65,31 @@ Partial Class UserDashboardForm
         Me.btnClearNotifications = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.Guna2CustomGradientPanel4 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
+        Me.Guna2TileButton1 = New Guna.UI2.WinForms.Guna2TileButton()
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
-        Me.pnlControlBx = New Guna.UI2.WinForms.Guna2Panel()
-        Me.cbexit = New Guna.UI2.WinForms.Guna2ControlBox()
-        Me.cbMinimize = New Guna.UI2.WinForms.Guna2ControlBox()
-        Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
-        Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2Panel3 = New Guna.UI2.WinForms.Guna2Panel()
-        Me.Guna2TileButton1 = New Guna.UI2.WinForms.Guna2TileButton()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.cbCategoryFilter = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.cbStatusFilter = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.dgvInventory = New Guna.UI2.WinForms.Guna2DataGridView()
-        Me.COLitem_name = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colitem_type = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colbrand = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colmodel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colcategory = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colstatus = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Colitem_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.dgvBorrowRequests = New Guna.UI2.WinForms.Guna2DataGridView()
-        Me.txtSearchInventory = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.btnReturnItem = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnSubmitRequest = New Guna.UI2.WinForms.Guna2Button()
+        Me.pnlControlBx = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.cbMinimize = New Guna.UI2.WinForms.Guna2ControlBox()
+        Me.cbexit = New Guna.UI2.WinForms.Guna2ControlBox()
+        Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.spnlS1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.tabControlDashboard.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
+        CType(Me.dgvInventory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvBorrowRequests, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
         Me.tbcNotification.SuspendLayout()
         CType(Me.dgvNotifications, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Guna2CustomGradientPanel4.SuspendLayout()
         Me.Guna2Panel2.SuspendLayout()
+        Me.Guna2Panel3.SuspendLayout()
         Me.pnlControlBx.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
-        Me.Guna2Panel3.SuspendLayout()
-        Me.TabPage3.SuspendLayout()
-        CType(Me.dgvInventory, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dgvBorrowRequests, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.spnlS1.SuspendLayout()
+        Me.Guna2ShadowPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'tabControlDashboard
@@ -98,7 +103,7 @@ Partial Class UserDashboardForm
         Me.tabControlDashboard.Location = New System.Drawing.Point(0, 0)
         Me.tabControlDashboard.Name = "tabControlDashboard"
         Me.tabControlDashboard.SelectedIndex = 0
-        Me.tabControlDashboard.Size = New System.Drawing.Size(1257, 579)
+        Me.tabControlDashboard.Size = New System.Drawing.Size(1257, 605)
         Me.tabControlDashboard.TabButtonHoverState.BorderColor = System.Drawing.Color.Empty
         Me.tabControlDashboard.TabButtonHoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(236, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(126, Byte), Integer))
         Me.tabControlDashboard.TabButtonHoverState.Font = New System.Drawing.Font("Segoe UI Semibold", 10.0!)
@@ -118,6 +123,251 @@ Partial Class UserDashboardForm
         Me.tabControlDashboard.TabIndex = 1
         Me.tabControlDashboard.TabMenuBackColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(188, Byte), Integer), CType(CType(205, Byte), Integer))
         '
+        'TabPage3
+        '
+        Me.TabPage3.BackColor = System.Drawing.Color.Transparent
+        Me.TabPage3.BackgroundImage = CType(resources.GetObject("TabPage3.BackgroundImage"), System.Drawing.Image)
+        Me.TabPage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.TabPage3.Controls.Add(Me.Guna2ShadowPanel1)
+        Me.TabPage3.Controls.Add(Me.spnlS1)
+        Me.TabPage3.Location = New System.Drawing.Point(184, 4)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(1069, 597)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "Borrow Request"
+        '
+        'cbCategoryFilter
+        '
+        Me.cbCategoryFilter.BackColor = System.Drawing.Color.Transparent
+        Me.cbCategoryFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbCategoryFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbCategoryFilter.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbCategoryFilter.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbCategoryFilter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cbCategoryFilter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cbCategoryFilter.ItemHeight = 30
+        Me.cbCategoryFilter.Location = New System.Drawing.Point(380, 24)
+        Me.cbCategoryFilter.Name = "cbCategoryFilter"
+        Me.cbCategoryFilter.Size = New System.Drawing.Size(140, 36)
+        Me.cbCategoryFilter.TabIndex = 7
+        '
+        'cbStatusFilter
+        '
+        Me.cbStatusFilter.BackColor = System.Drawing.Color.Transparent
+        Me.cbStatusFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.cbStatusFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbStatusFilter.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbStatusFilter.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.cbStatusFilter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.cbStatusFilter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.cbStatusFilter.ItemHeight = 30
+        Me.cbStatusFilter.Location = New System.Drawing.Point(189, 24)
+        Me.cbStatusFilter.Name = "cbStatusFilter"
+        Me.cbStatusFilter.Size = New System.Drawing.Size(150, 36)
+        Me.cbStatusFilter.TabIndex = 5
+        '
+        'btnReturnItem
+        '
+        Me.btnReturnItem.Animated = True
+        Me.btnReturnItem.BorderRadius = 7
+        Me.btnReturnItem.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnReturnItem.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnReturnItem.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnReturnItem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnReturnItem.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnReturnItem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnReturnItem.ForeColor = System.Drawing.Color.White
+        Me.btnReturnItem.Image = Global.TigrisBorrow.My.Resources.Resources.return_box
+        Me.btnReturnItem.Location = New System.Drawing.Point(13, 524)
+        Me.btnReturnItem.Name = "btnReturnItem"
+        Me.btnReturnItem.Size = New System.Drawing.Size(326, 43)
+        Me.btnReturnItem.TabIndex = 4
+        Me.btnReturnItem.Text = "Return Item"
+        '
+        'dgvInventory
+        '
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        Me.dgvInventory.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvInventory.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.dgvInventory.ColumnHeadersHeight = 15
+        Me.dgvInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Me.dgvInventory.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.COLitem_name, Me.Colitem_type, Me.Colbrand, Me.Colmodel, Me.Colcategory, Me.Colstatus, Me.Colitem_id})
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvInventory.DefaultCellStyle = DataGridViewCellStyle3
+        Me.dgvInventory.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvInventory.Location = New System.Drawing.Point(9, 66)
+        Me.dgvInventory.Name = "dgvInventory"
+        Me.dgvInventory.ReadOnly = True
+        Me.dgvInventory.RowHeadersVisible = False
+        Me.dgvInventory.Size = New System.Drawing.Size(664, 447)
+        Me.dgvInventory.TabIndex = 3
+        Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
+        Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.Font = Nothing
+        Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
+        Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
+        Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
+        Me.dgvInventory.ThemeStyle.BackColor = System.Drawing.Color.White
+        Me.dgvInventory.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvInventory.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvInventory.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.dgvInventory.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvInventory.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White
+        Me.dgvInventory.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Me.dgvInventory.ThemeStyle.HeaderStyle.Height = 15
+        Me.dgvInventory.ThemeStyle.ReadOnly = True
+        Me.dgvInventory.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White
+        Me.dgvInventory.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.dgvInventory.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvInventory.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        Me.dgvInventory.ThemeStyle.RowsStyle.Height = 22
+        Me.dgvInventory.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvInventory.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        '
+        'COLitem_name
+        '
+        Me.COLitem_name.FillWeight = 200.0!
+        Me.COLitem_name.HeaderText = "Name"
+        Me.COLitem_name.Name = "COLitem_name"
+        Me.COLitem_name.ReadOnly = True
+        '
+        'Colitem_type
+        '
+        Me.Colitem_type.HeaderText = "type"
+        Me.Colitem_type.Name = "Colitem_type"
+        Me.Colitem_type.ReadOnly = True
+        '
+        'Colbrand
+        '
+        Me.Colbrand.HeaderText = "brand"
+        Me.Colbrand.Name = "Colbrand"
+        Me.Colbrand.ReadOnly = True
+        '
+        'Colmodel
+        '
+        Me.Colmodel.HeaderText = "Model"
+        Me.Colmodel.Name = "Colmodel"
+        Me.Colmodel.ReadOnly = True
+        '
+        'Colcategory
+        '
+        Me.Colcategory.HeaderText = "Category"
+        Me.Colcategory.Name = "Colcategory"
+        Me.Colcategory.ReadOnly = True
+        '
+        'Colstatus
+        '
+        Me.Colstatus.HeaderText = "status"
+        Me.Colstatus.Name = "Colstatus"
+        Me.Colstatus.ReadOnly = True
+        Me.Colstatus.Visible = False
+        '
+        'Colitem_id
+        '
+        Me.Colitem_id.HeaderText = "item_id"
+        Me.Colitem_id.Name = "Colitem_id"
+        Me.Colitem_id.ReadOnly = True
+        Me.Colitem_id.Visible = False
+        '
+        'dgvBorrowRequests
+        '
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
+        Me.dgvBorrowRequests.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvBorrowRequests.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        Me.dgvBorrowRequests.ColumnHeadersHeight = 4
+        Me.dgvBorrowRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvBorrowRequests.DefaultCellStyle = DataGridViewCellStyle6
+        Me.dgvBorrowRequests.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvBorrowRequests.Location = New System.Drawing.Point(13, 66)
+        Me.dgvBorrowRequests.Name = "dgvBorrowRequests"
+        Me.dgvBorrowRequests.ReadOnly = True
+        Me.dgvBorrowRequests.RowHeadersVisible = False
+        Me.dgvBorrowRequests.Size = New System.Drawing.Size(326, 447)
+        Me.dgvBorrowRequests.TabIndex = 1
+        Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
+        Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.Font = Nothing
+        Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
+        Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
+        Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
+        Me.dgvBorrowRequests.ThemeStyle.BackColor = System.Drawing.Color.White
+        Me.dgvBorrowRequests.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White
+        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.Height = 4
+        Me.dgvBorrowRequests.ThemeStyle.ReadOnly = True
+        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White
+        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
+        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.Height = 22
+        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        '
+        'txtSearchInventory
+        '
+        Me.txtSearchInventory.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSearchInventory.DefaultText = ""
+        Me.txtSearchInventory.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtSearchInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtSearchInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearchInventory.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearchInventory.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearchInventory.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtSearchInventory.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearchInventory.Location = New System.Drawing.Point(9, 24)
+        Me.txtSearchInventory.Name = "txtSearchInventory"
+        Me.txtSearchInventory.PlaceholderText = "Search inventory..."
+        Me.txtSearchInventory.SelectedText = ""
+        Me.txtSearchInventory.Size = New System.Drawing.Size(331, 36)
+        Me.txtSearchInventory.TabIndex = 1
+        '
+        'btnSubmitRequest
+        '
+        Me.btnSubmitRequest.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnSubmitRequest.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnSubmitRequest.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnSubmitRequest.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnSubmitRequest.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnSubmitRequest.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnSubmitRequest.ForeColor = System.Drawing.Color.White
+        Me.btnSubmitRequest.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.btnSubmitRequest.ImageOffset = New System.Drawing.Point(35, 0)
+        Me.btnSubmitRequest.Location = New System.Drawing.Point(9, 519)
+        Me.btnSubmitRequest.Name = "btnSubmitRequest"
+        Me.btnSubmitRequest.Size = New System.Drawing.Size(664, 43)
+        Me.btnSubmitRequest.TabIndex = 0
+        Me.btnSubmitRequest.Text = "Submit"
+        '
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.btnResetPassword)
@@ -133,7 +383,7 @@ Partial Class UserDashboardForm
         Me.TabPage1.Location = New System.Drawing.Point(184, 4)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1069, 571)
+        Me.TabPage1.Size = New System.Drawing.Size(1069, 597)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "User Profile"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -274,43 +524,45 @@ Partial Class UserDashboardForm
         '
         'tbcNotification
         '
+        Me.tbcNotification.BackgroundImage = Global.TigrisBorrow.My.Resources.Resources.vecteezy_abstract_pink_geometric_shapes_background_76797901
+        Me.tbcNotification.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.tbcNotification.Controls.Add(Me.dgvNotifications)
         Me.tbcNotification.Controls.Add(Me.btnClearNotifications)
         Me.tbcNotification.Location = New System.Drawing.Point(184, 4)
         Me.tbcNotification.Name = "tbcNotification"
         Me.tbcNotification.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbcNotification.Size = New System.Drawing.Size(1069, 571)
+        Me.tbcNotification.Size = New System.Drawing.Size(1069, 597)
         Me.tbcNotification.TabIndex = 4
         Me.tbcNotification.Text = "Notification"
         Me.tbcNotification.UseVisualStyleBackColor = True
         '
         'dgvNotifications
         '
-        DataGridViewCellStyle25.BackColor = System.Drawing.Color.White
-        Me.dgvNotifications.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle25
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle26.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvNotifications.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
+        Me.dgvNotifications.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvNotifications.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.dgvNotifications.ColumnHeadersHeight = 4
         Me.dgvNotifications.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle27.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle27.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle27.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvNotifications.DefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvNotifications.DefaultCellStyle = DataGridViewCellStyle9
         Me.dgvNotifications.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvNotifications.Location = New System.Drawing.Point(6, 19)
+        Me.dgvNotifications.Location = New System.Drawing.Point(21, 16)
         Me.dgvNotifications.Name = "dgvNotifications"
         Me.dgvNotifications.RowHeadersVisible = False
-        Me.dgvNotifications.Size = New System.Drawing.Size(730, 374)
+        Me.dgvNotifications.Size = New System.Drawing.Size(885, 539)
         Me.dgvNotifications.TabIndex = 0
         Me.dgvNotifications.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvNotifications.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -342,9 +594,9 @@ Partial Class UserDashboardForm
         Me.btnClearNotifications.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnClearNotifications.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnClearNotifications.ForeColor = System.Drawing.Color.White
-        Me.btnClearNotifications.Location = New System.Drawing.Point(126, 434)
+        Me.btnClearNotifications.Location = New System.Drawing.Point(924, 16)
         Me.btnClearNotifications.Name = "btnClearNotifications"
-        Me.btnClearNotifications.Size = New System.Drawing.Size(180, 45)
+        Me.btnClearNotifications.Size = New System.Drawing.Size(137, 45)
         Me.btnClearNotifications.TabIndex = 1
         Me.btnClearNotifications.Text = "Clear Notification"
         '
@@ -358,94 +610,6 @@ Partial Class UserDashboardForm
         Me.Guna2CustomGradientPanel4.Name = "Guna2CustomGradientPanel4"
         Me.Guna2CustomGradientPanel4.Size = New System.Drawing.Size(1257, 98)
         Me.Guna2CustomGradientPanel4.TabIndex = 10
-        '
-        'btnLogout
-        '
-        Me.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnLogout.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnLogout.ForeColor = System.Drawing.Color.White
-        Me.btnLogout.Location = New System.Drawing.Point(1065, 6)
-        Me.btnLogout.Name = "btnLogout"
-        Me.btnLogout.Size = New System.Drawing.Size(180, 45)
-        Me.btnLogout.TabIndex = 10
-        Me.btnLogout.Text = "Logout"
-        '
-        'Guna2Panel2
-        '
-        Me.Guna2Panel2.Controls.Add(Me.Guna2Panel3)
-        Me.Guna2Panel2.Controls.Add(Me.Guna2CustomGradientPanel4)
-        Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Guna2Panel2.Location = New System.Drawing.Point(0, 28)
-        Me.Guna2Panel2.Name = "Guna2Panel2"
-        Me.Guna2Panel2.Size = New System.Drawing.Size(1257, 677)
-        Me.Guna2Panel2.TabIndex = 11
-        '
-        'pnlControlBx
-        '
-        Me.pnlControlBx.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.pnlControlBx.Controls.Add(Me.Guna2HtmlLabel1)
-        Me.pnlControlBx.Controls.Add(Me.cbMinimize)
-        Me.pnlControlBx.Controls.Add(Me.cbexit)
-        Me.pnlControlBx.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlControlBx.Location = New System.Drawing.Point(0, 0)
-        Me.pnlControlBx.Name = "pnlControlBx"
-        Me.pnlControlBx.Size = New System.Drawing.Size(1257, 28)
-        Me.pnlControlBx.TabIndex = 11
-        '
-        'cbexit
-        '
-        Me.cbexit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbexit.BackColor = System.Drawing.Color.Transparent
-        Me.cbexit.FillColor = System.Drawing.Color.Transparent
-        Me.cbexit.IconColor = System.Drawing.Color.Black
-        Me.cbexit.Location = New System.Drawing.Point(1212, -2)
-        Me.cbexit.Name = "cbexit"
-        Me.cbexit.Size = New System.Drawing.Size(45, 29)
-        Me.cbexit.TabIndex = 0
-        '
-        'cbMinimize
-        '
-        Me.cbMinimize.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbMinimize.BackColor = System.Drawing.Color.Transparent
-        Me.cbMinimize.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox
-        Me.cbMinimize.FillColor = System.Drawing.Color.Transparent
-        Me.cbMinimize.IconColor = System.Drawing.Color.Black
-        Me.cbMinimize.Location = New System.Drawing.Point(1167, -2)
-        Me.cbMinimize.Name = "cbMinimize"
-        Me.cbMinimize.Size = New System.Drawing.Size(45, 29)
-        Me.cbMinimize.TabIndex = 1
-        '
-        'Guna2Panel1
-        '
-        Me.Guna2Panel1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2Panel1.Controls.Add(Me.pnlControlBx)
-        Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Guna2Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel1.Name = "Guna2Panel1"
-        Me.Guna2Panel1.Size = New System.Drawing.Size(1257, 28)
-        Me.Guna2Panel1.TabIndex = 10
-        '
-        'Guna2HtmlLabel1
-        '
-        Me.Guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel1.Location = New System.Drawing.Point(12, 6)
-        Me.Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
-        Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(125, 18)
-        Me.Guna2HtmlLabel1.TabIndex = 2
-        Me.Guna2HtmlLabel1.Text = "TIGRIS BORROW"
-        '
-        'Guna2Panel3
-        '
-        Me.Guna2Panel3.Controls.Add(Me.tabControlDashboard)
-        Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Guna2Panel3.Location = New System.Drawing.Point(0, 98)
-        Me.Guna2Panel3.Name = "Guna2Panel3"
-        Me.Guna2Panel3.Size = New System.Drawing.Size(1257, 579)
-        Me.Guna2Panel3.TabIndex = 11
         '
         'Guna2TileButton1
         '
@@ -475,278 +639,155 @@ Partial Class UserDashboardForm
         Me.Guna2TileButton1.Size = New System.Drawing.Size(373, 93)
         Me.Guna2TileButton1.TabIndex = 18
         '
-        'TabPage3
+        'btnLogout
         '
-        Me.TabPage3.Controls.Add(Me.cbCategoryFilter)
-        Me.TabPage3.Controls.Add(Me.cbStatusFilter)
-        Me.TabPage3.Controls.Add(Me.btnReturnItem)
-        Me.TabPage3.Controls.Add(Me.dgvInventory)
-        Me.TabPage3.Controls.Add(Me.dgvBorrowRequests)
-        Me.TabPage3.Controls.Add(Me.txtSearchInventory)
-        Me.TabPage3.Controls.Add(Me.btnSubmitRequest)
-        Me.TabPage3.Location = New System.Drawing.Point(184, 4)
-        Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(1069, 571)
-        Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "Borrow Request"
-        Me.TabPage3.UseVisualStyleBackColor = True
+        Me.btnLogout.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnLogout.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnLogout.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnLogout.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnLogout.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnLogout.ForeColor = System.Drawing.Color.White
+        Me.btnLogout.Location = New System.Drawing.Point(1121, 28)
+        Me.btnLogout.Name = "btnLogout"
+        Me.btnLogout.Size = New System.Drawing.Size(124, 45)
+        Me.btnLogout.TabIndex = 10
+        Me.btnLogout.Text = "Logout"
         '
-        'cbCategoryFilter
+        'Guna2Panel2
         '
-        Me.cbCategoryFilter.BackColor = System.Drawing.Color.Transparent
-        Me.cbCategoryFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cbCategoryFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbCategoryFilter.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbCategoryFilter.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbCategoryFilter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cbCategoryFilter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.cbCategoryFilter.ItemHeight = 30
-        Me.cbCategoryFilter.Location = New System.Drawing.Point(403, 9)
-        Me.cbCategoryFilter.Name = "cbCategoryFilter"
-        Me.cbCategoryFilter.Size = New System.Drawing.Size(140, 36)
-        Me.cbCategoryFilter.TabIndex = 7
+        Me.Guna2Panel2.Controls.Add(Me.Guna2Panel3)
+        Me.Guna2Panel2.Controls.Add(Me.Guna2CustomGradientPanel4)
+        Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Guna2Panel2.Location = New System.Drawing.Point(0, 28)
+        Me.Guna2Panel2.Name = "Guna2Panel2"
+        Me.Guna2Panel2.Size = New System.Drawing.Size(1257, 706)
+        Me.Guna2Panel2.TabIndex = 11
         '
-        'cbStatusFilter
+        'Guna2Panel3
         '
-        Me.cbStatusFilter.BackColor = System.Drawing.Color.Transparent
-        Me.cbStatusFilter.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.cbStatusFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbStatusFilter.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbStatusFilter.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.cbStatusFilter.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.cbStatusFilter.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
-        Me.cbStatusFilter.ItemHeight = 30
-        Me.cbStatusFilter.Location = New System.Drawing.Point(714, 9)
-        Me.cbStatusFilter.Name = "cbStatusFilter"
-        Me.cbStatusFilter.Size = New System.Drawing.Size(140, 36)
-        Me.cbStatusFilter.TabIndex = 5
+        Me.Guna2Panel3.Controls.Add(Me.tabControlDashboard)
+        Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Guna2Panel3.Location = New System.Drawing.Point(0, 98)
+        Me.Guna2Panel3.Name = "Guna2Panel3"
+        Me.Guna2Panel3.Size = New System.Drawing.Size(1257, 605)
+        Me.Guna2Panel3.TabIndex = 11
         '
-        'dgvInventory
+        'pnlControlBx
         '
-        DataGridViewCellStyle19.BackColor = System.Drawing.Color.White
-        Me.dgvInventory.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle19
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle20.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvInventory.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle20
-        Me.dgvInventory.ColumnHeadersHeight = 15
-        Me.dgvInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        Me.dgvInventory.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.COLitem_name, Me.Colitem_type, Me.Colbrand, Me.Colmodel, Me.Colcategory, Me.Colstatus, Me.Colitem_id})
-        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle21.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvInventory.DefaultCellStyle = DataGridViewCellStyle21
-        Me.dgvInventory.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvInventory.Location = New System.Drawing.Point(32, 51)
-        Me.dgvInventory.Name = "dgvInventory"
-        Me.dgvInventory.ReadOnly = True
-        Me.dgvInventory.RowHeadersVisible = False
-        Me.dgvInventory.Size = New System.Drawing.Size(664, 447)
-        Me.dgvInventory.TabIndex = 3
-        Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
-        Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.Font = Nothing
-        Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
-        Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
-        Me.dgvInventory.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
-        Me.dgvInventory.ThemeStyle.BackColor = System.Drawing.Color.White
-        Me.dgvInventory.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvInventory.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvInventory.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        Me.dgvInventory.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvInventory.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White
-        Me.dgvInventory.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        Me.dgvInventory.ThemeStyle.HeaderStyle.Height = 15
-        Me.dgvInventory.ThemeStyle.ReadOnly = True
-        Me.dgvInventory.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White
-        Me.dgvInventory.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
-        Me.dgvInventory.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvInventory.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.dgvInventory.ThemeStyle.RowsStyle.Height = 22
-        Me.dgvInventory.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvInventory.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        Me.pnlControlBx.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.pnlControlBx.Controls.Add(Me.Guna2HtmlLabel1)
+        Me.pnlControlBx.Controls.Add(Me.cbMinimize)
+        Me.pnlControlBx.Controls.Add(Me.cbexit)
+        Me.pnlControlBx.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlControlBx.Location = New System.Drawing.Point(0, 0)
+        Me.pnlControlBx.Name = "pnlControlBx"
+        Me.pnlControlBx.Size = New System.Drawing.Size(1257, 28)
+        Me.pnlControlBx.TabIndex = 11
         '
-        'COLitem_name
+        'Guna2HtmlLabel1
         '
-        Me.COLitem_name.FillWeight = 200.0!
-        Me.COLitem_name.HeaderText = "Name"
-        Me.COLitem_name.Name = "COLitem_name"
-        Me.COLitem_name.ReadOnly = True
+        Me.Guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel1.Location = New System.Drawing.Point(12, 6)
+        Me.Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
+        Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(125, 18)
+        Me.Guna2HtmlLabel1.TabIndex = 2
+        Me.Guna2HtmlLabel1.Text = "TIGRIS BORROW"
         '
-        'Colitem_type
+        'cbMinimize
         '
-        Me.Colitem_type.HeaderText = "type"
-        Me.Colitem_type.Name = "Colitem_type"
-        Me.Colitem_type.ReadOnly = True
+        Me.cbMinimize.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbMinimize.BackColor = System.Drawing.Color.Transparent
+        Me.cbMinimize.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox
+        Me.cbMinimize.FillColor = System.Drawing.Color.Transparent
+        Me.cbMinimize.IconColor = System.Drawing.Color.Black
+        Me.cbMinimize.Location = New System.Drawing.Point(1167, -2)
+        Me.cbMinimize.Name = "cbMinimize"
+        Me.cbMinimize.Size = New System.Drawing.Size(45, 29)
+        Me.cbMinimize.TabIndex = 1
         '
-        'Colbrand
+        'cbexit
         '
-        Me.Colbrand.HeaderText = "brand"
-        Me.Colbrand.Name = "Colbrand"
-        Me.Colbrand.ReadOnly = True
+        Me.cbexit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbexit.BackColor = System.Drawing.Color.Transparent
+        Me.cbexit.FillColor = System.Drawing.Color.Transparent
+        Me.cbexit.IconColor = System.Drawing.Color.Black
+        Me.cbexit.Location = New System.Drawing.Point(1212, -2)
+        Me.cbexit.Name = "cbexit"
+        Me.cbexit.Size = New System.Drawing.Size(45, 29)
+        Me.cbexit.TabIndex = 0
         '
-        'Colmodel
+        'Guna2Panel1
         '
-        Me.Colmodel.HeaderText = "Model"
-        Me.Colmodel.Name = "Colmodel"
-        Me.Colmodel.ReadOnly = True
+        Me.Guna2Panel1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2Panel1.Controls.Add(Me.pnlControlBx)
+        Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Guna2Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Guna2Panel1.Name = "Guna2Panel1"
+        Me.Guna2Panel1.Size = New System.Drawing.Size(1257, 28)
+        Me.Guna2Panel1.TabIndex = 10
         '
-        'Colcategory
+        'spnlS1
         '
-        Me.Colcategory.HeaderText = "Category"
-        Me.Colcategory.Name = "Colcategory"
-        Me.Colcategory.ReadOnly = True
+        Me.spnlS1.BackColor = System.Drawing.Color.Transparent
+        Me.spnlS1.Controls.Add(Me.dgvBorrowRequests)
+        Me.spnlS1.Controls.Add(Me.btnReturnItem)
+        Me.spnlS1.Controls.Add(Me.cbStatusFilter)
+        Me.spnlS1.FillColor = System.Drawing.Color.Gray
+        Me.spnlS1.Location = New System.Drawing.Point(702, 6)
+        Me.spnlS1.Name = "spnlS1"
+        Me.spnlS1.Radius = 15
+        Me.spnlS1.ShadowColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.spnlS1.ShadowDepth = 200
+        Me.spnlS1.ShadowShift = 7
+        Me.spnlS1.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.ForwardDiagonal
+        Me.spnlS1.Size = New System.Drawing.Size(359, 595)
+        Me.spnlS1.TabIndex = 8
         '
-        'Colstatus
+        'Guna2ShadowPanel1
         '
-        Me.Colstatus.HeaderText = "status"
-        Me.Colstatus.Name = "Colstatus"
-        Me.Colstatus.ReadOnly = True
-        Me.Colstatus.Visible = False
-        '
-        'Colitem_id
-        '
-        Me.Colitem_id.HeaderText = "item_id"
-        Me.Colitem_id.Name = "Colitem_id"
-        Me.Colitem_id.ReadOnly = True
-        Me.Colitem_id.Visible = False
-        '
-        'dgvBorrowRequests
-        '
-        DataGridViewCellStyle22.BackColor = System.Drawing.Color.White
-        Me.dgvBorrowRequests.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle22
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle23.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvBorrowRequests.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle23
-        Me.dgvBorrowRequests.ColumnHeadersHeight = 4
-        Me.dgvBorrowRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle24.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvBorrowRequests.DefaultCellStyle = DataGridViewCellStyle24
-        Me.dgvBorrowRequests.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvBorrowRequests.Location = New System.Drawing.Point(702, 51)
-        Me.dgvBorrowRequests.Name = "dgvBorrowRequests"
-        Me.dgvBorrowRequests.ReadOnly = True
-        Me.dgvBorrowRequests.RowHeadersVisible = False
-        Me.dgvBorrowRequests.Size = New System.Drawing.Size(326, 426)
-        Me.dgvBorrowRequests.TabIndex = 1
-        Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
-        Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.Font = Nothing
-        Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty
-        Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty
-        Me.dgvBorrowRequests.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty
-        Me.dgvBorrowRequests.ThemeStyle.BackColor = System.Drawing.Color.White
-        Me.dgvBorrowRequests.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White
-        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        Me.dgvBorrowRequests.ThemeStyle.HeaderStyle.Height = 4
-        Me.dgvBorrowRequests.ThemeStyle.ReadOnly = True
-        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White
-        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
-        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.Height = 22
-        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvBorrowRequests.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        '
-        'txtSearchInventory
-        '
-        Me.txtSearchInventory.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtSearchInventory.DefaultText = ""
-        Me.txtSearchInventory.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtSearchInventory.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtSearchInventory.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtSearchInventory.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtSearchInventory.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearchInventory.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.txtSearchInventory.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearchInventory.Location = New System.Drawing.Point(32, 9)
-        Me.txtSearchInventory.Name = "txtSearchInventory"
-        Me.txtSearchInventory.PlaceholderText = "Search inventory..."
-        Me.txtSearchInventory.SelectedText = ""
-        Me.txtSearchInventory.Size = New System.Drawing.Size(331, 36)
-        Me.txtSearchInventory.TabIndex = 1
-        '
-        'btnReturnItem
-        '
-        Me.btnReturnItem.Animated = True
-        Me.btnReturnItem.BorderRadius = 7
-        Me.btnReturnItem.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnReturnItem.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnReturnItem.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnReturnItem.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnReturnItem.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnReturnItem.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnReturnItem.ForeColor = System.Drawing.Color.White
-        Me.btnReturnItem.Image = Global.TigrisBorrow.My.Resources.Resources.return_box
-        Me.btnReturnItem.Location = New System.Drawing.Point(792, 504)
-        Me.btnReturnItem.Name = "btnReturnItem"
-        Me.btnReturnItem.Size = New System.Drawing.Size(180, 43)
-        Me.btnReturnItem.TabIndex = 4
-        Me.btnReturnItem.Text = "Return Item"
-        '
-        'btnSubmitRequest
-        '
-        Me.btnSubmitRequest.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnSubmitRequest.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnSubmitRequest.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnSubmitRequest.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnSubmitRequest.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnSubmitRequest.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnSubmitRequest.ForeColor = System.Drawing.Color.White
-        Me.btnSubmitRequest.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.btnSubmitRequest.ImageOffset = New System.Drawing.Point(35, 0)
-        Me.btnSubmitRequest.Location = New System.Drawing.Point(403, 504)
-        Me.btnSubmitRequest.Name = "btnSubmitRequest"
-        Me.btnSubmitRequest.Size = New System.Drawing.Size(180, 38)
-        Me.btnSubmitRequest.TabIndex = 0
-        Me.btnSubmitRequest.Text = "Submit"
+        Me.Guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2ShadowPanel1.Controls.Add(Me.txtSearchInventory)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.btnSubmitRequest)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.cbCategoryFilter)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.dgvInventory)
+        Me.Guna2ShadowPanel1.FillColor = System.Drawing.Color.Gray
+        Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(8, 6)
+        Me.Guna2ShadowPanel1.Name = "Guna2ShadowPanel1"
+        Me.Guna2ShadowPanel1.Radius = 15
+        Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.Guna2ShadowPanel1.ShadowDepth = 200
+        Me.Guna2ShadowPanel1.ShadowShift = 7
+        Me.Guna2ShadowPanel1.ShadowStyle = Guna.UI2.WinForms.Guna2ShadowPanel.ShadowMode.ForwardDiagonal
+        Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(690, 595)
+        Me.Guna2ShadowPanel1.TabIndex = 9
         '
         'UserDashboardForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1257, 704)
+        Me.ClientSize = New System.Drawing.Size(1257, 732)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.MinimumSize = New System.Drawing.Size(1242, 659)
         Me.Name = "UserDashboardForm"
         Me.Text = "UserDashboardForm"
         Me.tabControlDashboard.ResumeLayout(False)
+        Me.TabPage3.ResumeLayout(False)
+        CType(Me.dgvInventory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvBorrowRequests, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         Me.tbcNotification.ResumeLayout(False)
         CType(Me.dgvNotifications, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Guna2CustomGradientPanel4.ResumeLayout(False)
         Me.Guna2Panel2.ResumeLayout(False)
+        Me.Guna2Panel3.ResumeLayout(False)
         Me.pnlControlBx.ResumeLayout(False)
         Me.pnlControlBx.PerformLayout()
         Me.Guna2Panel1.ResumeLayout(False)
-        Me.Guna2Panel3.ResumeLayout(False)
-        Me.TabPage3.ResumeLayout(False)
-        CType(Me.dgvInventory, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvBorrowRequests, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.spnlS1.ResumeLayout(False)
+        Me.Guna2ShadowPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -791,4 +832,6 @@ Partial Class UserDashboardForm
     Friend WithEvents cbexit As Guna.UI2.WinForms.Guna2ControlBox
     Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Guna2TileButton1 As Guna.UI2.WinForms.Guna2TileButton
+    Friend WithEvents Guna2ShadowPanel1 As Guna.UI2.WinForms.Guna2ShadowPanel
+    Friend WithEvents spnlS1 As Guna.UI2.WinForms.Guna2ShadowPanel
 End Class
