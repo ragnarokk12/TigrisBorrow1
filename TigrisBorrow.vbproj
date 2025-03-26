@@ -170,12 +170,6 @@
     <Compile Include="ChangePasswordForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangeRoleForm.Designer.vb">
-      <DependentUpon>ChangeRoleForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ChangeRoleForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Common.vb" />
     <Compile Include="EditUserForm.Designer.vb">
       <DependentUpon>EditUserForm.vb</DependentUpon>
@@ -235,9 +229,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChangeRoleForm.resx">
-      <DependentUpon>ChangeRoleForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditUserForm.resx">
       <DependentUpon>EditUserForm.vb</DependentUpon>
