@@ -20,6 +20,8 @@ Public Class UserDashboardForm
         'lblOverdueItems.Text = "Overdue Items: 0"
 
         LoadUserProfileData()
+        LoadUserDisplayName()      ' Add this call to update lblDisplayName.
+        LoadUserDisplayIdNumber()  ' Add this call to update lblDisplayIdNumber.
         LoadBorrowRequestData()
         LoadInventoryData()
         LoadNotificationsData()
@@ -52,6 +54,46 @@ Public Class UserDashboardForm
             Loop
         End If
     End Sub
+    Private Sub LoadUserDisplayName()
+        Using conn As MySqlConnection = Common.getDBConnection()
+            Try
+                conn.Open()
+                Dim query As String = "SELECT first_name, last_name FROM users WHERE user_id = @userId"
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@userId", Common.CurrentUserId)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            lblDisplayName.Text = reader("first_name").ToString() & " " & reader("last_name").ToString()
+                        Else
+                            MessageBox.Show("User profile not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End If
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error loading user display name: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Using
+    End Sub
+    Private Sub LoadUserDisplayIdNumber()
+        Using conn As MySqlConnection = Common.getDBConnection()
+            Try
+                conn.Open()
+                Dim query As String = "SELECT user_id FROM users WHERE user_id = @userId"
+                Using cmd As New MySqlCommand(query, conn)
+                    cmd.Parameters.AddWithValue("@userId", Common.CurrentUserId)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            lblDisplayIdNumber.Text = reader("user_id").ToString()
+                        Else
+                            MessageBox.Show("User profile not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End If
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error loading user ID number: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End Using
+    End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         CheckForOverdueRequests()
@@ -63,7 +105,8 @@ Public Class UserDashboardForm
         Using conn As MySqlConnection = Common.getDBConnection()
             Try
                 conn.Open()
-                Dim query As String = "SELECT email, first_name, last_name, user_id FROM users WHERE user_id = @userId"
+                ' Include phone_number in the SELECT statement.
+                Dim query As String = "SELECT email, first_name, last_name, user_id, contact_number FROM users WHERE user_id = @userId"
                 Using cmd As New MySqlCommand(query, conn)
                     cmd.Parameters.AddWithValue("@userId", Common.CurrentUserId)
                     Using reader As MySqlDataReader = cmd.ExecuteReader()
@@ -71,6 +114,8 @@ Public Class UserDashboardForm
                             txtEmail.Text = reader("email").ToString()
                             txtFullName.Text = reader("first_name").ToString() & " " & reader("last_name").ToString()
                             txtStudentID.Text = reader("user_id").ToString()
+                            ' Assign the phone number to the textbox.
+                            txtPhoneNumber.Text = reader("contact_number").ToString()
                         Else
                             MessageBox.Show("User profile not found.")
                         End If
@@ -81,6 +126,7 @@ Public Class UserDashboardForm
             End Try
         End Using
     End Sub
+
 
     ' Reset Password Button Implementation.
     Private Sub btnResetPassword_Click(sender As Object, e As EventArgs) Handles btnResetPassword.Click

@@ -13,8 +13,8 @@ Public Class Common
         ' Always create a new connection instance.
         Return New MySqlConnection("Server=localhost;" &
                                "Database=tigris_db;" &
-                               "User ID=root;" &
-                               "Password=17boknoy17;" &
+                               "User ID=tigris_admin;" &
+                               "Password=GGyypp15922@@;" &
                                "Port=3306;" &
                                "Command Timeout=600;")
     End Function

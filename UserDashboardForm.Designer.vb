@@ -54,24 +54,31 @@ Partial Class UserDashboardForm
         Me.cbStatusFilter = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Guna2ShadowPanel4 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.Guna2HtmlLabel8 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2PictureBox2 = New Guna.UI2.WinForms.Guna2PictureBox()
+        Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
+        Me.Guna2HtmlLabel6 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel5 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.txtFullName = New Guna.UI2.WinForms.Guna2TextBox()
         Me.btnResetPassword = New Guna.UI2.WinForms.Guna2Button()
+        Me.txtEmail = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblEmail = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.txtPhoneNumber = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblPhoneNumber = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.txtStudentID = New Guna.UI2.WinForms.Guna2TextBox()
         Me.lblFullName = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.lblStudentID = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.txtStudentID = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.txtPhoneNumber = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.txtEmail = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.txtFullName = New Guna.UI2.WinForms.Guna2TextBox()
         Me.tbcNotification = New System.Windows.Forms.TabPage()
+        Me.Guna2HtmlLabel7 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2ShadowPanel3 = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.dgvNotifications = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.btnClearNotifications = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.Guna2CustomGradientPanel4 = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
         Me.Guna2ShadowPanel2 = New Guna.UI2.WinForms.Guna2ShadowPanel()
-        Me.Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.Guna2HtmlLabel3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.lblDisplayName = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.lblDisplayIdNumber = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2TileButton1 = New Guna.UI2.WinForms.Guna2TileButton()
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
@@ -82,13 +89,6 @@ Partial Class UserDashboardForm
         Me.cbexit = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
-        Me.Guna2HtmlLabel4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.Guna2HtmlLabel5 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.Guna2HtmlLabel6 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
-        Me.Guna2PictureBox2 = New Guna.UI2.WinForms.Guna2PictureBox()
-        Me.Guna2HtmlLabel7 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.Guna2HtmlLabel8 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.tabControlDashboard.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         Me.Guna2ShadowPanel1.SuspendLayout()
@@ -97,6 +97,8 @@ Partial Class UserDashboardForm
         CType(Me.dgvBorrowRequests, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
         Me.Guna2ShadowPanel4.SuspendLayout()
+        CType(Me.Guna2PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tbcNotification.SuspendLayout()
         Me.Guna2ShadowPanel3.SuspendLayout()
         CType(Me.dgvNotifications, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,8 +108,6 @@ Partial Class UserDashboardForm
         Me.Guna2Panel3.SuspendLayout()
         Me.pnlControlBx.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
-        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Guna2PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'tabControlDashboard
@@ -466,131 +466,72 @@ Partial Class UserDashboardForm
         Me.Guna2ShadowPanel4.Size = New System.Drawing.Size(1029, 549)
         Me.Guna2ShadowPanel4.TabIndex = 11
         '
-        'btnResetPassword
+        'Guna2HtmlLabel8
         '
-        Me.btnResetPassword.BorderRadius = 7
-        Me.btnResetPassword.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnResetPassword.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnResetPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnResetPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnResetPassword.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
-        Me.btnResetPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnResetPassword.ForeColor = System.Drawing.Color.White
-        Me.btnResetPassword.Location = New System.Drawing.Point(776, 462)
-        Me.btnResetPassword.Name = "btnResetPassword"
-        Me.btnResetPassword.Size = New System.Drawing.Size(180, 45)
-        Me.btnResetPassword.TabIndex = 8
-        Me.btnResetPassword.Text = "Reset Password"
+        Me.Guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel8.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel8.Location = New System.Drawing.Point(137, 56)
+        Me.Guna2HtmlLabel8.Name = "Guna2HtmlLabel8"
+        Me.Guna2HtmlLabel8.Size = New System.Drawing.Size(348, 41)
+        Me.Guna2HtmlLabel8.TabIndex = 14
+        Me.Guna2HtmlLabel8.TabStop = False
+        Me.Guna2HtmlLabel8.Text = "User Account Details"
         '
-        'lblEmail
+        'Guna2PictureBox2
         '
-        Me.lblEmail.BackColor = System.Drawing.Color.Transparent
-        Me.lblEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEmail.ForeColor = System.Drawing.Color.Black
-        Me.lblEmail.Location = New System.Drawing.Point(695, 251)
-        Me.lblEmail.Name = "lblEmail"
-        Me.lblEmail.Size = New System.Drawing.Size(40, 18)
-        Me.lblEmail.TabIndex = 7
-        Me.lblEmail.Text = "Email:"
+        Me.Guna2PictureBox2.Image = Global.TigrisBorrow.My.Resources.Resources.password
+        Me.Guna2PictureBox2.ImageRotate = 0!
+        Me.Guna2PictureBox2.Location = New System.Drawing.Point(316, 122)
+        Me.Guna2PictureBox2.Name = "Guna2PictureBox2"
+        Me.Guna2PictureBox2.Size = New System.Drawing.Size(122, 104)
+        Me.Guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.Guna2PictureBox2.TabIndex = 13
+        Me.Guna2PictureBox2.TabStop = False
         '
-        'lblPhoneNumber
+        'Guna2PictureBox1
         '
-        Me.lblPhoneNumber.BackColor = System.Drawing.Color.Transparent
-        Me.lblPhoneNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPhoneNumber.ForeColor = System.Drawing.Color.Black
-        Me.lblPhoneNumber.Location = New System.Drawing.Point(639, 367)
-        Me.lblPhoneNumber.Name = "lblPhoneNumber"
-        Me.lblPhoneNumber.Size = New System.Drawing.Size(96, 18)
-        Me.lblPhoneNumber.TabIndex = 6
-        Me.lblPhoneNumber.Text = "Phone Number:"
+        Me.Guna2PictureBox1.Image = Global.TigrisBorrow.My.Resources.Resources.user
+        Me.Guna2PictureBox1.ImageRotate = 0!
+        Me.Guna2PictureBox1.Location = New System.Drawing.Point(152, 179)
+        Me.Guna2PictureBox1.Name = "Guna2PictureBox1"
+        Me.Guna2PictureBox1.Size = New System.Drawing.Size(227, 122)
+        Me.Guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.Guna2PictureBox1.TabIndex = 12
+        Me.Guna2PictureBox1.TabStop = False
         '
-        'lblFullName
+        'Guna2HtmlLabel6
         '
-        Me.lblFullName.BackColor = System.Drawing.Color.Transparent
-        Me.lblFullName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFullName.ForeColor = System.Drawing.Color.Black
-        Me.lblFullName.Location = New System.Drawing.Point(692, 150)
-        Me.lblFullName.Name = "lblFullName"
-        Me.lblFullName.Size = New System.Drawing.Size(43, 18)
-        Me.lblFullName.TabIndex = 5
-        Me.lblFullName.Text = "Name:"
+        Me.Guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel6.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel6.Location = New System.Drawing.Point(131, 378)
+        Me.Guna2HtmlLabel6.Name = "Guna2HtmlLabel6"
+        Me.Guna2HtmlLabel6.Size = New System.Drawing.Size(358, 22)
+        Me.Guna2HtmlLabel6.TabIndex = 11
+        Me.Guna2HtmlLabel6.Text = "please click on the ""Reset Password"" button"
         '
-        'lblStudentID
+        'Guna2HtmlLabel5
         '
-        Me.lblStudentID.BackColor = System.Drawing.Color.Transparent
-        Me.lblStudentID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblStudentID.ForeColor = System.Drawing.Color.Black
-        Me.lblStudentID.Location = New System.Drawing.Point(669, 51)
-        Me.lblStudentID.Name = "lblStudentID"
-        Me.lblStudentID.Size = New System.Drawing.Size(67, 18)
-        Me.lblStudentID.TabIndex = 4
-        Me.lblStudentID.Text = "Student ID:"
+        Me.Guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel5.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel5.Location = New System.Drawing.Point(173, 350)
+        Me.Guna2HtmlLabel5.Name = "Guna2HtmlLabel5"
+        Me.Guna2HtmlLabel5.Size = New System.Drawing.Size(278, 22)
+        Me.Guna2HtmlLabel5.TabIndex = 10
+        Me.Guna2HtmlLabel5.Text = "If you seek to reset your password" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
-        'txtStudentID
+        'Guna2HtmlLabel4
         '
-        Me.txtStudentID.BorderRadius = 7
-        Me.txtStudentID.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtStudentID.DefaultText = ""
-        Me.txtStudentID.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtStudentID.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtStudentID.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtStudentID.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtStudentID.Enabled = False
-        Me.txtStudentID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtStudentID.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.txtStudentID.HideSelection = False
-        Me.txtStudentID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtStudentID.Location = New System.Drawing.Point(756, 42)
-        Me.txtStudentID.Name = "txtStudentID"
-        Me.txtStudentID.PlaceholderText = ""
-        Me.txtStudentID.ReadOnly = True
-        Me.txtStudentID.SelectedText = ""
-        Me.txtStudentID.Size = New System.Drawing.Size(200, 36)
-        Me.txtStudentID.TabIndex = 3
-        '
-        'txtPhoneNumber
-        '
-        Me.txtPhoneNumber.BorderRadius = 7
-        Me.txtPhoneNumber.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPhoneNumber.DefaultText = ""
-        Me.txtPhoneNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtPhoneNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtPhoneNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtPhoneNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtPhoneNumber.Enabled = False
-        Me.txtPhoneNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPhoneNumber.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.txtPhoneNumber.HideSelection = False
-        Me.txtPhoneNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPhoneNumber.Location = New System.Drawing.Point(756, 357)
-        Me.txtPhoneNumber.Name = "txtPhoneNumber"
-        Me.txtPhoneNumber.PlaceholderText = ""
-        Me.txtPhoneNumber.ReadOnly = True
-        Me.txtPhoneNumber.SelectedText = ""
-        Me.txtPhoneNumber.Size = New System.Drawing.Size(200, 36)
-        Me.txtPhoneNumber.TabIndex = 2
-        '
-        'txtEmail
-        '
-        Me.txtEmail.BorderRadius = 7
-        Me.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtEmail.DefaultText = ""
-        Me.txtEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtEmail.Enabled = False
-        Me.txtEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtEmail.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.txtEmail.HideSelection = False
-        Me.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtEmail.Location = New System.Drawing.Point(756, 242)
-        Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.PlaceholderText = ""
-        Me.txtEmail.ReadOnly = True
-        Me.txtEmail.SelectedText = ""
-        Me.txtEmail.Size = New System.Drawing.Size(200, 36)
-        Me.txtEmail.TabIndex = 1
+        Me.Guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel4.ForeColor = System.Drawing.Color.Black
+        Me.Guna2HtmlLabel4.Location = New System.Drawing.Point(107, 322)
+        Me.Guna2HtmlLabel4.Name = "Guna2HtmlLabel4"
+        Me.Guna2HtmlLabel4.Size = New System.Drawing.Size(411, 22)
+        Me.Guna2HtmlLabel4.TabIndex = 9
+        Me.Guna2HtmlLabel4.Text = "This is where all your account details will be shown." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'txtFullName
         '
@@ -614,6 +555,132 @@ Partial Class UserDashboardForm
         Me.txtFullName.Size = New System.Drawing.Size(200, 36)
         Me.txtFullName.TabIndex = 0
         '
+        'btnResetPassword
+        '
+        Me.btnResetPassword.BorderRadius = 7
+        Me.btnResetPassword.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnResetPassword.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnResetPassword.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnResetPassword.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnResetPassword.FillColor = System.Drawing.Color.FromArgb(CType(CType(243, Byte), Integer), CType(CType(109, Byte), Integer), CType(CType(148, Byte), Integer))
+        Me.btnResetPassword.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btnResetPassword.ForeColor = System.Drawing.Color.White
+        Me.btnResetPassword.Location = New System.Drawing.Point(776, 462)
+        Me.btnResetPassword.Name = "btnResetPassword"
+        Me.btnResetPassword.Size = New System.Drawing.Size(180, 45)
+        Me.btnResetPassword.TabIndex = 8
+        Me.btnResetPassword.Text = "Reset Password"
+        '
+        'txtEmail
+        '
+        Me.txtEmail.BorderRadius = 7
+        Me.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtEmail.DefaultText = ""
+        Me.txtEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtEmail.Enabled = False
+        Me.txtEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtEmail.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtEmail.HideSelection = False
+        Me.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtEmail.Location = New System.Drawing.Point(756, 242)
+        Me.txtEmail.Name = "txtEmail"
+        Me.txtEmail.PlaceholderText = ""
+        Me.txtEmail.ReadOnly = True
+        Me.txtEmail.SelectedText = ""
+        Me.txtEmail.Size = New System.Drawing.Size(200, 36)
+        Me.txtEmail.TabIndex = 1
+        '
+        'lblEmail
+        '
+        Me.lblEmail.BackColor = System.Drawing.Color.Transparent
+        Me.lblEmail.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEmail.ForeColor = System.Drawing.Color.Black
+        Me.lblEmail.Location = New System.Drawing.Point(695, 251)
+        Me.lblEmail.Name = "lblEmail"
+        Me.lblEmail.Size = New System.Drawing.Size(40, 18)
+        Me.lblEmail.TabIndex = 7
+        Me.lblEmail.Text = "Email:"
+        '
+        'txtPhoneNumber
+        '
+        Me.txtPhoneNumber.BorderRadius = 7
+        Me.txtPhoneNumber.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtPhoneNumber.DefaultText = ""
+        Me.txtPhoneNumber.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtPhoneNumber.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtPhoneNumber.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtPhoneNumber.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtPhoneNumber.Enabled = False
+        Me.txtPhoneNumber.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtPhoneNumber.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtPhoneNumber.HideSelection = False
+        Me.txtPhoneNumber.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtPhoneNumber.Location = New System.Drawing.Point(756, 357)
+        Me.txtPhoneNumber.Name = "txtPhoneNumber"
+        Me.txtPhoneNumber.PlaceholderText = ""
+        Me.txtPhoneNumber.ReadOnly = True
+        Me.txtPhoneNumber.SelectedText = ""
+        Me.txtPhoneNumber.Size = New System.Drawing.Size(200, 36)
+        Me.txtPhoneNumber.TabIndex = 2
+        '
+        'lblPhoneNumber
+        '
+        Me.lblPhoneNumber.BackColor = System.Drawing.Color.Transparent
+        Me.lblPhoneNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPhoneNumber.ForeColor = System.Drawing.Color.Black
+        Me.lblPhoneNumber.Location = New System.Drawing.Point(639, 367)
+        Me.lblPhoneNumber.Name = "lblPhoneNumber"
+        Me.lblPhoneNumber.Size = New System.Drawing.Size(96, 18)
+        Me.lblPhoneNumber.TabIndex = 6
+        Me.lblPhoneNumber.Text = "Phone Number:"
+        '
+        'txtStudentID
+        '
+        Me.txtStudentID.BorderRadius = 7
+        Me.txtStudentID.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtStudentID.DefaultText = ""
+        Me.txtStudentID.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtStudentID.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtStudentID.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtStudentID.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtStudentID.Enabled = False
+        Me.txtStudentID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtStudentID.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.txtStudentID.HideSelection = False
+        Me.txtStudentID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtStudentID.Location = New System.Drawing.Point(756, 42)
+        Me.txtStudentID.Name = "txtStudentID"
+        Me.txtStudentID.PlaceholderText = ""
+        Me.txtStudentID.ReadOnly = True
+        Me.txtStudentID.SelectedText = ""
+        Me.txtStudentID.Size = New System.Drawing.Size(200, 36)
+        Me.txtStudentID.TabIndex = 3
+        '
+        'lblFullName
+        '
+        Me.lblFullName.BackColor = System.Drawing.Color.Transparent
+        Me.lblFullName.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFullName.ForeColor = System.Drawing.Color.Black
+        Me.lblFullName.Location = New System.Drawing.Point(692, 150)
+        Me.lblFullName.Name = "lblFullName"
+        Me.lblFullName.Size = New System.Drawing.Size(43, 18)
+        Me.lblFullName.TabIndex = 5
+        Me.lblFullName.Text = "Name:"
+        '
+        'lblStudentID
+        '
+        Me.lblStudentID.BackColor = System.Drawing.Color.Transparent
+        Me.lblStudentID.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblStudentID.ForeColor = System.Drawing.Color.Black
+        Me.lblStudentID.Location = New System.Drawing.Point(669, 51)
+        Me.lblStudentID.Name = "lblStudentID"
+        Me.lblStudentID.Size = New System.Drawing.Size(67, 18)
+        Me.lblStudentID.TabIndex = 4
+        Me.lblStudentID.Text = "Student ID:"
+        '
         'tbcNotification
         '
         Me.tbcNotification.BackgroundImage = Global.TigrisBorrow.My.Resources.Resources.vecteezy_abstract_pink_geometric_shapes_background_76797901
@@ -628,6 +695,16 @@ Partial Class UserDashboardForm
         Me.tbcNotification.TabIndex = 4
         Me.tbcNotification.Text = "Notification"
         Me.tbcNotification.UseVisualStyleBackColor = True
+        '
+        'Guna2HtmlLabel7
+        '
+        Me.Guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel7.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel7.Location = New System.Drawing.Point(36, 44)
+        Me.Guna2HtmlLabel7.Name = "Guna2HtmlLabel7"
+        Me.Guna2HtmlLabel7.Size = New System.Drawing.Size(286, 39)
+        Me.Guna2HtmlLabel7.TabIndex = 11
+        Me.Guna2HtmlLabel7.Text = "Notification Center"
         '
         'Guna2ShadowPanel3
         '
@@ -729,8 +806,8 @@ Partial Class UserDashboardForm
         'Guna2ShadowPanel2
         '
         Me.Guna2ShadowPanel2.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2ShadowPanel2.Controls.Add(Me.Guna2HtmlLabel2)
-        Me.Guna2ShadowPanel2.Controls.Add(Me.Guna2HtmlLabel3)
+        Me.Guna2ShadowPanel2.Controls.Add(Me.lblDisplayName)
+        Me.Guna2ShadowPanel2.Controls.Add(Me.lblDisplayIdNumber)
         Me.Guna2ShadowPanel2.Controls.Add(Me.btnLogout)
         Me.Guna2ShadowPanel2.FillColor = System.Drawing.Color.White
         Me.Guna2ShadowPanel2.Location = New System.Drawing.Point(184, 7)
@@ -743,25 +820,25 @@ Partial Class UserDashboardForm
         Me.Guna2ShadowPanel2.Size = New System.Drawing.Size(1069, 88)
         Me.Guna2ShadowPanel2.TabIndex = 9
         '
-        'Guna2HtmlLabel2
+        'lblDisplayName
         '
-        Me.Guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(20, 17)
-        Me.Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
-        Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(120, 26)
-        Me.Guna2HtmlLabel2.TabIndex = 19
-        Me.Guna2HtmlLabel2.Text = "YOURNAME"
+        Me.lblDisplayName.BackColor = System.Drawing.Color.Transparent
+        Me.lblDisplayName.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDisplayName.Location = New System.Drawing.Point(20, 17)
+        Me.lblDisplayName.Name = "lblDisplayName"
+        Me.lblDisplayName.Size = New System.Drawing.Size(120, 26)
+        Me.lblDisplayName.TabIndex = 19
+        Me.lblDisplayName.Text = "YOURNAME"
         '
-        'Guna2HtmlLabel3
+        'lblDisplayIdNumber
         '
-        Me.Guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel3.Location = New System.Drawing.Point(20, 41)
-        Me.Guna2HtmlLabel3.Name = "Guna2HtmlLabel3"
-        Me.Guna2HtmlLabel3.Size = New System.Drawing.Size(80, 18)
-        Me.Guna2HtmlLabel3.TabIndex = 20
-        Me.Guna2HtmlLabel3.Text = "2020-10230"
+        Me.lblDisplayIdNumber.BackColor = System.Drawing.Color.Transparent
+        Me.lblDisplayIdNumber.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDisplayIdNumber.Location = New System.Drawing.Point(20, 41)
+        Me.lblDisplayIdNumber.Name = "lblDisplayIdNumber"
+        Me.lblDisplayIdNumber.Size = New System.Drawing.Size(80, 18)
+        Me.lblDisplayIdNumber.TabIndex = 20
+        Me.lblDisplayIdNumber.Text = "2020-10230"
         '
         'btnLogout
         '
@@ -890,83 +967,6 @@ Partial Class UserDashboardForm
         Me.Guna2DragControl1.TargetControl = Me.pnlControlBx
         Me.Guna2DragControl1.UseTransparentDrag = True
         '
-        'Guna2HtmlLabel4
-        '
-        Me.Guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel4.ForeColor = System.Drawing.Color.Black
-        Me.Guna2HtmlLabel4.Location = New System.Drawing.Point(107, 322)
-        Me.Guna2HtmlLabel4.Name = "Guna2HtmlLabel4"
-        Me.Guna2HtmlLabel4.Size = New System.Drawing.Size(411, 22)
-        Me.Guna2HtmlLabel4.TabIndex = 9
-        Me.Guna2HtmlLabel4.Text = "This is where all your account details will be shown." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'Guna2HtmlLabel5
-        '
-        Me.Guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel5.ForeColor = System.Drawing.Color.Black
-        Me.Guna2HtmlLabel5.Location = New System.Drawing.Point(173, 350)
-        Me.Guna2HtmlLabel5.Name = "Guna2HtmlLabel5"
-        Me.Guna2HtmlLabel5.Size = New System.Drawing.Size(278, 22)
-        Me.Guna2HtmlLabel5.TabIndex = 10
-        Me.Guna2HtmlLabel5.Text = "If you seek to reset your password" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'Guna2HtmlLabel6
-        '
-        Me.Guna2HtmlLabel6.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel6.ForeColor = System.Drawing.Color.Black
-        Me.Guna2HtmlLabel6.Location = New System.Drawing.Point(131, 378)
-        Me.Guna2HtmlLabel6.Name = "Guna2HtmlLabel6"
-        Me.Guna2HtmlLabel6.Size = New System.Drawing.Size(358, 22)
-        Me.Guna2HtmlLabel6.TabIndex = 11
-        Me.Guna2HtmlLabel6.Text = "please click on the ""Reset Password"" button"
-        '
-        'Guna2PictureBox1
-        '
-        Me.Guna2PictureBox1.Image = Global.TigrisBorrow.My.Resources.Resources.user
-        Me.Guna2PictureBox1.ImageRotate = 0!
-        Me.Guna2PictureBox1.Location = New System.Drawing.Point(152, 179)
-        Me.Guna2PictureBox1.Name = "Guna2PictureBox1"
-        Me.Guna2PictureBox1.Size = New System.Drawing.Size(227, 122)
-        Me.Guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.Guna2PictureBox1.TabIndex = 12
-        Me.Guna2PictureBox1.TabStop = False
-        '
-        'Guna2PictureBox2
-        '
-        Me.Guna2PictureBox2.Image = Global.TigrisBorrow.My.Resources.Resources.password
-        Me.Guna2PictureBox2.ImageRotate = 0!
-        Me.Guna2PictureBox2.Location = New System.Drawing.Point(316, 122)
-        Me.Guna2PictureBox2.Name = "Guna2PictureBox2"
-        Me.Guna2PictureBox2.Size = New System.Drawing.Size(122, 104)
-        Me.Guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.Guna2PictureBox2.TabIndex = 13
-        Me.Guna2PictureBox2.TabStop = False
-        '
-        'Guna2HtmlLabel7
-        '
-        Me.Guna2HtmlLabel7.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel7.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel7.Location = New System.Drawing.Point(36, 44)
-        Me.Guna2HtmlLabel7.Name = "Guna2HtmlLabel7"
-        Me.Guna2HtmlLabel7.Size = New System.Drawing.Size(286, 39)
-        Me.Guna2HtmlLabel7.TabIndex = 11
-        Me.Guna2HtmlLabel7.Text = "Notification Center"
-        '
-        'Guna2HtmlLabel8
-        '
-        Me.Guna2HtmlLabel8.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel8.Font = New System.Drawing.Font("Microsoft Sans Serif", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel8.ForeColor = System.Drawing.Color.Black
-        Me.Guna2HtmlLabel8.Location = New System.Drawing.Point(137, 56)
-        Me.Guna2HtmlLabel8.Name = "Guna2HtmlLabel8"
-        Me.Guna2HtmlLabel8.Size = New System.Drawing.Size(348, 41)
-        Me.Guna2HtmlLabel8.TabIndex = 14
-        Me.Guna2HtmlLabel8.TabStop = False
-        Me.Guna2HtmlLabel8.Text = "User Account Details"
-        '
         'UserDashboardForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -987,6 +987,8 @@ Partial Class UserDashboardForm
         Me.TabPage1.ResumeLayout(False)
         Me.Guna2ShadowPanel4.ResumeLayout(False)
         Me.Guna2ShadowPanel4.PerformLayout()
+        CType(Me.Guna2PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbcNotification.ResumeLayout(False)
         Me.tbcNotification.PerformLayout()
         Me.Guna2ShadowPanel3.ResumeLayout(False)
@@ -999,8 +1001,6 @@ Partial Class UserDashboardForm
         Me.pnlControlBx.ResumeLayout(False)
         Me.pnlControlBx.PerformLayout()
         Me.Guna2Panel1.ResumeLayout(False)
-        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Guna2PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1047,8 +1047,8 @@ Partial Class UserDashboardForm
     Friend WithEvents Guna2TileButton1 As Guna.UI2.WinForms.Guna2TileButton
     Friend WithEvents Guna2ShadowPanel1 As Guna.UI2.WinForms.Guna2ShadowPanel
     Friend WithEvents spnlS1 As Guna.UI2.WinForms.Guna2ShadowPanel
-    Friend WithEvents Guna2HtmlLabel3 As Guna.UI2.WinForms.Guna2HtmlLabel
-    Friend WithEvents Guna2HtmlLabel2 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents lblDisplayIdNumber As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents lblDisplayName As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2ShadowPanel2 As Guna.UI2.WinForms.Guna2ShadowPanel
     Friend WithEvents Guna2DragControl1 As Guna.UI2.WinForms.Guna2DragControl
     Friend WithEvents Guna2ShadowPanel3 As Guna.UI2.WinForms.Guna2ShadowPanel
