@@ -25,12 +25,6 @@ Partial Class ForgotPasswordForm
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ForgotPasswordForm))
         Me.TabControl1 = New Guna.UI2.WinForms.Guna2TabControl()
-        Me.pnlControlBx = New Guna.UI2.WinForms.Guna2Panel()
-        Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
-        Me.cbMinimize = New Guna.UI2.WinForms.Guna2ControlBox()
-        Me.cbexit = New Guna.UI2.WinForms.Guna2ControlBox()
-        Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
-        Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.Guna2HtmlLabel11 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2TileButton1 = New Guna.UI2.WinForms.Guna2TileButton()
@@ -84,8 +78,13 @@ Partial Class ForgotPasswordForm
         Me.chkShowPassword = New Guna.UI2.WinForms.Guna2CheckBox()
         Me.txtConfirmPassword = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Guna2HtmlLabel6 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.pnlControlBx = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.cbMinimize = New Guna.UI2.WinForms.Guna2ControlBox()
+        Me.cbexit = New Guna.UI2.WinForms.Guna2ControlBox()
+        Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
+        Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.TabControl1.SuspendLayout()
-        Me.pnlControlBx.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.spnlS1.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,6 +94,7 @@ Partial Class ForgotPasswordForm
         Me.TabPage3.SuspendLayout()
         CType(Me.Guna2PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Guna2ShadowPanel2.SuspendLayout()
+        Me.pnlControlBx.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -127,61 +127,6 @@ Partial Class ForgotPasswordForm
         Me.TabControl1.TabIndex = 0
         Me.TabControl1.TabMenuBackColor = System.Drawing.Color.FromArgb(CType(CType(253, Byte), Integer), CType(CType(172, Byte), Integer), CType(CType(194, Byte), Integer))
         Me.TabControl1.TabMenuOrientation = Guna.UI2.WinForms.TabMenuOrientation.HorizontalTop
-        '
-        'pnlControlBx
-        '
-        Me.pnlControlBx.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.pnlControlBx.Controls.Add(Me.Guna2HtmlLabel1)
-        Me.pnlControlBx.Controls.Add(Me.cbMinimize)
-        Me.pnlControlBx.Controls.Add(Me.cbexit)
-        Me.pnlControlBx.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlControlBx.Location = New System.Drawing.Point(0, 0)
-        Me.pnlControlBx.Name = "pnlControlBx"
-        Me.pnlControlBx.Size = New System.Drawing.Size(960, 28)
-        Me.pnlControlBx.TabIndex = 1
-        '
-        'Guna2HtmlLabel1
-        '
-        Me.Guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Guna2HtmlLabel1.Location = New System.Drawing.Point(12, 6)
-        Me.Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
-        Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(125, 18)
-        Me.Guna2HtmlLabel1.TabIndex = 2
-        Me.Guna2HtmlLabel1.Text = "TIGRIS BORROW"
-        '
-        'cbMinimize
-        '
-        Me.cbMinimize.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbMinimize.BackColor = System.Drawing.Color.Transparent
-        Me.cbMinimize.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox
-        Me.cbMinimize.FillColor = System.Drawing.Color.Transparent
-        Me.cbMinimize.IconColor = System.Drawing.Color.Black
-        Me.cbMinimize.Location = New System.Drawing.Point(870, -2)
-        Me.cbMinimize.Name = "cbMinimize"
-        Me.cbMinimize.Size = New System.Drawing.Size(45, 29)
-        Me.cbMinimize.TabIndex = 1
-        '
-        'cbexit
-        '
-        Me.cbexit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbexit.BackColor = System.Drawing.Color.Transparent
-        Me.cbexit.FillColor = System.Drawing.Color.Transparent
-        Me.cbexit.IconColor = System.Drawing.Color.Black
-        Me.cbexit.Location = New System.Drawing.Point(915, -2)
-        Me.cbexit.Name = "cbexit"
-        Me.cbexit.Size = New System.Drawing.Size(45, 29)
-        Me.cbexit.TabIndex = 0
-        '
-        'Guna2DragControl1
-        '
-        Me.Guna2DragControl1.DockIndicatorTransparencyValue = 0.6R
-        Me.Guna2DragControl1.TargetControl = Me.pnlControlBx
-        Me.Guna2DragControl1.UseTransparentDrag = True
-        '
-        'Guna2Elipse1
-        '
-        Me.Guna2Elipse1.TargetControl = Me
         '
         'TabPage1
         '
@@ -1029,6 +974,61 @@ Partial Class ForgotPasswordForm
         Me.Guna2HtmlLabel6.TabIndex = 3
         Me.Guna2HtmlLabel6.Text = "Confirm New Password"
         '
+        'pnlControlBx
+        '
+        Me.pnlControlBx.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.pnlControlBx.Controls.Add(Me.Guna2HtmlLabel1)
+        Me.pnlControlBx.Controls.Add(Me.cbMinimize)
+        Me.pnlControlBx.Controls.Add(Me.cbexit)
+        Me.pnlControlBx.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlControlBx.Location = New System.Drawing.Point(0, 0)
+        Me.pnlControlBx.Name = "pnlControlBx"
+        Me.pnlControlBx.Size = New System.Drawing.Size(960, 28)
+        Me.pnlControlBx.TabIndex = 1
+        '
+        'Guna2HtmlLabel1
+        '
+        Me.Guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel1.Location = New System.Drawing.Point(12, 6)
+        Me.Guna2HtmlLabel1.Name = "Guna2HtmlLabel1"
+        Me.Guna2HtmlLabel1.Size = New System.Drawing.Size(125, 18)
+        Me.Guna2HtmlLabel1.TabIndex = 2
+        Me.Guna2HtmlLabel1.Text = "TIGRIS BORROW"
+        '
+        'cbMinimize
+        '
+        Me.cbMinimize.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbMinimize.BackColor = System.Drawing.Color.Transparent
+        Me.cbMinimize.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox
+        Me.cbMinimize.FillColor = System.Drawing.Color.Transparent
+        Me.cbMinimize.IconColor = System.Drawing.Color.Black
+        Me.cbMinimize.Location = New System.Drawing.Point(870, -2)
+        Me.cbMinimize.Name = "cbMinimize"
+        Me.cbMinimize.Size = New System.Drawing.Size(45, 29)
+        Me.cbMinimize.TabIndex = 1
+        '
+        'cbexit
+        '
+        Me.cbexit.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbexit.BackColor = System.Drawing.Color.Transparent
+        Me.cbexit.FillColor = System.Drawing.Color.Transparent
+        Me.cbexit.IconColor = System.Drawing.Color.Black
+        Me.cbexit.Location = New System.Drawing.Point(915, -2)
+        Me.cbexit.Name = "cbexit"
+        Me.cbexit.Size = New System.Drawing.Size(45, 29)
+        Me.cbexit.TabIndex = 0
+        '
+        'Guna2DragControl1
+        '
+        Me.Guna2DragControl1.DockIndicatorTransparencyValue = 0.6R
+        Me.Guna2DragControl1.TargetControl = Me.pnlControlBx
+        Me.Guna2DragControl1.UseTransparentDrag = True
+        '
+        'Guna2Elipse1
+        '
+        Me.Guna2Elipse1.TargetControl = Me
+        '
         'ForgotPasswordForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1037,11 +1037,10 @@ Partial Class ForgotPasswordForm
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.pnlControlBx)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "ForgotPasswordForm"
         Me.Text = "ForgotPasswordForm"
         Me.TabControl1.ResumeLayout(False)
-        Me.pnlControlBx.ResumeLayout(False)
-        Me.pnlControlBx.PerformLayout()
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         Me.spnlS1.ResumeLayout(False)
@@ -1057,6 +1056,8 @@ Partial Class ForgotPasswordForm
         CType(Me.Guna2PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Guna2ShadowPanel2.ResumeLayout(False)
         Me.Guna2ShadowPanel2.PerformLayout()
+        Me.pnlControlBx.ResumeLayout(False)
+        Me.pnlControlBx.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

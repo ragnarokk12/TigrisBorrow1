@@ -1131,6 +1131,7 @@ Partial Class SignUpForm
         Me.Controls.Add(Me.pnlShadow1)
         Me.Controls.Add(Me.pnlShadow2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "SignUpForm"
         Me.Text = "SignUpForm"
         Me.pnlTOP.ResumeLayout(False)
