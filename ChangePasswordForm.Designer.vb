@@ -37,6 +37,7 @@ Partial Class ChangePasswordForm
         Me.lblPasswordMatch = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.chkShowPassword = New Guna.UI2.WinForms.Guna2CheckBox()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.lblEmojiError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
@@ -46,7 +47,6 @@ Partial Class ChangePasswordForm
         Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
-        Me.lblEmojiError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2ShadowPanel1.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -247,6 +247,16 @@ Partial Class ChangePasswordForm
         Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(435, 331)
         Me.Guna2ShadowPanel1.TabIndex = 12
         '
+        'lblEmojiError
+        '
+        Me.lblEmojiError.BackColor = System.Drawing.Color.Transparent
+        Me.lblEmojiError.Location = New System.Drawing.Point(188, 260)
+        Me.lblEmojiError.Name = "lblEmojiError"
+        Me.lblEmojiError.Size = New System.Drawing.Size(167, 15)
+        Me.lblEmojiError.TabIndex = 12
+        Me.lblEmojiError.Text = "Displays when Emojis are detected"
+        Me.lblEmojiError.Visible = False
+        '
         'Guna2Panel1
         '
         Me.Guna2Panel1.BackColor = System.Drawing.Color.Transparent
@@ -335,16 +345,6 @@ Partial Class ChangePasswordForm
         '
         Me.Guna2Elipse1.TargetControl = Me
         '
-        'lblEmojiError
-        '
-        Me.lblEmojiError.BackColor = System.Drawing.Color.Transparent
-        Me.lblEmojiError.Location = New System.Drawing.Point(188, 260)
-        Me.lblEmojiError.Name = "lblEmojiError"
-        Me.lblEmojiError.Size = New System.Drawing.Size(167, 15)
-        Me.lblEmojiError.TabIndex = 12
-        Me.lblEmojiError.Text = "Displays when Emojis are detected"
-        Me.lblEmojiError.Visible = False
-        '
         'ChangePasswordForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -358,6 +358,7 @@ Partial Class ChangePasswordForm
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.btnCancel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "ChangePasswordForm"
         Me.Text = "ChangePasswordForm"
         Me.Guna2ShadowPanel1.ResumeLayout(False)
