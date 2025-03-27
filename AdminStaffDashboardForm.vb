@@ -1184,4 +1184,7 @@ WHERE transaction_id = @transactionId AND status = 'returned'"
         Me.Close()
     End Sub
 
+    Private Sub Guna2GradientPanel1_Paint(sender As Object, e As PaintEventArgs) Handles Guna2GradientPanel1.Paint
+
+    End Sub
 End Class

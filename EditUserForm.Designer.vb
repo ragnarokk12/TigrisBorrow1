@@ -29,7 +29,6 @@ Partial Class EditUserForm
         Me.txtEmail = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtContact = New Guna.UI2.WinForms.Guna2TextBox()
         Me.cmbRole = New Guna.UI2.WinForms.Guna2ComboBox()
-        Me.btnSave = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancel = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlControlBox = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2HtmlLabel6 = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -40,7 +39,12 @@ Partial Class EditUserForm
         Me.lblUserInfo = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel3 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel4 = New Guna.UI2.WinForms.Guna2HtmlLabel()
+        Me.Guna2HtmlLabel5 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
+        Me.btnSave = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlControlBox.SuspendLayout()
         Me.Guna2ShadowPanel1.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
@@ -49,6 +53,8 @@ Partial Class EditUserForm
         '
         'txtUserID
         '
+        Me.txtUserID.BorderColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.txtUserID.BorderRadius = 7
         Me.txtUserID.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtUserID.DefaultText = ""
         Me.txtUserID.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -58,7 +64,7 @@ Partial Class EditUserForm
         Me.txtUserID.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtUserID.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtUserID.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtUserID.Location = New System.Drawing.Point(189, 72)
+        Me.txtUserID.Location = New System.Drawing.Point(172, 89)
         Me.txtUserID.Name = "txtUserID"
         Me.txtUserID.PlaceholderText = ""
         Me.txtUserID.SelectedText = ""
@@ -67,6 +73,8 @@ Partial Class EditUserForm
         '
         'txtFirstName
         '
+        Me.txtFirstName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.txtFirstName.BorderRadius = 7
         Me.txtFirstName.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtFirstName.DefaultText = ""
         Me.txtFirstName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -76,7 +84,7 @@ Partial Class EditUserForm
         Me.txtFirstName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtFirstName.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtFirstName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtFirstName.Location = New System.Drawing.Point(189, 114)
+        Me.txtFirstName.Location = New System.Drawing.Point(172, 131)
         Me.txtFirstName.Name = "txtFirstName"
         Me.txtFirstName.PlaceholderText = "First Name"
         Me.txtFirstName.SelectedText = ""
@@ -85,6 +93,8 @@ Partial Class EditUserForm
         '
         'txtLastName
         '
+        Me.txtLastName.BorderColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.txtLastName.BorderRadius = 7
         Me.txtLastName.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtLastName.DefaultText = ""
         Me.txtLastName.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -94,7 +104,7 @@ Partial Class EditUserForm
         Me.txtLastName.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtLastName.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtLastName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtLastName.Location = New System.Drawing.Point(423, 114)
+        Me.txtLastName.Location = New System.Drawing.Point(495, 131)
         Me.txtLastName.Name = "txtLastName"
         Me.txtLastName.PlaceholderText = "Last Name"
         Me.txtLastName.SelectedText = ""
@@ -103,6 +113,8 @@ Partial Class EditUserForm
         '
         'txtEmail
         '
+        Me.txtEmail.BorderColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.txtEmail.BorderRadius = 7
         Me.txtEmail.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtEmail.DefaultText = ""
         Me.txtEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -112,7 +124,7 @@ Partial Class EditUserForm
         Me.txtEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtEmail.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtEmail.Location = New System.Drawing.Point(423, 72)
+        Me.txtEmail.Location = New System.Drawing.Point(495, 89)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.PlaceholderText = "Email"
         Me.txtEmail.SelectedText = ""
@@ -121,6 +133,8 @@ Partial Class EditUserForm
         '
         'txtContact
         '
+        Me.txtContact.BorderColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.txtContact.BorderRadius = 7
         Me.txtContact.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtContact.DefaultText = ""
         Me.txtContact.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -130,7 +144,7 @@ Partial Class EditUserForm
         Me.txtContact.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtContact.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtContact.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtContact.Location = New System.Drawing.Point(189, 156)
+        Me.txtContact.Location = New System.Drawing.Point(172, 173)
         Me.txtContact.Name = "txtContact"
         Me.txtContact.PlaceholderText = "09xxxxxxxxx"
         Me.txtContact.SelectedText = ""
@@ -140,6 +154,8 @@ Partial Class EditUserForm
         'cmbRole
         '
         Me.cmbRole.BackColor = System.Drawing.Color.Transparent
+        Me.cmbRole.BorderColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.cmbRole.BorderRadius = 7
         Me.cmbRole.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
         Me.cmbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbRole.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
@@ -147,34 +163,24 @@ Partial Class EditUserForm
         Me.cmbRole.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbRole.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
         Me.cmbRole.ItemHeight = 30
-        Me.cmbRole.Location = New System.Drawing.Point(423, 156)
+        Me.cmbRole.Location = New System.Drawing.Point(495, 173)
         Me.cmbRole.Name = "cmbRole"
         Me.cmbRole.Size = New System.Drawing.Size(200, 36)
         Me.cmbRole.TabIndex = 5
         '
-        'btnSave
-        '
-        Me.btnSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.btnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.btnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.btnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.btnSave.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(590, 556)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(180, 45)
-        Me.btnSave.TabIndex = 6
-        Me.btnSave.Text = "Save"
-        '
         'btnCancel
         '
+        Me.btnCancel.BorderColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnCancel.BorderRadius = 7
+        Me.btnCancel.BorderThickness = 1
         Me.btnCancel.DisabledState.BorderColor = System.Drawing.Color.DarkGray
         Me.btnCancel.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
         Me.btnCancel.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.btnCancel.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnCancel.FillColor = System.Drawing.Color.Transparent
         Me.btnCancel.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(28, 556)
+        Me.btnCancel.ForeColor = System.Drawing.Color.Black
+        Me.btnCancel.Location = New System.Drawing.Point(28, 408)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(180, 45)
         Me.btnCancel.TabIndex = 7
@@ -228,10 +234,15 @@ Partial Class EditUserForm
         'Guna2ShadowPanel1
         '
         Me.Guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2ShadowPanel1.Controls.Add(Me.Guna2HtmlLabel5)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.Guna2HtmlLabel4)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.Guna2HtmlLabel3)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.Guna2HtmlLabel2)
         Me.Guna2ShadowPanel1.Controls.Add(Me.lblNewPassword)
         Me.Guna2ShadowPanel1.Controls.Add(Me.lblUserInfo)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtUserID)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtFirstName)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.btnSave)
         Me.Guna2ShadowPanel1.Controls.Add(Me.cmbRole)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtLastName)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtContact)
@@ -241,35 +252,35 @@ Partial Class EditUserForm
         Me.Guna2ShadowPanel1.Name = "Guna2ShadowPanel1"
         Me.Guna2ShadowPanel1.Radius = 10
         Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black
-        Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(742, 463)
+        Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(742, 343)
         Me.Guna2ShadowPanel1.TabIndex = 16
         '
         'lblNewPassword
         '
         Me.lblNewPassword.BackColor = System.Drawing.Color.Transparent
         Me.lblNewPassword.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNewPassword.Location = New System.Drawing.Point(49, 90)
+        Me.lblNewPassword.Location = New System.Drawing.Point(82, 98)
         Me.lblNewPassword.Name = "lblNewPassword"
-        Me.lblNewPassword.Size = New System.Drawing.Size(109, 18)
+        Me.lblNewPassword.Size = New System.Drawing.Size(60, 18)
         Me.lblNewPassword.TabIndex = 0
-        Me.lblNewPassword.Text = "New Password:"
+        Me.lblNewPassword.Text = "User-ID:"
         '
         'lblUserInfo
         '
         Me.lblUserInfo.BackColor = System.Drawing.Color.Transparent
         Me.lblUserInfo.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblUserInfo.Location = New System.Drawing.Point(49, 30)
+        Me.lblUserInfo.Location = New System.Drawing.Point(60, 138)
         Me.lblUserInfo.Name = "lblUserInfo"
-        Me.lblUserInfo.Size = New System.Drawing.Size(131, 18)
+        Me.lblUserInfo.Size = New System.Drawing.Size(82, 18)
         Me.lblUserInfo.TabIndex = 1
-        Me.lblUserInfo.Text = "Confirm Password:"
+        Me.lblUserInfo.Text = "First Name:"
         '
         'Guna2Panel1
         '
         Me.Guna2Panel1.BackColor = System.Drawing.Color.Transparent
         Me.Guna2Panel1.Controls.Add(Me.Guna2HtmlLabel1)
         Me.Guna2Panel1.Controls.Add(Me.Guna2PictureBox1)
-        Me.Guna2Panel1.Location = New System.Drawing.Point(-23, 188)
+        Me.Guna2Panel1.Location = New System.Drawing.Point(-23, 158)
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.Size = New System.Drawing.Size(306, 165)
         Me.Guna2Panel1.TabIndex = 17
@@ -285,6 +296,46 @@ Partial Class EditUserForm
         Me.Guna2HtmlLabel1.TabIndex = 1
         Me.Guna2HtmlLabel1.Text = "EDIT PROFILE"
         '
+        'Guna2HtmlLabel2
+        '
+        Me.Guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(438, 98)
+        Me.Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
+        Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(46, 18)
+        Me.Guna2HtmlLabel2.TabIndex = 7
+        Me.Guna2HtmlLabel2.Text = "Email:"
+        '
+        'Guna2HtmlLabel3
+        '
+        Me.Guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel3.Location = New System.Drawing.Point(403, 138)
+        Me.Guna2HtmlLabel3.Name = "Guna2HtmlLabel3"
+        Me.Guna2HtmlLabel3.Size = New System.Drawing.Size(81, 18)
+        Me.Guna2HtmlLabel3.TabIndex = 8
+        Me.Guna2HtmlLabel3.Text = "Last Name:"
+        '
+        'Guna2HtmlLabel4
+        '
+        Me.Guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel4.Location = New System.Drawing.Point(444, 180)
+        Me.Guna2HtmlLabel4.Name = "Guna2HtmlLabel4"
+        Me.Guna2HtmlLabel4.Size = New System.Drawing.Size(40, 18)
+        Me.Guna2HtmlLabel4.TabIndex = 9
+        Me.Guna2HtmlLabel4.Text = "Role:"
+        '
+        'Guna2HtmlLabel5
+        '
+        Me.Guna2HtmlLabel5.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2HtmlLabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel5.Location = New System.Drawing.Point(25, 180)
+        Me.Guna2HtmlLabel5.Name = "Guna2HtmlLabel5"
+        Me.Guna2HtmlLabel5.Size = New System.Drawing.Size(117, 18)
+        Me.Guna2HtmlLabel5.TabIndex = 10
+        Me.Guna2HtmlLabel5.Text = "Contact Number:"
+        '
         'Guna2PictureBox1
         '
         Me.Guna2PictureBox1.BackColor = System.Drawing.Color.Transparent
@@ -297,16 +348,33 @@ Partial Class EditUserForm
         Me.Guna2PictureBox1.TabIndex = 0
         Me.Guna2PictureBox1.TabStop = False
         '
+        'btnSave
+        '
+        Me.btnSave.BorderRadius = 7
+        Me.btnSave.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btnSave.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btnSave.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btnSave.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btnSave.FillColor = System.Drawing.Color.FromArgb(CType(CType(249, Byte), Integer), CType(CType(142, Byte), Integer), CType(CType(171, Byte), Integer))
+        Me.btnSave.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSave.ForeColor = System.Drawing.Color.Black
+        Me.btnSave.Image = Global.TigrisBorrow.My.Resources.Resources.diskette1
+        Me.btnSave.ImageSize = New System.Drawing.Size(17, 17)
+        Me.btnSave.Location = New System.Drawing.Point(532, 274)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(180, 45)
+        Me.btnSave.TabIndex = 6
+        Me.btnSave.Text = "Save"
+        '
         'EditUserForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1078, 613)
+        Me.ClientSize = New System.Drawing.Size(1078, 465)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.Guna2ShadowPanel1)
         Me.Controls.Add(Me.pnlControlBox)
         Me.Controls.Add(Me.btnCancel)
-        Me.Controls.Add(Me.btnSave)
         Me.Name = "EditUserForm"
         Me.Text = "EditUserForm"
         Me.pnlControlBox.ResumeLayout(False)
@@ -338,4 +406,8 @@ Partial Class EditUserForm
     Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Guna2HtmlLabel1 As Guna.UI2.WinForms.Guna2HtmlLabel
     Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox
+    Friend WithEvents Guna2HtmlLabel5 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2HtmlLabel4 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2HtmlLabel3 As Guna.UI2.WinForms.Guna2HtmlLabel
+    Friend WithEvents Guna2HtmlLabel2 As Guna.UI2.WinForms.Guna2HtmlLabel
 End Class

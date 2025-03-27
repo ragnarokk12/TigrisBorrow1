@@ -46,11 +46,11 @@ Partial Class ChangePasswordForm
         Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2DragControl1 = New Guna.UI2.WinForms.Guna2DragControl(Me.components)
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
+        Me.lblEmojiError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2ShadowPanel1.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlControlBox.SuspendLayout()
-        Me.lblEmojiError = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.SuspendLayout()
         '
         'lblNewPassword
@@ -75,8 +75,8 @@ Partial Class ChangePasswordForm
         '
         'txtNewPassword
         '
-        Me.txtNewPassword.BorderRadius = 10
         Me.txtNewPassword.AcceptsReturn = True
+        Me.txtNewPassword.BorderRadius = 10
         Me.txtNewPassword.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtNewPassword.DefaultText = ""
         Me.txtNewPassword.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -161,7 +161,7 @@ Partial Class ChangePasswordForm
         '
         Me.lblCriteriaUpper.BackColor = System.Drawing.Color.Transparent
         Me.lblCriteriaUpper.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCriteriaUpper.Location = New System.Drawing.Point(174, 105)
+        Me.lblCriteriaUpper.Location = New System.Drawing.Point(189, 105)
         Me.lblCriteriaUpper.Name = "lblCriteriaUpper"
         Me.lblCriteriaUpper.Size = New System.Drawing.Size(143, 17)
         Me.lblCriteriaUpper.TabIndex = 6
@@ -171,7 +171,7 @@ Partial Class ChangePasswordForm
         '
         Me.lblCriteriaLower.BackColor = System.Drawing.Color.Transparent
         Me.lblCriteriaLower.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCriteriaLower.Location = New System.Drawing.Point(174, 126)
+        Me.lblCriteriaLower.Location = New System.Drawing.Point(189, 126)
         Me.lblCriteriaLower.Name = "lblCriteriaLower"
         Me.lblCriteriaLower.Size = New System.Drawing.Size(141, 17)
         Me.lblCriteriaLower.TabIndex = 7
@@ -181,7 +181,7 @@ Partial Class ChangePasswordForm
         '
         Me.lblCriteriaDigit.BackColor = System.Drawing.Color.Transparent
         Me.lblCriteriaDigit.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCriteriaDigit.Location = New System.Drawing.Point(174, 147)
+        Me.lblCriteriaDigit.Location = New System.Drawing.Point(189, 147)
         Me.lblCriteriaDigit.Name = "lblCriteriaDigit"
         Me.lblCriteriaDigit.Size = New System.Drawing.Size(78, 17)
         Me.lblCriteriaDigit.TabIndex = 8
@@ -191,7 +191,7 @@ Partial Class ChangePasswordForm
         '
         Me.lblCriteriaLength.BackColor = System.Drawing.Color.Transparent
         Me.lblCriteriaLength.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCriteriaLength.Location = New System.Drawing.Point(174, 84)
+        Me.lblCriteriaLength.Location = New System.Drawing.Point(189, 84)
         Me.lblCriteriaLength.Name = "lblCriteriaLength"
         Me.lblCriteriaLength.Size = New System.Drawing.Size(77, 17)
         Me.lblCriteriaLength.TabIndex = 9
@@ -201,7 +201,7 @@ Partial Class ChangePasswordForm
         '
         Me.lblPasswordMatch.BackColor = System.Drawing.Color.Transparent
         Me.lblPasswordMatch.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPasswordMatch.Location = New System.Drawing.Point(174, 237)
+        Me.lblPasswordMatch.Location = New System.Drawing.Point(188, 237)
         Me.lblPasswordMatch.Name = "lblPasswordMatch"
         Me.lblPasswordMatch.Size = New System.Drawing.Size(215, 17)
         Me.lblPasswordMatch.TabIndex = 10
@@ -215,7 +215,7 @@ Partial Class ChangePasswordForm
         Me.chkShowPassword.CheckedState.BorderRadius = 0
         Me.chkShowPassword.CheckedState.BorderThickness = 0
         Me.chkShowPassword.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.chkShowPassword.Location = New System.Drawing.Point(178, 263)
+        Me.chkShowPassword.Location = New System.Drawing.Point(188, 290)
         Me.chkShowPassword.Name = "chkShowPassword"
         Me.chkShowPassword.Size = New System.Drawing.Size(102, 17)
         Me.chkShowPassword.TabIndex = 11
@@ -228,16 +228,17 @@ Partial Class ChangePasswordForm
         'Guna2ShadowPanel1
         '
         Me.Guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblCriteriaUpper)
         Me.Guna2ShadowPanel1.Controls.Add(Me.chkShowPassword)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.lblEmojiError)
         Me.Guna2ShadowPanel1.Controls.Add(Me.lblNewPassword)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblPasswordMatch)
         Me.Guna2ShadowPanel1.Controls.Add(Me.lblConfirmPassword)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.lblCriteriaLength)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.lblPasswordMatch)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtNewPassword)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.lblCriteriaLength)
         Me.Guna2ShadowPanel1.Controls.Add(Me.lblCriteriaDigit)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtConfirmPassword)
         Me.Guna2ShadowPanel1.Controls.Add(Me.lblCriteriaLower)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.lblCriteriaUpper)
         Me.Guna2ShadowPanel1.FillColor = System.Drawing.Color.White
         Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(341, 56)
         Me.Guna2ShadowPanel1.Name = "Guna2ShadowPanel1"
@@ -337,7 +338,7 @@ Partial Class ChangePasswordForm
         'lblEmojiError
         '
         Me.lblEmojiError.BackColor = System.Drawing.Color.Transparent
-        Me.lblEmojiError.Location = New System.Drawing.Point(281, 335)
+        Me.lblEmojiError.Location = New System.Drawing.Point(188, 260)
         Me.lblEmojiError.Name = "lblEmojiError"
         Me.lblEmojiError.Size = New System.Drawing.Size(167, 15)
         Me.lblEmojiError.TabIndex = 12
@@ -348,14 +349,6 @@ Partial Class ChangePasswordForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
-        Me.Controls.Add(Me.lblEmojiError)
-        Me.Controls.Add(Me.chkShowPassword)
-        Me.Controls.Add(Me.lblPasswordMatch)
-        Me.Controls.Add(Me.lblCriteriaLength)
-        Me.Controls.Add(Me.lblCriteriaDigit)
-        Me.Controls.Add(Me.lblCriteriaLower)
-        Me.Controls.Add(Me.lblCriteriaUpper)
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(788, 456)
